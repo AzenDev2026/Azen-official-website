@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- ================= SEO 优化 ================= -->
     <title>Azen™ Linux — Modern LTS Distribution Based on Arch Linux</title>
-    <meta name="description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 3 technology (rewritten in C++) for enhanced performance and power efficiency.">
+    <meta name="description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 4 technology (rewritten in C++) for enhanced performance and power efficiency.">
     <meta name="keywords" content="Azen Linux, Azen, NVazen, Arch Linux, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux">
     <meta name="author" content="Ziting Liang">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content="Azen™ Linux — Modern LTS Distribution Based on Arch Linux">
-    <meta property="og:description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 3 technology.">
+    <meta property="og:description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 4 technology.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://azenos.netlify.app">
+    <meta property="og:url" content="https://azen.dev">
     <meta property="og:image" content="screenshot.png">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Azen™ Linux — Modern LTS Distribution Based on Arch Linux">
-    <meta name="twitter:description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 3 technology.">
-    
+    <meta name="twitter:description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 4 technology.">
+
     <!-- ================= 网站图标 (Favicon) ================= -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
+
     <style>
         /* ================= 全局样式与配色 ================= */
         * {
@@ -105,11 +105,11 @@
 
         /* ================= 顶部导航横幅 ================= */
         header {
-            background-color: var(--bg-header);
-            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
+            background-color: var(--bg-header);
+            border-bottom: 1px solid var(--border-color);
             transition: background-color 0.3s, border-color 0.3s;
         }
 
@@ -156,15 +156,6 @@
             pointer-events: none;
             transition: color 0.3s, opacity 0.3s;
             font-family: monospace;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: background-color 0.3s, border-color 0.3s;
-            /* 保证计数器相对 header 定位 */
-            position: relative;
         }
 
         .nav-links {
@@ -509,6 +500,7 @@
             display: flex;
             align-items: center;
             gap: 16px;
+            flex-wrap: wrap;
         }
 
         .alrm-header h2 {
@@ -876,7 +868,6 @@
 
         /* ================= 移动端检测与优化 (屏幕宽度 ≤ 820px) ================= */
         @media (max-width: 820px) {
-            /* 更新计数调整 */
             .update-counter {
                 position: static;
                 display: block;
@@ -884,10 +875,6 @@
                 padding: 2px 0 0 0;
                 font-size: 10px;
                 opacity: 0.4;
-            }
-
-            header {
-                position: sticky;
             }
 
             /* 导航栏移动端布局 */
@@ -929,7 +916,6 @@
                 min-width: 200px;
             }
 
-            /* 横幅箭头缩小 */
             .banner-arrow {
                 width: 36px;
                 height: 36px;
@@ -944,7 +930,6 @@
                 right: 8px;
             }
 
-            /* 横幅移动端布局：图片在上，文字在下 */
             .hero-section {
                 padding: 40px 0;
             }
@@ -995,7 +980,6 @@
                 font-size: 13px;
             }
 
-            /* 区块内边距缩小 */
             .alrm-section {
                 padding: 40px 0;
             }
@@ -1276,909 +1260,915 @@
 </head>
 <body>
 
-    <!-- 1. 顶部导航横幅 -->
-    <header>
-        <!-- 左上角更新计数 (半透明) -->
-        <div class="update-counter" data-i18n="update_counter">update 12</div>
-        <div class="container nav-bar">
-            <div class="logo-area">
-                <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
-                <span class="logo">Azen™ Linux</span>
-            </div>
-            <nav class="nav-links">
-                <a href="#news" data-i18n="nav_news" class="nav-link">News</a>
-                <a href="#features" data-i18n="nav_features" class="nav-link">Features</a>
-                <a href="#download" data-i18n="nav_download" class="nav-link">Download</a>
-                <a href="#comments" data-i18n="nav_comments" class="nav-link">Reviews</a>
-                <a href="#requirements" data-i18n="nav_requirements" class="nav-link">Requirements</a>
-                
-                <div class="settings-wrapper">
-                    <button class="settings-btn" id="settingsBtn" title="Settings">⚙️</button>
-                    <div class="settings-menu" id="settingsMenu">
-                        <div class="settings-group">
-                            <span class="settings-group-label" data-i18n="settings_language">Language</span>
-                            <div class="settings-group-options" id="langOptions">
-                                <button class="lang-option active" data-lang="en">English</button>
-                                <button class="lang-option" data-lang="zh">简体中文</button>
-                                <button class="lang-option" data-lang="ja">日本語</button>
-                                <button class="lang-option" data-lang="ko">한국어</button>
-                            </div>
+<!-- 1. 顶部导航横幅 -->
+<header>
+    <!-- 左上角更新计数 (半透明) -->
+    <div class="update-counter" data-i18n="update_counter">update 13</div>
+    <div class="container nav-bar">
+        <div class="logo-area">
+            <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
+            <span class="logo">Azen™ Linux</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#news" data-i18n="nav_news" class="nav-link">News</a>
+            <a href="#features" data-i18n="nav_features" class="nav-link">Features</a>
+            <a href="#download" data-i18n="nav_download" class="nav-link">Download</a>
+            <a href="#comments" data-i18n="nav_comments" class="nav-link">Reviews</a>
+            <a href="#requirements" data-i18n="nav_requirements" class="nav-link">Requirements</a>
+
+            <div class="settings-wrapper">
+                <button class="settings-btn" id="settingsBtn" title="Settings">⚙️</button>
+                <div class="settings-menu" id="settingsMenu">
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_language">Language</span>
+                        <div class="settings-group-options" id="langOptions">
+                            <button class="lang-option active" data-lang="en">English</button>
+                            <button class="lang-option" data-lang="zh">简体中文</button>
+                            <button class="lang-option" data-lang="ja">日本語</button>
+                            <button class="lang-option" data-lang="ko">한국어</button>
                         </div>
-                        <div class="settings-group">
-                            <span class="settings-group-label" data-i18n="settings_theme">Theme</span>
-                            <div class="settings-group-options" id="themeOptions">
-                                <button class="theme-option active" data-theme="dark">🌙 <span data-i18n="theme_dark">Dark</span></button>
-                                <button class="theme-option" data-theme="light">☀️ <span data-i18n="theme_light">Light</span></button>
-                            </div>
+                    </div>
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_theme">Theme</span>
+                        <div class="settings-group-options" id="themeOptions">
+                            <button class="theme-option active" data-theme="dark">🌙 <span data-i18n="theme_dark">Dark</span></button>
+                            <button class="theme-option" data-theme="light">☀️ <span data-i18n="theme_light">Light</span></button>
                         </div>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- 2. 双横幅轮播区域 -->
+<div class="hero-carousel-section" id="heroCarousel">
+    <!-- 左右切换箭头 -->
+    <div class="banner-arrow left" id="bannerArrowLeft" title="Previous">‹</div>
+    <div class="banner-arrow right" id="bannerArrowRight" title="Next">›</div>
+
+    <div class="banner-track" id="bannerTrack">
+
+        <!-- 横幅 1: NVazen 2.0 LTS -->
+        <div class="banner-slide">
+            <section class="hero-section">
+                <div class="container hero-grid">
+                    <div class="hero-image-box" id="carouselContainer1">
+                        <div class="carousel-track" id="carouselTrack1">
+                            <div class="carousel-slide"><img src="scr1.png" alt="NVazen screenshot 1"></div>
+                            <div class="carousel-slide"><img src="scr2.png" alt="NVazen screenshot 2"></div>
+                        </div>
+                        <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen™ 2.0 LTS 的实机演示</div>
+                    </div>
+                    <div class="hero-text-box">
+                        <div class="version-display">
+                            <span class="version-label" data-i18n="version_label">最新版本</span>
+                            <span class="version-number">NVazen™ 2.0 LTS</span>
+                            <span class="version-sub">2.0lts.1H2609</span>
+                        </div>
+                        <h1>NVazen™ 2.0</h1>
+                        <div class="sub-title" data-i18n="hero_sub1">
+                            基于 Arch Linux 的新架构 LTS 系列 · 搭载 ALRM 4 技术
+                        </div>
+                        <p data-i18n="hero_desc">
+                            我们致力于为社区改进技术。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text">GitHub 开发仓库</a> 获取更多信息。
+                        </p>
+                        <div class="status-alert" data-i18n="hero_alert1">NVazen™ 2.0 LTS 搭载全新 ALRM 4 引擎，配置解析重构 + 补丁库防篡改三层防线</div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </header>
 
-    <!-- 2. 双横幅轮播区域 -->
-    <div class="hero-carousel-section" id="heroCarousel">
-        <!-- 左右切换箭头 -->
-        <div class="banner-arrow left" id="bannerArrowLeft" title="Previous">‹</div>
-        <div class="banner-arrow right" id="bannerArrowRight" title="Next">›</div>
-
-        <div class="banner-track" id="bannerTrack">
-            
-            <!-- 横幅 1: NVazen 2.0 LTS -->
-            <div class="banner-slide">
-                <section class="hero-section">
-                    <div class="container hero-grid">
-                        <div class="hero-image-box" id="carouselContainer1">
-                            <div class="carousel-track" id="carouselTrack1">
-                                <div class="carousel-slide"><img src="scr1.png" alt="NVazen 截图 1"></div>
-                                <div class="carousel-slide"><img src="scr2.png" alt="NVazen 截图 2"></div>
-                            </div>
-                            <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen™ 2.0 LTS 的实机演示</div>
+        <!-- 横幅 2: Azen 11 LTS -->
+        <div class="banner-slide">
+            <section class="hero-section">
+                <div class="container hero-grid">
+                    <div class="hero-image-box" id="carouselContainer2">
+                        <div class="carousel-track" id="carouselTrack2">
+                            <div class="carousel-slide"><img src="scr3.png" alt="Azen 11 screenshot 1"></div>
+                            <div class="carousel-slide"><img src="scr4.png" alt="Azen 11 screenshot 2"></div>
                         </div>
-                        <div class="hero-text-box">
-                            <div class="version-display">
-                                <span class="version-label" data-i18n="version_label">最新版本</span>
-                                <span class="version-number">NVazen™ 2.0 LTS</span>
-                                <span class="version-sub">2.0lts.1H2609</span>
-                            </div>
-                            <h1>NVazen™ 2.0</h1>
-                            <div class="sub-title" data-i18n="hero_sub1">
-                                基于 Arch Linux 的新架构 LTS 系列 · 搭载 ALRM 3 技术
-                            </div>
-                            <p data-i18n="hero_desc">
-                                我们致力于为社区改进技术。访问我们的 <a href="https://github.com/AzenOS/Azen_dev" target="_blank" class="github-link" data-i18n="github_link_text">GitHub 开发仓库</a> 获取更多信息。
-                            </p>
-                            <div class="status-alert" data-i18n="hero_alert1">NVazen™ 2.0 LTS 搭载全新 ALRM 3 引擎，C++ 重写带来更优性能</div>
-                        </div>
+                        <div class="image-caption" data-i18n="image_caption2">此照片为 Azen™ 11 LTS 的实机演示</div>
                     </div>
-                </section>
-            </div>
-
-            <!-- 横幅 2: Azen 11 LTS -->
-            <div class="banner-slide">
-                <section class="hero-section">
-                    <div class="container hero-grid">
-                        <div class="hero-image-box" id="carouselContainer2">
-                            <div class="carousel-track" id="carouselTrack2">
-                                <div class="carousel-slide"><img src="scr3.png" alt="Azen 11 截图 1"></div>
-                                <div class="carousel-slide"><img src="scr4.png" alt="Azen 11 截图 2"></div>
-                            </div>
-                            <div class="image-caption" data-i18n="image_caption2">此照片为 Azen™ 11 LTS 的实机演示</div>
+                    <div class="hero-text-box">
+                        <div class="version-display">
+                            <span class="version-label" data-i18n="version_label">稳定版本</span>
+                            <span class="version-number">Azen™ 11 LTS</span>
+                            <span class="version-sub">11-lts.1H2609</span>
                         </div>
-                        <div class="hero-text-box">
-                            <div class="version-display">
-                                <span class="version-label" data-i18n="version_label">稳定版本</span>
-                                <span class="version-number">Azen™ 11 LTS</span>
-                                <span class="version-sub">11-lts.1H2609</span>
-                            </div>
-                            <h1>Azen™ 11</h1>
-                            <div class="sub-title" data-i18n="hero_sub2">
-                                基于 Arch Linux 的 LTS 发行版 · 专为老笔记本电脑优化
-                            </div>
-                            <p data-i18n="hero_desc2">
-                                Azen™ 11 LTS 是长期支持版本，提供稳定可靠的使用体验。访问我们的 <a href="https://github.com/AzenOS/Azen_dev" target="_blank" class="github-link" data-i18n="github_link_text2">GitHub 开发仓库</a> 获取更多信息。
-                            </p>
-                            <div class="status-alert" data-i18n="hero_alert2">长期支持版本，适合追求稳定性的用户</div>
+                        <h1>Azen™ 11</h1>
+                        <div class="sub-title" data-i18n="hero_sub2">
+                            基于 Arch Linux 的 LTS 发行版 · 专为老笔记本电脑优化
                         </div>
+                        <p data-i18n="hero_desc2">
+                            Azen™ 11 LTS 是长期支持版本，提供稳定可靠的使用体验。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text2">GitHub 开发仓库</a> 获取更多信息。
+                        </p>
+                        <div class="status-alert" data-i18n="hero_alert2">长期支持版本，适合追求稳定性的用户</div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
+        </div>
 
+    </div>
+</div>
+
+<!-- 3. ALRM 技术介绍区域 (更新为 ALRM 4) -->
+<section class="alrm-section scroll-target" id="alrm">
+    <div class="container alrm-content">
+        <div class="alrm-header">
+            <h2 data-i18n="alrm_title">ALRM 技术</h2>
+            <span class="alrm-badge" data-i18n="alrm_badge">独家</span>
+            <span class="alrm-version-tag">ALRM 4 · C++</span>
+        </div>
+        <div class="alrm-desc" data-i18n="alrm_desc">
+            <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 2.0 LTS 已率先搭载 ALRM 4 引擎。
+        </div>
+        <div class="alrm-grid">
+            <div class="alrm-card">
+                <h4 data-i18n="alrm_card1_title">App Nap</h4>
+                <p data-i18n="alrm_card1_desc">当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。</p>
+            </div>
+            <div class="alrm-card">
+                <h4 data-i18n="alrm_card2_title">深度睡眠</h4>
+                <p data-i18n="alrm_card2_desc">改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。</p>
+            </div>
+            <div class="alrm-card">
+                <h4 data-i18n="alrm_card3_title">资源优化</h4>
+                <p data-i18n="alrm_card3_desc">动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。</p>
+            </div>
+            <div class="alrm-card">
+                <h4 data-i18n="alrm_card4_title">补丁库防篡改</h4>
+                <p data-i18n="alrm_card4_desc">ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。</p>
+            </div>
         </div>
     </div>
+</section>
 
-    <!-- 3. ALRM 技术介绍区域 (更新为 ALRM 3，C++ 重写) -->
-    <section class="alrm-section scroll-target" id="alrm">
-        <div class="container alrm-content">
-            <div class="alrm-header">
-                <h2 data-i18n="alrm_title">ALRM 技术</h2>
-                <span class="alrm-badge" data-i18n="alrm_badge">独家</span>
-                <span class="alrm-version-tag">ALRM 3 · C++</span>
-            </div>
-            <div class="alrm-desc" data-i18n="alrm_desc">
-                <strong>ALRM 3 (Azen Laptop Resources Management)</strong> 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。最新版 ALRM 3 已从 Python 全面重写为 C++，带来更低的资源开销、更快的响应速度与更优的能效表现。NVazen™ 2.0 LTS 已率先搭载 ALRM 3 引擎。
-            </div>
-            <div class="alrm-grid">
-                <div class="alrm-card">
-                    <h4 data-i18n="alrm_card1_title">App Nap</h4>
-                    <p data-i18n="alrm_card1_desc">当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。</p>
-                </div>
-                <div class="alrm-card">
-                    <h4 data-i18n="alrm_card2_title">深度睡眠</h4>
-                    <p data-i18n="alrm_card2_desc">改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。</p>
-                </div>
-                <div class="alrm-card">
-                    <h4 data-i18n="alrm_card3_title">资源优化</h4>
-                    <p data-i18n="alrm_card3_desc">动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。</p>
-                </div>
+<!-- 4. News 流水走马灯 -->
+<section class="news-section scroll-target" id="news">
+    <div class="container">
+        <h2 data-i18n="news_title">Azen™ News</h2>
+        <div style="overflow: hidden; white-space: nowrap;">
+            <div class="marquee-container" id="newsMarquee">
+                <!-- 由 JS 动态生成 -->
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 4. News 流水走马灯 -->
-    <section class="news-section scroll-target" id="news">
-        <div class="container">
-            <h2 data-i18n="news_title">Azen™ News</h2>
-            <div style="overflow: hidden; white-space: nowrap;">
-                <div class="marquee-container" id="newsMarquee">
-                    <!-- 由 JS 动态生成 -->
-                </div>
+<!-- 5. 核心优势 -->
+<section class="features-section scroll-target" id="features">
+    <div class="container">
+        <h2 data-i18n="features_title">为什么选择 Azen™</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 data-i18n="feature1_title">隐私优先</h3>
+                <p data-i18n="feature1_desc">默认禁用遥测，不收集任何用户数据。你的电脑只属于你。</p>
+            </div>
+            <div class="feature-card">
+                <h3 data-i18n="feature2_title">性能改善</h3>
+                <p data-i18n="feature2_desc">基于 Arch Linux 精简内核，结合 ALRM 4（C++ 重写），内存占用降低，唤醒速度提升。</p>
+            </div>
+            <div class="feature-card">
+                <h3 data-i18n="feature3_title">优雅界面</h3>
+                <p data-i18n="feature3_desc">圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 5. 核心优势 -->
-    <section class="features-section scroll-target" id="features">
-        <div class="container">
-            <h2 data-i18n="features_title">为什么选择 Azen™</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3 data-i18n="feature1_title">隐私优先</h3>
-                    <p data-i18n="feature1_desc">默认禁用遥测，不收集任何用户数据。你的电脑只属于你。</p>
-                </div>
-                <div class="feature-card">
-                    <h3 data-i18n="feature2_title">性能改善</h3>
-                    <p data-i18n="feature2_desc">基于 Arch Linux 精简内核，结合 ALRM 3（C++ 重写），内存占用降低，唤醒速度提升。</p>
-                </div>
-                <div class="feature-card">
-                    <h3 data-i18n="feature3_title">优雅界面</h3>
-                    <p data-i18n="feature3_desc">圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. 下载与版本 -->
-    <section class="download-section scroll-target" id="download">
-        <div class="container download-grid">
-            <div class="version-box">
-                <h3 data-i18n="version_title">版本列表</h3>
-                <div class="version-list" id="versionList">
-NVazen™ 2.0 LTS  (2.0lts.1H2609)  (Latest)
+<!-- 6. 下载与版本 -->
+<section class="download-section scroll-target" id="download">
+    <div class="container download-grid">
+        <div class="version-box">
+            <h3 data-i18n="version_title">版本列表</h3>
+            <div class="version-list" id="versionList">NVazen™ 2.0 LTS  (2.0lts.1H2609)  (Latest)
 Azen™ 11 LTS  (11-lts.1H2609)
 Azen™ 7 R.1bsH2608
-Azen™ 5 rc-bs.1H2608
-                </div>
-            </div>
-            <div class="github-box">
-                <h3 data-i18n="github_title">GitHub</h3>
-                <p data-i18n="github_desc">所有源码与镜像均开源，遵循 GPLv3。</p>
-                <a href="https://github.com/AzenOS/Azen_dev" target="_blank" class="github-btn" data-i18n="github_btn">前往开发仓库</a>
-                <p style="margin-top:12px; font-size:13px; color:var(--text-muted);" data-i18n="github_star">欢迎 Star & Fork</p>
-            </div>
+Azen™ 5 rc-bs.1H2608</div>
         </div>
-    </section>
-
-    <!-- 7. 用户评价 -->
-    <section class="comment-section scroll-target" id="comments">
-        <div class="container">
-            <h2 data-i18n="comments_title">用户评价</h2>
-            <div class="comment-display" id="commentDisplay">
-                "Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 2.0 LTS 搭载的 ALRM 3 更是让人惊喜。"
-                — 来自社区的反馈
-
-                "ALRM 3 从 Python 换成 C++ 后，资源占用明显更低，响应更快了。"
-                — 测试用户
-
-                "基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"
-            </div>
+        <div class="github-box">
+            <h3 data-i18n="github_title">GitHub</h3>
+            <p data-i18n="github_desc">所有源码与镜像均开源，遵循 GPLv3。</p>
+            <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-btn" data-i18n="github_btn">前往开发仓库</a>
+            <p style="margin-top:12px; font-size:13px; color:var(--text-muted);" data-i18n="github_star">欢迎 Star &amp; Fork</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 8. 硬件要求 -->
-    <section class="requirements-section scroll-target" id="requirements">
-        <div class="container">
-            <h2 data-i18n="requirements_title">硬件基础要求</h2>
-            <table class="req-table">
-                <tr><td class="req-label" data-i18n="req_cpu">处理器</td><td data-i18n="req_cpu_desc">Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)</td></tr>
-                <tr><td class="req-label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 2 GB，推荐 4 GB 以上</td></tr>
-                <tr><td class="req-label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">20 GB 可用空间 (虚拟机环境)</td></tr>
-                <tr><td class="req-label" data-i18n="req_gpu">显卡</td><td data-i18n="req_gpu_desc">支持 OpenGL 3.0 以上</td></tr>
-                <tr><td class="req-label" data-i18n="req_vm">虚拟化</td><td data-i18n="req_vm_desc">VMware Workstation / Player 或 VirtualBox</td></tr>
-            </table>
+<!-- 7. 用户评价 -->
+<section class="comment-section scroll-target" id="comments">
+    <div class="container">
+        <h2 data-i18n="comments_title">用户评价</h2>
+        <div class="comment-display" id="commentDisplay">
+            "Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 2.0 LTS 搭载的 ALRM 4 更是让人惊喜。"
+            — 来自社区的反馈
+
+            "ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"
+            — 测试用户
+
+            "基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 9. 页脚 -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-left">
-                <p><strong data-i18n="footer_copyright">© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
-                <p data-i18n="footer_brand">Azen™ Linux — 基于 Arch Linux 的定制发行版</p>
-                <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
-            </div>
-            <div class="footer-right">
-                <p data-i18n="footer_note">本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。</p>
-                <p style="margin-top:8px;" data-i18n="footer_repo">GitHub 仓库 · 开源共建</p>
-                <p style="margin-top:8px; opacity:0.6;" data-i18n="footer_tagline">探索定制 Linux 的乐趣</p>
-            </div>
+<!-- 8. 硬件要求 -->
+<section class="requirements-section scroll-target" id="requirements">
+    <div class="container">
+        <h2 data-i18n="requirements_title">硬件基础要求</h2>
+        <table class="req-table">
+            <tr><td class="req-label" data-i18n="req_cpu">处理器</td><td data-i18n="req_cpu_desc">Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)</td></tr>
+            <tr><td class="req-label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 2 GB，推荐 4 GB 以上</td></tr>
+            <tr><td class="req-label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">20 GB 可用空间 (虚拟机环境)</td></tr>
+            <tr><td class="req-label" data-i18n="req_gpu">显卡</td><td data-i18n="req_gpu_desc">支持 OpenGL 3.0 以上</td></tr>
+            <tr><td class="req-label" data-i18n="req_vm">虚拟化</td><td data-i18n="req_vm_desc">VMware Workstation / Player 或 VirtualBox</td></tr>
+        </table>
+    </div>
+</section>
+
+<!-- 9. 页脚 -->
+<footer>
+    <div class="container footer-content">
+        <div class="footer-left">
+            <p><strong data-i18n="footer_copyright">© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
+            <p data-i18n="footer_brand">Azen™ Linux — 基于 Arch Linux 的定制发行版</p>
+            <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
         </div>
-    </footer>
+        <div class="footer-right">
+            <p data-i18n="footer_note">本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。</p>
+            <p style="margin-top:8px;" data-i18n="footer_repo">GitHub 仓库 · 开源共建</p>
+            <p style="margin-top:8px; opacity:0.6;" data-i18n="footer_tagline">探索定制 Linux 的乐趣</p>
+        </div>
+    </div>
+</footer>
 
-    <script>
-        (function() {
-            // =====================================================
-            // 1. 多语言资源
-            // =====================================================
-            const translations = {
-                en: {
-                    update_counter: 'update 12',
-                    nav_news: 'News',
-                    nav_features: 'Features',
-                    nav_download: 'Download',
-                    nav_comments: 'Reviews',
-                    nav_requirements: 'Requirements',
-                    settings_language: 'Language',
-                    settings_theme: 'Theme',
-                    theme_dark: 'Dark',
-                    theme_light: 'Light',
-                    version_label: 'Latest version',
-                    hero_sub1: 'New architecture LTS series based on Arch Linux · Powered by ALRM 3',
-                    hero_desc: 'We are working to improve our technology for the community. Visit our ',
-                    github_link_text: 'GitHub development repository',
-                    hero_alert1: 'NVazen™ 2.0 LTS ships with the new ALRM 3 engine, rewritten in C++ for better performance',
-                    image_caption1: 'This screenshot shows NVazen™ 2.0 LTS in action',
-                    hero_sub2: 'LTS distribution based on Arch Linux · Optimized for older laptops',
-                    hero_desc2: 'Azen™ 11 LTS is a long-term support version, providing stable and reliable experience. Visit our ',
-                    github_link_text2: 'GitHub development repository',
-                    hero_alert2: 'Long-term support version, suitable for users seeking stability',
-                    image_caption2: 'This screenshot shows Azen™ 11 LTS in action',
-                    alrm_title: 'ALRM Technology',
-                    alrm_badge: 'Exclusive',
-                    alrm_desc: 'ALRM 3 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen™ team, designed to optimize performance and power consumption for older laptops. The latest ALRM 3 has been fully rewritten from Python to C++, delivering lower resource overhead, faster response times, and better power efficiency. NVazen™ 2.0 LTS is the first to ship with the ALRM 3 engine.',
-                    alrm_card1_title: 'App Nap',
-                    alrm_card1_desc: 'When an application window is fully covered or idle for a long time, its background activity is automatically suspended, freeing up CPU and memory resources, significantly reducing power consumption.',
-                    alrm_card2_title: 'Deep Sleep',
-                    alrm_card2_desc: 'Improved system sleep mechanism. After closing the lid, the system enters a deep sleep state, cutting power to most hardware (CPU, hard drive, etc.) while supporting quick wake-up, greatly extending battery life.',
-                    alrm_card3_title: 'Resource Optimization',
-                    alrm_card3_desc: 'Dynamically adjusts the priority of background processes, reducing unnecessary resource usage, allowing older laptops to perform at their best. The C++ rewrite brings significant efficiency gains.',
-                    news_title: 'Azen™ News',
-                    features_title: 'Why choose Azen™',
-                    feature1_title: 'Privacy First',
-                    feature1_desc: 'Telemetry disabled by default, no data collection. Your computer stays yours.',
-                    feature2_title: 'Performance',
-                    feature2_desc: 'Based on Arch Linux streamlined kernel, combined with ALRM 3 (C++ rewrite), memory usage reduced, wake time improved.',
-                    feature3_title: 'Elegant UI',
-                    feature3_desc: 'Soft rounded corners and dynamic themes make every interaction a pleasure.',
-                    version_title: 'Version List',
-                    github_title: 'GitHub',
-                    github_desc: 'All source code and images are open source, licensed under GPLv3.',
-                    github_btn: 'Go to Development Repo',
-                    github_star: 'Star & Fork welcome',
-                    comments_title: 'User Reviews',
-                    requirements_title: 'Hardware Requirements',
-                    req_cpu: 'Processor',
-                    req_cpu_desc: 'Intel Core 2 Duo or AMD equivalent (4 cores recommended)',
-                    req_ram: 'Memory',
-                    req_ram_desc: 'Minimum 2 GB, 4 GB or more recommended',
-                    req_storage: 'Storage',
-                    req_storage_desc: '20 GB available space (for virtual machine)',
-                    req_gpu: 'Graphics',
-                    req_gpu_desc: 'OpenGL 3.0 or higher',
-                    req_vm: 'Virtualization',
-                    req_vm_desc: 'VMware Workstation / Player or VirtualBox',
-                    footer_copyright: '© 2026 Ziting Liang',
-                    footer_original: '· Original Work',
-                    footer_brand: 'Azen™ Linux — Custom distribution based on Arch Linux',
-                    footer_gpl: 'Licensed under GPLv3',
-                    footer_note: 'Based on Arch Linux, all modifications and derivatives follow GPLv3.',
-                    footer_repo: 'GitHub repository · Open source',
-                    footer_tagline: 'Explore the joy of custom Linux',
-                    news_items: [
-                        { title: 'NVazen™ 2.0 LTS Released', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) now available with ALRM 3' },
-                        { title: 'ALRM 3 Rewritten in C++', desc: 'ALRM 3 moves from Python to C++ for better performance' },
-                        { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) now available for download' },
-                        { title: 'Community', desc: 'Join our Microsoft Teams channel to participate' },
-                        { title: 'Control Center', desc: 'Azen™ Control Center in development' },
-                        { title: 'Documentation', desc: 'User guide and installation manual updated' }
-                    ],
-                    comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 3 in NVazen™ 2.0 LTS is amazing."\n— Community feedback\n\n"ALRM 3 rewritten in C++ uses less resources and responds much faster."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
-                },
-                zh: {
-                    update_counter: '第 12 次更新',
-                    nav_news: '新闻',
-                    nav_features: '优势',
-                    nav_download: '下载',
-                    nav_comments: '评价',
-                    nav_requirements: '硬件要求',
-                    settings_language: '语言',
-                    settings_theme: '主题',
-                    theme_dark: '深色',
-                    theme_light: '浅色',
-                    version_label: '最新版本',
-                    hero_sub1: '基于 Arch Linux 的新架构 LTS 系列 · 搭载 ALRM 3 技术',
-                    hero_desc: '我们致力于为社区改进技术。访问我们的 ',
-                    github_link_text: 'GitHub 开发仓库',
-                    hero_alert1: 'NVazen™ 2.0 LTS 搭载全新 ALRM 3 引擎，C++ 重写带来更优性能',
-                    image_caption1: '此照片为 NVazen™ 2.0 LTS 的实机演示',
-                    hero_sub2: '基于 Arch Linux 的 LTS 发行版 · 专为老笔记本电脑优化',
-                    hero_desc2: 'Azen™ 11 LTS 是长期支持版本，提供稳定可靠的使用体验。访问我们的 ',
-                    github_link_text2: 'GitHub 开发仓库',
-                    hero_alert2: '长期支持版本，适合追求稳定性的用户',
-                    image_caption2: '此照片为 Azen™ 11 LTS 的实机演示',
-                    alrm_title: 'ALRM 技术',
-                    alrm_badge: '独家',
-                    alrm_desc: 'ALRM 3 (Azen Laptop Resources Management) 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。最新版 ALRM 3 已从 Python 全面重写为 C++，带来更低的资源开销、更快的响应速度与更优的能效表现。NVazen™ 2.0 LTS 已率先搭载 ALRM 3 引擎。',
-                    alrm_card1_title: 'App Nap',
-                    alrm_card1_desc: '当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。',
-                    alrm_card2_title: '深度睡眠',
-                    alrm_card2_desc: '改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。',
-                    alrm_card3_title: '资源优化',
-                    alrm_card3_desc: '动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。',
-                    news_title: 'Azen™ 新闻',
-                    features_title: '为什么选择 Azen™',
-                    feature1_title: '隐私优先',
-                    feature1_desc: '默认禁用遥测，不收集任何用户数据。你的电脑只属于你。',
-                    feature2_title: '性能改善',
-                    feature2_desc: '基于 Arch Linux 精简内核，结合 ALRM 3（C++ 重写），内存占用降低，唤醒速度提升。',
-                    feature3_title: '优雅界面',
-                    feature3_desc: '圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。',
-                    version_title: '版本列表',
-                    github_title: 'GitHub',
-                    github_desc: '所有源码与镜像均开源，遵循 GPLv3。',
-                    github_btn: '前往开发仓库',
-                    github_star: '欢迎 Star & Fork',
-                    comments_title: '用户评价',
-                    requirements_title: '硬件基础要求',
-                    req_cpu: '处理器',
-                    req_cpu_desc: 'Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)',
-                    req_ram: '内存',
-                    req_ram_desc: '最低 2 GB，推荐 4 GB 以上',
-                    req_storage: '存储',
-                    req_storage_desc: '20 GB 可用空间 (虚拟机环境)',
-                    req_gpu: '显卡',
-                    req_gpu_desc: '支持 OpenGL 3.0 以上',
-                    req_vm: '虚拟化',
-                    req_vm_desc: 'VMware Workstation / Player 或 VirtualBox',
-                    footer_copyright: '© 2026 梁子珽',
-                    footer_original: '· 原创作品',
-                    footer_brand: 'Azen™ Linux — 基于 Arch Linux 的定制发行版',
-                    footer_gpl: '遵守 GPLv3 开源协议',
-                    footer_note: '本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。',
-                    footer_repo: 'GitHub 仓库 · 开源共建',
-                    footer_tagline: '探索定制 Linux 的乐趣',
-                    news_items: [
-                        { title: 'NVazen™ 2.0 LTS 发布', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) 现已发布，搭载 ALRM 3' },
-                        { title: 'ALRM 3 用 C++ 重写', desc: 'ALRM 3 从 Python 迁移到 C++，性能更优' },
-                        { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) 现已开放下载' },
-                        { title: '社区动态', desc: '欢迎加入我们的 Microsoft Teams 频道参与讨论' },
-                        { title: '控制中心', desc: 'Azen™ 控制中心开发中' },
-                        { title: '文档更新', desc: '用户手册与安装指南已更新' }
-                    ],
-                    comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 2.0 LTS 搭载的 ALRM 3 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 3 从 Python 换成 C++ 后，资源占用明显更低，响应更快了。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
-                },
-                ja: {
-                    update_counter: '更新 12',
-                    nav_news: 'ニュース',
-                    nav_features: '特徴',
-                    nav_download: 'ダウンロード',
-                    nav_comments: 'レビュー',
-                    nav_requirements: '要件',
-                    settings_language: '言語',
-                    settings_theme: 'テーマ',
-                    theme_dark: 'ダーク',
-                    theme_light: 'ライト',
-                    version_label: '最新バージョン',
-                    hero_sub1: 'Arch Linux ベースの新アーキテクチャ LTS シリーズ · ALRM 3 搭載',
-                    hero_desc: 'コミュニティのために技術を向上させ続けています。',
-                    github_link_text: 'GitHub 開発リポジトリ',
-                    hero_alert1: 'NVazen™ 2.0 LTS は新しい ALRM 3 エンジンを搭載、C++ で書き直し',
-                    image_caption1: 'このスクリーンショットは NVazen™ 2.0 LTS の実機デモです',
-                    hero_sub2: 'Arch Linux ベースの LTS ディストリビューション · 旧型ノートPC向け最適化',
-                    hero_desc2: 'Azen™ 11 LTS は長期サポート版で、安定した信頼性の高い体験を提供します。',
-                    github_link_text2: 'GitHub 開発リポジトリ',
-                    hero_alert2: '長期サポート版、安定性を求めるユーザーに最適',
-                    image_caption2: 'このスクリーンショットは Azen™ 11 LTS の実機デモです',
-                    alrm_title: 'ALRM テクノロジー',
-                    alrm_badge: '独占',
-                    alrm_desc: 'ALRM 3 (Azen Laptop Resources Management) は Azen™ チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。最新の ALRM 3 は Python から C++ に全面書き換えされ、より低いリソースオーバーヘッド、より速い応答速度、より優れた電力効率を実現しました。NVazen™ 2.0 LTS が最初に ALRM 3 エンジンを搭載しています。',
-                    alrm_card1_title: 'App Nap',
-                    alrm_card1_desc: 'アプリケーションウィンドウが完全に隠れたり、長時間操作がない場合、バックグラウンドアクティビティを自動的に一時停止し、CPUとメモリリソースを解放して消費電力を大幅に削減します。',
-                    alrm_card2_title: 'ディープスリープ',
-                    alrm_card2_desc: 'システムスリープ機構を改善。蓋を閉じるとディープスリープ状態に入り、ほとんどのハードウェア（CPU、ハードディスクなど）への電源を遮断しながら、素早いウェイクをサポートし、バッテリー持続時間を大幅に向上させます。',
-                    alrm_card3_title: 'リソース最適化',
-                    alrm_card3_desc: 'バックグラウンドプロセスの優先順位を動的に調整し、不要なリソース使用を削減。旧型ノートPCでも最高のパフォーマンスを発揮できるようにします。C++ 書き換えにより効率が大幅に向上しました。',
-                    news_title: 'Azen™ ニュース',
-                    features_title: 'Azen™ を選ぶ理由',
-                    feature1_title: 'プライバシー優先',
-                    feature1_desc: 'テレメトリはデフォルトで無効、データ収集なし。あなたの PC はあなたのものです。',
-                    feature2_title: 'パフォーマンス',
-                    feature2_desc: 'Arch Linux の合理化されたカーネルと ALRM 3（C++ 書き換え）を組み合わせ、メモリ使用量削減、ウェイク時間改善。',
-                    feature3_title: 'エレガントな UI',
-                    feature3_desc: 'ソフトなラウンドとダイナミックテーマで、すべてのインタラクションを楽しく。',
-                    version_title: 'バージョン一覧',
-                    github_title: 'GitHub',
-                    github_desc: '全ソースコードとイメージはオープンソース、GPLv3 ライセンス。',
-                    github_btn: '開発リポジトリへ',
-                    github_star: 'Star & Fork 歓迎',
-                    comments_title: 'ユーザーレビュー',
-                    requirements_title: 'ハードウェア要件',
-                    req_cpu: 'プロセッサ',
-                    req_cpu_desc: 'Intel Core 2 Duo または AMD 相当 (4 コア推奨)',
-                    req_ram: 'メモリ',
-                    req_ram_desc: '最小 2 GB、4 GB 以上推奨',
-                    req_storage: 'ストレージ',
-                    req_storage_desc: '20 GB の空き容量 (仮想マシン環境)',
-                    req_gpu: 'グラフィックス',
-                    req_gpu_desc: 'OpenGL 3.0 以上',
-                    req_vm: '仮想化',
-                    req_vm_desc: 'VMware Workstation / Player または VirtualBox',
-                    footer_copyright: '© 2026 梁子珽',
-                    footer_original: '· オリジナル作品',
-                    footer_brand: 'Azen™ Linux — Arch Linux ベースのカスタムディストリビューション',
-                    footer_gpl: 'GPLv3 オープンソースライセンス',
-                    footer_note: 'Arch Linux に基づき、すべての変更と派生コードは GPLv3 に従います。',
-                    footer_repo: 'GitHub リポジトリ · オープンソース',
-                    footer_tagline: 'カスタム Linux の楽しさを探求',
-                    news_items: [
-                        { title: 'NVazen™ 2.0 LTS リリース', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) リリース、ALRM 3 搭載' },
-                        { title: 'ALRM 3 が C++ で書き換え', desc: 'ALRM 3 が Python から C++ に移行、性能向上' },
-                        { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) ダウンロード可能' },
-                        { title: 'コミュニティ', desc: 'Microsoft Teams チャンネルに参加してください' },
-                        { title: 'コントロールセンター', desc: 'Azen™ コントロールセンター開発中' },
-                        { title: 'ドキュメント', desc: 'ユーザーガイドとインストールマニュアルを更新' }
-                    ],
-                    comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ 2.0 LTS の ALRM 3 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 3 が C++ に書き換えられ、リソース使用量が減り、応答が速くなりました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
-                },
-                ko: {
-                    update_counter: '업데이트 12',
-                    nav_news: '뉴스',
-                    nav_features: '기능',
-                    nav_download: '다운로드',
-                    nav_comments: '리뷰',
-                    nav_requirements: '요구사항',
-                    settings_language: '언어',
-                    settings_theme: '테마',
-                    theme_dark: '다크',
-                    theme_light: '라이트',
-                    version_label: '최신 버전',
-                    hero_sub1: 'Arch Linux 기반 새 아키텍처 LTS 시리즈 · ALRM 3 탑재',
-                    hero_desc: '커뮤니티를 위해 기술을 계속 개선하고 있습니다.',
-                    github_link_text: 'GitHub 개발 저장소',
-                    hero_alert1: 'NVazen™ 2.0 LTS에 새로운 ALRM 3 엔진 탑재, C++로 재작성',
-                    image_caption1: '이 스크린샷은 NVazen™ 2.0 LTS의 실제 데모입니다',
-                    hero_sub2: 'Arch Linux 기반 LTS 배포판 · 구형 노트북 최적화',
-                    hero_desc2: 'Azen™ 11 LTS는 장기 지원 버전으로 안정적이고 신뢰할 수 있는 경험을 제공합니다.',
-                    github_link_text2: 'GitHub 개발 저장소',
-                    hero_alert2: '장기 지원 버전, 안정성을 추구하는 사용자에게 적합',
-                    image_caption2: '이 스크린샷은 Azen™ 11 LTS의 실제 데모입니다',
-                    alrm_title: 'ALRM 기술',
-                    alrm_badge: '독점',
-                    alrm_desc: 'ALRM 3 (Azen Laptop Resources Management)은 Azen™ 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. 최신 ALRM 3는 Python에서 C++로 완전히 재작성되어 더 낮은 리소스 오버헤드, 더 빠른 응답 속도, 더 나은 전력 효율을 제공합니다. NVazen™ 2.0 LTS가 ALRM 3 엔진을 최초로 탑재했습니다.',
-                    alrm_card1_title: 'App Nap',
-                    alrm_card1_desc: '애플리케이션 창이 완전히 가려지거나 장시간 작업이 없을 때 백그라운드 활동을 자동으로 일시 중지하여 CPU와 메모리 리소스를 확보하고 전력 소비를 크게 줄입니다.',
-                    alrm_card2_title: '딥 슬립',
-                    alrm_card2_desc: '시스템 슬립 메커니즘 개선. 덮개를 닫으면 딥 슬립 상태로 전환되어 대부분의 하드웨어(CPU, 하드디스크 등) 전원을 차단하면서도 빠른 웨이크를 지원하여 배터리 수명을 크게 향상시킵니다.',
-                    alrm_card3_title: '리소스 최적화',
-                    alrm_card3_desc: '백그라운드 프로세스의 우선순위를 동적으로 조정하여 불필요한 리소스 사용을 줄이고, 구형 노트북도 최고의 성능을 발휘할 수 있도록 합니다. C++ 재작성으로 효율이 크게 향상되었습니다.',
-                    news_title: 'Azen™ 뉴스',
-                    features_title: 'Azen™을 선택하는 이유',
-                    feature1_title: '프라이버시 우선',
-                    feature1_desc: '원격 측정 기본 비활성화, 데이터 수집 없음. 당신의 PC는 당신의 것입니다.',
-                    feature2_title: '성능',
-                    feature2_desc: 'Arch Linux 간소화된 커널과 ALRM 3(C++ 재작성) 결합, 메모리 사용량 감소, 웨이크 시간 개선.',
-                    feature3_title: '우아한 UI',
-                    feature3_desc: '부드러운 라운드와 다이나믹 테마로 모든 상호작용을 즐겁게.',
-                    version_title: '버전 목록',
-                    github_title: 'GitHub',
-                    github_desc: '모든 소스 코드와 이미지는 오픈소스이며 GPLv3 라이선스를 따릅니다.',
-                    github_btn: '개발 저장소로 이동',
-                    github_star: 'Star & Fork 환영',
-                    comments_title: '사용자 리뷰',
-                    requirements_title: '하드웨어 요구사항',
-                    req_cpu: '프로세서',
-                    req_cpu_desc: 'Intel Core 2 Duo 또는 AMD 동급 (4코어 권장)',
-                    req_ram: '메모리',
-                    req_ram_desc: '최소 2 GB, 4 GB 이상 권장',
-                    req_storage: '저장공간',
-                    req_storage_desc: '20 GB 여유 공간 (가상 머신 환경)',
-                    req_gpu: '그래픽',
-                    req_gpu_desc: 'OpenGL 3.0 이상',
-                    req_vm: '가상화',
-                    req_vm_desc: 'VMware Workstation / Player 또는 VirtualBox',
-                    footer_copyright: '© 2026 량쯔팅',
-                    footer_original: '· 오리지널 작품',
-                    footer_brand: 'Azen™ Linux — Arch Linux 기반 커스텀 배포판',
-                    footer_gpl: 'GPLv3 오픈소스 라이선스',
-                    footer_note: 'Arch Linux 기반, 모든 수정 및 파생 코드는 GPLv3를 따릅니다.',
-                    footer_repo: 'GitHub 리포지토리 · 오픈소스',
-                    footer_tagline: '커스텀 Linux의 즐거움을 탐험하세요',
-                    news_items: [
-                        { title: 'NVazen™ 2.0 LTS 릴리스', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) 출시, ALRM 3 탑재' },
-                        { title: 'ALRM 3, C++로 재작성', desc: 'ALRM 3가 Python에서 C++로 전환, 성능 향상' },
-                        { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) 다운로드 가능' },
-                        { title: '커뮤니티', desc: 'Microsoft Teams 채널에 참여하세요' },
-                        { title: '컨트롤 센터', desc: 'Azen™ 컨트롤 센터 개발 중' },
-                        { title: '문서화', desc: '사용자 가이드 및 설치 매뉴얼 업데이트' }
-                    ],
-                    comments: '"Azen™은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen™ 2.0 LTS의 ALRM 3는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ALRM 3가 C++로 재작성되어 리소스 사용량이 줄고 응답이 빨라졌습니다."\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
+<script>
+    (function() {
+        // =====================================================
+        // 1. 多语言资源
+        // =====================================================
+        const translations = {
+            en: {
+                update_counter: 'update 13',
+                nav_news: 'News',
+                nav_features: 'Features',
+                nav_download: 'Download',
+                nav_comments: 'Reviews',
+                nav_requirements: 'Requirements',
+                settings_language: 'Language',
+                settings_theme: 'Theme',
+                theme_dark: 'Dark',
+                theme_light: 'Light',
+                version_label: 'Latest version',
+                hero_sub1: 'New architecture LTS series based on Arch Linux · Powered by ALRM 4',
+                hero_desc: 'We are working to improve our technology for the community. Visit our ',
+                github_link_text: 'GitHub development repository',
+                hero_alert1: 'NVazen™ 2.0 LTS ships with the new ALRM 4 engine — refactored config parsing plus a three-layer patch-library anti-tamper defense',
+                image_caption1: 'This screenshot shows NVazen™ 2.0 LTS in action',
+                hero_sub2: 'LTS distribution based on Arch Linux · Optimized for older laptops',
+                hero_desc2: 'Azen™ 11 LTS is a long-term support version, providing stable and reliable experience. Visit our ',
+                github_link_text2: 'GitHub development repository',
+                hero_alert2: 'Long-term support version, suitable for users seeking stability',
+                image_caption2: 'This screenshot shows Azen™ 11 LTS in action',
+                alrm_title: 'ALRM Technology',
+                alrm_badge: 'Exclusive',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen™ team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen™ 2.0 LTS is the first to ship with the ALRM 4 engine.',
+                alrm_card1_title: 'App Nap',
+                alrm_card1_desc: 'When an application window is fully covered or idle for a long time, its background activity is automatically suspended, freeing up CPU and memory resources, significantly reducing power consumption.',
+                alrm_card2_title: 'Deep Sleep',
+                alrm_card2_desc: 'Improved system sleep mechanism. After closing the lid, the system enters a deep sleep state, cutting power to most hardware (CPU, hard drive, etc.) while supporting quick wake-up, greatly extending battery life.',
+                alrm_card3_title: 'Resource Optimization',
+                alrm_card3_desc: 'Dynamically adjusts the priority of background processes, reducing unnecessary resource usage, allowing older laptops to perform at their best. The C++ rewrite brings significant efficiency gains.',
+                alrm_card4_title: 'Patch Library Anti-Tamper',
+                alrm_card4_desc: 'ALRM 4 introduces a three-layer anti-tamper defense for the patch library: the verification layer ensures patches come from trusted sources, the runtime layer blocks illegal injection, and the audit layer keeps a complete change log — protecting system integrity at the source.',
+                news_title: 'Azen™ News',
+                features_title: 'Why choose Azen™',
+                feature1_title: 'Privacy First',
+                feature1_desc: 'Telemetry disabled by default, no data collection. Your computer stays yours.',
+                feature2_title: 'Performance',
+                feature2_desc: 'Based on Arch Linux streamlined kernel, combined with ALRM 4 (C++ rewrite), memory usage reduced, wake time improved.',
+                feature3_title: 'Elegant UI',
+                feature3_desc: 'Soft rounded corners and dynamic themes make every interaction a pleasure.',
+                version_title: 'Version List',
+                github_title: 'GitHub',
+                github_desc: 'All source code and images are open source, licensed under GPLv3.',
+                github_btn: 'Go to Development Repo',
+                github_star: 'Star & Fork welcome',
+                comments_title: 'User Reviews',
+                requirements_title: 'Hardware Requirements',
+                req_cpu: 'Processor',
+                req_cpu_desc: 'Intel Core 2 Duo or AMD equivalent (4 cores recommended)',
+                req_ram: 'Memory',
+                req_ram_desc: 'Minimum 2 GB, 4 GB or more recommended',
+                req_storage: 'Storage',
+                req_storage_desc: '20 GB available space (for virtual machine)',
+                req_gpu: 'Graphics',
+                req_gpu_desc: 'OpenGL 3.0 or higher',
+                req_vm: 'Virtualization',
+                req_vm_desc: 'VMware Workstation / Player or VirtualBox',
+                footer_copyright: '© 2026 Ziting Liang',
+                footer_original: '· Original Work',
+                footer_brand: 'Azen™ Linux — Custom distribution based on Arch Linux',
+                footer_gpl: 'Licensed under GPLv3',
+                footer_note: 'Based on Arch Linux, all modifications and derivatives follow GPLv3.',
+                footer_repo: 'GitHub repository · Open source',
+                footer_tagline: 'Explore the joy of custom Linux',
+                news_items: [
+                    { title: 'NVazen™ 2.0 LTS Released', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) now available with ALRM 4' },
+                    { title: 'ALRM 4 Released', desc: 'ALRM 4 refactors config parsing and adds a three-layer anti-tamper defense' },
+                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) now available for download' },
+                    { title: 'Community', desc: 'Join our Microsoft Teams channel to participate' },
+                    { title: 'Control Center', desc: 'Azen™ Control Center in development' },
+                    { title: 'Documentation', desc: 'User guide and installation manual updated' }
+                ],
+                comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ 2.0 LTS is amazing."\n— Community feedback\n\n"ALRM 4 refactors config parsing and adds anti-tamper defenses — lower resource usage and more peace of mind."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
+            },
+            zh: {
+                update_counter: '第 13 次更新',
+                nav_news: '新闻',
+                nav_features: '优势',
+                nav_download: '下载',
+                nav_comments: '评价',
+                nav_requirements: '硬件要求',
+                settings_language: '语言',
+                settings_theme: '主题',
+                theme_dark: '深色',
+                theme_light: '浅色',
+                version_label: '最新版本',
+                hero_sub1: '基于 Arch Linux 的新架构 LTS 系列 · 搭载 ALRM 4 技术',
+                hero_desc: '我们致力于为社区改进技术。访问我们的 ',
+                github_link_text: 'GitHub 开发仓库',
+                hero_alert1: 'NVazen™ 2.0 LTS 搭载全新 ALRM 4 引擎，配置解析重构 + 补丁库防篡改三层防线',
+                image_caption1: '此照片为 NVazen™ 2.0 LTS 的实机演示',
+                hero_sub2: '基于 Arch Linux 的 LTS 发行版 · 专为老笔记本电脑优化',
+                hero_desc2: 'Azen™ 11 LTS 是长期支持版本，提供稳定可靠的使用体验。访问我们的 ',
+                github_link_text2: 'GitHub 开发仓库',
+                hero_alert2: '长期支持版本，适合追求稳定性的用户',
+                image_caption2: '此照片为 Azen™ 11 LTS 的实机演示',
+                alrm_title: 'ALRM 技术',
+                alrm_badge: '独家',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 2.0 LTS 已率先搭载 ALRM 4 引擎。',
+                alrm_card1_title: 'App Nap',
+                alrm_card1_desc: '当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。',
+                alrm_card2_title: '深度睡眠',
+                alrm_card2_desc: '改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。',
+                alrm_card3_title: '资源优化',
+                alrm_card3_desc: '动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。',
+                alrm_card4_title: '补丁库防篡改',
+                alrm_card4_desc: 'ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。',
+                news_title: 'Azen™ 新闻',
+                features_title: '为什么选择 Azen™',
+                feature1_title: '隐私优先',
+                feature1_desc: '默认禁用遥测，不收集任何用户数据。你的电脑只属于你。',
+                feature2_title: '性能改善',
+                feature2_desc: '基于 Arch Linux 精简内核，结合 ALRM 4（C++ 重写），内存占用降低，唤醒速度提升。',
+                feature3_title: '优雅界面',
+                feature3_desc: '圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。',
+                version_title: '版本列表',
+                github_title: 'GitHub',
+                github_desc: '所有源码与镜像均开源，遵循 GPLv3。',
+                github_btn: '前往开发仓库',
+                github_star: '欢迎 Star & Fork',
+                comments_title: '用户评价',
+                requirements_title: '硬件基础要求',
+                req_cpu: '处理器',
+                req_cpu_desc: 'Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)',
+                req_ram: '内存',
+                req_ram_desc: '最低 2 GB，推荐 4 GB 以上',
+                req_storage: '存储',
+                req_storage_desc: '20 GB 可用空间 (虚拟机环境)',
+                req_gpu: '显卡',
+                req_gpu_desc: '支持 OpenGL 3.0 以上',
+                req_vm: '虚拟化',
+                req_vm_desc: 'VMware Workstation / Player 或 VirtualBox',
+                footer_copyright: '© 2026 梁子珽',
+                footer_original: '· 原创作品',
+                footer_brand: 'Azen™ Linux — 基于 Arch Linux 的定制发行版',
+                footer_gpl: '遵守 GPLv3 开源协议',
+                footer_note: '本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。',
+                footer_repo: 'GitHub 仓库 · 开源共建',
+                footer_tagline: '探索定制 Linux 的乐趣',
+                news_items: [
+                    { title: 'NVazen™ 2.0 LTS 发布', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) 现已发布，搭载 ALRM 4' },
+                    { title: 'ALRM 4 发布', desc: 'ALRM 4 重构配置解析，新增防篡改三层防线' },
+                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) 现已开放下载' },
+                    { title: '社区动态', desc: '欢迎加入我们的 Microsoft Teams 频道参与讨论' },
+                    { title: '控制中心', desc: 'Azen™ 控制中心开发中' },
+                    { title: '文档更新', desc: '用户手册与安装指南已更新' }
+                ],
+                comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 2.0 LTS 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
+            },
+            ja: {
+                update_counter: '更新 13',
+                nav_news: 'ニュース',
+                nav_features: '特徴',
+                nav_download: 'ダウンロード',
+                nav_comments: 'レビュー',
+                nav_requirements: '要件',
+                settings_language: '言語',
+                settings_theme: 'テーマ',
+                theme_dark: 'ダーク',
+                theme_light: 'ライト',
+                version_label: '最新バージョン',
+                hero_sub1: 'Arch Linux ベースの新アーキテクチャ LTS シリーズ · ALRM 4 搭載',
+                hero_desc: 'コミュニティのために技術を向上させ続けています。',
+                github_link_text: 'GitHub 開発リポジトリ',
+                hero_alert1: 'NVazen™ 2.0 LTS は新しい ALRM 4 エンジンを搭載、設定解析のリファクタと改ざん防止の三段防衛',
+                image_caption1: 'このスクリーンショットは NVazen™ 2.0 LTS の実機デモです',
+                hero_sub2: 'Arch Linux ベースの LTS ディストリビューション · 旧型ノートPC向け最適化',
+                hero_desc2: 'Azen™ 11 LTS は長期サポート版で、安定した信頼性の高い体験を提供します。',
+                github_link_text2: 'GitHub 開発リポジトリ',
+                hero_alert2: '長期サポート版、安定性を求めるユーザーに最適',
+                image_caption2: 'このスクリーンショットは Azen™ 11 LTS の実機デモです',
+                alrm_title: 'ALRM テクノロジー',
+                alrm_badge: '独占',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen™ チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen™ 2.0 LTS が最初に ALRM 4 エンジンを搭載しています。',
+                alrm_card1_title: 'App Nap',
+                alrm_card1_desc: 'アプリケーションウィンドウが完全に隠れたり、長時間操作がない場合、バックグラウンドアクティビティを自動的に一時停止し、CPUとメモリリソースを解放して消費電力を大幅に削減します。',
+                alrm_card2_title: 'ディープスリープ',
+                alrm_card2_desc: 'システムスリープ機構を改善。蓋を閉じるとディープスリープ状態に入り、ほとんどのハードウェア（CPU、ハードディスクなど）への電源を遮断しながら、素早いウェイクをサポートし、バッテリー持続時間を大幅に向上させます。',
+                alrm_card3_title: 'リソース最適化',
+                alrm_card3_desc: 'バックグラウンドプロセスの優先順位を動的に調整し、不要なリソース使用を削減。旧型ノートPCでも最高のパフォーマンスを発揮できるようにします。C++ 書き換えにより効率が大幅に向上しました。',
+                alrm_card4_title: 'パッチライブラリ改ざん防止',
+                alrm_card4_desc: 'ALRM 4 はパッチライブラリに三段の改ざん防止機構を導入しました。検証層はパッチの出所が信頼できることを保証し、実行層は不正な注入を遮断し、監査層は完全な変更記録を保持します。システムの完全性を根本から守ります。',
+                news_title: 'Azen™ ニュース',
+                features_title: 'Azen™ を選ぶ理由',
+                feature1_title: 'プライバシー優先',
+                feature1_desc: 'テレメトリはデフォルトで無効、データ収集なし。あなたの PC はあなたのものです。',
+                feature2_title: 'パフォーマンス',
+                feature2_desc: 'Arch Linux の合理化されたカーネルと ALRM 4（C++ 書き換え）を組み合わせ、メモリ使用量削減、ウェイク時間改善。',
+                feature3_title: 'エレガントな UI',
+                feature3_desc: 'ソフトなラウンドとダイナミックテーマで、すべてのインタラクションを楽しく。',
+                version_title: 'バージョン一覧',
+                github_title: 'GitHub',
+                github_desc: '全ソースコードとイメージはオープンソース、GPLv3 ライセンス。',
+                github_btn: '開発リポジトリへ',
+                github_star: 'Star & Fork 歓迎',
+                comments_title: 'ユーザーレビュー',
+                requirements_title: 'ハードウェア要件',
+                req_cpu: 'プロセッサ',
+                req_cpu_desc: 'Intel Core 2 Duo または AMD 相当 (4 コア推奨)',
+                req_ram: 'メモリ',
+                req_ram_desc: '最小 2 GB、4 GB 以上推奨',
+                req_storage: 'ストレージ',
+                req_storage_desc: '20 GB の空き容量 (仮想マシン環境)',
+                req_gpu: 'グラフィックス',
+                req_gpu_desc: 'OpenGL 3.0 以上',
+                req_vm: '仮想化',
+                req_vm_desc: 'VMware Workstation / Player または VirtualBox',
+                footer_copyright: '© 2026 梁子珽',
+                footer_original: '· オリジナル作品',
+                footer_brand: 'Azen™ Linux — Arch Linux ベースのカスタムディストリビューション',
+                footer_gpl: 'GPLv3 オープンソースライセンス',
+                footer_note: 'Arch Linux に基づき、すべての変更と派生コードは GPLv3 に従います。',
+                footer_repo: 'GitHub リポジトリ · オープンソース',
+                footer_tagline: 'カスタム Linux の楽しさを探求',
+                news_items: [
+                    { title: 'NVazen™ 2.0 LTS リリース', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) リリース、ALRM 4 搭載' },
+                    { title: 'ALRM 4 リリース', desc: 'ALRM 4 は設定解析をリファクタし、三段の改ざん防止機構を追加' },
+                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) ダウンロード可能' },
+                    { title: 'コミュニティ', desc: 'Microsoft Teams チャンネルに参加してください' },
+                    { title: 'コントロールセンター', desc: 'Azen™ コントロールセンター開発中' },
+                    { title: 'ドキュメント', desc: 'ユーザーガイドとインストールマニュアルを更新' }
+                ],
+                comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ 2.0 LTS の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 4 は設定解析をリファクタし、改ざん防止機構を追加しました。リソース使用量が減り、安心感も増しました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
+            },
+            ko: {
+                update_counter: '업데이트 13',
+                nav_news: '뉴스',
+                nav_features: '기능',
+                nav_download: '다운로드',
+                nav_comments: '리뷰',
+                nav_requirements: '요구사항',
+                settings_language: '언어',
+                settings_theme: '테마',
+                theme_dark: '다크',
+                theme_light: '라이트',
+                version_label: '최신 버전',
+                hero_sub1: 'Arch Linux 기반 새 아키텍처 LTS 시리즈 · ALRM 4 탑재',
+                hero_desc: '커뮤니티를 위해 기술을 계속 개선하고 있습니다.',
+                github_link_text: 'GitHub 개발 저장소',
+                hero_alert1: 'NVazen™ 2.0 LTS에 새로운 ALRM 4 엔진 탑재 — 설정 파싱 리팩터링 + 패치 라이브러리 3중 변조 방지',
+                image_caption1: '이 스크린샷은 NVazen™ 2.0 LTS의 실제 데모입니다',
+                hero_sub2: 'Arch Linux 기반 LTS 배포판 · 구형 노트북 최적화',
+                hero_desc2: 'Azen™ 11 LTS는 장기 지원 버전으로 안정적이고 신뢰할 수 있는 경험을 제공합니다.',
+                github_link_text2: 'GitHub 개발 저장소',
+                hero_alert2: '장기 지원 버전, 안정성을 추구하는 사용자에게 적합',
+                image_caption2: '이 스크린샷은 Azen™ 11 LTS의 실제 데모입니다',
+                alrm_title: 'ALRM 기술',
+                alrm_badge: '독점',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen™ 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen™ 2.0 LTS가 ALRM 4 엔진을 최초로 탑재했습니다.',
+                alrm_card1_title: 'App Nap',
+                alrm_card1_desc: '애플리케이션 창이 완전히 가려지거나 장시간 작업이 없을 때 백그라운드 활동을 자동으로 일시 중지하여 CPU와 메모리 리소스를 확보하고 전력 소비를 크게 줄입니다.',
+                alrm_card2_title: '딥 슬립',
+                alrm_card2_desc: '시스템 슬립 메커니즘 개선. 덮개를 닫으면 딥 슬립 상태로 전환되어 대부분의 하드웨어(CPU, 하드디스크 등) 전원을 차단하면서도 빠른 웨이크를 지원하여 배터리 수명을 크게 향상시킵니다.',
+                alrm_card3_title: '리소스 최적화',
+                alrm_card3_desc: '백그라운드 프로세스의 우선순위를 동적으로 조정하여 불필요한 리소스 사용을 줄이고, 구형 노트북도 최고의 성능을 발휘할 수 있도록 합니다. C++ 재작성으로 효율이 크게 향상되었습니다.',
+                alrm_card4_title: '패치 라이브러리 변조 방지',
+                alrm_card4_desc: 'ALRM 4는 패치 라이브러리에 3중 변조 방지 방어선을 도입했습니다. 검증 계층은 패치 출처의 신뢰성을 보장하고, 실행 계층은 불법 주입을 차단하며, 감사 계층은 완전한 변경 기록을 보존합니다. 시스템 무결성을 근본부터 지킵니다.',
+                news_title: 'Azen™ 뉴스',
+                features_title: 'Azen™을 선택하는 이유',
+                feature1_title: '프라이버시 우선',
+                feature1_desc: '원격 측정 기본 비활성화, 데이터 수집 없음. 당신의 PC는 당신의 것입니다.',
+                feature2_title: '성능',
+                feature2_desc: 'Arch Linux 간소화된 커널과 ALRM 4(C++ 재작성) 결합, 메모리 사용량 감소, 웨이크 시간 개선.',
+                feature3_title: '우아한 UI',
+                feature3_desc: '부드러운 라운드와 다이나믹 테마로 모든 상호작용을 즐겁게.',
+                version_title: '버전 목록',
+                github_title: 'GitHub',
+                github_desc: '모든 소스 코드와 이미지는 오픈소스이며 GPLv3 라이선스를 따릅니다.',
+                github_btn: '개발 저장소로 이동',
+                github_star: 'Star & Fork 환영',
+                comments_title: '사용자 리뷰',
+                requirements_title: '하드웨어 요구사항',
+                req_cpu: '프로세서',
+                req_cpu_desc: 'Intel Core 2 Duo 또는 AMD 동급 (4코어 권장)',
+                req_ram: '메모리',
+                req_ram_desc: '최소 2 GB, 4 GB 이상 권장',
+                req_storage: '저장공간',
+                req_storage_desc: '20 GB 여유 공간 (가상 머신 환경)',
+                req_gpu: '그래픽',
+                req_gpu_desc: 'OpenGL 3.0 이상',
+                req_vm: '가상화',
+                req_vm_desc: 'VMware Workstation / Player 또는 VirtualBox',
+                footer_copyright: '© 2026 량쯔팅',
+                footer_original: '· 오리지널 작품',
+                footer_brand: 'Azen™ Linux — Arch Linux 기반 커스텀 배포판',
+                footer_gpl: 'GPLv3 오픈소스 라이선스',
+                footer_note: 'Arch Linux 기반, 모든 수정 및 파생 코드는 GPLv3를 따릅니다.',
+                footer_repo: 'GitHub 리포지토리 · 오픈소스',
+                footer_tagline: '커스텀 Linux의 즐거움을 탐험하세요',
+                news_items: [
+                    { title: 'NVazen™ 2.0 LTS 릴리스', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) 출시, ALRM 4 탑재' },
+                    { title: 'ALRM 4 릴리스', desc: 'ALRM 4는 설정 파싱을 리팩터링하고 3중 변조 방지 방어선을 추가' },
+                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) 다운로드 가능' },
+                    { title: '커뮤니티', desc: 'Microsoft Teams 채널에 참여하세요' },
+                    { title: '컨트롤 센터', desc: 'Azen™ 컨트롤 센터 개발 중' },
+                    { title: '문서화', desc: '사용자 가이드 및 설치 매뉴얼 업데이트' }
+                ],
+                comments: '"Azen™은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen™ 2.0 LTS의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ALRM 4는 설정 파싱을 리팩터링하고 변조 방지 방어선을 추가했습니다. 리소스 사용량이 줄고 더 안심됩니다."\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
+            }
+        };
+
+        // =====================================================
+        // 2. 状态管理
+        // =====================================================
+        let currentLang = 'en';
+        let currentTheme = 'dark';
+
+        let currentBanner = 0;
+        const totalBanners = 2;
+        let bannerInterval = null;
+        const BANNER_DURATION = 15000; // 15秒
+
+        // =====================================================
+        // 3. DOM 引用
+        // =====================================================
+        const i18nElements = document.querySelectorAll('[data-i18n]');
+        const newsMarquee = document.getElementById('newsMarquee');
+        const commentDisplay = document.getElementById('commentDisplay');
+        const versionList = document.getElementById('versionList');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsMenu = document.getElementById('settingsMenu');
+        const langOptions = document.querySelectorAll('.lang-option');
+        const themeOptions = document.querySelectorAll('.theme-option');
+
+        const bannerTrack = document.getElementById('bannerTrack');
+        const bannerArrowLeft = document.getElementById('bannerArrowLeft');
+        const bannerArrowRight = document.getElementById('bannerArrowRight');
+
+        const carouselTrack1 = document.getElementById('carouselTrack1');
+        const carouselTrack2 = document.getElementById('carouselTrack2');
+        const container1 = document.getElementById('carouselContainer1');
+        const container2 = document.getElementById('carouselContainer2');
+
+        // =====================================================
+        // 4. 设置菜单
+        // =====================================================
+        settingsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
+                settingsMenu.classList.remove('open');
+            }
+        });
+
+        // =====================================================
+        // 5. 平滑滚动导航
+        // =====================================================
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
-            };
-
-            // =====================================================
-            // 2. 状态管理
-            // =====================================================
-            let currentLang = 'en';
-            let currentTheme = 'dark';
-            
-            let currentBanner = 0;
-            const totalBanners = 2;
-            let bannerInterval = null;
-            const BANNER_DURATION = 15000; // 15秒
-
-            // =====================================================
-            // 3. DOM 引用
-            // =====================================================
-            const i18nElements = document.querySelectorAll('[data-i18n]');
-            const newsMarquee = document.getElementById('newsMarquee');
-            const commentDisplay = document.getElementById('commentDisplay');
-            const versionList = document.getElementById('versionList');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            const settingsBtn = document.getElementById('settingsBtn');
-            const settingsMenu = document.getElementById('settingsMenu');
-            const langOptions = document.querySelectorAll('.lang-option');
-            const themeOptions = document.querySelectorAll('.theme-option');
-
-            const bannerTrack = document.getElementById('bannerTrack');
-            const bannerArrowLeft = document.getElementById('bannerArrowLeft');
-            const bannerArrowRight = document.getElementById('bannerArrowRight');
-
-            const carouselTrack1 = document.getElementById('carouselTrack1');
-            const carouselTrack2 = document.getElementById('carouselTrack2');
-            const container1 = document.getElementById('carouselContainer1');
-            const container2 = document.getElementById('carouselContainer2');
-
-            // =====================================================
-            // 4. 设置菜单
-            // =====================================================
-            settingsBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                settingsMenu.classList.toggle('open');
             });
+        });
 
-            document.addEventListener('click', function(e) {
-                if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
-                    settingsMenu.classList.remove('open');
-                }
-            });
+        // =====================================================
+        // 6. 横幅轮播
+        // =====================================================
+        function goToBanner(index) {
+            if (index < 0) index = totalBanners - 1;
+            if (index >= totalBanners) index = 0;
+            currentBanner = index;
+            if (bannerTrack) {
+                bannerTrack.style.transform = `translateX(-${currentBanner * 100}%)`;
+            }
+        }
 
-            // =====================================================
-            // 5. 平滑滚动导航
-            // =====================================================
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+        function nextBanner() {
+            goToBanner(currentBanner + 1);
+        }
 
-            // =====================================================
-            // 6. 横幅轮播
-            // =====================================================
-            function goToBanner(index) {
-                if (index < 0) index = totalBanners - 1;
-                if (index >= totalBanners) index = 0;
-                currentBanner = index;
-                if (bannerTrack) {
-                    bannerTrack.style.transform = `translateX(-${currentBanner * 100}%)`;
+        function prevBanner() {
+            goToBanner(currentBanner - 1);
+        }
+
+        function startBannerAutoPlay() {
+            if (bannerInterval) clearInterval(bannerInterval);
+            bannerInterval = setInterval(nextBanner, BANNER_DURATION);
+        }
+
+        function stopBannerAutoPlay() {
+            if (bannerInterval) {
+                clearInterval(bannerInterval);
+                bannerInterval = null;
+            }
+        }
+
+        // 箭头点击
+        bannerArrowLeft.addEventListener('click', function(e) {
+            e.stopPropagation();
+            stopBannerAutoPlay();
+            prevBanner();
+            startBannerAutoPlay();
+        });
+
+        bannerArrowRight.addEventListener('click', function(e) {
+            e.stopPropagation();
+            stopBannerAutoPlay();
+            nextBanner();
+            startBannerAutoPlay();
+        });
+
+        // =====================================================
+        // 7. 图片轮播
+        // =====================================================
+        function createCarousel(track, container) {
+            if (!track || !container) return null;
+            const slides = track.querySelectorAll('.carousel-slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+            let slideInterval = null;
+
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function startAutoPlay() {
+                if (slideInterval) clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoPlay() {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                    slideInterval = null;
                 }
             }
 
-            function nextBanner() {
-                goToBanner(currentBanner + 1);
+            let dragTimeout = null;
+            let isHolding = false;
+            let holdStartX = 0;
+            let hasMoved = false;
+            let currentTranslate = 0;
+
+            function handlePointerDown(clientX) {
+                if (dragTimeout) clearTimeout(dragTimeout);
+                dragTimeout = setTimeout(() => {
+                    isHolding = true;
+                    hasMoved = false;
+                    holdStartX = clientX;
+                    stopAutoPlay();
+                    track.style.transition = 'none';
+                    const match = track.style.transform.match(/translateX\(([-\d.]+)%\)/);
+                    currentTranslate = match ? parseFloat(match[1]) : -currentIndex * 100;
+                    track.style.cursor = 'grabbing';
+                }, 300);
             }
 
-            function prevBanner() {
-                goToBanner(currentBanner - 1);
+            function handlePointerMove(clientX) {
+                if (!isHolding) return;
+                const deltaX = ((clientX - holdStartX) / track.offsetWidth) * 100;
+                if (Math.abs(deltaX) > 0.5) hasMoved = true;
+                track.style.transform = `translateX(${currentTranslate + deltaX}%)`;
             }
 
-            function startBannerAutoPlay() {
-                if (bannerInterval) clearInterval(bannerInterval);
-                bannerInterval = setInterval(nextBanner, BANNER_DURATION);
-            }
-
-            function stopBannerAutoPlay() {
-                if (bannerInterval) {
-                    clearInterval(bannerInterval);
-                    bannerInterval = null;
+            function handlePointerUp(clientX) {
+                if (dragTimeout) {
+                    clearTimeout(dragTimeout);
+                    dragTimeout = null;
                 }
-            }
-
-            // 箭头点击
-            bannerArrowLeft.addEventListener('click', function(e) {
-                e.stopPropagation();
-                stopBannerAutoPlay();
-                prevBanner();
-                startBannerAutoPlay();
-            });
-
-            bannerArrowRight.addEventListener('click', function(e) {
-                e.stopPropagation();
-                stopBannerAutoPlay();
-                nextBanner();
-                startBannerAutoPlay();
-            });
-
-            // =====================================================
-            // 7. 图片轮播
-            // =====================================================
-            function createCarousel(track, container) {
-                if (!track || !container) return null;
-                const slides = track.querySelectorAll('.carousel-slide');
-                const totalSlides = slides.length;
-                let currentIndex = 0;
-                let slideInterval = null;
-
-                function goToSlide(index) {
-                    if (index < 0) index = totalSlides - 1;
-                    if (index >= totalSlides) index = 0;
-                    currentIndex = index;
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                }
-
-                function nextSlide() {
-                    goToSlide(currentIndex + 1);
-                }
-
-                function startAutoPlay() {
-                    if (slideInterval) clearInterval(slideInterval);
-                    slideInterval = setInterval(nextSlide, 5000);
-                }
-
-                function stopAutoPlay() {
-                    if (slideInterval) {
-                        clearInterval(slideInterval);
-                        slideInterval = null;
-                    }
-                }
-
-                let dragTimeout = null;
-                let isHolding = false;
-                let holdStartX = 0;
-                let hasMoved = false;
-                let currentTranslate = 0;
-
-                function handlePointerDown(clientX) {
-                    if (dragTimeout) clearTimeout(dragTimeout);
-                    dragTimeout = setTimeout(() => {
-                        isHolding = true;
-                        hasMoved = false;
-                        holdStartX = clientX;
-                        stopAutoPlay();
-                        track.style.transition = 'none';
-                        const match = track.style.transform.match(/translateX\(([-\d.]+)%\)/);
-                        currentTranslate = match ? parseFloat(match[1]) : -currentIndex * 100;
-                        track.style.cursor = 'grabbing';
-                    }, 300);
-                }
-
-                function handlePointerMove(clientX) {
-                    if (!isHolding) return;
+                if (isHolding) {
                     const deltaX = ((clientX - holdStartX) / track.offsetWidth) * 100;
-                    if (Math.abs(deltaX) > 0.5) hasMoved = true;
-                    track.style.transform = `translateX(${currentTranslate + deltaX}%)`;
-                }
-
-                function handlePointerUp(clientX) {
-                    if (dragTimeout) {
-                        clearTimeout(dragTimeout);
-                        dragTimeout = null;
-                    }
-                    if (isHolding) {
-                        const deltaX = ((clientX - holdStartX) / track.offsetWidth) * 100;
-                        const threshold = 10;
-                        if (hasMoved) {
-                            if (deltaX < -threshold) goToSlide(currentIndex + 1);
-                            else if (deltaX > threshold) goToSlide(currentIndex - 1);
-                            else goToSlide(currentIndex);
-                        } else {
-                            goToSlide(currentIndex);
-                        }
-                        isHolding = false;
-                        hasMoved = false;
-                        track.style.cursor = 'grab';
-                        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                        startAutoPlay();
+                    const threshold = 10;
+                    if (hasMoved) {
+                        if (deltaX < -threshold) goToSlide(currentIndex + 1);
+                        else if (deltaX > threshold) goToSlide(currentIndex - 1);
+                        else goToSlide(currentIndex);
                     } else {
-                        isHolding = false;
-                        hasMoved = false;
-                        track.style.cursor = 'grab';
+                        goToSlide(currentIndex);
                     }
-                }
-
-                container.addEventListener('mousedown', (e) => handlePointerDown(e.clientX));
-                window.addEventListener('mousemove', (e) => { if (isHolding) handlePointerMove(e.clientX); });
-                window.addEventListener('mouseup', (e) => { if (isHolding || dragTimeout) handlePointerUp(e.clientX); });
-
-                container.addEventListener('touchstart', (e) => {
-                    const touch = e.touches[0];
-                    handlePointerDown(touch.clientX);
-                }, { passive: true });
-
-                container.addEventListener('touchmove', (e) => {
-                    if (isHolding) {
-                        const touch = e.touches[0];
-                        handlePointerMove(touch.clientX);
-                    }
-                }, { passive: true });
-
-                container.addEventListener('touchend', (e) => {
-                    if (isHolding || dragTimeout) {
-                        const touch = e.changedTouches[0];
-                        handlePointerUp(touch.clientX);
-                    }
-                }, { passive: true });
-
-                container.addEventListener('mouseenter', stopAutoPlay);
-                container.addEventListener('mouseleave', startAutoPlay);
-
-                goToSlide(0);
-                startAutoPlay();
-
-                return { goToSlide, nextSlide, startAutoPlay, stopAutoPlay };
-            }
-
-            createCarousel(carouselTrack1, container1);
-            createCarousel(carouselTrack2, container2);
-
-            // =====================================================
-            // 8. 新闻走马灯
-            // =====================================================
-            function buildNewsItems(lang) {
-                const items = translations[lang].news_items || translations.en.news_items;
-                let html = '';
-                for (let repeat = 0; repeat < 2; repeat++) {
-                    items.forEach(item => {
-                        html += `
-                            <div class="news-box">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='150' viewBox='0 0 300 150'%3E%3Crect width='300' height='150' fill='%23${currentTheme === 'dark' ? '161b22' : 'f0f2f5'}'/%3E%3Ctext x='150' y='75' font-family='Arial' font-size='18' fill='%23${currentTheme === 'dark' ? '58a6ff' : '0969da'}' text-anchor='middle' dominant-baseline='middle'%3E${item.title}%3C/text%3E%3C/svg%3E" alt="${item.title}">
-                                <h4>${item.title}</h4>
-                                <p>${item.desc}</p>
-                            </div>
-                        `;
-                    });
-                }
-                newsMarquee.innerHTML = html;
-            }
-
-            // =====================================================
-            // 9. 更新语言
-            // =====================================================
-            function updateLanguage(lang) {
-                const t = translations[lang];
-                if (!t) return;
-
-                i18nElements.forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (t[key] !== undefined) {
-                        el.textContent = t[key];
-                    }
-                });
-
-                const heroDescs = document.querySelectorAll('[data-i18n="hero_desc"], [data-i18n="hero_desc2"]');
-                heroDescs.forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (t[key] !== undefined) {
-                        const linkText = t.github_link_text || t.github_link_text2 || 'GitHub development repository';
-                        el.innerHTML = t[key] + `<a href="https://github.com/AzenOS/Azen_dev" target="_blank" class="github-link">${linkText}</a>`;
-                    }
-                });
-
-                if (commentDisplay && t.comments) {
-                    commentDisplay.textContent = t.comments;
-                }
-
-                buildNewsItems(lang);
-
-                langOptions.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.lang === lang);
-                });
-
-                currentLang = lang;
-            }
-
-            // =====================================================
-            // 10. 切换主题
-            // =====================================================
-            function setTheme(theme) {
-                if (theme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    currentTheme = 'light';
+                    isHolding = false;
+                    hasMoved = false;
+                    track.style.cursor = 'grab';
+                    track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    startAutoPlay();
                 } else {
-                    document.documentElement.removeAttribute('data-theme');
-                    currentTheme = 'dark';
+                    isHolding = false;
+                    hasMoved = false;
+                    track.style.cursor = 'grab';
                 }
-                themeOptions.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.theme === theme);
-                });
-                buildNewsItems(currentLang);
             }
 
-            // =====================================================
-            // 11. 初始化
-            // =====================================================
-            function init() {
+            container.addEventListener('mousedown', (e) => handlePointerDown(e.clientX));
+            window.addEventListener('mousemove', (e) => { if (isHolding) handlePointerMove(e.clientX); });
+            window.addEventListener('mouseup', (e) => { if (isHolding || dragTimeout) handlePointerUp(e.clientX); });
+
+            container.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                handlePointerDown(touch.clientX);
+            }, { passive: true });
+
+            container.addEventListener('touchmove', (e) => {
+                if (isHolding) {
+                    const touch = e.touches[0];
+                    handlePointerMove(touch.clientX);
+                }
+            }, { passive: true });
+
+            container.addEventListener('touchend', (e) => {
+                if (isHolding || dragTimeout) {
+                    const touch = e.changedTouches[0];
+                    handlePointerUp(touch.clientX);
+                }
+            }, { passive: true });
+
+            container.addEventListener('mouseenter', stopAutoPlay);
+            container.addEventListener('mouseleave', startAutoPlay);
+
+            goToSlide(0);
+            startAutoPlay();
+
+            return { goToSlide, nextSlide, startAutoPlay, stopAutoPlay };
+        }
+
+        createCarousel(carouselTrack1, container1);
+        createCarousel(carouselTrack2, container2);
+
+        // =====================================================
+        // 8. 新闻走马灯
+        // =====================================================
+        function buildNewsItems(lang) {
+            const items = translations[lang].news_items || translations.en.news_items;
+            let html = '';
+            for (let repeat = 0; repeat < 2; repeat++) {
+                items.forEach(item => {
+                    html += `
+                        <div class="news-box">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='150' viewBox='0 0 300 150'%3E%3Crect width='300' height='150' fill='%23${currentTheme === 'dark' ? '161b22' : 'f0f2f5'}'/%3E%3Ctext x='150' y='75' font-family='Arial' font-size='18' fill='%23${currentTheme === 'dark' ? '58a6ff' : '0969da'}' text-anchor='middle' dominant-baseline='middle'%3E${item.title}%3C/text%3E%3C/svg%3E" alt="${item.title}">
+                            <h4>${item.title}</h4>
+                            <p>${item.desc}</p>
+                        </div>
+                    `;
+                });
+            }
+            newsMarquee.innerHTML = html;
+        }
+
+        // =====================================================
+        // 9. 更新语言
+        // =====================================================
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            i18nElements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
+            });
+
+            // hero_desc / hero_desc2 需要保留内嵌的 GitHub 链接，单独处理，避免重复拼接
+            const heroDescs = document.querySelectorAll('[data-i18n="hero_desc"], [data-i18n="hero_desc2"]');
+            heroDescs.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const linkKey = key === 'hero_desc' ? 'github_link_text' : 'github_link_text2';
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key] + `<a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link">${t[linkKey]}</a>`;
+                }
+            });
+
+            if (commentDisplay && t.comments) {
+                commentDisplay.textContent = t.comments;
+            }
+
+            buildNewsItems(lang);
+
+            langOptions.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            currentLang = lang;
+        }
+
+        // =====================================================
+        // 10. 切换主题
+        // =====================================================
+        function setTheme(theme) {
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                currentTheme = 'light';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
                 currentTheme = 'dark';
-                document.documentElement.setAttribute('data-theme', 'dark');
-
-                goToBanner(0);
-                startBannerAutoPlay();
-
-                updateLanguage('en');
-
-                langOptions.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const lang = this.dataset.lang;
-                        if (lang && lang !== currentLang) {
-                            updateLanguage(lang);
-                        }
-                    });
-                });
-
-                themeOptions.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const theme = this.dataset.theme;
-                        setTheme(theme);
-                    });
-                });
-
-                themeOptions.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.theme === 'dark');
-                });
             }
-
-            document.getElementById('logoIcon')?.addEventListener('error', function() {
-                this.alt = 'Azen Linux';
-                this.style.display = 'none';
-                const parent = this.parentElement;
-                const span = document.createElement('span');
-                span.textContent = '◈';
-                span.style.fontSize = '28px';
-                span.style.marginRight = '8px';
-                this.parentElement.insertBefore(span, this);
-                this.style.display = 'none';
+            themeOptions.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === theme);
             });
+            buildNewsItems(currentLang);
+        }
 
-            document.querySelectorAll('.carousel-slide img').forEach(img => {
-                img.addEventListener('error', function() {
-                    this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='600' height='350' fill='%23161b22'/%3E%3Ctext x='300' y='175' font-family='Arial' font-size='24' fill='%2358a6ff' text-anchor='middle' dominant-baseline='middle'%3EAzen Linux%3C/text%3E%3Ctext x='300' y='215' font-family='Arial' font-size='16' fill='%238b949e' text-anchor='middle' dominant-baseline='middle'%3EPreview%3C/text%3E%3C/svg%3E";
+        // =====================================================
+        // 11. 初始化
+        // =====================================================
+        function init() {
+            currentTheme = 'dark';
+            document.documentElement.setAttribute('data-theme', 'dark');
+
+            goToBanner(0);
+            startBannerAutoPlay();
+
+            updateLanguage('en');
+
+            langOptions.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.dataset.lang;
+                    if (lang && lang !== currentLang) {
+                        updateLanguage(lang);
+                    }
                 });
             });
 
-            init();
-        })();
-    </script>
+            themeOptions.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const theme = this.dataset.theme;
+                    setTheme(theme);
+                });
+            });
+        }
+
+        document.getElementById('logoIcon')?.addEventListener('error', function() {
+            this.alt = 'Azen Linux';
+            this.style.display = 'none';
+            const parent = this.parentElement;
+            const span = document.createElement('span');
+            span.textContent = '◈';
+            span.style.fontSize = '28px';
+            span.style.marginRight = '8px';
+            parent.insertBefore(span, this);
+        });
+
+        document.querySelectorAll('.carousel-slide img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='600' height='350' fill='%23161b22'/%3E%3Ctext x='300' y='175' font-family='Arial' font-size='24' fill='%2358a6ff' text-anchor='middle' dominant-baseline='middle'%3EAzen Linux%3C/text%3E%3Ctext x='300' y='215' font-family='Arial' font-size='16' fill='%238b949e' text-anchor='middle' dominant-baseline='middle'%3EPreview%3C/text%3E%3C/svg%3E";
+            });
+        });
+
+        init();
+    })();
+</script>
 
 </body>
 </html>
