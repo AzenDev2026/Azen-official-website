@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ================= SEO 优化 ================= -->
-    <title>Azen™ Linux — Modern LTS Distribution Based on Arch Linux</title>
-    <meta name="description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 4 technology (rewritten in C++) for enhanced performance and power efficiency.">
-    <meta name="keywords" content="Azen Linux, Azen, NVazen, Arch Linux, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux">
+    <title>Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux</title>
+    <meta name="description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release with ALRM 4 technology (rewritten in C++) for enhanced performance and power efficiency.">
+    <meta name="keywords" content="Azen Linux, Azen, NVazen, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux">
     <meta name="author" content="Ziting Liang">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Azen™ Linux — Modern LTS Distribution Based on Arch Linux">
-    <meta property="og:description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 4 technology.">
+    <meta property="og:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
+    <meta property="og:description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release and ALRM 4 technology.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://azen.dev">
     <meta property="og:image" content="screenshot.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Azen™ Linux — Modern LTS Distribution Based on Arch Linux">
-    <meta name="twitter:description" content="Azen™ Linux is a modern LTS distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ new architecture and ALRM 4 technology.">
+    <meta name="twitter:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
+    <meta name="twitter:description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release and ALRM 4 technology.">
 
     <!-- ================= 网站图标 (Favicon) ================= -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -59,6 +59,7 @@
             --alrm-bg: #1c2333;
             --menu-bg: #1c2333;
             --menu-border: #30363d;
+            --danger: #f85149;
         }
 
         /* 浅色主题 */
@@ -82,6 +83,7 @@
             --alrm-bg: #f0f4f9;
             --menu-bg: #ffffff;
             --menu-border: #d0d7de;
+            --danger: #cf222e;
         }
 
         html {
@@ -412,6 +414,37 @@
 
         .hero-text-box {
             flex: 1;
+            position: relative;
+        }
+
+        /* ================= SS (停止支持) 标志 ================= */
+        .ss-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--danger);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 14px rgba(248, 81, 73, 0.4);
+            z-index: 20;
+            user-select: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .ss-badge::after {
+            content: 'Stop Supporting';
+            display: block;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            opacity: 0.9;
+            margin-top: 1px;
+            text-transform: uppercase;
         }
 
         .version-display {
@@ -441,6 +474,17 @@
             color: var(--text-muted);
             font-weight: 400;
             margin-left: 4px;
+        }
+
+        .version-sub.rolling {
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid rgba(88, 166, 255, 0.4);
+            color: var(--accent);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 0;
         }
 
         .hero-text-box h1 {
@@ -570,12 +614,11 @@
             color: var(--accent);
         }
 
-        /* ================= 其他区域 ================= */
+        /* ================= 新闻区域 (三条新闻框交换显示) ================= */
         .news-section {
             padding: 60px 0;
             background-color: var(--bg-body);
             border-top: 1px solid var(--border-color);
-            overflow: hidden;
             transition: background-color 0.3s, border-color 0.3s;
         }
 
@@ -587,56 +630,87 @@
             transition: color 0.3s;
         }
 
-        .marquee-container {
-            display: flex;
-            width: max-content;
-            animation: marquee 25s linear infinite;
+        .news-swap-container {
+            position: relative;
+            width: 100%;
+            min-height: 210px;
         }
 
-        .marquee-container:hover {
-            animation-play-state: paused;
-        }
-
-        .news-box {
-            width: 300px;
+        .news-swap-item {
+            display: none;
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-right: 48px;
-            flex-shrink: 0;
-            transition: background-color 0.3s, border-color 0.3s;
+            border-radius: 10px;
+            padding: 28px 30px;
+            transition: background-color 0.3s, border-color 0.3s, opacity 0.4s ease;
+            opacity: 0;
         }
 
-        .news-box img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 0 !important;
+        .news-swap-item.active {
+            display: block;
+            opacity: 1;
+            animation: newsFadeIn 0.5s ease;
+        }
+
+        @keyframes newsFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .news-swap-item .news-tag {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid rgba(88, 166, 255, 0.4);
+            color: var(--accent);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
             margin-bottom: 12px;
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-body);
-            transition: border-color 0.3s;
         }
 
-        .news-box h4 {
+        .news-swap-item h3 {
+            font-size: 22px;
             color: var(--text-primary);
-            margin: 0 0 8px 0;
+            margin-bottom: 10px;
             transition: color 0.3s;
         }
 
-        .news-box p {
+        .news-swap-item p {
+            font-size: 15px;
             color: var(--text-muted);
-            font-size: 14px;
-            margin: 0;
+            line-height: 1.7;
             transition: color 0.3s;
         }
 
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .news-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 22px;
         }
 
+        .news-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: background 0.25s, transform 0.2s;
+            border: none;
+            padding: 0;
+        }
+
+        .news-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .news-dot:hover {
+            background: var(--accent-hover);
+        }
+
+        /* ================= 核心优势 ================= */
         .features-section {
             padding: 100px 0;
             border-top: 1px solid var(--border-color);
@@ -686,6 +760,7 @@
             transition: color 0.3s;
         }
 
+        /* ================= 下载与版本 ================= */
         .download-section {
             padding: 80px 0;
             border-top: 1px solid var(--border-color);
@@ -767,6 +842,7 @@
             background-color: var(--btn-hover);
         }
 
+        /* ================= 用户评价 ================= */
         .comment-section {
             padding: 80px 0;
             background-color: var(--bg-section);
@@ -794,6 +870,7 @@
             transition: background-color 0.3s, border-color 0.3s, color 0.3s;
         }
 
+        /* ================= 硬件要求 ================= */
         .requirements-section {
             padding: 80px 0;
             background-color: var(--bg-body);
@@ -866,7 +943,7 @@
             scroll-margin-top: 80px;
         }
 
-        /* ================= 移动端检测与优化 (屏幕宽度 ≤ 820px) ================= */
+        /* ================= 移动端优化 (屏幕宽度 ≤ 820px) ================= */
         @media (max-width: 820px) {
             .update-counter {
                 position: static;
@@ -877,7 +954,6 @@
                 opacity: 0.4;
             }
 
-            /* 导航栏移动端布局 */
             .nav-bar {
                 flex-direction: column;
                 height: auto;
@@ -946,6 +1022,17 @@
             .hero-text-box {
                 width: 100%;
                 text-align: center;
+            }
+
+            .ss-badge {
+                bottom: 6px;
+                right: 6px;
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+
+            .ss-badge::after {
+                font-size: 8px;
             }
 
             .version-display {
@@ -1025,22 +1112,16 @@
                 margin-bottom: 20px;
             }
 
-            .news-box {
-                width: 220px;
-                padding: 14px;
-                margin-right: 20px;
+            .news-swap-item {
+                padding: 20px 18px;
             }
 
-            .news-box img {
-                height: 110px;
+            .news-swap-item h3 {
+                font-size: 18px;
             }
 
-            .news-box h4 {
+            .news-swap-item p {
                 font-size: 14px;
-            }
-
-            .news-box p {
-                font-size: 12px;
             }
 
             .features-section {
@@ -1202,13 +1283,12 @@
                 padding: 16px 14px;
             }
 
-            .news-box {
-                width: 200px;
-                margin-right: 16px;
+            .news-swap-item {
+                padding: 16px 14px;
             }
 
-            .news-box img {
-                height: 90px;
+            .news-swap-item h3 {
+                font-size: 16px;
             }
 
             .features-section h2,
@@ -1255,6 +1335,15 @@
                 font-size: 11px;
                 padding: 3px 8px;
             }
+
+            .ss-badge {
+                font-size: 10px;
+                padding: 3px 8px;
+            }
+
+            .ss-badge::after {
+                font-size: 7px;
+            }
         }
     </style>
 </head>
@@ -1262,8 +1351,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <!-- 左上角更新计数 (半透明) -->
-    <div class="update-counter" data-i18n="update_counter">update 13</div>
+    <div class="update-counter" data-i18n="update_counter">update 14</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -1303,13 +1391,12 @@
 
 <!-- 2. 双横幅轮播区域 -->
 <div class="hero-carousel-section" id="heroCarousel">
-    <!-- 左右切换箭头 -->
     <div class="banner-arrow left" id="bannerArrowLeft" title="Previous">‹</div>
     <div class="banner-arrow right" id="bannerArrowRight" title="Next">›</div>
 
     <div class="banner-track" id="bannerTrack">
 
-        <!-- 横幅 1: NVazen 2.0 LTS -->
+        <!-- 横幅 1: NVazen (滚动更新) -->
         <div class="banner-slide">
             <section class="hero-section">
                 <div class="container hero-grid">
@@ -1318,28 +1405,28 @@
                             <div class="carousel-slide"><img src="scr1.png" alt="NVazen screenshot 1"></div>
                             <div class="carousel-slide"><img src="scr2.png" alt="NVazen screenshot 2"></div>
                         </div>
-                        <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen™ 2.0 LTS 的实机演示</div>
+                        <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen™ 滚动版的实机演示</div>
                     </div>
                     <div class="hero-text-box">
                         <div class="version-display">
                             <span class="version-label" data-i18n="version_label">最新版本</span>
-                            <span class="version-number">NVazen™ 2.0 LTS</span>
-                            <span class="version-sub">2.0lts.1H2609</span>
+                            <span class="version-number">NVazen™</span>
+                            <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
                         </div>
-                        <h1>NVazen™ 2.0</h1>
+                        <h1>NVazen™</h1>
                         <div class="sub-title" data-i18n="hero_sub1">
-                            基于 Arch Linux 的新架构 LTS 系列 · 搭载 ALRM 4 技术
+                            基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术
                         </div>
                         <p data-i18n="hero_desc">
                             我们致力于为社区改进技术。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text">GitHub 开发仓库</a> 获取更多信息。
                         </p>
-                        <div class="status-alert" data-i18n="hero_alert1">NVazen™ 2.0 LTS 搭载全新 ALRM 4 引擎，配置解析重构 + 补丁库防篡改三层防线</div>
+                        <div class="status-alert" data-i18n="hero_alert1">NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- 横幅 2: Azen 11 LTS -->
+        <!-- 横幅 2: Azen 11 LTS (已停止支持) -->
         <div class="banner-slide">
             <section class="hero-section">
                 <div class="container hero-grid">
@@ -1352,18 +1439,20 @@
                     </div>
                     <div class="hero-text-box">
                         <div class="version-display">
-                            <span class="version-label" data-i18n="version_label">稳定版本</span>
+                            <span class="version-label" data-i18n="version_label_eol">旧版本</span>
                             <span class="version-number">Azen™ 11 LTS</span>
                             <span class="version-sub">11-lts.1H2609</span>
                         </div>
                         <h1>Azen™ 11</h1>
                         <div class="sub-title" data-i18n="hero_sub2">
-                            基于 Arch Linux 的 LTS 发行版 · 专为老笔记本电脑优化
+                            基于 Arch Linux 的 LTS 发行版 · 已停止支持
                         </div>
                         <p data-i18n="hero_desc2">
-                            Azen™ 11 LTS 是长期支持版本，提供稳定可靠的使用体验。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text2">GitHub 开发仓库</a> 获取更多信息。
+                            Azen™ 11 LTS 已停止支持（EOL），不再接收更新。建议升级至 NVazen™ 滚动版。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text2">GitHub 开发仓库</a> 获取更多信息。
                         </p>
-                        <div class="status-alert" data-i18n="hero_alert2">长期支持版本，适合追求稳定性的用户</div>
+                        <div class="status-alert" data-i18n="hero_alert2">此版本已停止支持，不再提供更新与安全补丁</div>
+                        <!-- SS 停止支持标志 -->
+                        <div class="ss-badge">SS</div>
                     </div>
                 </div>
             </section>
@@ -1372,7 +1461,7 @@
     </div>
 </div>
 
-<!-- 3. ALRM 技术介绍区域 (更新为 ALRM 4) -->
+<!-- 3. ALRM 技术介绍区域 -->
 <section class="alrm-section scroll-target" id="alrm">
     <div class="container alrm-content">
         <div class="alrm-header">
@@ -1381,7 +1470,7 @@
             <span class="alrm-version-tag">ALRM 4 · C++</span>
         </div>
         <div class="alrm-desc" data-i18n="alrm_desc">
-            <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 2.0 LTS 已率先搭载 ALRM 4 引擎。
+            <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 滚动版已率先搭载 ALRM 4 引擎。
         </div>
         <div class="alrm-grid">
             <div class="alrm-card">
@@ -1404,14 +1493,15 @@
     </div>
 </section>
 
-<!-- 4. News 流水走马灯 -->
+<!-- 4. News 区域 (三条新闻框交换显示) -->
 <section class="news-section scroll-target" id="news">
     <div class="container">
         <h2 data-i18n="news_title">Azen™ News</h2>
-        <div style="overflow: hidden; white-space: nowrap;">
-            <div class="marquee-container" id="newsMarquee">
-                <!-- 由 JS 动态生成 -->
-            </div>
+        <div class="news-swap-container" id="newsSwapContainer">
+            <!-- 由 JS 动态生成三条新闻 -->
+        </div>
+        <div class="news-dots" id="newsDots">
+            <!-- 由 JS 动态生成圆点 -->
         </div>
     </div>
 </section>
@@ -1442,8 +1532,8 @@
     <div class="container download-grid">
         <div class="version-box">
             <h3 data-i18n="version_title">版本列表</h3>
-            <div class="version-list" id="versionList">NVazen™ 2.0 LTS  (2.0lts.1H2609)  (Latest)
-Azen™ 11 LTS  (11-lts.1H2609)
+            <div class="version-list" id="versionList">NVazen™  (滚动更新 · Rolling Release)  (Latest)
+Azen™ 11 LTS  (11-lts.1H2609)  · 已停止支持 (SS)
 Azen™ 7 R.1bsH2608
 Azen™ 5 rc-bs.1H2608</div>
         </div>
@@ -1461,7 +1551,7 @@ Azen™ 5 rc-bs.1H2608</div>
     <div class="container">
         <h2 data-i18n="comments_title">用户评价</h2>
         <div class="comment-display" id="commentDisplay">
-            "Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 2.0 LTS 搭载的 ALRM 4 更是让人惊喜。"
+            "Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 滚动版搭载的 ALRM 4 更是让人惊喜。"
             — 来自社区的反馈
 
             "ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"
@@ -1509,7 +1599,7 @@ Azen™ 5 rc-bs.1H2608</div>
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 13',
+                update_counter: 'update 14',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -1520,19 +1610,21 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: 'Dark',
                 theme_light: 'Light',
                 version_label: 'Latest version',
-                hero_sub1: 'New architecture LTS series based on Arch Linux · Powered by ALRM 4',
+                version_label_eol: 'Legacy version',
+                version_rolling: 'Rolling Release',
+                hero_sub1: 'Rolling release series based on Arch Linux · Powered by ALRM 4',
                 hero_desc: 'We are working to improve our technology for the community. Visit our ',
                 github_link_text: 'GitHub development repository',
-                hero_alert1: 'NVazen™ 2.0 LTS ships with the new ALRM 4 engine — refactored config parsing plus a three-layer patch-library anti-tamper defense',
-                image_caption1: 'This screenshot shows NVazen™ 2.0 LTS in action',
-                hero_sub2: 'LTS distribution based on Arch Linux · Optimized for older laptops',
-                hero_desc2: 'Azen™ 11 LTS is a long-term support version, providing stable and reliable experience. Visit our ',
+                hero_alert1: 'NVazen™ rolling release always brings you the latest ALRM 4 engine and system improvements',
+                image_caption1: 'This screenshot shows NVazen™ Rolling Release in action',
+                hero_sub2: 'LTS distribution based on Arch Linux · No longer supported',
+                hero_desc2: 'Azen™ 11 LTS has reached end of life (EOL) and no longer receives updates. We recommend upgrading to NVazen™ Rolling Release. Visit our ',
                 github_link_text2: 'GitHub development repository',
-                hero_alert2: 'Long-term support version, suitable for users seeking stability',
+                hero_alert2: 'This version is end of life — no further updates or security patches',
                 image_caption2: 'This screenshot shows Azen™ 11 LTS in action',
                 alrm_title: 'ALRM Technology',
                 alrm_badge: 'Exclusive',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen™ team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen™ 2.0 LTS is the first to ship with the ALRM 4 engine.',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen™ team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen™ Rolling Release is the first to ship with the ALRM 4 engine.',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: 'When an application window is fully covered or idle for a long time, its background activity is automatically suspended, freeing up CPU and memory resources, significantly reducing power consumption.',
                 alrm_card2_title: 'Deep Sleep',
@@ -1573,18 +1665,16 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_note: 'Based on Arch Linux, all modifications and derivatives follow GPLv3.',
                 footer_repo: 'GitHub repository · Open source',
                 footer_tagline: 'Explore the joy of custom Linux',
+                news_tag: 'Latest',
                 news_items: [
-                    { title: 'NVazen™ 2.0 LTS Released', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) now available with ALRM 4' },
-                    { title: 'ALRM 4 Released', desc: 'ALRM 4 refactors config parsing and adds a three-layer anti-tamper defense' },
-                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) now available for download' },
-                    { title: 'Community', desc: 'Join our Microsoft Teams channel to participate' },
-                    { title: 'Control Center', desc: 'Azen™ Control Center in development' },
-                    { title: 'Documentation', desc: 'User guide and installation manual updated' }
+                    { tag: 'Release', title: 'NVazen™ becomes Rolling Release', desc: 'NVazen™ has switched to a rolling release model — you now always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
+                    { tag: 'EOL', title: 'Azen™ 11 LTS reaches End of Life', desc: 'Azen™ 11 LTS (11-lts.1H2609) is now marked as Stop Supporting (SS). It will no longer receive updates or security patches. We recommend upgrading to NVazen™ Rolling Release.' },
+                    { tag: 'Tech', title: 'ALRM 4 ships with refactored config parsing', desc: 'ALRM 4 refactors the config parsing module from a class into lighter free functions, and introduces a three-layer patch-library anti-tamper defense for stronger system integrity.' }
                 ],
-                comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ 2.0 LTS is amazing."\n— Community feedback\n\n"ALRM 4 refactors config parsing and adds anti-tamper defenses — lower resource usage and more peace of mind."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
+                comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ is amazing."\n— Community feedback\n\n"ALRM 4 refactors config parsing and adds anti-tamper defenses — lower resource usage and more peace of mind."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 13 次更新',
+                update_counter: '第 14 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -1595,19 +1685,21 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: '深色',
                 theme_light: '浅色',
                 version_label: '最新版本',
-                hero_sub1: '基于 Arch Linux 的新架构 LTS 系列 · 搭载 ALRM 4 技术',
+                version_label_eol: '旧版本',
+                version_rolling: '滚动更新',
+                hero_sub1: '基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术',
                 hero_desc: '我们致力于为社区改进技术。访问我们的 ',
                 github_link_text: 'GitHub 开发仓库',
-                hero_alert1: 'NVazen™ 2.0 LTS 搭载全新 ALRM 4 引擎，配置解析重构 + 补丁库防篡改三层防线',
-                image_caption1: '此照片为 NVazen™ 2.0 LTS 的实机演示',
-                hero_sub2: '基于 Arch Linux 的 LTS 发行版 · 专为老笔记本电脑优化',
-                hero_desc2: 'Azen™ 11 LTS 是长期支持版本，提供稳定可靠的使用体验。访问我们的 ',
+                hero_alert1: 'NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进',
+                image_caption1: '此照片为 NVazen™ 滚动版的实机演示',
+                hero_sub2: '基于 Arch Linux 的 LTS 发行版 · 已停止支持',
+                hero_desc2: 'Azen™ 11 LTS 已停止支持（EOL），不再接收更新。建议升级至 NVazen™ 滚动版。访问我们的 ',
                 github_link_text2: 'GitHub 开发仓库',
-                hero_alert2: '长期支持版本，适合追求稳定性的用户',
+                hero_alert2: '此版本已停止支持，不再提供更新与安全补丁',
                 image_caption2: '此照片为 Azen™ 11 LTS 的实机演示',
                 alrm_title: 'ALRM 技术',
                 alrm_badge: '独家',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 2.0 LTS 已率先搭载 ALRM 4 引擎。',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 滚动版已率先搭载 ALRM 4 引擎。',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: '当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。',
                 alrm_card2_title: '深度睡眠',
@@ -1648,18 +1740,16 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_note: '本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。',
                 footer_repo: 'GitHub 仓库 · 开源共建',
                 footer_tagline: '探索定制 Linux 的乐趣',
+                news_tag: '最新',
                 news_items: [
-                    { title: 'NVazen™ 2.0 LTS 发布', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) 现已发布，搭载 ALRM 4' },
-                    { title: 'ALRM 4 发布', desc: 'ALRM 4 重构配置解析，新增防篡改三层防线' },
-                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) 现已开放下载' },
-                    { title: '社区动态', desc: '欢迎加入我们的 Microsoft Teams 频道参与讨论' },
-                    { title: '控制中心', desc: 'Azen™ 控制中心开发中' },
-                    { title: '文档更新', desc: '用户手册与安装指南已更新' }
+                    { tag: '发布', title: 'NVazen™ 转为滚动更新', desc: 'NVazen™ 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
+                    { tag: 'EOL', title: 'Azen™ 11 LTS 停止支持', desc: 'Azen™ 11 LTS (11-lts.1H2609) 现已标记为停止支持（SS），不再接收更新与安全补丁。建议升级至 NVazen™ 滚动版。' },
+                    { tag: '技术', title: 'ALRM 4 搭载重构后的配置解析', desc: 'ALRM 4 将配置解析模块由类重构为更轻量的自由函数，并引入补丁库防篡改三层防线，系统完整性更强。' }
                 ],
-                comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 2.0 LTS 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
+                comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 13',
+                update_counter: '更新 14',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -1670,19 +1760,21 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: 'ダーク',
                 theme_light: 'ライト',
                 version_label: '最新バージョン',
-                hero_sub1: 'Arch Linux ベースの新アーキテクチャ LTS シリーズ · ALRM 4 搭載',
+                version_label_eol: '旧バージョン',
+                version_rolling: 'ローリングリリース',
+                hero_sub1: 'Arch Linux ベースのローリングリリースシリーズ · ALRM 4 搭載',
                 hero_desc: 'コミュニティのために技術を向上させ続けています。',
                 github_link_text: 'GitHub 開発リポジトリ',
-                hero_alert1: 'NVazen™ 2.0 LTS は新しい ALRM 4 エンジンを搭載、設定解析のリファクタと改ざん防止の三段防衛',
-                image_caption1: 'このスクリーンショットは NVazen™ 2.0 LTS の実機デモです',
-                hero_sub2: 'Arch Linux ベースの LTS ディストリビューション · 旧型ノートPC向け最適化',
-                hero_desc2: 'Azen™ 11 LTS は長期サポート版で、安定した信頼性の高い体験を提供します。',
+                hero_alert1: 'NVazen™ ローリングリリースは常に最新の ALRM 4 エンジンとシステム改善を提供します',
+                image_caption1: 'このスクリーンショットは NVazen™ ローリングリリースの実機デモです',
+                hero_sub2: 'Arch Linux ベースの LTS ディストリビューション · サポート終了',
+                hero_desc2: 'Azen™ 11 LTS はサポート終了（EOL）となり、更新を受け取りません。NVazen™ ローリングリリースへのアップグレードをお勧めします。',
                 github_link_text2: 'GitHub 開発リポジトリ',
-                hero_alert2: '長期サポート版、安定性を求めるユーザーに最適',
+                hero_alert2: 'このバージョンはサポート終了です — 今後の更新やセキュリティパッチはありません',
                 image_caption2: 'このスクリーンショットは Azen™ 11 LTS の実機デモです',
                 alrm_title: 'ALRM テクノロジー',
                 alrm_badge: '独占',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen™ チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen™ 2.0 LTS が最初に ALRM 4 エンジンを搭載しています。',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen™ チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen™ ローリングリリースが最初に ALRM 4 エンジンを搭載しています。',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: 'アプリケーションウィンドウが完全に隠れたり、長時間操作がない場合、バックグラウンドアクティビティを自動的に一時停止し、CPUとメモリリソースを解放して消費電力を大幅に削減します。',
                 alrm_card2_title: 'ディープスリープ',
@@ -1723,18 +1815,16 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_note: 'Arch Linux に基づき、すべての変更と派生コードは GPLv3 に従います。',
                 footer_repo: 'GitHub リポジトリ · オープンソース',
                 footer_tagline: 'カスタム Linux の楽しさを探求',
+                news_tag: '最新',
                 news_items: [
-                    { title: 'NVazen™ 2.0 LTS リリース', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) リリース、ALRM 4 搭載' },
-                    { title: 'ALRM 4 リリース', desc: 'ALRM 4 は設定解析をリファクタし、三段の改ざん防止機構を追加' },
-                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) ダウンロード可能' },
-                    { title: 'コミュニティ', desc: 'Microsoft Teams チャンネルに参加してください' },
-                    { title: 'コントロールセンター', desc: 'Azen™ コントロールセンター開発中' },
-                    { title: 'ドキュメント', desc: 'ユーザーガイドとインストールマニュアルを更新' }
+                    { tag: 'リリース', title: 'NVazen™ がローリングリリースに', desc: 'NVazen™ はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
+                    { tag: 'EOL', title: 'Azen™ 11 LTS がサポート終了', desc: 'Azen™ 11 LTS (11-lts.1H2609) はサポート終了（SS）となりました。今後の更新やセキュリティパッチはありません。NVazen™ ローリングリリースへのアップグレードをお勧めします。' },
+                    { tag: '技術', title: 'ALRM 4 が設定解析をリファクタして搭載', desc: 'ALRM 4 は設定解析モジュールをクラスからより軽量な自由関数にリファクタし、パッチライブラリの三段改ざん防止機構を導入しました。' }
                 ],
-                comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ 2.0 LTS の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 4 は設定解析をリファクタし、改ざん防止機構を追加しました。リソース使用量が減り、安心感も増しました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
+                comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 4 は設定解析をリファクタし、改ざん防止機構を追加しました。リソース使用量が減り、安心感も増しました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 13',
+                update_counter: '업데이트 14',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -1745,19 +1835,21 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: '다크',
                 theme_light: '라이트',
                 version_label: '최신 버전',
-                hero_sub1: 'Arch Linux 기반 새 아키텍처 LTS 시리즈 · ALRM 4 탑재',
+                version_label_eol: '레거시 버전',
+                version_rolling: '롤링 릴리스',
+                hero_sub1: 'Arch Linux 기반 롤링 릴리스 시리즈 · ALRM 4 탑재',
                 hero_desc: '커뮤니티를 위해 기술을 계속 개선하고 있습니다.',
                 github_link_text: 'GitHub 개발 저장소',
-                hero_alert1: 'NVazen™ 2.0 LTS에 새로운 ALRM 4 엔진 탑재 — 설정 파싱 리팩터링 + 패치 라이브러리 3중 변조 방지',
-                image_caption1: '이 스크린샷은 NVazen™ 2.0 LTS의 실제 데모입니다',
-                hero_sub2: 'Arch Linux 기반 LTS 배포판 · 구형 노트북 최적화',
-                hero_desc2: 'Azen™ 11 LTS는 장기 지원 버전으로 안정적이고 신뢰할 수 있는 경험을 제공합니다.',
+                hero_alert1: 'NVazen™ 롤링 릴리스는 항상 최신 ALRM 4 엔진과 시스템 개선을 제공합니다',
+                image_caption1: '이 스크린샷은 NVazen™ 롤링 릴리스의 실제 데모입니다',
+                hero_sub2: 'Arch Linux 기반 LTS 배포판 · 지원 종료',
+                hero_desc2: 'Azen™ 11 LTS는 지원 종료(EOL)되어 더 이상 업데이트를 받지 않습니다. NVazen™ 롤링 릴리스로 업그레이드하시길 권장합니다.',
                 github_link_text2: 'GitHub 개발 저장소',
-                hero_alert2: '장기 지원 버전, 안정성을 추구하는 사용자에게 적합',
+                hero_alert2: '이 버전은 지원 종료되었습니다 — 추가 업데이트나 보안 패치가 없습니다',
                 image_caption2: '이 스크린샷은 Azen™ 11 LTS의 실제 데모입니다',
                 alrm_title: 'ALRM 기술',
                 alrm_badge: '독점',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen™ 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen™ 2.0 LTS가 ALRM 4 엔진을 최초로 탑재했습니다.',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen™ 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen™ 롤링 릴리스가 ALRM 4 엔진을 최초로 탑재했습니다.',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: '애플리케이션 창이 완전히 가려지거나 장시간 작업이 없을 때 백그라운드 활동을 자동으로 일시 중지하여 CPU와 메모리 리소스를 확보하고 전력 소비를 크게 줄입니다.',
                 alrm_card2_title: '딥 슬립',
@@ -1798,15 +1890,13 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_note: 'Arch Linux 기반, 모든 수정 및 파생 코드는 GPLv3를 따릅니다.',
                 footer_repo: 'GitHub 리포지토리 · 오픈소스',
                 footer_tagline: '커스텀 Linux의 즐거움을 탐험하세요',
+                news_tag: '최신',
                 news_items: [
-                    { title: 'NVazen™ 2.0 LTS 릴리스', desc: 'NVazen™ 2.0 LTS (2.0lts.1H2609) 출시, ALRM 4 탑재' },
-                    { title: 'ALRM 4 릴리스', desc: 'ALRM 4는 설정 파싱을 리팩터링하고 3중 변조 방지 방어선을 추가' },
-                    { title: 'Azen™ 11 LTS', desc: 'Azen™ 11 LTS (11-lts.1H2609) 다운로드 가능' },
-                    { title: '커뮤니티', desc: 'Microsoft Teams 채널에 참여하세요' },
-                    { title: '컨트롤 센터', desc: 'Azen™ 컨트롤 센터 개발 중' },
-                    { title: '문서화', desc: '사용자 가이드 및 설치 매뉴얼 업데이트' }
+                    { tag: '릴리스', title: 'NVazen™, 롤링 릴리스로 전환', desc: 'NVazen™이 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
+                    { tag: 'EOL', title: 'Azen™ 11 LTS 지원 종료', desc: 'Azen™ 11 LTS (11-lts.1H2609)가 지원 종료(SS)로 표시되었습니다. 더 이상 업데이트나 보안 패치를 받지 않습니다. NVazen™ 롤링 릴리스로 업그레이드하시길 권장합니다.' },
+                    { tag: '기술', title: 'ALRM 4, 리팩터링된 설정 파싱 탑재', desc: 'ALRM 4는 설정 파싱 모듈을 클래스에서 더 가벼운 자유 함수로 리팩터링하고, 패치 라이브러리 3중 변조 방지 방어선을 도입했습니다.' }
                 ],
-                comments: '"Azen™은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen™ 2.0 LTS의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ALRM 4는 설정 파싱을 리팩터링하고 변조 방지 방어선을 추가했습니다. 리소스 사용량이 줄고 더 안심됩니다."\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
+                comments: '"Azen™은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen™의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ALRM 4는 설정 파싱을 리팩터링하고 변조 방지 방어선을 추가했습니다. 리소스 사용량이 줄고 더 안심됩니다."\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
             }
         };
 
@@ -1821,13 +1911,19 @@ Azen™ 5 rc-bs.1H2608</div>
         let bannerInterval = null;
         const BANNER_DURATION = 15000; // 15秒
 
+        // 新闻交换
+        let currentNewsIndex = 0;
+        let newsInterval = null;
+        const NEWS_DURATION = 6000; // 6秒
+        let newsItems = [];
+
         // =====================================================
         // 3. DOM 引用
         // =====================================================
         const i18nElements = document.querySelectorAll('[data-i18n]');
-        const newsMarquee = document.getElementById('newsMarquee');
+        const newsSwapContainer = document.getElementById('newsSwapContainer');
+        const newsDots = document.getElementById('newsDots');
         const commentDisplay = document.getElementById('commentDisplay');
-        const versionList = document.getElementById('versionList');
         const navLinks = document.querySelectorAll('.nav-link');
 
         const settingsBtn = document.getElementById('settingsBtn');
@@ -1909,7 +2005,6 @@ Azen™ 5 rc-bs.1H2608</div>
             }
         }
 
-        // 箭头点击
         bannerArrowLeft.addEventListener('click', function(e) {
             e.stopPropagation();
             stopBannerAutoPlay();
@@ -2047,23 +2142,83 @@ Azen™ 5 rc-bs.1H2608</div>
         createCarousel(carouselTrack2, container2);
 
         // =====================================================
-        // 8. 新闻走马灯
+        // 8. 新闻交换显示 (3条新闻轮换)
         // =====================================================
-        function buildNewsItems(lang) {
-            const items = translations[lang].news_items || translations.en.news_items;
+        function buildNewsSwap(lang) {
+            const t = translations[lang];
+            newsItems = t.news_items || translations.en.news_items;
+            const tagLabel = t.news_tag || 'Latest';
+
+            // 渲染所有新闻项
             let html = '';
-            for (let repeat = 0; repeat < 2; repeat++) {
-                items.forEach(item => {
-                    html += `
-                        <div class="news-box">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='150' viewBox='0 0 300 150'%3E%3Crect width='300' height='150' fill='%23${currentTheme === 'dark' ? '161b22' : 'f0f2f5'}'/%3E%3Ctext x='150' y='75' font-family='Arial' font-size='18' fill='%23${currentTheme === 'dark' ? '58a6ff' : '0969da'}' text-anchor='middle' dominant-baseline='middle'%3E${item.title}%3C/text%3E%3C/svg%3E" alt="${item.title}">
-                            <h4>${item.title}</h4>
-                            <p>${item.desc}</p>
-                        </div>
-                    `;
+            newsItems.forEach((item, idx) => {
+                html += `
+                    <div class="news-swap-item ${idx === 0 ? 'active' : ''}" data-news-index="${idx}">
+                        <span class="news-tag">${item.tag || tagLabel}</span>
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                `;
+            });
+            newsSwapContainer.innerHTML = html;
+
+            // 渲染圆点
+            let dotsHtml = '';
+            newsItems.forEach((_, idx) => {
+                dotsHtml += `<button class="news-dot ${idx === 0 ? 'active' : ''}" data-dot-index="${idx}" aria-label="News ${idx + 1}"></button>`;
+            });
+            newsDots.innerHTML = dotsHtml;
+
+            // 重置索引
+            currentNewsIndex = 0;
+
+            // 绑定圆点点击事件
+            const dots = newsDots.querySelectorAll('.news-dot');
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const idx = parseInt(this.dataset.dotIndex, 10);
+                    if (!isNaN(idx)) {
+                        stopNewsAutoPlay();
+                        showNewsByIndex(idx);
+                        startNewsAutoPlay();
+                    }
                 });
+            });
+
+            // 重新启动自动播放
+            startNewsAutoPlay();
+        }
+
+        function showNewsByIndex(index) {
+            const items = newsSwapContainer.querySelectorAll('.news-swap-item');
+            const dots = newsDots.querySelectorAll('.news-dot');
+            if (!items.length) return;
+            if (index < 0) index = items.length - 1;
+            if (index >= items.length) index = 0;
+            currentNewsIndex = index;
+
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextNews() {
+            showNewsByIndex(currentNewsIndex + 1);
+        }
+
+        function startNewsAutoPlay() {
+            stopNewsAutoPlay();
+            newsInterval = setInterval(nextNews, NEWS_DURATION);
+        }
+
+        function stopNewsAutoPlay() {
+            if (newsInterval) {
+                clearInterval(newsInterval);
+                newsInterval = null;
             }
-            newsMarquee.innerHTML = html;
         }
 
         // =====================================================
@@ -2080,7 +2235,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 }
             });
 
-            // hero_desc / hero_desc2 需要保留内嵌的 GitHub 链接，单独处理，避免重复拼接
+            // hero_desc / hero_desc2 需要保留内嵌的 GitHub 链接，单独处理
             const heroDescs = document.querySelectorAll('[data-i18n="hero_desc"], [data-i18n="hero_desc2"]');
             heroDescs.forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -2094,7 +2249,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 commentDisplay.textContent = t.comments;
             }
 
-            buildNewsItems(lang);
+            buildNewsSwap(lang);
 
             langOptions.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -2117,7 +2272,6 @@ Azen™ 5 rc-bs.1H2608</div>
             themeOptions.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.theme === theme);
             });
-            buildNewsItems(currentLang);
         }
 
         // =====================================================
@@ -2146,6 +2300,10 @@ Azen™ 5 rc-bs.1H2608</div>
                     const theme = this.dataset.theme;
                     setTheme(theme);
                 });
+            });
+
+            themeOptions.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === 'dark');
             });
         }
 
