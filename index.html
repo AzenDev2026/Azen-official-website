@@ -60,6 +60,9 @@
             --menu-bg: #1c2333;
             --menu-border: #30363d;
             --danger: #f85149;
+            --deco-1: rgba(88, 166, 255, 0.10);
+            --deco-2: rgba(88, 166, 255, 0.06);
+            --deco-3: rgba(121, 192, 255, 0.08);
         }
 
         /* 浅色主题 */
@@ -84,6 +87,9 @@
             --menu-bg: #ffffff;
             --menu-border: #d0d7de;
             --danger: #cf222e;
+            --deco-1: rgba(9, 105, 218, 0.08);
+            --deco-2: rgba(9, 105, 218, 0.05);
+            --deco-3: rgba(5, 80, 174, 0.06);
         }
 
         html {
@@ -96,13 +102,61 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* ================= 通用丝滑动画 ================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes floatSlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        /* 滚动进入视口时的动画 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ================= 顶部导航横幅 ================= */
@@ -112,7 +166,7 @@
             z-index: 100;
             background-color: var(--bg-header);
             border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .nav-bar {
@@ -135,13 +189,18 @@
             height: 36px;
             object-fit: contain;
             display: block;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .logo-area:hover .logo-icon {
+            transform: rotate(-8deg) scale(1.08);
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: var(--text-primary);
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         /* ================= 左上角更新计数 (半透明) ================= */
@@ -156,7 +215,7 @@
             letter-spacing: 0.5px;
             z-index: 110;
             pointer-events: none;
-            transition: color 0.3s, opacity 0.3s;
+            transition: color 0.4s ease, opacity 0.4s ease;
             font-family: monospace;
         }
 
@@ -172,12 +231,30 @@
             text-decoration: none;
             margin-left: 18px;
             font-size: 15px;
-            transition: color 0.3s;
+            transition: color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 2px;
         }
 
         .nav-links a:hover {
             color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* ================= 设置菜单 ================= */
@@ -195,7 +272,7 @@
             cursor: pointer;
             font-size: 18px;
             line-height: 1;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -204,6 +281,7 @@
         .settings-btn:hover {
             background: var(--border-color);
             color: var(--text-primary);
+            transform: rotate(45deg);
         }
 
         .settings-menu {
@@ -220,7 +298,8 @@
             flex-direction: column;
             gap: 14px;
             z-index: 200;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+            animation: fadeInUp 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .settings-menu.open {
@@ -256,7 +335,7 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             font-family: inherit;
             line-height: 1.5;
         }
@@ -264,6 +343,7 @@
         .lang-option:hover, .theme-option:hover {
             background: var(--border-color);
             color: var(--text-primary);
+            transform: translateY(-1px);
         }
 
         .lang-option.active, .theme-option.active {
@@ -279,87 +359,75 @@
             padding: 4px 12px;
         }
 
-        /* ================= 横幅轮播容器 ================= */
-        .hero-carousel-section {
+        /* ================= 横幅区域 (单横幅，不再交换) ================= */
+        .hero-section {
+            padding: 80px 0;
+            background: var(--hero-bg);
+            transition: background 0.5s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .banner-track {
-            display: flex;
-            width: 100%;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-
-        .banner-slide {
-            flex: 0 0 100%;
-            width: 100%;
-        }
-
-        /* ================= 横幅左右切换箭头 ================= */
-        .banner-arrow {
+        /* ================= 横幅装饰元素 (不遮挡内容) ================= */
+        .hero-deco {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 右上角半圆 */
+        .deco-semicircle {
+            top: -80px;
+            right: -80px;
+            width: 380px;
+            height: 380px;
             border-radius: 50%;
-            background: rgba(128, 128, 128, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 50;
+            background: radial-gradient(circle at 30% 30%, var(--deco-1), transparent 70%);
+            animation: floatSlower 12s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        /* 右上角小圆环 */
+        .deco-ring {
+            top: 30px;
+            right: 60px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1.5px solid var(--deco-2);
+            animation: floatSlow 9s ease-in-out infinite;
             opacity: 0.6;
-            transition: opacity 0.25s, background 0.25s, transform 0.2s;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            user-select: none;
         }
 
-        .banner-arrow:hover {
-            opacity: 1;
-            background: rgba(128, 128, 128, 0.45);
+        /* 左下角模糊光斑 */
+        .deco-glow-left {
+            bottom: -60px;
+            left: -60px;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 60% 60%, var(--deco-3), transparent 70%);
+            animation: shimmer 7s ease-in-out infinite;
         }
 
-        .banner-arrow:active {
-            transform: translateY(-50%) scale(0.94);
-        }
-
-        .banner-arrow.left {
-            left: 20px;
-        }
-
-        .banner-arrow.right {
-            right: 20px;
-        }
-
-        /* 浅色主题下箭头颜色适配 */
-        [data-theme="light"] .banner-arrow {
-            background: rgba(0, 0, 0, 0.18);
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            color: #1f2328;
-        }
-
-        [data-theme="light"] .banner-arrow:hover {
-            background: rgba(0, 0, 0, 0.32);
-        }
-
-        /* 主宣传区 */
-        .hero-section {
-            padding: 80px 0;
-            background: var(--hero-bg);
-            transition: background 0.3s;
+        /* 右下角小点阵装饰 */
+        .deco-dots {
+            bottom: 30px;
+            right: 40px;
+            width: 120px;
+            height: 120px;
+            background-image: radial-gradient(circle, var(--deco-2) 1.5px, transparent 1.5px);
+            background-size: 16px 16px;
+            opacity: 0.5;
+            animation: floatSlow 11s ease-in-out infinite reverse;
         }
 
         .hero-grid {
             display: flex;
             align-items: flex-start;
             gap: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-image-box {
@@ -372,6 +440,7 @@
             overflow: hidden;
             user-select: none;
             touch-action: none;
+            animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         }
 
         .carousel-track {
@@ -398,9 +467,13 @@
             object-fit: contain;
             border: 1px solid var(--border-color);
             background: var(--bg-card-alt);
-            transition: border-color 0.3s;
+            transition: border-color 0.4s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border-radius: 0 !important;
             display: block;
+        }
+
+        .carousel-slide img:hover {
+            transform: scale(1.01);
         }
 
         .image-caption {
@@ -409,42 +482,13 @@
             color: var(--text-muted);
             text-align: left;
             width: 100%;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .hero-text-box {
             flex: 1;
             position: relative;
-        }
-
-        /* ================= SS (停止支持) 标志 ================= */
-        .ss-badge {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: var(--danger);
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 6px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 14px rgba(248, 81, 73, 0.4);
-            z-index: 20;
-            user-select: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .ss-badge::after {
-            content: 'Stop Supporting';
-            display: block;
-            font-size: 9px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            opacity: 0.9;
-            margin-top: 1px;
-            text-transform: uppercase;
+            animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s both;
         }
 
         .version-display {
@@ -467,6 +511,7 @@
             color: var(--accent);
             letter-spacing: 0.5px;
             line-height: 1.2;
+            transition: color 0.4s ease;
         }
 
         .version-sub {
@@ -485,20 +530,21 @@
             font-size: 12px;
             font-weight: 600;
             margin-left: 0;
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .hero-text-box h1 {
             font-size: 42px;
             color: var(--text-primary);
             margin: 0 0 12px 0;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .hero-text-box .sub-title {
             font-size: 18px;
             color: var(--text-muted);
             margin-bottom: 20px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .hero-text-box .github-link {
@@ -507,7 +553,7 @@
             text-decoration: none;
             font-weight: 500;
             border-bottom: 1px dashed var(--accent);
-            transition: color 0.3s, border-color 0.3s;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .hero-text-box .github-link:hover {
@@ -522,7 +568,11 @@
             padding: 15px 20px;
             border-radius: 8px;
             font-size: 14px;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+        }
+
+        .status-alert:hover {
+            transform: translateX(4px);
         }
 
         /* ================= ALRM 技术介绍区域 ================= */
@@ -531,7 +581,7 @@
             background-color: var(--alrm-bg);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .alrm-content {
@@ -550,7 +600,7 @@
         .alrm-header h2 {
             font-size: 32px;
             color: var(--text-primary);
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .alrm-badge {
@@ -560,6 +610,7 @@
             border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
+            transition: background 0.4s ease;
         }
 
         .alrm-version-tag {
@@ -571,6 +622,7 @@
             font-size: 12px;
             font-weight: 600;
             margin-left: 4px;
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .alrm-grid {
@@ -585,21 +637,33 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 24px 22px;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease,
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease;
+        }
+
+        .alrm-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+            border-color: var(--accent);
+        }
+
+        [data-theme="light"] .alrm-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
         .alrm-card h4 {
             font-size: 18px;
             color: var(--text-primary);
             margin-bottom: 8px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .alrm-card p {
             font-size: 15px;
             color: var(--text-muted);
             line-height: 1.7;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .alrm-desc {
@@ -607,11 +671,12 @@
             color: var(--text-secondary);
             max-width: 800px;
             line-height: 1.8;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .alrm-desc strong {
             color: var(--accent);
+            transition: color 0.4s ease;
         }
 
         /* ================= 新闻区域 (三条新闻框交换显示) ================= */
@@ -619,7 +684,7 @@
             padding: 60px 0;
             background-color: var(--bg-body);
             border-top: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .news-section h2 {
@@ -627,7 +692,7 @@
             margin-bottom: 30px;
             padding-left: 10px;
             border-left: 4px solid var(--accent);
-            transition: color 0.3s;
+            transition: color 0.4s ease, border-color 0.4s ease;
         }
 
         .news-swap-container {
@@ -642,19 +707,19 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 28px 30px;
-            transition: background-color 0.3s, border-color 0.3s, opacity 0.4s ease;
+            transition: background-color 0.4s ease, border-color 0.4s ease, opacity 0.5s ease;
             opacity: 0;
         }
 
         .news-swap-item.active {
             display: block;
             opacity: 1;
-            animation: newsFadeIn 0.5s ease;
+            animation: newsFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         @keyframes newsFadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(12px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .news-swap-item .news-tag {
@@ -667,20 +732,21 @@
             font-size: 12px;
             font-weight: 600;
             margin-bottom: 12px;
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .news-swap-item h3 {
             font-size: 22px;
             color: var(--text-primary);
             margin-bottom: 10px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .news-swap-item p {
             font-size: 15px;
             color: var(--text-muted);
             line-height: 1.7;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .news-dots {
@@ -696,18 +762,19 @@
             border-radius: 50%;
             background: var(--border-color);
             cursor: pointer;
-            transition: background 0.25s, transform 0.2s;
+            transition: background 0.3s ease, transform 0.3s ease;
             border: none;
             padding: 0;
         }
 
         .news-dot.active {
             background: var(--accent);
-            transform: scale(1.2);
+            transform: scale(1.25);
         }
 
         .news-dot:hover {
             background: var(--accent-hover);
+            transform: scale(1.2);
         }
 
         /* ================= 核心优势 ================= */
@@ -715,14 +782,14 @@
             padding: 100px 0;
             border-top: 1px solid var(--border-color);
             background-color: var(--bg-section);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .features-section h2 {
             text-align: center;
             color: var(--text-primary);
             margin-bottom: 50px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .features-grid {
@@ -742,7 +809,19 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease,
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        [data-theme="light"] .feature-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
         .feature-card h3 {
@@ -750,14 +829,14 @@
             font-size: 22px;
             margin-top: 0;
             margin-bottom: 15px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .feature-card p {
             color: var(--text-muted);
             font-size: 15px;
             margin-bottom: 0;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         /* ================= 下载与版本 ================= */
@@ -765,7 +844,7 @@
             padding: 80px 0;
             border-top: 1px solid var(--border-color);
             background-color: var(--bg-body);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .download-grid {
@@ -780,7 +859,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 25px;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .version-box h3 {
@@ -788,7 +867,7 @@
             margin-top: 0;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
-            transition: color 0.3s, border-color 0.3s;
+            transition: color 0.4s ease, border-color 0.4s ease;
         }
 
         .version-list {
@@ -797,7 +876,7 @@
             color: var(--text-muted);
             max-height: 200px;
             overflow-y: auto;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .github-box {
@@ -811,18 +890,18 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .github-box h3 {
             color: var(--text-primary);
             margin-top: 0;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .github-box p {
             color: var(--text-muted);
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .github-btn {
@@ -835,11 +914,13 @@
             font-weight: bold;
             font-size: 16px;
             margin-top: 15px;
-            transition: background-color 0.2s;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .github-btn:hover {
             background-color: var(--btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(35, 134, 54, 0.35);
         }
 
         /* ================= 用户评价 ================= */
@@ -847,14 +928,14 @@
             padding: 80px 0;
             background-color: var(--bg-section);
             border-top: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .comment-section h2 {
             text-align: center;
             color: var(--text-primary);
             margin-bottom: 40px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .comment-display {
@@ -867,7 +948,12 @@
             white-space: pre-wrap;
             color: var(--text-primary);
             font-style: italic;
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease,
+                        transform 0.4s ease;
+        }
+
+        .comment-display:hover {
+            transform: translateY(-4px);
         }
 
         /* ================= 硬件要求 ================= */
@@ -875,14 +961,14 @@
             padding: 80px 0;
             background-color: var(--bg-body);
             border-top: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .requirements-section h2 {
             text-align: center;
             color: var(--text-primary);
             margin-bottom: 40px;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         .req-table {
@@ -894,14 +980,18 @@
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .req-table td {
             padding: 15px 20px;
             border-bottom: 1px solid var(--border-color);
             color: var(--text-primary);
-            transition: color 0.3s, border-color 0.3s;
+            transition: color 0.4s ease, border-color 0.4s ease, background 0.3s ease;
+        }
+
+        .req-table tr:hover td {
+            background: var(--bg-card-alt);
         }
 
         .req-table tr:last-child td {
@@ -912,7 +1002,7 @@
             font-weight: bold;
             color: var(--accent);
             width: 30%;
-            transition: color 0.3s;
+            transition: color 0.4s ease;
         }
 
         footer {
@@ -921,7 +1011,7 @@
             border-top: 1px solid var(--border-color);
             font-size: 14px;
             color: var(--text-muted);
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
         }
 
         .footer-content {
@@ -982,6 +1072,10 @@
                 border: 1px solid var(--border-color);
             }
 
+            .nav-links a::after {
+                display: none;
+            }
+
             .settings-wrapper {
                 margin-left: 0;
             }
@@ -992,18 +1086,8 @@
                 min-width: 200px;
             }
 
-            .banner-arrow {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-
-            .banner-arrow.left {
-                left: 8px;
-            }
-
-            .banner-arrow.right {
-                right: 8px;
+            .settings-btn:hover {
+                transform: none;
             }
 
             .hero-section {
@@ -1022,17 +1106,6 @@
             .hero-text-box {
                 width: 100%;
                 text-align: center;
-            }
-
-            .ss-badge {
-                bottom: 6px;
-                right: 6px;
-                font-size: 11px;
-                padding: 4px 10px;
-            }
-
-            .ss-badge::after {
-                font-size: 8px;
             }
 
             .version-display {
@@ -1062,9 +1135,32 @@
                 text-align: left;
             }
 
+            .status-alert:hover {
+                transform: none;
+            }
+
             .image-caption {
                 text-align: center;
                 font-size: 13px;
+            }
+
+            /* 装饰元素在移动端适当缩小 */
+            .deco-semicircle {
+                width: 220px;
+                height: 220px;
+                top: -50px;
+                right: -60px;
+            }
+
+            .deco-ring {
+                width: 110px;
+                height: 110px;
+                top: 20px;
+                right: 30px;
+            }
+
+            .deco-dots {
+                display: none;
             }
 
             .alrm-section {
@@ -1093,6 +1189,10 @@
 
             .alrm-card {
                 padding: 18px 16px;
+            }
+
+            .alrm-card:hover {
+                transform: none;
             }
 
             .alrm-card h4 {
@@ -1143,6 +1243,10 @@
                 min-height: auto;
             }
 
+            .feature-card:hover {
+                transform: none;
+            }
+
             .feature-card h3 {
                 font-size: 18px;
                 margin-bottom: 10px;
@@ -1181,6 +1285,10 @@
             .comment-display {
                 padding: 20px;
                 font-size: 14px;
+            }
+
+            .comment-display:hover {
+                transform: none;
             }
 
             .requirements-section {
@@ -1336,13 +1444,33 @@
                 padding: 3px 8px;
             }
 
-            .ss-badge {
-                font-size: 10px;
-                padding: 3px 8px;
+            .deco-semicircle {
+                width: 150px;
+                height: 150px;
+                top: -40px;
+                right: -40px;
             }
 
-            .ss-badge::after {
-                font-size: 7px;
+            .deco-ring {
+                width: 80px;
+                height: 80px;
+                top: 10px;
+                right: 20px;
+            }
+        }
+
+        /* 尊重用户的减少动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal {
+                opacity: 1;
+                transform: none;
             }
         }
     </style>
@@ -1351,7 +1479,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 14</div>
+    <div class="update-counter" data-i18n="update_counter">update 15</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -1389,103 +1517,67 @@
     </div>
 </header>
 
-<!-- 2. 双横幅轮播区域 -->
-<div class="hero-carousel-section" id="heroCarousel">
-    <div class="banner-arrow left" id="bannerArrowLeft" title="Previous">‹</div>
-    <div class="banner-arrow right" id="bannerArrowRight" title="Next">›</div>
+<!-- 2. 横幅区域 (单横幅，不再交换) -->
+<section class="hero-section" id="heroCarousel">
+    <!-- 装饰元素 (不遮挡内容) -->
+    <div class="hero-deco deco-semicircle"></div>
+    <div class="hero-deco deco-ring"></div>
+    <div class="hero-deco deco-glow-left"></div>
+    <div class="hero-deco deco-dots"></div>
 
-    <div class="banner-track" id="bannerTrack">
-
-        <!-- 横幅 1: NVazen (滚动更新) -->
-        <div class="banner-slide">
-            <section class="hero-section">
-                <div class="container hero-grid">
-                    <div class="hero-image-box" id="carouselContainer1">
-                        <div class="carousel-track" id="carouselTrack1">
-                            <div class="carousel-slide"><img src="scr1.png" alt="NVazen screenshot 1"></div>
-                            <div class="carousel-slide"><img src="scr2.png" alt="NVazen screenshot 2"></div>
-                        </div>
-                        <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen™ 滚动版的实机演示</div>
-                    </div>
-                    <div class="hero-text-box">
-                        <div class="version-display">
-                            <span class="version-label" data-i18n="version_label">最新版本</span>
-                            <span class="version-number">NVazen™</span>
-                            <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
-                        </div>
-                        <h1>NVazen™</h1>
-                        <div class="sub-title" data-i18n="hero_sub1">
-                            基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术
-                        </div>
-                        <p data-i18n="hero_desc">
-                            我们致力于为社区改进技术。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text">GitHub 开发仓库</a> 获取更多信息。
-                        </p>
-                        <div class="status-alert" data-i18n="hero_alert1">NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
-                    </div>
-                </div>
-            </section>
+    <div class="container hero-grid">
+        <!-- 左侧图片轮播 (scr1.png / scr2.png 仍可切换) -->
+        <div class="hero-image-box" id="carouselContainer1">
+            <div class="carousel-track" id="carouselTrack1">
+                <div class="carousel-slide"><img src="scr1.png" alt="NVazen screenshot 1"></div>
+                <div class="carousel-slide"><img src="scr2.png" alt="NVazen screenshot 2"></div>
+            </div>
+            <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen™ 滚动版的实机演示</div>
         </div>
-
-        <!-- 横幅 2: Azen 11 LTS (已停止支持) -->
-        <div class="banner-slide">
-            <section class="hero-section">
-                <div class="container hero-grid">
-                    <div class="hero-image-box" id="carouselContainer2">
-                        <div class="carousel-track" id="carouselTrack2">
-                            <div class="carousel-slide"><img src="scr3.png" alt="Azen 11 screenshot 1"></div>
-                            <div class="carousel-slide"><img src="scr4.png" alt="Azen 11 screenshot 2"></div>
-                        </div>
-                        <div class="image-caption" data-i18n="image_caption2">此照片为 Azen™ 11 LTS 的实机演示</div>
-                    </div>
-                    <div class="hero-text-box">
-                        <div class="version-display">
-                            <span class="version-label" data-i18n="version_label_eol">旧版本</span>
-                            <span class="version-number">Azen™ 11 LTS</span>
-                            <span class="version-sub">11-lts.1H2609</span>
-                        </div>
-                        <h1>Azen™ 11</h1>
-                        <div class="sub-title" data-i18n="hero_sub2">
-                            基于 Arch Linux 的 LTS 发行版 · 已停止支持
-                        </div>
-                        <p data-i18n="hero_desc2">
-                            Azen™ 11 LTS 已停止支持（EOL），不再接收更新。建议升级至 NVazen™ 滚动版。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text2">GitHub 开发仓库</a> 获取更多信息。
-                        </p>
-                        <div class="status-alert" data-i18n="hero_alert2">此版本已停止支持，不再提供更新与安全补丁</div>
-                        <!-- SS 停止支持标志 -->
-                        <div class="ss-badge">SS</div>
-                    </div>
-                </div>
-            </section>
+        <!-- 右侧文字 -->
+        <div class="hero-text-box">
+            <div class="version-display">
+                <span class="version-label" data-i18n="version_label">最新版本</span>
+                <span class="version-number">NVazen™</span>
+                <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
+            </div>
+            <h1>NVazen™</h1>
+            <div class="sub-title" data-i18n="hero_sub1">
+                基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术
+            </div>
+            <p data-i18n="hero_desc">
+                我们致力于为社区改进技术。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text">GitHub 开发仓库</a> 获取更多信息。
+            </p>
+            <div class="status-alert" data-i18n="hero_alert1">NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
         </div>
-
     </div>
-</div>
+</section>
 
 <!-- 3. ALRM 技术介绍区域 -->
 <section class="alrm-section scroll-target" id="alrm">
     <div class="container alrm-content">
-        <div class="alrm-header">
+        <div class="alrm-header reveal">
             <h2 data-i18n="alrm_title">ALRM 技术</h2>
             <span class="alrm-badge" data-i18n="alrm_badge">独家</span>
             <span class="alrm-version-tag">ALRM 4 · C++</span>
         </div>
-        <div class="alrm-desc" data-i18n="alrm_desc">
+        <div class="alrm-desc reveal" data-i18n="alrm_desc">
             <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 滚动版已率先搭载 ALRM 4 引擎。
         </div>
         <div class="alrm-grid">
-            <div class="alrm-card">
+            <div class="alrm-card reveal">
                 <h4 data-i18n="alrm_card1_title">App Nap</h4>
                 <p data-i18n="alrm_card1_desc">当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。</p>
             </div>
-            <div class="alrm-card">
+            <div class="alrm-card reveal">
                 <h4 data-i18n="alrm_card2_title">深度睡眠</h4>
                 <p data-i18n="alrm_card2_desc">改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。</p>
             </div>
-            <div class="alrm-card">
+            <div class="alrm-card reveal">
                 <h4 data-i18n="alrm_card3_title">资源优化</h4>
                 <p data-i18n="alrm_card3_desc">动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。</p>
             </div>
-            <div class="alrm-card">
+            <div class="alrm-card reveal">
                 <h4 data-i18n="alrm_card4_title">补丁库防篡改</h4>
                 <p data-i18n="alrm_card4_desc">ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。</p>
             </div>
@@ -1496,8 +1588,8 @@
 <!-- 4. News 区域 (三条新闻框交换显示) -->
 <section class="news-section scroll-target" id="news">
     <div class="container">
-        <h2 data-i18n="news_title">Azen™ News</h2>
-        <div class="news-swap-container" id="newsSwapContainer">
+        <h2 class="reveal" data-i18n="news_title">Azen™ News</h2>
+        <div class="news-swap-container reveal" id="newsSwapContainer">
             <!-- 由 JS 动态生成三条新闻 -->
         </div>
         <div class="news-dots" id="newsDots">
@@ -1509,17 +1601,17 @@
 <!-- 5. 核心优势 -->
 <section class="features-section scroll-target" id="features">
     <div class="container">
-        <h2 data-i18n="features_title">为什么选择 Azen™</h2>
+        <h2 class="reveal" data-i18n="features_title">为什么选择 Azen™</h2>
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3 data-i18n="feature1_title">隐私优先</h3>
                 <p data-i18n="feature1_desc">默认禁用遥测，不收集任何用户数据。你的电脑只属于你。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3 data-i18n="feature2_title">性能改善</h3>
                 <p data-i18n="feature2_desc">基于 Arch Linux 精简内核，结合 ALRM 4（C++ 重写），内存占用降低，唤醒速度提升。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3 data-i18n="feature3_title">优雅界面</h3>
                 <p data-i18n="feature3_desc">圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。</p>
             </div>
@@ -1530,14 +1622,14 @@
 <!-- 6. 下载与版本 -->
 <section class="download-section scroll-target" id="download">
     <div class="container download-grid">
-        <div class="version-box">
+        <div class="version-box reveal">
             <h3 data-i18n="version_title">版本列表</h3>
             <div class="version-list" id="versionList">NVazen™  (滚动更新 · Rolling Release)  (Latest)
 Azen™ 11 LTS  (11-lts.1H2609)  · 已停止支持 (SS)
 Azen™ 7 R.1bsH2608
 Azen™ 5 rc-bs.1H2608</div>
         </div>
-        <div class="github-box">
+        <div class="github-box reveal">
             <h3 data-i18n="github_title">GitHub</h3>
             <p data-i18n="github_desc">所有源码与镜像均开源，遵循 GPLv3。</p>
             <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-btn" data-i18n="github_btn">前往开发仓库</a>
@@ -1549,8 +1641,8 @@ Azen™ 5 rc-bs.1H2608</div>
 <!-- 7. 用户评价 -->
 <section class="comment-section scroll-target" id="comments">
     <div class="container">
-        <h2 data-i18n="comments_title">用户评价</h2>
-        <div class="comment-display" id="commentDisplay">
+        <h2 class="reveal" data-i18n="comments_title">用户评价</h2>
+        <div class="comment-display reveal" id="commentDisplay">
             "Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 滚动版搭载的 ALRM 4 更是让人惊喜。"
             — 来自社区的反馈
 
@@ -1565,8 +1657,8 @@ Azen™ 5 rc-bs.1H2608</div>
 <!-- 8. 硬件要求 -->
 <section class="requirements-section scroll-target" id="requirements">
     <div class="container">
-        <h2 data-i18n="requirements_title">硬件基础要求</h2>
-        <table class="req-table">
+        <h2 class="reveal" data-i18n="requirements_title">硬件基础要求</h2>
+        <table class="req-table reveal">
             <tr><td class="req-label" data-i18n="req_cpu">处理器</td><td data-i18n="req_cpu_desc">Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)</td></tr>
             <tr><td class="req-label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 2 GB，推荐 4 GB 以上</td></tr>
             <tr><td class="req-label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">20 GB 可用空间 (虚拟机环境)</td></tr>
@@ -1599,7 +1691,7 @@ Azen™ 5 rc-bs.1H2608</div>
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 14',
+                update_counter: 'update 15',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -1610,18 +1702,12 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: 'Dark',
                 theme_light: 'Light',
                 version_label: 'Latest version',
-                version_label_eol: 'Legacy version',
                 version_rolling: 'Rolling Release',
                 hero_sub1: 'Rolling release series based on Arch Linux · Powered by ALRM 4',
                 hero_desc: 'We are working to improve our technology for the community. Visit our ',
                 github_link_text: 'GitHub development repository',
                 hero_alert1: 'NVazen™ rolling release always brings you the latest ALRM 4 engine and system improvements',
                 image_caption1: 'This screenshot shows NVazen™ Rolling Release in action',
-                hero_sub2: 'LTS distribution based on Arch Linux · No longer supported',
-                hero_desc2: 'Azen™ 11 LTS has reached end of life (EOL) and no longer receives updates. We recommend upgrading to NVazen™ Rolling Release. Visit our ',
-                github_link_text2: 'GitHub development repository',
-                hero_alert2: 'This version is end of life — no further updates or security patches',
-                image_caption2: 'This screenshot shows Azen™ 11 LTS in action',
                 alrm_title: 'ALRM Technology',
                 alrm_badge: 'Exclusive',
                 alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen™ team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen™ Rolling Release is the first to ship with the ALRM 4 engine.',
@@ -1674,7 +1760,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ is amazing."\n— Community feedback\n\n"ALRM 4 refactors config parsing and adds anti-tamper defenses — lower resource usage and more peace of mind."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 14 次更新',
+                update_counter: '第 15 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -1685,18 +1771,12 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: '深色',
                 theme_light: '浅色',
                 version_label: '最新版本',
-                version_label_eol: '旧版本',
                 version_rolling: '滚动更新',
                 hero_sub1: '基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术',
                 hero_desc: '我们致力于为社区改进技术。访问我们的 ',
                 github_link_text: 'GitHub 开发仓库',
                 hero_alert1: 'NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进',
                 image_caption1: '此照片为 NVazen™ 滚动版的实机演示',
-                hero_sub2: '基于 Arch Linux 的 LTS 发行版 · 已停止支持',
-                hero_desc2: 'Azen™ 11 LTS 已停止支持（EOL），不再接收更新。建议升级至 NVazen™ 滚动版。访问我们的 ',
-                github_link_text2: 'GitHub 开发仓库',
-                hero_alert2: '此版本已停止支持，不再提供更新与安全补丁',
-                image_caption2: '此照片为 Azen™ 11 LTS 的实机演示',
                 alrm_title: 'ALRM 技术',
                 alrm_badge: '独家',
                 alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen™ 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen™ 滚动版已率先搭载 ALRM 4 引擎。',
@@ -1749,7 +1829,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 14',
+                update_counter: '更新 15',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -1760,18 +1840,12 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: 'ダーク',
                 theme_light: 'ライト',
                 version_label: '最新バージョン',
-                version_label_eol: '旧バージョン',
                 version_rolling: 'ローリングリリース',
                 hero_sub1: 'Arch Linux ベースのローリングリリースシリーズ · ALRM 4 搭載',
                 hero_desc: 'コミュニティのために技術を向上させ続けています。',
                 github_link_text: 'GitHub 開発リポジトリ',
                 hero_alert1: 'NVazen™ ローリングリリースは常に最新の ALRM 4 エンジンとシステム改善を提供します',
                 image_caption1: 'このスクリーンショットは NVazen™ ローリングリリースの実機デモです',
-                hero_sub2: 'Arch Linux ベースの LTS ディストリビューション · サポート終了',
-                hero_desc2: 'Azen™ 11 LTS はサポート終了（EOL）となり、更新を受け取りません。NVazen™ ローリングリリースへのアップグレードをお勧めします。',
-                github_link_text2: 'GitHub 開発リポジトリ',
-                hero_alert2: 'このバージョンはサポート終了です — 今後の更新やセキュリティパッチはありません',
-                image_caption2: 'このスクリーンショットは Azen™ 11 LTS の実機デモです',
                 alrm_title: 'ALRM テクノロジー',
                 alrm_badge: '独占',
                 alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen™ チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen™ ローリングリリースが最初に ALRM 4 エンジンを搭載しています。',
@@ -1824,7 +1898,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 4 は設定解析をリファクタし、改ざん防止機構を追加しました。リソース使用量が減り、安心感も増しました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 14',
+                update_counter: '업데이트 15',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -1835,18 +1909,12 @@ Azen™ 5 rc-bs.1H2608</div>
                 theme_dark: '다크',
                 theme_light: '라이트',
                 version_label: '최신 버전',
-                version_label_eol: '레거시 버전',
                 version_rolling: '롤링 릴리스',
                 hero_sub1: 'Arch Linux 기반 롤링 릴리스 시리즈 · ALRM 4 탑재',
                 hero_desc: '커뮤니티를 위해 기술을 계속 개선하고 있습니다.',
                 github_link_text: 'GitHub 개발 저장소',
                 hero_alert1: 'NVazen™ 롤링 릴리스는 항상 최신 ALRM 4 엔진과 시스템 개선을 제공합니다',
                 image_caption1: '이 스크린샷은 NVazen™ 롤링 릴리스의 실제 데모입니다',
-                hero_sub2: 'Arch Linux 기반 LTS 배포판 · 지원 종료',
-                hero_desc2: 'Azen™ 11 LTS는 지원 종료(EOL)되어 더 이상 업데이트를 받지 않습니다. NVazen™ 롤링 릴리스로 업그레이드하시길 권장합니다.',
-                github_link_text2: 'GitHub 개발 저장소',
-                hero_alert2: '이 버전은 지원 종료되었습니다 — 추가 업데이트나 보안 패치가 없습니다',
-                image_caption2: '이 스크린샷은 Azen™ 11 LTS의 실제 데모입니다',
                 alrm_title: 'ALRM 기술',
                 alrm_badge: '독점',
                 alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen™ 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen™ 롤링 릴리스가 ALRM 4 엔진을 최초로 탑재했습니다.',
@@ -1906,16 +1974,10 @@ Azen™ 5 rc-bs.1H2608</div>
         let currentLang = 'en';
         let currentTheme = 'dark';
 
-        let currentBanner = 0;
-        const totalBanners = 2;
-        let bannerInterval = null;
-        const BANNER_DURATION = 15000; // 15秒
-
         // 新闻交换
         let currentNewsIndex = 0;
         let newsInterval = null;
         const NEWS_DURATION = 6000; // 6秒
-        let newsItems = [];
 
         // =====================================================
         // 3. DOM 引用
@@ -1931,14 +1993,8 @@ Azen™ 5 rc-bs.1H2608</div>
         const langOptions = document.querySelectorAll('.lang-option');
         const themeOptions = document.querySelectorAll('.theme-option');
 
-        const bannerTrack = document.getElementById('bannerTrack');
-        const bannerArrowLeft = document.getElementById('bannerArrowLeft');
-        const bannerArrowRight = document.getElementById('bannerArrowRight');
-
         const carouselTrack1 = document.getElementById('carouselTrack1');
-        const carouselTrack2 = document.getElementById('carouselTrack2');
         const container1 = document.getElementById('carouselContainer1');
-        const container2 = document.getElementById('carouselContainer2');
 
         // =====================================================
         // 4. 设置菜单
@@ -1974,53 +2030,7 @@ Azen™ 5 rc-bs.1H2608</div>
         });
 
         // =====================================================
-        // 6. 横幅轮播
-        // =====================================================
-        function goToBanner(index) {
-            if (index < 0) index = totalBanners - 1;
-            if (index >= totalBanners) index = 0;
-            currentBanner = index;
-            if (bannerTrack) {
-                bannerTrack.style.transform = `translateX(-${currentBanner * 100}%)`;
-            }
-        }
-
-        function nextBanner() {
-            goToBanner(currentBanner + 1);
-        }
-
-        function prevBanner() {
-            goToBanner(currentBanner - 1);
-        }
-
-        function startBannerAutoPlay() {
-            if (bannerInterval) clearInterval(bannerInterval);
-            bannerInterval = setInterval(nextBanner, BANNER_DURATION);
-        }
-
-        function stopBannerAutoPlay() {
-            if (bannerInterval) {
-                clearInterval(bannerInterval);
-                bannerInterval = null;
-            }
-        }
-
-        bannerArrowLeft.addEventListener('click', function(e) {
-            e.stopPropagation();
-            stopBannerAutoPlay();
-            prevBanner();
-            startBannerAutoPlay();
-        });
-
-        bannerArrowRight.addEventListener('click', function(e) {
-            e.stopPropagation();
-            stopBannerAutoPlay();
-            nextBanner();
-            startBannerAutoPlay();
-        });
-
-        // =====================================================
-        // 7. 图片轮播
+        // 6. 图片轮播 (横幅左侧图片仍可切换)
         // =====================================================
         function createCarousel(track, container) {
             if (!track || !container) return null;
@@ -2139,19 +2149,17 @@ Azen™ 5 rc-bs.1H2608</div>
         }
 
         createCarousel(carouselTrack1, container1);
-        createCarousel(carouselTrack2, container2);
 
         // =====================================================
-        // 8. 新闻交换显示 (3条新闻轮换)
+        // 7. 新闻交换显示 (3条新闻轮换)
         // =====================================================
         function buildNewsSwap(lang) {
             const t = translations[lang];
-            newsItems = t.news_items || translations.en.news_items;
+            const items = t.news_items || translations.en.news_items;
             const tagLabel = t.news_tag || 'Latest';
 
-            // 渲染所有新闻项
             let html = '';
-            newsItems.forEach((item, idx) => {
+            items.forEach((item, idx) => {
                 html += `
                     <div class="news-swap-item ${idx === 0 ? 'active' : ''}" data-news-index="${idx}">
                         <span class="news-tag">${item.tag || tagLabel}</span>
@@ -2162,17 +2170,14 @@ Azen™ 5 rc-bs.1H2608</div>
             });
             newsSwapContainer.innerHTML = html;
 
-            // 渲染圆点
             let dotsHtml = '';
-            newsItems.forEach((_, idx) => {
+            items.forEach((_, idx) => {
                 dotsHtml += `<button class="news-dot ${idx === 0 ? 'active' : ''}" data-dot-index="${idx}" aria-label="News ${idx + 1}"></button>`;
             });
             newsDots.innerHTML = dotsHtml;
 
-            // 重置索引
             currentNewsIndex = 0;
 
-            // 绑定圆点点击事件
             const dots = newsDots.querySelectorAll('.news-dot');
             dots.forEach(dot => {
                 dot.addEventListener('click', function() {
@@ -2185,7 +2190,6 @@ Azen™ 5 rc-bs.1H2608</div>
                 });
             });
 
-            // 重新启动自动播放
             startNewsAutoPlay();
         }
 
@@ -2222,6 +2226,33 @@ Azen™ 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
+        // 8. 滚动进入视口的动画 (丝滑 reveal)
+        // =====================================================
+        function initRevealAnimations() {
+            const revealEls = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                // 不支持则直接显示
+                revealEls.forEach(el => el.classList.add('visible'));
+                return;
+            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        // 依次延迟，形成优雅的错落效果
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, i * 70);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+            revealEls.forEach(el => observer.observe(el));
+        }
+
+        // =====================================================
         // 9. 更新语言
         // =====================================================
         function updateLanguage(lang) {
@@ -2235,15 +2266,11 @@ Azen™ 5 rc-bs.1H2608</div>
                 }
             });
 
-            // hero_desc / hero_desc2 需要保留内嵌的 GitHub 链接，单独处理
-            const heroDescs = document.querySelectorAll('[data-i18n="hero_desc"], [data-i18n="hero_desc2"]');
-            heroDescs.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                const linkKey = key === 'hero_desc' ? 'github_link_text' : 'github_link_text2';
-                if (t[key] !== undefined) {
-                    el.innerHTML = t[key] + `<a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link">${t[linkKey]}</a>`;
-                }
-            });
+            // hero_desc 需要保留内嵌的 GitHub 链接
+            const heroDesc = document.querySelector('[data-i18n="hero_desc"]');
+            if (heroDesc && t.hero_desc !== undefined) {
+                heroDesc.innerHTML = t.hero_desc + `<a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link">${t.github_link_text}</a>`;
+            }
 
             if (commentDisplay && t.comments) {
                 commentDisplay.textContent = t.comments;
@@ -2281,9 +2308,6 @@ Azen™ 5 rc-bs.1H2608</div>
             currentTheme = 'dark';
             document.documentElement.setAttribute('data-theme', 'dark');
 
-            goToBanner(0);
-            startBannerAutoPlay();
-
             updateLanguage('en');
 
             langOptions.forEach(btn => {
@@ -2305,6 +2329,9 @@ Azen™ 5 rc-bs.1H2608</div>
             themeOptions.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.theme === 'dark');
             });
+
+            // 初始化滚动 reveal 动画
+            initRevealAnimations();
         }
 
         document.getElementById('logoIcon')?.addEventListener('error', function() {
