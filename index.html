@@ -60,23 +60,23 @@
             --menu-bg: #1c2333;
             --menu-border: #30363d;
             --danger: #f85149;
-            --deco-1: rgba(88, 166, 255, 0.10);
-            --deco-2: rgba(88, 166, 255, 0.06);
-            --deco-3: rgba(121, 192, 255, 0.08);
 
-            /* 笔记本默认配色 (深色网站 -> 浅色笔记本) —— 可被 JS 覆盖 */
-            --laptop-shell: #e8edf2;
-            --laptop-shell-dark: #d4dae0;
-            --laptop-shell-edge: #bcc4cc;
-            --laptop-hinge: #a8b2bb;
-            --laptop-screen-bezel: #e8edf2;
+            /* 装饰半圆：纯色淡蓝 -> 深蓝渐变 */
+            --deco-gradient: linear-gradient(160deg, #a8d0ff 0%, #58a6ff 45%, #1f4d8f 100%);
+
+            /* 笔记本默认配色 (深色网站 -> 深色笔记本) */
+            --laptop-shell: #2d333b;
+            --laptop-shell-dark: #22272e;
+            --laptop-shell-edge: #1c2128;
+            --laptop-hinge: #151a1f;
+            --laptop-screen-bezel: #2d333b;
             --laptop-screen-inner: #0d1117;
-            --laptop-base: #dfe5eb;
-            --laptop-base-dark: #c8cfd6;
-            --laptop-trackpad: #c8cfd6;
-            --laptop-shadow: 0 40px 80px -20px rgba(0,0,0,0.65), 0 20px 40px -12px rgba(0,0,0,0.5);
-            --laptop-glow: rgba(88, 166, 255, 0.18);
-            --laptop-reflection: rgba(255,255,255,0.5);
+            --laptop-base: #22272e;
+            --laptop-base-dark: #1c2128;
+            --laptop-trackpad: #1c2128;
+            --laptop-shadow: 0 40px 80px -20px rgba(0,0,0,0.7), 0 20px 40px -12px rgba(0,0,0,0.55);
+            --laptop-glow: rgba(88, 166, 255, 0.12);
+            --laptop-reflection: rgba(255,255,255,0.08);
         }
 
         /* 浅色主题 */
@@ -101,11 +101,11 @@
             --menu-bg: #ffffff;
             --menu-border: #d0d7de;
             --danger: #cf222e;
-            --deco-1: rgba(9, 105, 218, 0.08);
-            --deco-2: rgba(9, 105, 218, 0.05);
-            --deco-3: rgba(5, 80, 174, 0.06);
 
-            /* 笔记本默认配色 (浅色网站 -> 深色笔记本) —— 可被 JS 覆盖 */
+            /* 装饰半圆：纯色淡蓝 -> 深蓝渐变 */
+            --deco-gradient: linear-gradient(160deg, #cfe4ff 0%, #6cb0ff 45%, #2a5fa8 100%);
+
+            /* 笔记本配色 (浅色网站 -> 深色笔记本，保持一致) */
             --laptop-shell: #2d333b;
             --laptop-shell-dark: #22272e;
             --laptop-shell-edge: #1c2128;
@@ -115,7 +115,7 @@
             --laptop-base: #22272e;
             --laptop-base-dark: #1c2128;
             --laptop-trackpad: #1c2128;
-            --laptop-shadow: 0 40px 80px -20px rgba(0,0,0,0.3), 0 20px 40px -12px rgba(0,0,0,0.2);
+            --laptop-shadow: 0 40px 80px -20px rgba(0,0,0,0.4), 0 20px 40px -12px rgba(0,0,0,0.25);
             --laptop-glow: rgba(9, 105, 218, 0.15);
             --laptop-reflection: rgba(255,255,255,0.08);
         }
@@ -173,7 +173,7 @@
             50% { transform: translateX(-50%) translateY(8px); opacity: 0.9; }
         }
 
-        /* NVazen 标题字母跳动 */
+        /* NVazen 字母跳动 */
         @keyframes letterBounce {
             0% { transform: translateY(0) scale(1); filter: brightness(1); }
             30% { transform: translateY(-22px) scale(1.18); filter: brightness(1.6); }
@@ -181,13 +181,28 @@
             70% { transform: translateY(-16px) scale(1.12); filter: brightness(1.5); }
             100% { transform: translateY(0) scale(1); filter: brightness(1); }
         }
-
-        /* NVazen 标题闪烁 */
         @keyframes titleGlow {
             0% { text-shadow: 0 0 0 rgba(88, 166, 255, 0); }
             30% { text-shadow: 0 0 24px rgba(88, 166, 255, 0.9), 0 0 48px rgba(88, 166, 255, 0.5); }
             60% { text-shadow: 0 0 18px rgba(88, 166, 255, 0.7), 0 0 36px rgba(88, 166, 255, 0.35); }
             100% { text-shadow: 0 0 0 rgba(88, 166, 255, 0); }
+        }
+
+        /* 回到横幅后下滑：内容区抖动动画 */
+        @keyframes contentShake {
+            0%   { transform: translateX(0) translateY(0); }
+            12%  { transform: translateX(-9px) translateY(0); }
+            24%  { transform: translateX(8px) translateY(-2px); }
+            36%  { transform: translateX(-6px) translateY(0); }
+            48%  { transform: translateX(5px) translateY(-1px); }
+            60%  { transform: translateX(-4px) translateY(0); }
+            72%  { transform: translateX(3px) translateY(0); }
+            84%  { transform: translateX(-2px) translateY(0); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        .shake-once {
+            animation: contentShake 0.75s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
 
         .reveal {
@@ -388,7 +403,6 @@
             padding: 4px 12px;
         }
 
-        /* 笔记本颜色预览点 */
         .laptop-color-dot {
             display: inline-block;
             width: 12px;
@@ -399,7 +413,7 @@
             vertical-align: middle;
         }
 
-        /* ================= 横幅区域 (全屏高度，只显示 NVazen 介绍) ================= */
+        /* ================= 横幅区域 ================= */
         .hero-section {
             min-height: calc(100vh - 70px);
             padding: 60px 0 80px 0;
@@ -414,42 +428,57 @@
         /* 横幅装饰元素 */
         .hero-deco { position: absolute; pointer-events: none; z-index: 0; }
 
+        /* 右上角半圆 - 纯色淡蓝到深蓝渐变 */
         .deco-semicircle {
-            top: -80px; right: -80px;
-            width: 380px; height: 380px;
+            top: -100px;
+            right: -100px;
+            width: 420px;
+            height: 420px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, var(--deco-1), transparent 70%);
+            background: var(--deco-gradient);
             animation: floatSlower 12s ease-in-out infinite;
-            opacity: 0.8;
+            opacity: 0.72;
         }
 
+        /* 右上角圆环 - 用同色系纯色 */
         .deco-ring {
-            top: 30px; right: 60px;
-            width: 180px; height: 180px;
+            top: 20px;
+            right: 70px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
-            border: 1.5px solid var(--deco-2);
+            border: 2px solid rgba(88, 166, 255, 0.35);
             animation: floatSlow 9s ease-in-out infinite;
-            opacity: 0.6;
+            opacity: 0.65;
+            background: transparent;
         }
 
+        /* 左下角纯色光斑 */
         .deco-glow-left {
-            bottom: -60px; left: -60px;
-            width: 260px; height: 260px;
+            bottom: -70px;
+            left: -70px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
-            background: radial-gradient(circle at 60% 60%, var(--deco-3), transparent 70%);
+            background: var(--deco-gradient);
+            filter: blur(40px);
             animation: shimmer 7s ease-in-out infinite;
+            opacity: 0.4;
         }
 
+        /* 右下角点阵 - 使用淡蓝色 */
         .deco-dots {
-            bottom: 30px; right: 40px;
-            width: 120px; height: 120px;
-            background-image: radial-gradient(circle, var(--deco-2) 1.5px, transparent 1.5px);
+            bottom: 30px;
+            right: 40px;
+            width: 120px;
+            height: 120px;
+            background-image: radial-gradient(circle, rgba(88, 166, 255, 0.45) 1.5px, transparent 1.5px);
             background-size: 16px 16px;
-            opacity: 0.5;
+            opacity: 0.55;
             animation: floatSlow 11s ease-in-out infinite reverse;
         }
 
-        /* 底部小箭头 (提示还有内容) */
+        /* 底部小箭头 */
         .scroll-hint {
             position: absolute;
             bottom: 22px;
@@ -743,7 +772,6 @@
             transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
         }
 
-        /* ===== NVazen 可点击标题，带字母跳动动画 ===== */
         .hero-text-box h1 {
             font-size: 52px;
             color: var(--text-primary);
@@ -762,7 +790,6 @@
             will-change: transform;
         }
 
-        /* 字母跳动 + 闪烁动画 (整个动画 2 秒) */
         .hero-text-box h1.animate .letter {
             animation: letterBounce 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         }
@@ -1290,7 +1317,6 @@
 
             .settings-btn:hover { transform: none; }
 
-            /* 移动端横幅不再强制全屏高度 */
             .hero-section {
                 min-height: auto;
                 padding: 40px 0 80px 0;
@@ -1346,7 +1372,7 @@
 
             .image-caption { text-align: center; font-size: 13px; margin-top: 14px; }
 
-            .deco-semicircle { width: 220px; height: 220px; top: -50px; right: -60px; }
+            .deco-semicircle { width: 240px; height: 240px; top: -60px; right: -70px; }
             .deco-ring { width: 110px; height: 110px; top: 20px; right: 30px; }
             .deco-dots { display: none; }
 
@@ -1472,7 +1498,7 @@
 
             .lang-option, .theme-option, .laptop-option { font-size: 11px; padding: 3px 8px; }
 
-            .deco-semicircle { width: 150px; height: 150px; top: -40px; right: -40px; }
+            .deco-semicircle { width: 160px; height: 160px; top: -40px; right: -40px; }
             .deco-ring { width: 80px; height: 80px; top: 10px; right: 20px; }
         }
 
@@ -1491,7 +1517,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 17</div>
+    <div class="update-counter" data-i18n="update_counter">update 18</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -1523,13 +1549,12 @@
                             <button class="theme-option" data-theme="light">☀️ <span data-i18n="theme_light">Light</span></button>
                         </div>
                     </div>
-                    <!-- 新增：笔记本颜色选项 -->
                     <div class="settings-group">
                         <span class="settings-group-label" data-i18n="settings_laptop">Laptop Color</span>
                         <div class="settings-group-options" id="laptopOptions">
                             <button class="laptop-option active" data-laptop="auto" data-i18n="laptop_auto">Auto</button>
-                            <button class="laptop-option" data-laptop="light"><span class="laptop-color-dot" style="background:#e8edf2"></span>Light</button>
                             <button class="laptop-option" data-laptop="dark"><span class="laptop-color-dot" style="background:#2d333b"></span>Dark</button>
+                            <button class="laptop-option" data-laptop="light"><span class="laptop-color-dot" style="background:#e8edf2"></span>Light</button>
                             <button class="laptop-option" data-laptop="silver"><span class="laptop-color-dot" style="background:#c0c8d0"></span>Silver</button>
                             <button class="laptop-option" data-laptop="spacegray"><span class="laptop-color-dot" style="background:#4a5158"></span>Gray</button>
                         </div>
@@ -1583,7 +1608,6 @@
                 <span class="version-number">NVazen™</span>
                 <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
             </div>
-            <!-- NVazen 可点击标题，字母动画 -->
             <h1 id="nvazenTitle" title="Click me">NVazen™</h1>
             <div class="sub-title" data-i18n="hero_sub1">
                 基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术
@@ -1595,7 +1619,7 @@
         </div>
     </div>
 
-    <!-- 底部小箭头，提示还有内容 -->
+    <!-- 底部小箭头 -->
     <button class="scroll-hint" id="scrollHint" aria-label="Scroll down">︾</button>
 </section>
 
@@ -1733,7 +1757,7 @@ Azen™ 5 rc-bs.1H2608</div>
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 17',
+                update_counter: 'update 18',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -1804,7 +1828,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ is amazing."\n— Community feedback\n\n"ALRM 4 refactors config parsing and adds anti-tamper defenses — lower resource usage and more peace of mind."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 17 次更新',
+                update_counter: '第 18 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -1875,7 +1899,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 17',
+                update_counter: '更新 18',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -1946,7 +1970,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 4 は設定解析をリファクタし、改ざん防止機構を追加しました。リソース使用量が減り、安心感も増しました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 17',
+                update_counter: '업데이트 18',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -2019,10 +2043,9 @@ Azen™ 5 rc-bs.1H2608</div>
         };
 
         // =====================================================
-        // 2. 笔记本电脑配色预设 (CSS 变量覆盖)
+        // 2. 笔记本配色预设
         // =====================================================
         const laptopPresets = {
-            // 浅色外壳
             light: {
                 shell: '#e8edf2',
                 shellDark: '#d4dae0',
@@ -2036,7 +2059,6 @@ Azen™ 5 rc-bs.1H2608</div>
                 glow: 'rgba(88, 166, 255, 0.18)',
                 reflection: 'rgba(255,255,255,0.5)'
             },
-            // 深色外壳
             dark: {
                 shell: '#2d333b',
                 shellDark: '#22272e',
@@ -2046,11 +2068,10 @@ Azen™ 5 rc-bs.1H2608</div>
                 base: '#22272e',
                 baseDark: '#1c2128',
                 trackpad: '#1c2128',
-                shadow: '0 40px 80px -20px rgba(0,0,0,0.65), 0 20px 40px -12px rgba(0,0,0,0.5)',
+                shadow: '0 40px 80px -20px rgba(0,0,0,0.7), 0 20px 40px -12px rgba(0,0,0,0.55)',
                 glow: 'rgba(88, 166, 255, 0.12)',
                 reflection: 'rgba(255,255,255,0.08)'
             },
-            // 银色
             silver: {
                 shell: '#d6dde4',
                 shellDark: '#c2cad2',
@@ -2064,7 +2085,6 @@ Azen™ 5 rc-bs.1H2608</div>
                 glow: 'rgba(150, 180, 220, 0.18)',
                 reflection: 'rgba(255,255,255,0.55)'
             },
-            // 深空灰
             spacegray: {
                 shell: '#4a5158',
                 shellDark: '#3c434a',
@@ -2080,7 +2100,6 @@ Azen™ 5 rc-bs.1H2608</div>
             }
         };
 
-        // 当前笔记本设置: 'auto' | 'light' | 'dark' | 'silver' | 'spacegray'
         let currentLaptopSetting = 'auto';
 
         // =====================================================
@@ -2118,6 +2137,13 @@ Azen™ 5 rc-bs.1H2608</div>
         const nvazenTitle = document.getElementById('nvazenTitle');
         const scrollHint = document.getElementById('scrollHint');
 
+        const heroSection = document.getElementById('heroCarousel');
+
+        // 内容区（横幅之后的所有区块，用于抖动）
+        const contentSections = document.querySelectorAll(
+            '.alrm-section, .news-section, .features-section, .download-section, .comment-section, .requirements-section, footer'
+        );
+
         // =====================================================
         // 5. 设置菜单
         // =====================================================
@@ -2148,7 +2174,6 @@ Azen™ 5 rc-bs.1H2608</div>
             });
         });
 
-        // 底部箭头点击 -> 滚动到 ALRM 区域
         scrollHint.addEventListener('click', function() {
             const target = document.querySelector('#alrm');
             if (target) {
@@ -2176,21 +2201,17 @@ Azen™ 5 rc-bs.1H2608</div>
         function playTitleAnimation() {
             if (!nvazenTitle) return;
             const letters = nvazenTitle.querySelectorAll('.letter');
-            // 重置动画
             nvazenTitle.classList.remove('animate');
             letters.forEach(l => {
                 l.style.animation = 'none';
                 l.style.transform = '';
             });
-            // 强制重排
             void nvazenTitle.offsetWidth;
-            // 添加动画，每个字母错开
             nvazenTitle.classList.add('animate');
             letters.forEach((letter, i) => {
                 letter.style.animationDelay = (i * 0.08) + 's';
                 letter.style.animation = 'letterBounce 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both';
             });
-            // 2 秒后清除
             setTimeout(() => {
                 nvazenTitle.classList.remove('animate');
                 letters.forEach(l => {
@@ -2239,7 +2260,6 @@ Azen™ 5 rc-bs.1H2608</div>
                 const preset = laptopPresets[currentLaptopSetting];
                 if (preset) applyLaptopColors(preset);
             }
-            // 更新按钮状态
             laptopOptions.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.laptop === currentLaptopSetting);
             });
@@ -2270,9 +2290,7 @@ Azen™ 5 rc-bs.1H2608</div>
             });
         }
 
-        function nextScreen() {
-            goToScreen(currentScreenIndex + 1);
-        }
+        function nextScreen() { goToScreen(currentScreenIndex + 1); }
 
         function startScreenAutoPlay() {
             if (screenInterval) clearInterval(screenInterval);
@@ -2402,7 +2420,68 @@ Azen™ 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 12. 更新语言
+        // 12. 回到横幅后再次下滑 -> 内容区抖动
+        // =====================================================
+        let heroInView = true;       // 横幅当前是否可见
+        let pendingShake = false;     // 是否等待用户从横幅下滑时触发抖动
+
+        function triggerContentShake() {
+            contentSections.forEach(sec => {
+                sec.classList.remove('shake-once');
+                void sec.offsetWidth; // 强制重排以便重新触发动画
+                sec.classList.add('shake-once');
+            });
+            // 动画结束后移除 class
+            setTimeout(() => {
+                contentSections.forEach(sec => sec.classList.remove('shake-once'));
+            }, 900);
+        }
+
+        function initHeroScrollShake() {
+            if (!heroSection) return;
+
+            if ('IntersectionObserver' in window) {
+                const heroObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // 用户回到横幅区域，标记为下次下滑时抖动
+                            heroInView = true;
+                            pendingShake = true;
+                        } else {
+                            heroInView = false;
+                        }
+                    });
+                }, { threshold: 0.35 });
+
+                heroObserver.observe(heroSection);
+            } else {
+                // 回退方案：用 scroll 事件粗略判断
+                window.addEventListener('scroll', () => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const visible = rect.bottom > 150 && rect.top < window.innerHeight - 150;
+                    if (visible && !heroInView) {
+                        heroInView = true;
+                        pendingShake = true;
+                    } else if (!visible) {
+                        heroInView = false;
+                    }
+                }, { passive: true });
+            }
+
+            // 滚动事件：当横幅离开视口（用户下滑离开横幅）且有待触发的抖动时，执行抖动
+            window.addEventListener('scroll', () => {
+                if (!pendingShake) return;
+                const rect = heroSection.getBoundingClientRect();
+                // 横幅基本移出上方（下滑到内容区）
+                if (rect.bottom < 120) {
+                    pendingShake = false;
+                    triggerContentShake();
+                }
+            }, { passive: true });
+        }
+
+        // =====================================================
+        // 13. 更新语言
         // =====================================================
         function updateLanguage(lang) {
             const t = translations[lang];
@@ -2434,7 +2513,7 @@ Azen™ 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 13. 切换主题
+        // 14. 切换主题
         // =====================================================
         function setTheme(theme) {
             if (theme === 'light') {
@@ -2450,13 +2529,12 @@ Azen™ 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 14. 初始化
+        // 15. 初始化
         // =====================================================
         function init() {
             currentTheme = 'dark';
             document.documentElement.setAttribute('data-theme', 'dark');
 
-            // 拆分 NVazen 字母
             prepareTitleLetters();
 
             updateLanguage('en');
@@ -2481,7 +2559,7 @@ Azen™ 5 rc-bs.1H2608</div>
                 btn.classList.toggle('active', btn.dataset.theme === 'dark');
             });
 
-            // 初始化笔记本颜色设置
+            // 初始化笔记本颜色（默认 auto）
             updateLaptopColor();
 
             // 启动屏幕轮播
@@ -2490,6 +2568,9 @@ Azen™ 5 rc-bs.1H2608</div>
 
             // 滚动 reveal
             initRevealAnimations();
+
+            // 回到横幅后下滑抖动
+            initHeroScrollShake();
         }
 
         document.getElementById('logoIcon')?.addEventListener('error', function() {
