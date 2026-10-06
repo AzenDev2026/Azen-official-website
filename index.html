@@ -6,14 +6,14 @@
 
     <!-- ================= SEO 优化 ================= -->
     <title>Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux</title>
-    <meta name="description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release with ALRM 4 technology (rewritten in C++) for enhanced performance and power efficiency.">
-    <meta name="keywords" content="Azen Linux, Azen, NVazen, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux">
+    <meta name="description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release with ALRM 4 technology (rewritten in C++) for enhanced performance and power efficiency. ISO image now available on Internet Archive.">
+    <meta name="keywords" content="Azen Linux, Azen, NVazen, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
     <meta name="author" content="Ziting Liang">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
-    <meta property="og:description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release and ALRM 4 technology.">
+    <meta property="og:description" content="Azen™ Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen™ rolling release and ALRM 4 technology. ISO image now available.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://azen.dev">
     <meta property="og:image" content="screenshot.png">
@@ -61,10 +61,15 @@
             --menu-border: #30363d;
             --danger: #f85149;
 
+            /* 下载按钮配色 */
+            --download-bg: #1f6feb;
+            --download-hover: #388bfd;
+            --download-glow: rgba(31, 111, 235, 0.4);
+
             /* 装饰半圆：纯色淡蓝 -> 深蓝渐变 */
             --deco-gradient: linear-gradient(160deg, #a8d0ff 0%, #58a6ff 45%, #1f4d8f 100%);
 
-            /* 笔记本默认配色 (深色网站 -> 深色笔记本) */
+            /* 笔记本默认配色（深色） */
             --laptop-shell: #2d333b;
             --laptop-shell-dark: #22272e;
             --laptop-shell-edge: #1c2128;
@@ -102,10 +107,12 @@
             --menu-border: #d0d7de;
             --danger: #cf222e;
 
-            /* 装饰半圆：纯色淡蓝 -> 深蓝渐变 */
+            --download-bg: #0969da;
+            --download-hover: #0550ae;
+            --download-glow: rgba(9, 105, 218, 0.3);
+
             --deco-gradient: linear-gradient(160deg, #cfe4ff 0%, #6cb0ff 45%, #2a5fa8 100%);
 
-            /* 笔记本配色 (浅色网站 -> 深色笔记本，保持一致) */
             --laptop-shell: #2d333b;
             --laptop-shell-dark: #22272e;
             --laptop-shell-edge: #1c2128;
@@ -165,15 +172,13 @@
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes lidOpen {
-            from { transform: perspective(1600px) rotateX(-8deg); opacity: 0; }
-            to { transform: perspective(1600px) rotateX(0deg); opacity: 1; }
+            from { transform: perspective(1800px) rotateX(-10deg); opacity: 0; }
+            to { transform: perspective(1800px) rotateX(0deg); opacity: 1; }
         }
         @keyframes bounceArrow {
             0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.55; }
             50% { transform: translateX(-50%) translateY(8px); opacity: 0.9; }
         }
-
-        /* NVazen 字母跳动 */
         @keyframes letterBounce {
             0% { transform: translateY(0) scale(1); filter: brightness(1); }
             30% { transform: translateY(-22px) scale(1.18); filter: brightness(1.6); }
@@ -188,7 +193,6 @@
             100% { text-shadow: 0 0 0 rgba(88, 166, 255, 0); }
         }
 
-        /* 回到横幅后下滑：内容区抖动动画 */
         @keyframes contentShake {
             0%   { transform: translateX(0) translateY(0); }
             12%  { transform: translateX(-9px) translateY(0); }
@@ -425,10 +429,8 @@
             align-items: center;
         }
 
-        /* 横幅装饰元素 */
         .hero-deco { position: absolute; pointer-events: none; z-index: 0; }
 
-        /* 右上角半圆 - 纯色淡蓝到深蓝渐变 */
         .deco-semicircle {
             top: -100px;
             right: -100px;
@@ -440,7 +442,6 @@
             opacity: 0.72;
         }
 
-        /* 右上角圆环 - 用同色系纯色 */
         .deco-ring {
             top: 20px;
             right: 70px;
@@ -453,7 +454,6 @@
             background: transparent;
         }
 
-        /* 左下角纯色光斑 */
         .deco-glow-left {
             bottom: -70px;
             left: -70px;
@@ -466,7 +466,6 @@
             opacity: 0.4;
         }
 
-        /* 右下角点阵 - 使用淡蓝色 */
         .deco-dots {
             bottom: 30px;
             right: 40px;
@@ -478,7 +477,6 @@
             animation: floatSlow 11s ease-in-out infinite reverse;
         }
 
-        /* 底部小箭头 */
         .scroll-hint {
             position: absolute;
             bottom: 22px;
@@ -511,7 +509,7 @@
             width: 100%;
         }
 
-        /* ================= 笔记本电脑模型 ================= */
+        /* ================= 笔记本电脑模型 (Dell XPS 13 风格，45度C面) ================= */
         .laptop-wrapper {
             flex: 1;
             display: flex;
@@ -520,40 +518,51 @@
             position: relative;
             width: 100%;
             user-select: none;
-            perspective: 1800px;
+            /* 3D 场景透视 */
+            perspective: 1600px;
+            perspective-origin: 50% 60%;
             animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            /* 给下方留出足够空间，避免遮挡 */
+            padding: 30px 0 50px 0;
         }
 
         .laptop {
             position: relative;
             width: 100%;
-            max-width: 560px;
+            max-width: 540px;
             transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* 整体稍微向下倾斜，让C面朝向用户 */
+            transform: rotateX(6deg);
         }
 
         .laptop:hover {
-            transform: translateY(-6px) rotateX(1deg);
+            transform: rotateX(4deg) translateY(-6px);
         }
 
+        /* ===== 屏幕部分（B面 + A面），16:10 ===== */
         .laptop-lid {
             position: relative;
             width: 100%;
+            /* 16:10 宽高比，Dell XPS 13 风格 */
             aspect-ratio: 16 / 10;
             background: linear-gradient(145deg, var(--laptop-shell), var(--laptop-shell-dark));
-            border-radius: 16px 16px 4px 4px;
-            padding: 14px 14px 18px 14px;
+            border-radius: 12px 12px 3px 3px;
+            padding: 12px 12px 16px 12px;
             box-shadow: var(--laptop-shadow);
             border: 1px solid var(--laptop-shell-edge);
             transition: background 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
             animation: lidOpen 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            /* 屏幕稍微向后仰 */
+            transform-origin: bottom center;
+            transform: rotateX(-4deg);
         }
 
         .laptop-lid::before {
             content: '';
             position: absolute;
             inset: -1px;
-            border-radius: 17px 17px 5px 5px;
+            border-radius: 13px 13px 4px 4px;
             background: linear-gradient(180deg, var(--laptop-glow), transparent 60%);
             z-index: -1;
             opacity: 0.9;
@@ -565,8 +574,8 @@
             width: 100%;
             height: 100%;
             background: #0b0e13;
-            border-radius: 8px 8px 3px 3px;
-            padding: 10px 10px 22px 10px;
+            border-radius: 6px 6px 2px 2px;
+            padding: 8px 8px 20px 8px;
             position: relative;
             overflow: hidden;
             box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6);
@@ -574,11 +583,11 @@
 
         .laptop-camera {
             position: absolute;
-            top: 4px;
+            top: 3px;
             left: 50%;
             transform: translateX(-50%);
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: #2a2f36;
             box-shadow: inset 0 0 2px rgba(0,0,0,0.8);
@@ -588,7 +597,7 @@
         .laptop-screen {
             width: 100%;
             height: 100%;
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
             background: var(--laptop-screen-inner);
             position: relative;
@@ -636,10 +645,10 @@
 
         .laptop-chin {
             position: absolute;
-            bottom: 4px;
+            bottom: 3px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 8px;
+            font-size: 7px;
             letter-spacing: 2px;
             font-weight: 600;
             color: rgba(255,255,255,0.22);
@@ -648,47 +657,98 @@
             pointer-events: none;
         }
 
+        /* ===== 键盘面（C面）—— 朝向用户倾斜约45度 ===== */
         .laptop-base {
             position: relative;
-            width: 108%;
-            margin-left: -4%;
-            height: 16px;
-            background: linear-gradient(180deg, var(--laptop-hinge), var(--laptop-base-dark));
-            border-radius: 0 0 14px 14px;
-            box-shadow: 0 14px 26px -8px rgba(0,0,0,0.45), 0 4px 8px rgba(0,0,0,0.2);
+            width: 104%;
+            margin-left: -2%;
+            margin-top: -2px;
+            /* C面高度，参考XPS 13的键盘区域比例 */
+            height: 110px;
+            background: linear-gradient(180deg, var(--laptop-hinge), var(--laptop-base), var(--laptop-base-dark));
+            border-radius: 2px 2px 12px 12px;
+            box-shadow: 0 18px 36px -10px rgba(0,0,0,0.5), 0 6px 12px rgba(0,0,0,0.25);
             transition: background 0.6s ease, box-shadow 0.6s ease;
             z-index: 2;
+            /* C面朝向用户倾斜约45度 */
+            transform-origin: top center;
+            transform: rotateX(45deg);
+            transform-style: preserve-3d;
+            /* 保证内容不溢出 */
+            overflow: hidden;
         }
 
-        .laptop-base::after {
-            content: '';
+        /* 键盘区域 */
+        .laptop-keyboard {
             position: absolute;
-            bottom: 3px;
+            top: 8px;
+            left: 8%;
+            width: 84%;
+            height: 52%;
+            background: rgba(0,0,0,0.18);
+            border-radius: 4px;
+            padding: 4px 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+        }
+
+        /* 键盘行 */
+        .kb-row {
+            display: flex;
+            gap: 2px;
+            height: 22%;
+            justify-content: center;
+        }
+
+        .kb-key {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border-radius: 2px;
+            box-shadow: inset 0 -1px 1px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04);
+        }
+
+        .kb-key.space {
+            flex: 4;
+        }
+
+        .kb-key.wide {
+            flex: 1.5;
+        }
+
+        /* 触控板 */
+        .laptop-trackpad {
+            position: absolute;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 22%;
-            height: 5px;
-            border-radius: 3px;
+            width: 34%;
+            height: 22%;
             background: var(--laptop-trackpad);
-            opacity: 0.55;
+            border-radius: 4px;
+            opacity: 0.7;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
             transition: background 0.6s ease;
         }
 
         .laptop-shadow {
-            width: 78%;
-            height: 22px;
-            margin: 8px auto 0 auto;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.42), transparent 72%);
-            filter: blur(6px);
+            width: 72%;
+            height: 20px;
+            margin: 6px auto 0 auto;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.45), transparent 72%);
+            filter: blur(7px);
             transition: background 0.6s ease;
+            /* 底部阴影跟随3D感 */
+            transform: translateZ(-10px);
         }
 
         [data-theme="light"] .laptop-shadow {
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.18), transparent 72%);
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2), transparent 72%);
         }
 
         .image-caption {
-            margin-top: 20px;
+            margin-top: 24px;
             font-size: 14px;
             color: var(--text-muted);
             text-align: center;
@@ -700,7 +760,7 @@
             display: flex;
             gap: 8px;
             justify-content: center;
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .screen-dot {
@@ -805,18 +865,46 @@
             transition: color 0.5s ease;
         }
 
-        .hero-text-box .github-link {
-            display: inline-block;
-            color: var(--accent);
+        /* ===== 下载按钮 ===== */
+        .download-iso-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--download-bg);
+            color: #ffffff;
+            padding: 13px 28px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px dashed var(--accent);
-            transition: color 0.35s ease, border-color 0.35s ease;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 4px 14px var(--download-glow);
         }
 
-        .hero-text-box .github-link:hover {
-            color: var(--accent-hover);
-            border-bottom-color: var(--accent-hover);
+        .download-iso-btn:hover {
+            background: var(--download-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px var(--download-glow);
+        }
+
+        .download-iso-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .download-iso-btn .icon {
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .download-iso-btn .size {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.85;
+            margin-left: 4px;
         }
 
         .status-alert {
@@ -827,6 +915,7 @@
             border-radius: 8px;
             font-size: 14px;
             transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.35s ease;
+            margin-top: 18px;
         }
 
         .status-alert:hover { transform: translateX(4px); }
@@ -996,6 +1085,17 @@
             color: var(--text-muted);
             line-height: 1.7;
             transition: color 0.5s ease;
+        }
+
+        .news-swap-item p a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        .news-swap-item p a:hover {
+            color: var(--accent-hover);
         }
 
         .news-dots {
@@ -1330,19 +1430,23 @@
             .laptop-wrapper {
                 width: 100%;
                 max-width: 100%;
+                padding: 20px 0 40px 0;
+                perspective: 1200px;
             }
 
-            .laptop { max-width: 100%; }
+            .laptop { max-width: 100%; transform: rotateX(4deg); }
 
-            .laptop-lid { padding: 10px 10px 14px 10px; border-radius: 12px 12px 3px 3px; }
+            .laptop-lid { padding: 8px 8px 12px 8px; border-radius: 10px 10px 2px 2px; }
 
-            .laptop-screen-bezel { padding: 7px 7px 16px 7px; border-radius: 6px 6px 2px 2px; }
+            .laptop-screen-bezel { padding: 5px 5px 14px 5px; border-radius: 5px 5px 2px 2px; }
 
-            .laptop-base { height: 12px; border-radius: 0 0 10px 10px; }
+            .laptop-base { height: 80px; }
 
-            .laptop-base::after { height: 4px; bottom: 2px; }
+            .laptop-keyboard { top: 6px; padding: 3px 4px; gap: 2px; }
 
-            .laptop-shadow { height: 16px; }
+            .laptop-trackpad { bottom: 6px; height: 20%; }
+
+            .laptop-shadow { height: 14px; }
 
             .hero-text-box {
                 width: 100%;
@@ -1362,6 +1466,11 @@
 
             .hero-text-box .sub-title { font-size: 15px; margin-bottom: 16px; }
 
+            .download-iso-btn {
+                font-size: 15px;
+                padding: 12px 22px;
+            }
+
             .status-alert {
                 font-size: 13px;
                 padding: 12px 16px;
@@ -1370,7 +1479,7 @@
 
             .status-alert:hover { transform: none; }
 
-            .image-caption { text-align: center; font-size: 13px; margin-top: 14px; }
+            .image-caption { text-align: center; font-size: 13px; margin-top: 18px; }
 
             .deco-semicircle { width: 240px; height: 240px; top: -60px; right: -70px; }
             .deco-ring { width: 110px; height: 110px; top: 20px; right: 30px; }
@@ -1461,9 +1570,14 @@
             .version-number { font-size: 22px; }
             .version-sub { font-size: 12px; }
 
-            .laptop-lid { padding: 8px 8px 12px 8px; }
-            .laptop-screen-bezel { padding: 5px 5px 14px 5px; }
-            .laptop-base { height: 10px; }
+            .laptop-lid { padding: 6px 6px 10px 6px; }
+            .laptop-screen-bezel { padding: 4px 4px 12px 4px; }
+            .laptop-base { height: 64px; }
+
+            .download-iso-btn {
+                font-size: 14px;
+                padding: 10px 18px;
+            }
 
             .alrm-header h2 { font-size: 20px; }
             .alrm-badge { font-size: 11px; padding: 2px 10px; }
@@ -1517,7 +1631,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 18</div>
+    <div class="update-counter" data-i18n="update_counter">update 19</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -1574,9 +1688,10 @@
     <div class="hero-deco deco-dots"></div>
 
     <div class="container hero-grid">
-        <!-- 左侧笔记本模型 -->
+        <!-- 左侧笔记本模型 (Dell XPS 13 风格) -->
         <div class="laptop-wrapper">
             <div class="laptop">
+                <!-- 屏幕（B面） -->
                 <div class="laptop-lid">
                     <div class="laptop-screen-bezel">
                         <div class="laptop-camera"></div>
@@ -1589,7 +1704,33 @@
                         <div class="laptop-chin">NVazen™</div>
                     </div>
                 </div>
-                <div class="laptop-base"></div>
+                <!-- 键盘面（C面）—— 朝向用户倾斜45度 -->
+                <div class="laptop-base">
+                    <!-- 键盘 -->
+                    <div class="laptop-keyboard">
+                        <div class="kb-row">
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div>
+                        </div>
+                        <div class="kb-row">
+                            <div class="kb-key wide"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key wide"></div>
+                        </div>
+                        <div class="kb-row">
+                            <div class="kb-key wide"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key"></div>
+                            <div class="kb-key"></div><div class="kb-key"></div><div class="kb-key wide"></div>
+                        </div>
+                        <div class="kb-row">
+                            <div class="kb-key space"></div>
+                        </div>
+                    </div>
+                    <!-- 触控板 -->
+                    <div class="laptop-trackpad"></div>
+                </div>
             </div>
             <div class="laptop-shadow"></div>
 
@@ -1613,8 +1754,18 @@
                 基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术
             </div>
             <p data-i18n="hero_desc">
-                我们致力于为社区改进技术。访问我们的 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link" data-i18n="github_link_text">GitHub 开发仓库</a> 获取更多信息。
+                ISO 镜像已发布！点击下方按钮前往 Internet Archive 下载。
             </p>
+            <!-- 下载按钮 -->
+            <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1"
+               target="_blank"
+               rel="noopener"
+               class="download-iso-btn"
+               data-i18n="download_btn">
+                <span class="icon">⬇</span>
+                <span data-i18n="download_text">Download ISO</span>
+                <span class="size">x86_64</span>
+            </a>
             <div class="status-alert" data-i18n="hero_alert1">NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
         </div>
     </div>
@@ -1696,10 +1847,12 @@ Azen™ 7 R.1bsH2608
 Azen™ 5 rc-bs.1H2608</div>
         </div>
         <div class="github-box reveal">
-            <h3 data-i18n="github_title">GitHub</h3>
-            <p data-i18n="github_desc">所有源码与镜像均开源，遵循 GPLv3。</p>
-            <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-btn" data-i18n="github_btn">前往开发仓库</a>
-            <p style="margin-top:12px; font-size:13px; color:var(--text-muted);" data-i18n="github_star">欢迎 Star &amp; Fork</p>
+            <h3 data-i18n="iso_title">ISO 镜像</h3>
+            <p data-i18n="iso_desc">NVazen™ ISO 镜像已发布，托管于 Internet Archive。</p>
+            <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1" target="_blank" rel="noopener" class="github-btn" data-i18n="iso_btn" style="background: var(--download-bg);">
+                ⬇ 前往下载
+            </a>
+            <p style="margin-top:12px; font-size:13px; color:var(--text-muted);" data-i18n="iso_note">x86_64 · 2026.10.06</p>
         </div>
     </div>
 </section>
@@ -1712,7 +1865,7 @@ Azen™ 5 rc-bs.1H2608</div>
             "Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 滚动版搭载的 ALRM 4 更是让人惊喜。"
             — 来自社区的反馈
 
-            "ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"
+            "ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"
             — 测试用户
 
             "基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"
@@ -1757,7 +1910,7 @@ Azen™ 5 rc-bs.1H2608</div>
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 18',
+                update_counter: 'update 19',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -1772,8 +1925,9 @@ Azen™ 5 rc-bs.1H2608</div>
                 version_label: 'Latest version',
                 version_rolling: 'Rolling Release',
                 hero_sub1: 'Rolling release series based on Arch Linux · Powered by ALRM 4',
-                hero_desc: 'We are working to improve our technology for the community. Visit our ',
-                github_link_text: 'GitHub development repository',
+                hero_desc: 'ISO image is now available! Click the button below to download from Internet Archive.',
+                download_btn: 'Download ISO from Internet Archive',
+                download_text: 'Download ISO',
                 hero_alert1: 'NVazen™ rolling release always brings you the latest ALRM 4 engine and system improvements',
                 image_caption1: 'This screenshot shows NVazen™ Rolling Release in action',
                 alrm_title: 'ALRM Technology',
@@ -1796,6 +1950,10 @@ Azen™ 5 rc-bs.1H2608</div>
                 feature3_title: 'Elegant UI',
                 feature3_desc: 'Soft rounded corners and dynamic themes make every interaction a pleasure.',
                 version_title: 'Version List',
+                iso_title: 'ISO Image',
+                iso_desc: 'NVazen™ ISO image is now available, hosted on Internet Archive.',
+                iso_btn: 'Download from Internet Archive',
+                iso_note: 'x86_64 · 2026.10.06',
                 github_title: 'GitHub',
                 github_desc: 'All source code and images are open source, licensed under GPLv3.',
                 github_btn: 'Go to Development Repo',
@@ -1821,14 +1979,14 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_tagline: 'Explore the joy of custom Linux',
                 news_tag: 'Latest',
                 news_items: [
-                    { tag: 'Release', title: 'NVazen™ becomes Rolling Release', desc: 'NVazen™ has switched to a rolling release model — you now always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
-                    { tag: 'EOL', title: 'Azen™ 11 LTS reaches End of Life', desc: 'Azen™ 11 LTS (11-lts.1H2609) is now marked as Stop Supporting (SS). It will no longer receive updates or security patches. We recommend upgrading to NVazen™ Rolling Release.' },
+                    { tag: 'Release', title: 'NVazen™ ISO Image Released', desc: 'The first NVazen™ ISO image (nvazen-2026.10.06-x86_64) is now available on Internet Archive. Click here to download and try it out!' },
+                    { tag: 'Rolling', title: 'NVazen™ becomes Rolling Release', desc: 'NVazen™ has switched to a rolling release model — you now always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
                     { tag: 'Tech', title: 'ALRM 4 ships with refactored config parsing', desc: 'ALRM 4 refactors the config parsing module from a class into lighter free functions, and introduces a three-layer patch-library anti-tamper defense for stronger system integrity.' }
                 ],
-                comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ is amazing."\n— Community feedback\n\n"ALRM 4 refactors config parsing and adds anti-tamper defenses — lower resource usage and more peace of mind."\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
+                comments: '"Azen™ gives me a clean, pure Linux experience. The ALRM 4 in NVazen™ is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 18 次更新',
+                update_counter: '第 19 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -1843,8 +2001,9 @@ Azen™ 5 rc-bs.1H2608</div>
                 version_label: '最新版本',
                 version_rolling: '滚动更新',
                 hero_sub1: '基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术',
-                hero_desc: '我们致力于为社区改进技术。访问我们的 ',
-                github_link_text: 'GitHub 开发仓库',
+                hero_desc: 'ISO 镜像已发布！点击下方按钮前往 Internet Archive 下载。',
+                download_btn: '从 Internet Archive 下载 ISO',
+                download_text: '下载 ISO',
                 hero_alert1: 'NVazen™ 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进',
                 image_caption1: '此照片为 NVazen™ 滚动版的实机演示',
                 alrm_title: 'ALRM 技术',
@@ -1867,6 +2026,10 @@ Azen™ 5 rc-bs.1H2608</div>
                 feature3_title: '优雅界面',
                 feature3_desc: '圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。',
                 version_title: '版本列表',
+                iso_title: 'ISO 镜像',
+                iso_desc: 'NVazen™ ISO 镜像已发布，托管于 Internet Archive。',
+                iso_btn: '前往 Internet Archive 下载',
+                iso_note: 'x86_64 · 2026.10.06',
                 github_title: 'GitHub',
                 github_desc: '所有源码与镜像均开源，遵循 GPLv3。',
                 github_btn: '前往开发仓库',
@@ -1892,14 +2055,14 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_tagline: '探索定制 Linux 的乐趣',
                 news_tag: '最新',
                 news_items: [
-                    { tag: '发布', title: 'NVazen™ 转为滚动更新', desc: 'NVazen™ 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
-                    { tag: 'EOL', title: 'Azen™ 11 LTS 停止支持', desc: 'Azen™ 11 LTS (11-lts.1H2609) 现已标记为停止支持（SS），不再接收更新与安全补丁。建议升级至 NVazen™ 滚动版。' },
+                    { tag: '发布', title: 'NVazen™ ISO 镜像发布', desc: '首个 NVazen™ ISO 镜像（nvazen-2026.10.06-x86_64）现已上线 Internet Archive。点击下载并体验！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: '滚动', title: 'NVazen™ 转为滚动更新', desc: 'NVazen™ 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
                     { tag: '技术', title: 'ALRM 4 搭载重构后的配置解析', desc: 'ALRM 4 将配置解析模块由类重构为更轻量的自由函数，并引入补丁库防篡改三层防线，系统完整性更强。' }
                 ],
-                comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ALRM 4 重构了配置解析并加入防篡改防线，资源占用更低，也更让人放心。"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
+                comments: '"Azen™ 给了我一种干净、纯粹的 Linux 体验。NVazen™ 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 18',
+                update_counter: '更新 19',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -1914,8 +2077,9 @@ Azen™ 5 rc-bs.1H2608</div>
                 version_label: '最新バージョン',
                 version_rolling: 'ローリングリリース',
                 hero_sub1: 'Arch Linux ベースのローリングリリースシリーズ · ALRM 4 搭載',
-                hero_desc: 'コミュニティのために技術を向上させ続けています。',
-                github_link_text: 'GitHub 開発リポジトリ',
+                hero_desc: 'ISO イメージがリリースされました！下のボタンから Internet Archive でダウンロードできます。',
+                download_btn: 'Internet Archive から ISO をダウンロード',
+                download_text: 'ISO をダウンロード',
                 hero_alert1: 'NVazen™ ローリングリリースは常に最新の ALRM 4 エンジンとシステム改善を提供します',
                 image_caption1: 'このスクリーンショットは NVazen™ ローリングリリースの実機デモです',
                 alrm_title: 'ALRM テクノロジー',
@@ -1938,6 +2102,10 @@ Azen™ 5 rc-bs.1H2608</div>
                 feature3_title: 'エレガントな UI',
                 feature3_desc: 'ソフトなラウンドとダイナミックテーマで、すべてのインタラクションを楽しく。',
                 version_title: 'バージョン一覧',
+                iso_title: 'ISO イメージ',
+                iso_desc: 'NVazen™ ISO イメージがリリースされました。Internet Archive でホストされています。',
+                iso_btn: 'Internet Archive へ',
+                iso_note: 'x86_64 · 2026.10.06',
                 github_title: 'GitHub',
                 github_desc: '全ソースコードとイメージはオープンソース、GPLv3 ライセンス。',
                 github_btn: '開発リポジトリへ',
@@ -1963,14 +2131,14 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_tagline: 'カスタム Linux の楽しさを探求',
                 news_tag: '最新',
                 news_items: [
-                    { tag: 'リリース', title: 'NVazen™ がローリングリリースに', desc: 'NVazen™ はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
-                    { tag: 'EOL', title: 'Azen™ 11 LTS がサポート終了', desc: 'Azen™ 11 LTS (11-lts.1H2609) はサポート終了（SS）となりました。今後の更新やセキュリティパッチはありません。NVazen™ ローリングリリースへのアップグレードをお勧めします。' },
+                    { tag: 'リリース', title: 'NVazen™ ISO イメージ公開', desc: '最初の NVazen™ ISO イメージ (nvazen-2026.10.06-x86_64) が Internet Archive で公開されました。ダウンロードして試してみてください！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: 'ローリング', title: 'NVazen™ がローリングリリースに', desc: 'NVazen™ はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
                     { tag: '技術', title: 'ALRM 4 が設定解析をリファクタして搭載', desc: 'ALRM 4 は設定解析モジュールをクラスからより軽量な自由関数にリファクタし、パッチライブラリの三段改ざん防止機構を導入しました。' }
                 ],
-                comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ALRM 4 は設定解析をリファクタし、改ざん防止機構を追加しました。リソース使用量が減り、安心感も増しました。"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
+                comments: '"Azen™ はクリーンで純粋な Linux 体験を提供します。NVazen™ の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 18',
+                update_counter: '업데이트 19',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -1985,8 +2153,9 @@ Azen™ 5 rc-bs.1H2608</div>
                 version_label: '최신 버전',
                 version_rolling: '롤링 릴리스',
                 hero_sub1: 'Arch Linux 기반 롤링 릴리스 시리즈 · ALRM 4 탑재',
-                hero_desc: '커뮤니티를 위해 기술을 계속 개선하고 있습니다.',
-                github_link_text: 'GitHub 개발 저장소',
+                hero_desc: 'ISO 이미지가 출시되었습니다! 아래 버튼을 클릭하여 Internet Archive에서 다운로드하세요.',
+                download_btn: 'Internet Archive에서 ISO 다운로드',
+                download_text: 'ISO 다운로드',
                 hero_alert1: 'NVazen™ 롤링 릴리스는 항상 최신 ALRM 4 엔진과 시스템 개선을 제공합니다',
                 image_caption1: '이 스크린샷은 NVazen™ 롤링 릴리스의 실제 데모입니다',
                 alrm_title: 'ALRM 기술',
@@ -2009,6 +2178,10 @@ Azen™ 5 rc-bs.1H2608</div>
                 feature3_title: '우아한 UI',
                 feature3_desc: '부드러운 라운드와 다이나믹 테마로 모든 상호작용을 즐겁게.',
                 version_title: '버전 목록',
+                iso_title: 'ISO 이미지',
+                iso_desc: 'NVazen™ ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
+                iso_btn: 'Internet Archive로 이동',
+                iso_note: 'x86_64 · 2026.10.06',
                 github_title: 'GitHub',
                 github_desc: '모든 소스 코드와 이미지는 오픈소스이며 GPLv3 라이선스를 따릅니다.',
                 github_btn: '개발 저장소로 이동',
@@ -2034,11 +2207,11 @@ Azen™ 5 rc-bs.1H2608</div>
                 footer_tagline: '커스텀 Linux의 즐거움을 탐험하세요',
                 news_tag: '최신',
                 news_items: [
-                    { tag: '릴리스', title: 'NVazen™, 롤링 릴리스로 전환', desc: 'NVazen™이 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
-                    { tag: 'EOL', title: 'Azen™ 11 LTS 지원 종료', desc: 'Azen™ 11 LTS (11-lts.1H2609)가 지원 종료(SS)로 표시되었습니다. 더 이상 업데이트나 보안 패치를 받지 않습니다. NVazen™ 롤링 릴리스로 업그레이드하시길 권장합니다.' },
+                    { tag: '릴리스', title: 'NVazen™ ISO 이미지 출시', desc: '첫 번째 NVazen™ ISO 이미지(nvazen-2026.10.06-x86_64)가 Internet Archive에 공개되었습니다. 다운로드하여 사용해 보세요!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: '롤링', title: 'NVazen™, 롤링 릴리스로 전환', desc: 'NVazen™이 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
                     { tag: '기술', title: 'ALRM 4, 리팩터링된 설정 파싱 탑재', desc: 'ALRM 4는 설정 파싱 모듈을 클래스에서 더 가벼운 자유 함수로 리팩터링하고, 패치 라이브러리 3중 변조 방지 방어선을 도입했습니다.' }
                 ],
-                comments: '"Azen™은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen™의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ALRM 4는 설정 파싱을 리팩터링하고 변조 방지 방어선을 추가했습니다. 리소스 사용량이 줄고 더 안심됩니다."\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
+                comments: '"Azen™은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen™의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
             }
         };
 
@@ -2047,56 +2220,32 @@ Azen™ 5 rc-bs.1H2608</div>
         // =====================================================
         const laptopPresets = {
             light: {
-                shell: '#e8edf2',
-                shellDark: '#d4dae0',
-                shellEdge: '#bcc4cc',
-                hinge: '#a8b2bb',
-                bezel: '#e8edf2',
-                base: '#dfe5eb',
-                baseDark: '#c8cfd6',
-                trackpad: '#c8cfd6',
+                shell: '#e8edf2', shellDark: '#d4dae0', shellEdge: '#bcc4cc',
+                hinge: '#a8b2bb', bezel: '#e8edf2', base: '#dfe5eb',
+                baseDark: '#c8cfd6', trackpad: '#c8cfd6',
                 shadow: '0 40px 80px -20px rgba(0,0,0,0.65), 0 20px 40px -12px rgba(0,0,0,0.5)',
-                glow: 'rgba(88, 166, 255, 0.18)',
-                reflection: 'rgba(255,255,255,0.5)'
+                glow: 'rgba(88, 166, 255, 0.18)', reflection: 'rgba(255,255,255,0.5)'
             },
             dark: {
-                shell: '#2d333b',
-                shellDark: '#22272e',
-                shellEdge: '#1c2128',
-                hinge: '#151a1f',
-                bezel: '#2d333b',
-                base: '#22272e',
-                baseDark: '#1c2128',
-                trackpad: '#1c2128',
+                shell: '#2d333b', shellDark: '#22272e', shellEdge: '#1c2128',
+                hinge: '#151a1f', bezel: '#2d333b', base: '#22272e',
+                baseDark: '#1c2128', trackpad: '#1c2128',
                 shadow: '0 40px 80px -20px rgba(0,0,0,0.7), 0 20px 40px -12px rgba(0,0,0,0.55)',
-                glow: 'rgba(88, 166, 255, 0.12)',
-                reflection: 'rgba(255,255,255,0.08)'
+                glow: 'rgba(88, 166, 255, 0.12)', reflection: 'rgba(255,255,255,0.08)'
             },
             silver: {
-                shell: '#d6dde4',
-                shellDark: '#c2cad2',
-                shellEdge: '#aab4bd',
-                hinge: '#98a3ad',
-                bezel: '#d6dde4',
-                base: '#c8d0d8',
-                baseDark: '#b4bdc6',
-                trackpad: '#b4bdc6',
+                shell: '#d6dde4', shellDark: '#c2cad2', shellEdge: '#aab4bd',
+                hinge: '#98a3ad', bezel: '#d6dde4', base: '#c8d0d8',
+                baseDark: '#b4bdc6', trackpad: '#b4bdc6',
                 shadow: '0 40px 80px -20px rgba(0,0,0,0.55), 0 20px 40px -12px rgba(0,0,0,0.4)',
-                glow: 'rgba(150, 180, 220, 0.18)',
-                reflection: 'rgba(255,255,255,0.55)'
+                glow: 'rgba(150, 180, 220, 0.18)', reflection: 'rgba(255,255,255,0.55)'
             },
             spacegray: {
-                shell: '#4a5158',
-                shellDark: '#3c434a',
-                shellEdge: '#2e343a',
-                hinge: '#23282d',
-                bezel: '#4a5158',
-                base: '#3c434a',
-                baseDark: '#2e343a',
-                trackpad: '#2e343a',
+                shell: '#4a5158', shellDark: '#3c434a', shellEdge: '#2e343a',
+                hinge: '#23282d', bezel: '#4a5158', base: '#3c434a',
+                baseDark: '#2e343a', trackpad: '#2e343a',
                 shadow: '0 40px 80px -20px rgba(0,0,0,0.7), 0 20px 40px -12px rgba(0,0,0,0.55)',
-                glow: 'rgba(120, 150, 200, 0.14)',
-                reflection: 'rgba(255,255,255,0.14)'
+                glow: 'rgba(120, 150, 200, 0.14)', reflection: 'rgba(255,255,255,0.14)'
             }
         };
 
@@ -2107,11 +2256,9 @@ Azen™ 5 rc-bs.1H2608</div>
         // =====================================================
         let currentLang = 'en';
         let currentTheme = 'dark';
-
         let currentNewsIndex = 0;
         let newsInterval = null;
         const NEWS_DURATION = 6000;
-
         let currentScreenIndex = 0;
         let screenInterval = null;
         const SCREEN_DURATION = 5000;
@@ -2124,22 +2271,16 @@ Azen™ 5 rc-bs.1H2608</div>
         const newsDots = document.getElementById('newsDots');
         const commentDisplay = document.getElementById('commentDisplay');
         const navLinks = document.querySelectorAll('.nav-link');
-
         const settingsBtn = document.getElementById('settingsBtn');
         const settingsMenu = document.getElementById('settingsMenu');
         const langOptions = document.querySelectorAll('.lang-option');
         const themeOptions = document.querySelectorAll('.theme-option');
         const laptopOptions = document.querySelectorAll('.laptop-option');
-
         const screenCarousel = document.getElementById('screenCarousel');
         const screenDots = document.querySelectorAll('.screen-dot');
-
         const nvazenTitle = document.getElementById('nvazenTitle');
         const scrollHint = document.getElementById('scrollHint');
-
         const heroSection = document.getElementById('heroCarousel');
-
-        // 内容区（横幅之后的所有区块，用于抖动）
         const contentSections = document.querySelectorAll(
             '.alrm-section, .news-section, .features-section, .download-section, .comment-section, .requirements-section, footer'
         );
@@ -2151,7 +2292,6 @@ Azen™ 5 rc-bs.1H2608</div>
             e.stopPropagation();
             settingsMenu.classList.toggle('open');
         });
-
         document.addEventListener('click', function(e) {
             if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
                 settingsMenu.classList.remove('open');
@@ -2173,7 +2313,6 @@ Azen™ 5 rc-bs.1H2608</div>
                 }
             });
         });
-
         scrollHint.addEventListener('click', function() {
             const target = document.querySelector('#alrm');
             if (target) {
@@ -2197,15 +2336,11 @@ Azen™ 5 rc-bs.1H2608</div>
                 nvazenTitle.appendChild(span);
             }
         }
-
         function playTitleAnimation() {
             if (!nvazenTitle) return;
             const letters = nvazenTitle.querySelectorAll('.letter');
             nvazenTitle.classList.remove('animate');
-            letters.forEach(l => {
-                l.style.animation = 'none';
-                l.style.transform = '';
-            });
+            letters.forEach(l => { l.style.animation = 'none'; l.style.transform = ''; });
             void nvazenTitle.offsetWidth;
             nvazenTitle.classList.add('animate');
             letters.forEach((letter, i) => {
@@ -2214,16 +2349,10 @@ Azen™ 5 rc-bs.1H2608</div>
             });
             setTimeout(() => {
                 nvazenTitle.classList.remove('animate');
-                letters.forEach(l => {
-                    l.style.animation = '';
-                    l.style.animationDelay = '';
-                });
+                letters.forEach(l => { l.style.animation = ''; l.style.animationDelay = ''; });
             }, 2100);
         }
-
-        if (nvazenTitle) {
-            nvazenTitle.addEventListener('click', playTitleAnimation);
-        }
+        if (nvazenTitle) nvazenTitle.addEventListener('click', playTitleAnimation);
 
         // =====================================================
         // 8. 笔记本颜色应用
@@ -2242,7 +2371,6 @@ Azen™ 5 rc-bs.1H2608</div>
             root.style.setProperty('--laptop-glow', colors.glow);
             root.style.setProperty('--laptop-reflection', colors.reflection);
         }
-
         function clearLaptopOverride() {
             const root = document.documentElement;
             ['--laptop-shell', '--laptop-shell-dark', '--laptop-shell-edge',
@@ -2252,7 +2380,6 @@ Azen™ 5 rc-bs.1H2608</div>
                 root.style.removeProperty(prop);
             });
         }
-
         function updateLaptopColor() {
             if (currentLaptopSetting === 'auto') {
                 clearLaptopOverride();
@@ -2264,14 +2391,10 @@ Azen™ 5 rc-bs.1H2608</div>
                 btn.classList.toggle('active', btn.dataset.laptop === currentLaptopSetting);
             });
         }
-
         laptopOptions.forEach(btn => {
             btn.addEventListener('click', function() {
                 const val = this.dataset.laptop;
-                if (val) {
-                    currentLaptopSetting = val;
-                    updateLaptopColor();
-                }
+                if (val) { currentLaptopSetting = val; updateLaptopColor(); }
             });
         });
 
@@ -2289,32 +2412,20 @@ Azen™ 5 rc-bs.1H2608</div>
                 dot.classList.toggle('active', i === currentScreenIndex);
             });
         }
-
         function nextScreen() { goToScreen(currentScreenIndex + 1); }
-
         function startScreenAutoPlay() {
             if (screenInterval) clearInterval(screenInterval);
             screenInterval = setInterval(nextScreen, SCREEN_DURATION);
         }
-
         function stopScreenAutoPlay() {
-            if (screenInterval) {
-                clearInterval(screenInterval);
-                screenInterval = null;
-            }
+            if (screenInterval) { clearInterval(screenInterval); screenInterval = null; }
         }
-
         screenDots.forEach(dot => {
             dot.addEventListener('click', function() {
                 const idx = parseInt(this.dataset.screenIndex, 10);
-                if (!isNaN(idx)) {
-                    stopScreenAutoPlay();
-                    goToScreen(idx);
-                    startScreenAutoPlay();
-                }
+                if (!isNaN(idx)) { stopScreenAutoPlay(); goToScreen(idx); startScreenAutoPlay(); }
             });
         });
-
         const laptopScreen = document.querySelector('.laptop-screen');
         if (laptopScreen) {
             laptopScreen.addEventListener('mouseenter', stopScreenAutoPlay);
@@ -2331,11 +2442,14 @@ Azen™ 5 rc-bs.1H2608</div>
 
             let html = '';
             items.forEach((item, idx) => {
+                const desc = item.link
+                    ? `${item.desc} <a href="${item.link}" target="_blank" rel="noopener">→ Download</a>`
+                    : item.desc;
                 html += `
                     <div class="news-swap-item ${idx === 0 ? 'active' : ''}" data-news-index="${idx}">
                         <span class="news-tag">${item.tag || tagLabel}</span>
                         <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
+                        <p>${desc}</p>
                     </div>
                 `;
             });
@@ -2353,17 +2467,11 @@ Azen™ 5 rc-bs.1H2608</div>
             dots.forEach(dot => {
                 dot.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.dotIndex, 10);
-                    if (!isNaN(idx)) {
-                        stopNewsAutoPlay();
-                        showNewsByIndex(idx);
-                        startNewsAutoPlay();
-                    }
+                    if (!isNaN(idx)) { stopNewsAutoPlay(); showNewsByIndex(idx); startNewsAutoPlay(); }
                 });
             });
-
             startNewsAutoPlay();
         }
-
         function showNewsByIndex(index) {
             const items = newsSwapContainer.querySelectorAll('.news-swap-item');
             const dots = newsDots.querySelectorAll('.news-dot');
@@ -2371,27 +2479,16 @@ Azen™ 5 rc-bs.1H2608</div>
             if (index < 0) index = items.length - 1;
             if (index >= items.length) index = 0;
             currentNewsIndex = index;
-
-            items.forEach((item, i) => {
-                item.classList.toggle('active', i === index);
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
+            items.forEach((item, i) => { item.classList.toggle('active', i === index); });
+            dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
         }
-
         function nextNews() { showNewsByIndex(currentNewsIndex + 1); }
-
         function startNewsAutoPlay() {
             stopNewsAutoPlay();
             newsInterval = setInterval(nextNews, NEWS_DURATION);
         }
-
         function stopNewsAutoPlay() {
-            if (newsInterval) {
-                clearInterval(newsInterval);
-                newsInterval = null;
-            }
+            if (newsInterval) { clearInterval(newsInterval); newsInterval = null; }
         }
 
         // =====================================================
@@ -2406,45 +2503,35 @@ Azen™ 5 rc-bs.1H2608</div>
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, i) => {
                     if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, i * 70);
+                        setTimeout(() => { entry.target.classList.add('visible'); }, i * 70);
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.12,
-                rootMargin: '0px 0px -40px 0px'
-            });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
             revealEls.forEach(el => observer.observe(el));
         }
 
         // =====================================================
-        // 12. 回到横幅后再次下滑 -> 内容区抖动
+        // 12. 回到横幅后下滑 -> 内容区抖动
         // =====================================================
-        let heroInView = true;       // 横幅当前是否可见
-        let pendingShake = false;     // 是否等待用户从横幅下滑时触发抖动
-
+        let heroInView = true;
+        let pendingShake = false;
         function triggerContentShake() {
             contentSections.forEach(sec => {
                 sec.classList.remove('shake-once');
-                void sec.offsetWidth; // 强制重排以便重新触发动画
+                void sec.offsetWidth;
                 sec.classList.add('shake-once');
             });
-            // 动画结束后移除 class
             setTimeout(() => {
                 contentSections.forEach(sec => sec.classList.remove('shake-once'));
             }, 900);
         }
-
         function initHeroScrollShake() {
             if (!heroSection) return;
-
             if ('IntersectionObserver' in window) {
                 const heroObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            // 用户回到横幅区域，标记为下次下滑时抖动
                             heroInView = true;
                             pendingShake = true;
                         } else {
@@ -2452,27 +2539,18 @@ Azen™ 5 rc-bs.1H2608</div>
                         }
                     });
                 }, { threshold: 0.35 });
-
                 heroObserver.observe(heroSection);
             } else {
-                // 回退方案：用 scroll 事件粗略判断
                 window.addEventListener('scroll', () => {
                     const rect = heroSection.getBoundingClientRect();
                     const visible = rect.bottom > 150 && rect.top < window.innerHeight - 150;
-                    if (visible && !heroInView) {
-                        heroInView = true;
-                        pendingShake = true;
-                    } else if (!visible) {
-                        heroInView = false;
-                    }
+                    if (visible && !heroInView) { heroInView = true; pendingShake = true; }
+                    else if (!visible) { heroInView = false; }
                 }, { passive: true });
             }
-
-            // 滚动事件：当横幅离开视口（用户下滑离开横幅）且有待触发的抖动时，执行抖动
             window.addEventListener('scroll', () => {
                 if (!pendingShake) return;
                 const rect = heroSection.getBoundingClientRect();
-                // 横幅基本移出上方（下滑到内容区）
                 if (rect.bottom < 120) {
                     pendingShake = false;
                     triggerContentShake();
@@ -2486,29 +2564,23 @@ Azen™ 5 rc-bs.1H2608</div>
         function updateLanguage(lang) {
             const t = translations[lang];
             if (!t) return;
-
             i18nElements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (t[key] !== undefined) {
-                    el.textContent = t[key];
-                }
+                if (t[key] !== undefined) { el.textContent = t[key]; }
             });
-
             const heroDesc = document.querySelector('[data-i18n="hero_desc"]');
             if (heroDesc && t.hero_desc !== undefined) {
-                heroDesc.innerHTML = t.hero_desc + `<a href="https://github.com/AzenDev2026/AzenDev" target="_blank" class="github-link">${t.github_link_text}</a>`;
+                heroDesc.textContent = t.hero_desc;
             }
-
-            if (commentDisplay && t.comments) {
-                commentDisplay.textContent = t.comments;
+            const downloadBtnText = document.querySelector('[data-i18n="download_text"]');
+            if (downloadBtnText && t.download_text !== undefined) {
+                downloadBtnText.textContent = t.download_text;
             }
-
+            if (commentDisplay && t.comments) { commentDisplay.textContent = t.comments; }
             buildNewsSwap(lang);
-
             langOptions.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
-
             currentLang = lang;
         }
 
@@ -2534,42 +2606,27 @@ Azen™ 5 rc-bs.1H2608</div>
         function init() {
             currentTheme = 'dark';
             document.documentElement.setAttribute('data-theme', 'dark');
-
             prepareTitleLetters();
-
             updateLanguage('en');
-
             langOptions.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const lang = this.dataset.lang;
-                    if (lang && lang !== currentLang) {
-                        updateLanguage(lang);
-                    }
+                    if (lang && lang !== currentLang) { updateLanguage(lang); }
                 });
             });
-
             themeOptions.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const theme = this.dataset.theme;
                     setTheme(theme);
                 });
             });
-
             themeOptions.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.theme === 'dark');
             });
-
-            // 初始化笔记本颜色（默认 auto）
             updateLaptopColor();
-
-            // 启动屏幕轮播
             goToScreen(0);
             startScreenAutoPlay();
-
-            // 滚动 reveal
             initRevealAnimations();
-
-            // 回到横幅后下滑抖动
             initHeroScrollShake();
         }
 
@@ -2583,13 +2640,11 @@ Azen™ 5 rc-bs.1H2608</div>
             span.style.marginRight = '8px';
             parent.insertBefore(span, this);
         });
-
         document.querySelectorAll('.screen-slide img').forEach(img => {
             img.addEventListener('error', function() {
                 this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='600' height='350' fill='%23161b22'/%3E%3Ctext x='300' y='175' font-family='Arial' font-size='24' fill='%2358a6ff' text-anchor='middle' dominant-baseline='middle'%3EAzen Linux%3C/text%3E%3Ctext x='300' y='215' font-family='Arial' font-size='16' fill='%238b949e' text-anchor='middle' dominant-baseline='middle'%3EPreview%3C/text%3E%3C/svg%3E";
             });
         });
-
         init();
     })();
 </script>
