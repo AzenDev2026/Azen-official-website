@@ -137,7 +137,7 @@
         }
 
         /* ===== 背景显示效果模式 ===== */
-        /* 亚克力 (Acrylic) - 默认 */
+        /* 亚克力 (Acrylic) */
         [data-bg-effect="acrylic"] {
             --bg-overlay: rgba(13, 17, 23, 0.72);
             --bg-blur: 24px;
@@ -148,7 +148,7 @@
             --bg-overlay: rgba(246, 248, 250, 0.72);
         }
 
-        /* 完全可见 (Full) */
+        /* 完全可见 (Full) - 默认 */
         [data-bg-effect="full"] {
             --bg-overlay: rgba(13, 17, 23, 0.18);
             --bg-blur: 0px;
@@ -659,13 +659,15 @@
             transform: rotateX(4deg) translateY(-6px);
         }
 
+        /* ===== 屏幕外壳（极窄边框） ===== */
         .laptop-lid {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 10;
             background: linear-gradient(145deg, var(--laptop-shell), var(--laptop-shell-dark));
             border-radius: 12px 12px 3px 3px;
-            padding: 12px 12px 16px 12px;
+            /* 极窄边框：从 12px 减到 5px */
+            padding: 5px 5px 7px 5px;
             box-shadow: var(--laptop-shadow);
             border: 1px solid var(--laptop-shell-edge);
             transition: background 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
@@ -686,34 +688,36 @@
             transition: background 0.6s ease;
         }
 
+        /* ===== 屏幕内边框（极细黑边） ===== */
         .laptop-screen-bezel {
             width: 100%;
             height: 100%;
             background: #0b0e13;
-            border-radius: 6px 6px 2px 2px;
-            padding: 8px 8px 20px 8px;
+            border-radius: 8px 8px 2px 2px;
+            /* 极细黑边：从 8px/20px 减到 3px/9px */
+            padding: 3px 3px 9px 3px;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6);
+            box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.5);
         }
 
         .laptop-camera {
             position: absolute;
-            top: 3px;
+            top: 1.5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             border-radius: 50%;
             background: #2a2f36;
-            box-shadow: inset 0 0 2px rgba(0,0,0,0.8);
+            box-shadow: inset 0 0 1px rgba(0,0,0,0.8);
             z-index: 5;
         }
 
         .laptop-screen {
             width: 100%;
             height: 100%;
-            border-radius: 3px;
+            border-radius: 2px;
             overflow: hidden;
             background: var(--laptop-screen-inner);
             position: relative;
@@ -761,23 +765,25 @@
 
         .laptop-chin {
             position: absolute;
-            bottom: 3px;
+            bottom: 1px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 7px;
-            letter-spacing: 2px;
+            font-size: 5px;
+            letter-spacing: 1.5px;
             font-weight: 600;
-            color: rgba(255,255,255,0.22);
+            color: rgba(255,255,255,0.18);
             text-transform: uppercase;
             z-index: 4;
             pointer-events: none;
         }
 
+        /* ===== 键盘面（C面）—— 与屏幕同等宽度 ===== */
         .laptop-base {
             position: relative;
-            width: 104%;
-            margin-left: -2%;
-            margin-top: -2px;
+            /* 与屏幕外壳等宽（此前为 104%） */
+            width: 100%;
+            margin-left: 0;
+            margin-top: -1px;
             height: 110px;
             background: linear-gradient(180deg, var(--laptop-hinge), var(--laptop-base), var(--laptop-base-dark));
             border-radius: 2px 2px 12px 12px;
@@ -793,8 +799,8 @@
         .laptop-keyboard {
             position: absolute;
             top: 8px;
-            left: 8%;
-            width: 84%;
+            left: 5%;
+            width: 90%;
             height: 52%;
             background: rgba(0,0,0,0.18);
             border-radius: 4px;
@@ -891,7 +897,6 @@
             flex: 1;
             position: relative;
             animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
-            /* 文字背景模糊，确保在图片上可读 */
             padding: 24px;
             border-radius: 16px;
             background: rgba(13, 17, 23, 0.35);
@@ -1698,9 +1703,9 @@
 
             .laptop { max-width: 100%; transform: rotateX(4deg); }
 
-            .laptop-lid { padding: 8px 8px 12px 8px; border-radius: 10px 10px 2px 2px; }
+            .laptop-lid { padding: 4px 4px 6px 4px; border-radius: 10px 10px 2px 2px; }
 
-            .laptop-screen-bezel { padding: 5px 5px 14px 5px; border-radius: 5px 5px 2px 2px; }
+            .laptop-screen-bezel { padding: 2px 2px 7px 2px; border-radius: 5px 5px 2px 2px; }
 
             .laptop-base { height: 80px; }
 
@@ -1834,8 +1839,8 @@
             .version-number { font-size: 22px; }
             .version-sub { font-size: 12px; }
 
-            .laptop-lid { padding: 6px 6px 10px 6px; }
-            .laptop-screen-bezel { padding: 4px 4px 12px 4px; }
+            .laptop-lid { padding: 3px 3px 5px 3px; }
+            .laptop-screen-bezel { padding: 2px 2px 6px 2px; }
             .laptop-base { height: 64px; }
 
             .download-iso-btn {
@@ -1891,11 +1896,11 @@
         }
     </style>
 </head>
-<body data-bg-effect="acrylic">
+<body data-bg-effect="full">
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 21</div>
+    <div class="update-counter" data-i18n="update_counter">update 22</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -1940,8 +1945,8 @@
                     <div class="settings-group">
                         <span class="settings-group-label" data-i18n="settings_bg">Background Effect</span>
                         <div class="settings-group-options" id="bgOptions">
-                            <button class="bg-option active" data-bg="acrylic" data-i18n="bg_acrylic">Acrylic</button>
-                            <button class="bg-option" data-bg="full" data-i18n="bg_full">Full</button>
+                            <button class="bg-option" data-bg="acrylic" data-i18n="bg_acrylic">Acrylic</button>
+                            <button class="bg-option active" data-bg="full" data-i18n="bg_full">Full</button>
                             <button class="bg-option" data-bg="liquid" data-i18n="bg_liquid">Liquid Glass</button>
                         </div>
                     </div>
@@ -2179,7 +2184,7 @@ Azen 5 rc-bs.1H2608</div>
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 21',
+                update_counter: 'update 22',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -2254,7 +2259,7 @@ Azen 5 rc-bs.1H2608</div>
                 comments: '"Azen gives me a clean, pure Linux experience. The ALRM 4 in NVazen is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 21 次更新',
+                update_counter: '第 22 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -2329,7 +2334,7 @@ Azen 5 rc-bs.1H2608</div>
                 comments: '"Azen 给了我一种干净、纯粹的 Linux 体验。NVazen 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 21',
+                update_counter: '更新 22',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -2404,7 +2409,7 @@ Azen 5 rc-bs.1H2608</div>
                 comments: '"Azen はクリーンで純粋な Linux 体験を提供します。NVazen の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 21',
+                update_counter: '업데이트 22',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -2515,7 +2520,7 @@ Azen 5 rc-bs.1H2608</div>
         };
 
         let currentLaptopSetting = 'auto';
-        let currentBgEffect = 'acrylic';
+        let currentBgEffect = 'full';
 
         // =====================================================
         // 3. 状态管理
@@ -2914,7 +2919,7 @@ Azen 5 rc-bs.1H2608</div>
                 btn.classList.toggle('active', btn.dataset.theme === 'dark');
             });
             updateLaptopColor();
-            setBgEffect('acrylic');
+            setBgEffect('full');
             goToScreen(0);
             startScreenAutoPlay();
             initRevealAnimations();
