@@ -6,14 +6,14 @@
 
     <!-- ================= SEO 优化 ================= -->
     <title>Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux</title>
-    <meta name="description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen rolling release with ALRM technology (rewritten in C++) for enhanced performance and power efficiency. ISO image now available on Internet Archive.">
-    <meta name="keywords" content="Azen Linux, Azen, NVazen, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
+    <meta name="description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release with ALRM technology (rewritten in C++) for enhanced performance and power efficiency. ISO image now available on Internet Archive.">
+    <meta name="keywords" content="Azen Linux, Azen, NVazen, NVazen Arc, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
     <meta name="author" content="Ziting Liang">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
-    <meta property="og:description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen rolling release and ALRM technology. ISO image now available.">
+    <meta property="og:description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release and ALRM technology. ISO image now available.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://azen.dev">
     <meta property="og:image" content="screenshot.png">
@@ -21,7 +21,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
-    <meta name="twitter:description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen rolling release and ALRM technology.">
+    <meta name="twitter:description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release and ALRM technology.">
 
     <!-- ================= 网站图标 (Favicon) ================= -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -498,7 +498,6 @@
             inset: 0;
             z-index: 0;
             overflow: hidden;
-            /* 背景图片，自动缩放适配 */
             background-image: url('background.png');
             background-size: cover;
             background-position: center;
@@ -506,7 +505,6 @@
             background-color: var(--bg-body);
         }
 
-        /* 背景模糊与色调叠加层 */
         .hero-bg-layer::before {
             content: '';
             position: absolute;
@@ -517,7 +515,6 @@
             transition: background 0.6s ease, backdrop-filter 0.6s ease, -webkit-backdrop-filter 0.6s ease;
         }
 
-        /* 液态玻璃的额外高光 */
         [data-bg-effect="liquid"] .hero-bg-layer::after {
             content: '';
             position: absolute;
@@ -532,7 +529,6 @@
             pointer-events: none;
         }
 
-        /* 完全可见模式下增加对比度确保内容可读 */
         [data-bg-effect="full"] .hero-bg-layer::before {
             background: linear-gradient(
                 180deg,
@@ -666,7 +662,6 @@
             aspect-ratio: 16 / 10;
             background: linear-gradient(145deg, var(--laptop-shell), var(--laptop-shell-dark));
             border-radius: 12px 12px 3px 3px;
-            /* 极窄边框：从 12px 减到 5px */
             padding: 5px 5px 7px 5px;
             box-shadow: var(--laptop-shadow);
             border: 1px solid var(--laptop-shell-edge);
@@ -674,6 +669,8 @@
             animation: lidOpen 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
             transform-origin: bottom center;
             transform: rotateX(-4deg);
+            /* 确保内部元素不溢出 */
+            overflow: hidden;
         }
 
         .laptop-lid::before {
@@ -694,11 +691,13 @@
             height: 100%;
             background: #0b0e13;
             border-radius: 8px 8px 2px 2px;
-            /* 极细黑边：从 8px/20px 减到 3px/9px */
             padding: 3px 3px 9px 3px;
             position: relative;
             overflow: hidden;
             box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.5);
+            /* 使用 flex 让屏幕区域填满可用空间 */
+            display: flex;
+            flex-direction: column;
         }
 
         .laptop-camera {
@@ -714,9 +713,12 @@
             z-index: 5;
         }
 
+        /* ===== 屏幕内容区（关键修正） ===== */
         .laptop-screen {
+            /* 占满 bezel 减去底部 chin 后的全部空间 */
+            flex: 1;
             width: 100%;
-            height: 100%;
+            min-height: 0; /* 允许 flex 收缩 */
             border-radius: 2px;
             overflow: hidden;
             background: var(--laptop-screen-inner);
@@ -740,12 +742,15 @@
             align-items: center;
             justify-content: center;
             animation: screenFadeIn 0.9s ease both;
+            overflow: hidden;
         }
 
+        /* 图片贴合屏幕，不留黑边 */
         .screen-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
         }
 
@@ -765,7 +770,7 @@
 
         .laptop-chin {
             position: absolute;
-            bottom: 1px;
+            bottom: 1.5px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 5px;
@@ -780,7 +785,6 @@
         /* ===== 键盘面（C面）—— 与屏幕同等宽度 ===== */
         .laptop-base {
             position: relative;
-            /* 与屏幕外壳等宽（此前为 104%） */
             width: 100%;
             margin-left: 0;
             margin-top: -1px;
@@ -892,7 +896,7 @@
 
         .screen-dot:hover { background: var(--accent-hover); }
 
-        /* ================= 右侧文字 ================= */
+        /* ================= 右侧文字（带 Arch 图标） ================= */
         .hero-text-box {
             flex: 1;
             position: relative;
@@ -921,12 +925,35 @@
             background: rgba(255, 255, 255, 0.8);
         }
 
+        /* ===== Arch 图标（右上角） ===== */
+        .arch-logo {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            opacity: 0.85;
+            transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+            filter: drop-shadow(0 2px 8px rgba(88, 166, 255, 0.25));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .hero-text-box:hover .arch-logo {
+            opacity: 1;
+            transform: scale(1.06) rotate(3deg);
+            filter: drop-shadow(0 4px 14px rgba(88, 166, 255, 0.4));
+        }
+
         .version-display {
             display: flex;
             align-items: baseline;
             gap: 12px;
             margin-bottom: 16px;
             flex-wrap: wrap;
+            /* 为右上角图标留出空间 */
+            padding-right: 56px;
         }
 
         .version-label {
@@ -977,6 +1004,7 @@
             transition: color 0.4s ease, text-shadow 0.4s ease;
             letter-spacing: 1px;
             line-height: 1.1;
+            padding-right: 56px;
         }
 
         .hero-text-box h1:hover {
@@ -1722,6 +1750,19 @@
                 border-radius: 12px;
             }
 
+            /* 移动端图标位置调整 */
+            .arch-logo {
+                width: 38px;
+                height: 38px;
+                top: 12px;
+                right: 12px;
+            }
+
+            .version-display,
+            .hero-text-box h1 {
+                padding-right: 46px;
+            }
+
             .version-display {
                 justify-content: center;
                 flex-direction: column;
@@ -1843,6 +1884,18 @@
             .laptop-screen-bezel { padding: 2px 2px 6px 2px; }
             .laptop-base { height: 64px; }
 
+            .arch-logo {
+                width: 32px;
+                height: 32px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .version-display,
+            .hero-text-box h1 {
+                padding-right: 38px;
+            }
+
             .download-iso-btn {
                 font-size: 14px;
                 padding: 10px 18px;
@@ -1900,7 +1953,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 22</div>
+    <div class="update-counter" data-i18n="update_counter">update 23</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -1976,11 +2029,11 @@
                         <div class="laptop-camera"></div>
                         <div class="laptop-screen">
                             <div class="screen-carousel" id="screenCarousel">
-                                <div class="screen-slide"><img src="scr1.png" alt="NVazen screenshot 1"></div>
-                                <div class="screen-slide"><img src="scr2.png" alt="NVazen screenshot 2"></div>
+                                <div class="screen-slide"><img src="scr1.png" alt="NVazen Arc screenshot 1"></div>
+                                <div class="screen-slide"><img src="scr2.png" alt="NVazen Arc screenshot 2"></div>
                             </div>
                         </div>
-                        <div class="laptop-chin">NVazen</div>
+                        <div class="laptop-chin">NVazen Arc</div>
                     </div>
                 </div>
                 <div class="laptop-base">
@@ -2015,17 +2068,20 @@
                 <button class="screen-dot" data-screen-index="1" aria-label="Screen 2"></button>
             </div>
 
-            <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen 滚动版的实机演示</div>
+            <div class="image-caption" data-i18n="image_caption1">此照片为 NVazen Arc 滚动版的实机演示</div>
         </div>
 
-        <!-- 右侧文字 -->
+        <!-- 右侧文字（带 Arch 图标） -->
         <div class="hero-text-box">
+            <!-- Arch 图标 -->
+            <img src="arclogo.png" alt="Arch Linux" class="arch-logo">
+
             <div class="version-display">
                 <span class="version-label" data-i18n="version_label">最新版本</span>
-                <span class="version-number">NVazen</span>
+                <span class="version-number">NVazen Arc</span>
                 <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
             </div>
-            <h1 id="nvazenTitle" title="Click me">NVazen</h1>
+            <h1 id="nvazenTitle" title="Click me">NVazen Arc</h1>
             <div class="sub-title" data-i18n="hero_sub1">
                 基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术
             </div>
@@ -2041,7 +2097,7 @@
                 <span data-i18n="download_text">Download ISO</span>
                 <span class="size">x86_64</span>
             </a>
-            <div class="status-alert" data-i18n="hero_alert1">NVazen 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
+            <div class="status-alert" data-i18n="hero_alert1">NVazen Arc 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
         </div>
     </div>
 
@@ -2057,7 +2113,7 @@
             <span class="alrm-version-tag">ALRM<span class="tm">™</span> 4 · C++</span>
         </div>
         <div class="alrm-desc reveal" data-i18n="alrm_desc">
-            <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen 滚动版已率先搭载 ALRM 4 引擎。
+            <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。
         </div>
         <div class="alrm-grid">
             <div class="alrm-card reveal">
@@ -2115,14 +2171,14 @@
     <div class="container download-grid">
         <div class="version-box reveal">
             <h3 data-i18n="version_title">版本列表</h3>
-            <div class="version-list" id="versionList">NVazen  (滚动更新 · Rolling Release)  (Latest)
+            <div class="version-list" id="versionList">NVazen Arc  (滚动更新 · Rolling Release)  (Latest)
 Azen 11 LTS  (11-lts.1H2609)  · 已停止支持 (SS)
 Azen 7 R.1bsH2608
 Azen 5 rc-bs.1H2608</div>
         </div>
         <div class="github-box reveal">
             <h3 data-i18n="iso_title">ISO 镜像</h3>
-            <p data-i18n="iso_desc">NVazen ISO 镜像已发布，托管于 Internet Archive。</p>
+            <p data-i18n="iso_desc">NVazen Arc ISO 镜像已发布，托管于 Internet Archive。</p>
             <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1" target="_blank" rel="noopener" class="github-btn" data-i18n="iso_btn" style="background: var(--download-bg);">
                 ⬇ 前往下载
             </a>
@@ -2136,7 +2192,7 @@ Azen 5 rc-bs.1H2608</div>
     <div class="container">
         <h2 class="reveal" data-i18n="comments_title">用户评价</h2>
         <div class="comment-display reveal" id="commentDisplay">
-            "Azen 给了我一种干净、纯粹的 Linux 体验。NVazen 滚动版搭载的 ALRM 4 更是让人惊喜。"
+            "Azen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 滚动版搭载的 ALRM 4 更是让人惊喜。"
             — 来自社区的反馈
 
             "ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"
@@ -2180,11 +2236,11 @@ Azen 5 rc-bs.1H2608</div>
 <script>
     (function() {
         // =====================================================
-        // 1. 多语言资源
+        // 1. 多语言资源（更新为 NVazen Arc）
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 22',
+                update_counter: 'update 23',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -2206,11 +2262,11 @@ Azen 5 rc-bs.1H2608</div>
                 hero_desc: 'ISO image is now available! Click the button below to download from Internet Archive.',
                 download_btn: 'Download ISO from Internet Archive',
                 download_text: 'Download ISO',
-                hero_alert1: 'NVazen rolling release always brings you the latest ALRM 4 engine and system improvements',
-                image_caption1: 'This screenshot shows NVazen Rolling Release in action',
+                hero_alert1: 'NVazen Arc rolling release always brings you the latest ALRM 4 engine and system improvements',
+                image_caption1: 'This screenshot shows NVazen Arc Rolling Release in action',
                 alrm_title: 'ALRM Technology',
                 alrm_badge: 'Exclusive',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen Rolling Release is the first to ship with the ALRM 4 engine.',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen Arc Rolling Release is the first to ship with the ALRM 4 engine.',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: 'When an application window is fully covered or idle for a long time, its background activity is automatically suspended, freeing up CPU and memory resources, significantly reducing power consumption.',
                 alrm_card2_title: 'Deep Sleep',
@@ -2229,7 +2285,7 @@ Azen 5 rc-bs.1H2608</div>
                 feature3_desc: 'Soft rounded corners and dynamic themes make every interaction a pleasure.',
                 version_title: 'Version List',
                 iso_title: 'ISO Image',
-                iso_desc: 'NVazen ISO image is now available, hosted on Internet Archive.',
+                iso_desc: 'NVazen Arc ISO image is now available, hosted on Internet Archive.',
                 iso_btn: 'Download from Internet Archive',
                 iso_note: 'x86_64 · 2026.10.06',
                 comments_title: 'User Reviews',
@@ -2252,14 +2308,14 @@ Azen 5 rc-bs.1H2608</div>
                 footer_tagline: 'Explore the joy of custom Linux',
                 news_tag: 'Latest',
                 news_items: [
-                    { tag: 'Release', title: 'NVazen ISO Image Released', desc: 'The first NVazen ISO image (nvazen-2026.10.06-x86_64) is now available on Internet Archive. Click here to download and try it out!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                    { tag: 'Rolling', title: 'NVazen becomes Rolling Release', desc: 'NVazen has switched to a rolling release model — you now always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
+                    { tag: 'Release', title: 'NVazen Arc ISO Image Released', desc: 'The first NVazen Arc ISO image (nvazen-2026.10.06-x86_64) is now available on Internet Archive. Click here to download and try it out!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: 'Rolling', title: 'NVazen Arc becomes Rolling Release', desc: 'NVazen Arc has switched to a rolling release model — you now always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
                     { tag: 'Tech', title: 'ALRM 4 ships with refactored config parsing', desc: 'ALRM 4 refactors the config parsing module from a class into lighter free functions, and introduces a three-layer patch-library anti-tamper defense for stronger system integrity.' }
                 ],
-                comments: '"Azen gives me a clean, pure Linux experience. The ALRM 4 in NVazen is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
+                comments: '"Azen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Arc is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 22 次更新',
+                update_counter: '第 23 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -2281,11 +2337,11 @@ Azen 5 rc-bs.1H2608</div>
                 hero_desc: 'ISO 镜像已发布！点击下方按钮前往 Internet Archive 下载。',
                 download_btn: '从 Internet Archive 下载 ISO',
                 download_text: '下载 ISO',
-                hero_alert1: 'NVazen 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进',
-                image_caption1: '此照片为 NVazen 滚动版的实机演示',
+                hero_alert1: 'NVazen Arc 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进',
+                image_caption1: '此照片为 NVazen Arc 滚动版的实机演示',
                 alrm_title: 'ALRM 技术',
                 alrm_badge: '独家',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen 滚动版已率先搭载 ALRM 4 引擎。',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: '当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。',
                 alrm_card2_title: '深度睡眠',
@@ -2304,7 +2360,7 @@ Azen 5 rc-bs.1H2608</div>
                 feature3_desc: '圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。',
                 version_title: '版本列表',
                 iso_title: 'ISO 镜像',
-                iso_desc: 'NVazen ISO 镜像已发布，托管于 Internet Archive。',
+                iso_desc: 'NVazen Arc ISO 镜像已发布，托管于 Internet Archive。',
                 iso_btn: '前往 Internet Archive 下载',
                 iso_note: 'x86_64 · 2026.10.06',
                 comments_title: '用户评价',
@@ -2327,14 +2383,14 @@ Azen 5 rc-bs.1H2608</div>
                 footer_tagline: '探索定制 Linux 的乐趣',
                 news_tag: '最新',
                 news_items: [
-                    { tag: '发布', title: 'NVazen ISO 镜像发布', desc: '首个 NVazen ISO 镜像（nvazen-2026.10.06-x86_64）现已上线 Internet Archive。点击下载并体验！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                    { tag: '滚动', title: 'NVazen 转为滚动更新', desc: 'NVazen 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
+                    { tag: '发布', title: 'NVazen Arc ISO 镜像发布', desc: '首个 NVazen Arc ISO 镜像（nvazen-2026.10.06-x86_64）现已上线 Internet Archive。点击下载并体验！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: '滚动', title: 'NVazen Arc 转为滚动更新', desc: 'NVazen Arc 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
                     { tag: '技术', title: 'ALRM 4 搭载重构后的配置解析', desc: 'ALRM 4 将配置解析模块由类重构为更轻量的自由函数，并引入补丁库防篡改三层防线，系统完整性更强。' }
                 ],
-                comments: '"Azen 给了我一种干净、纯粹的 Linux 体验。NVazen 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
+                comments: '"Azen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 22',
+                update_counter: '更新 23',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -2356,11 +2412,11 @@ Azen 5 rc-bs.1H2608</div>
                 hero_desc: 'ISO イメージがリリースされました！下のボタンから Internet Archive でダウンロードできます。',
                 download_btn: 'Internet Archive から ISO をダウンロード',
                 download_text: 'ISO をダウンロード',
-                hero_alert1: 'NVazen ローリングリリースは常に最新の ALRM 4 エンジンとシステム改善を提供します',
-                image_caption1: 'このスクリーンショットは NVazen ローリングリリースの実機デモです',
+                hero_alert1: 'NVazen Arc ローリングリリースは常に最新の ALRM 4 エンジンとシステム改善を提供します',
+                image_caption1: 'このスクリーンショットは NVazen Arc ローリングリリースの実機デモです',
                 alrm_title: 'ALRM テクノロジー',
                 alrm_badge: '独占',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen ローリングリリースが最初に ALRM 4 エンジンを搭載しています。',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen Arc ローリングリリースが最初に ALRM 4 エンジンを搭載しています。',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: 'アプリケーションウィンドウが完全に隠れたり、長時間操作がない場合、バックグラウンドアクティビティを自動的に一時停止し、CPUとメモリリソースを解放して消費電力を大幅に削減します。',
                 alrm_card2_title: 'ディープスリープ',
@@ -2379,7 +2435,7 @@ Azen 5 rc-bs.1H2608</div>
                 feature3_desc: 'ソフトなラウンドとダイナミックテーマで、すべてのインタラクションを楽しく。',
                 version_title: 'バージョン一覧',
                 iso_title: 'ISO イメージ',
-                iso_desc: 'NVazen ISO イメージがリリースされました。Internet Archive でホストされています。',
+                iso_desc: 'NVazen Arc ISO イメージがリリースされました。Internet Archive でホストされています。',
                 iso_btn: 'Internet Archive へ',
                 iso_note: 'x86_64 · 2026.10.06',
                 comments_title: 'ユーザーレビュー',
@@ -2402,14 +2458,14 @@ Azen 5 rc-bs.1H2608</div>
                 footer_tagline: 'カスタム Linux の楽しさを探求',
                 news_tag: '最新',
                 news_items: [
-                    { tag: 'リリース', title: 'NVazen ISO イメージ公開', desc: '最初の NVazen ISO イメージ (nvazen-2026.10.06-x86_64) が Internet Archive で公開されました。ダウンロードして試してみてください！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                    { tag: 'ローリング', title: 'NVazen がローリングリリースに', desc: 'NVazen はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
+                    { tag: 'リリース', title: 'NVazen Arc ISO イメージ公開', desc: '最初の NVazen Arc ISO イメージ (nvazen-2026.10.06-x86_64) が Internet Archive で公開されました。ダウンロードして試してみてください！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: 'ローリング', title: 'NVazen Arc がローリングリリースに', desc: 'NVazen Arc はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
                     { tag: '技術', title: 'ALRM 4 が設定解析をリファクタして搭載', desc: 'ALRM 4 は設定解析モジュールをクラスからより軽量な自由関数にリファクタし、パッチライブラリの三段改ざん防止機構を導入しました。' }
                 ],
-                comments: '"Azen はクリーンで純粋な Linux 体験を提供します。NVazen の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
+                comments: '"Azen はクリーンで純粋な Linux 体験を提供します。NVazen Arc の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 22',
+                update_counter: '업데이트 23',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -2431,11 +2487,11 @@ Azen 5 rc-bs.1H2608</div>
                 hero_desc: 'ISO 이미지가 출시되었습니다! 아래 버튼을 클릭하여 Internet Archive에서 다운로드하세요.',
                 download_btn: 'Internet Archive에서 ISO 다운로드',
                 download_text: 'ISO 다운로드',
-                hero_alert1: 'NVazen 롤링 릴리스는 항상 최신 ALRM 4 엔진과 시스템 개선을 제공합니다',
-                image_caption1: '이 스크린샷은 NVazen 롤링 릴리스의 실제 데모입니다',
+                hero_alert1: 'NVazen Arc 롤링 릴리스는 항상 최신 ALRM 4 엔진과 시스템 개선을 제공합니다',
+                image_caption1: '이 스크린샷은 NVazen Arc 롤링 릴리스의 실제 데모입니다',
                 alrm_title: 'ALRM 기술',
                 alrm_badge: '독점',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen 롤링 릴리스가 ALRM 4 엔진을 최초로 탑재했습니다.',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen Arc 롤링 릴리스가 ALRM 4 엔진을 최초로 탑재했습니다.',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: '애플리케이션 창이 완전히 가려지거나 장시간 작업이 없을 때 백그라운드 활동을 자동으로 일시 중지하여 CPU와 메모리 리소스를 확보하고 전력 소비를 크게 줄입니다.',
                 alrm_card2_title: '딥 슬립',
@@ -2454,7 +2510,7 @@ Azen 5 rc-bs.1H2608</div>
                 feature3_desc: '부드러운 라운드와 다이나믹 테마로 모든 상호작용을 즐겁게.',
                 version_title: '버전 목록',
                 iso_title: 'ISO 이미지',
-                iso_desc: 'NVazen ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
+                iso_desc: 'NVazen Arc ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
                 iso_btn: 'Internet Archive로 이동',
                 iso_note: 'x86_64 · 2026.10.06',
                 comments_title: '사용자 리뷰',
@@ -2477,11 +2533,11 @@ Azen 5 rc-bs.1H2608</div>
                 footer_tagline: '커스텀 Linux의 즐거움을 탐험하세요',
                 news_tag: '최신',
                 news_items: [
-                    { tag: '릴리스', title: 'NVazen ISO 이미지 출시', desc: '첫 번째 NVazen ISO 이미지(nvazen-2026.10.06-x86_64)가 Internet Archive에 공개되었습니다. 다운로드하여 사용해 보세요!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                    { tag: '롤링', title: 'NVazen, 롤링 릴리스로 전환', desc: 'NVazen이 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
+                    { tag: '릴리스', title: 'NVazen Arc ISO 이미지 출시', desc: '첫 번째 NVazen Arc ISO 이미지(nvazen-2026.10.06-x86_64)가 Internet Archive에 공개되었습니다. 다운로드하여 사용해 보세요!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                    { tag: '롤링', title: 'NVazen Arc, 롤링 릴리스로 전환', desc: 'NVazen Arc가 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
                     { tag: '기술', title: 'ALRM 4, 리팩터링된 설정 파싱 탑재', desc: 'ALRM 4는 설정 파싱 모듈을 클래스에서 더 가벼운 자유 함수로 리팩터링하고, 패치 라이브러리 3중 변조 방지 방어선을 도입했습니다.' }
                 ],
-                comments: '"Azen은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
+                comments: '"Azen은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen Arc의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
             }
         };
 
@@ -2595,7 +2651,7 @@ Azen 5 rc-bs.1H2608</div>
         });
 
         // =====================================================
-        // 7. NVazen 标题字母拆分 + 点击动画
+        // 7. NVazen Arc 标题字母拆分 + 点击动画
         // =====================================================
         function prepareTitleLetters() {
             if (!nvazenTitle) return;
