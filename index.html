@@ -7,7 +7,7 @@
     <!-- ================= SEO 优化 ================= -->
     <title>Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux</title>
     <meta name="description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release with ALRM technology (rewritten in C++) for enhanced performance and power efficiency. ISO image now available on Internet Archive.">
-    <meta name="keywords" content="Azen Linux, Azen, NVazen, NVazen Arc, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
+    <meta name="keywords" content="Azen Linux, Azen, NVazen, NVazen Arc, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, KDE Plasma, SDDM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
     <meta name="author" content="Ziting Liang">
     <meta name="robots" content="index, follow">
 
@@ -669,7 +669,6 @@
             animation: lidOpen 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
             transform-origin: bottom center;
             transform: rotateX(-4deg);
-            /* 确保内部元素不溢出 */
             overflow: hidden;
         }
 
@@ -695,7 +694,6 @@
             position: relative;
             overflow: hidden;
             box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.5);
-            /* 使用 flex 让屏幕区域填满可用空间 */
             display: flex;
             flex-direction: column;
         }
@@ -715,10 +713,9 @@
 
         /* ===== 屏幕内容区（关键修正） ===== */
         .laptop-screen {
-            /* 占满 bezel 减去底部 chin 后的全部空间 */
             flex: 1;
             width: 100%;
-            min-height: 0; /* 允许 flex 收缩 */
+            min-height: 0;
             border-radius: 2px;
             overflow: hidden;
             background: var(--laptop-screen-inner);
@@ -901,7 +898,7 @@
             flex: 1;
             position: relative;
             animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
-            padding: 24px;
+            padding: 28px;
             border-radius: 16px;
             background: rgba(13, 17, 23, 0.35);
             backdrop-filter: blur(16px) saturate(140%);
@@ -925,17 +922,17 @@
             background: rgba(255, 255, 255, 0.8);
         }
 
-        /* ===== Arch 图标（右上角） ===== */
+        /* ===== Arch 图标（右上角，尺寸加大） ===== */
         .arch-logo {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 48px;
-            height: 48px;
+            top: 18px;
+            right: 18px;
+            width: 72px;
+            height: 72px;
             object-fit: contain;
-            opacity: 0.85;
+            opacity: 0.9;
             transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
-            filter: drop-shadow(0 2px 8px rgba(88, 166, 255, 0.25));
+            filter: drop-shadow(0 3px 12px rgba(88, 166, 255, 0.3));
             z-index: 5;
             pointer-events: none;
         }
@@ -943,7 +940,7 @@
         .hero-text-box:hover .arch-logo {
             opacity: 1;
             transform: scale(1.06) rotate(3deg);
-            filter: drop-shadow(0 4px 14px rgba(88, 166, 255, 0.4));
+            filter: drop-shadow(0 5px 18px rgba(88, 166, 255, 0.45));
         }
 
         .version-display {
@@ -952,8 +949,7 @@
             gap: 12px;
             margin-bottom: 16px;
             flex-wrap: wrap;
-            /* 为右上角图标留出空间 */
-            padding-right: 56px;
+            padding-right: 84px;
         }
 
         .version-label {
@@ -1004,7 +1000,7 @@
             transition: color 0.4s ease, text-shadow 0.4s ease;
             letter-spacing: 1px;
             line-height: 1.1;
-            padding-right: 56px;
+            padding-right: 84px;
         }
 
         .hero-text-box h1:hover {
@@ -1429,7 +1425,7 @@
             transition: color 0.5s ease;
         }
 
-        /* ================= 下载与版本 ================= */
+        /* ================= 下载与版本（新增组件信息区） ================= */
         .download-section {
             padding: 80px 0;
             border-top: 1px solid var(--border-color);
@@ -1441,10 +1437,11 @@
             display: flex;
             justify-content: space-between;
             gap: 40px;
+            flex-wrap: wrap;
         }
 
         .version-box {
-            flex: 1;
+            flex: 1 1 280px;
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -1478,7 +1475,7 @@
         }
 
         .github-box {
-            flex: 1;
+            flex: 1 1 280px;
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -1547,6 +1544,165 @@
             background-color: var(--btn-hover);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(35, 134, 54, 0.35), 0 0 24px rgba(35, 134, 54, 0.2);
+        }
+
+        /* ===== 系统组件信息框 ===== */
+        .components-box {
+            flex: 1 1 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 28px 30px;
+            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .components-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(88, 166, 255, 0.05),
+                transparent);
+            transition: left 0.8s ease;
+        }
+
+        .components-box:hover::before {
+            left: 100%;
+        }
+
+        .components-box:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            border-color: var(--accent);
+        }
+
+        [data-theme="dark"] .components-box:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        }
+
+        .components-box h3 {
+            color: var(--text-primary);
+            margin-top: 0;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            transition: color 0.5s ease, border-color 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .components-box h3 .comp-icon {
+            font-size: 20px;
+            opacity: 0.85;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px 28px;
+            margin-bottom: 24px;
+        }
+
+        .component-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border-color);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .component-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 4px 14px rgba(88, 166, 255, 0.12);
+        }
+
+        .component-item .comp-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(88, 166, 255, 0.5);
+        }
+
+        .component-item .comp-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.4s ease;
+        }
+
+        .component-item .comp-ver {
+            font-size: 12px;
+            font-family: monospace;
+            color: var(--text-muted);
+            margin-left: auto;
+            padding-left: 8px;
+            transition: color 0.4s ease;
+        }
+
+        /* ===== 启动耗时显示 ===== */
+        .boot-time {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.08), rgba(88, 166, 255, 0.02));
+            border: 1px solid rgba(88, 166, 255, 0.25);
+            flex-wrap: wrap;
+            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .boot-time:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(88, 166, 255, 0.15);
+        }
+
+        .boot-time .boot-icon {
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .boot-time .boot-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .boot-time .boot-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: monospace;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 16px rgba(88, 166, 255, 0.3);
+        }
+
+        .boot-time .boot-unit {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .boot-time .boot-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            opacity: 0.75;
+            margin-left: auto;
+            font-style: italic;
+            text-align: right;
+            line-height: 1.5;
         }
 
         /* ================= 用户评价 ================= */
@@ -1746,21 +1902,21 @@
             .hero-text-box {
                 width: 100%;
                 text-align: center;
-                padding: 18px;
+                padding: 20px;
                 border-radius: 12px;
             }
 
-            /* 移动端图标位置调整 */
+            /* 移动端 Arch 图标位置与尺寸 */
             .arch-logo {
-                width: 38px;
-                height: 38px;
-                top: 12px;
-                right: 12px;
+                width: 56px;
+                height: 56px;
+                top: 14px;
+                right: 14px;
             }
 
             .version-display,
             .hero-text-box h1 {
-                padding-right: 46px;
+                padding-right: 66px;
             }
 
             .version-display {
@@ -1838,6 +1994,39 @@
             .version-box, .github-box { padding: 20px; }
             .version-box h3, .github-box h3 { font-size: 18px; }
 
+            .components-box {
+                padding: 22px 20px;
+            }
+
+            .components-box h3 {
+                font-size: 18px;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .component-item {
+                padding: 9px 12px;
+            }
+
+            .component-item .comp-name { font-size: 13px; }
+            .component-item .comp-ver { font-size: 11px; }
+
+            .boot-time {
+                padding: 14px 16px;
+                gap: 10px;
+            }
+
+            .boot-time .boot-value { font-size: 22px; }
+            .boot-time .boot-note {
+                margin-left: 0;
+                text-align: left;
+                width: 100%;
+                font-size: 11px;
+            }
+
             .comment-section { padding: 50px 0; }
             .comment-section h2 { font-size: 22px; margin-bottom: 24px; }
             .comment-display { padding: 20px; font-size: 14px; }
@@ -1885,15 +2074,15 @@
             .laptop-base { height: 64px; }
 
             .arch-logo {
-                width: 32px;
-                height: 32px;
-                top: 10px;
-                right: 10px;
+                width: 44px;
+                height: 44px;
+                top: 12px;
+                right: 12px;
             }
 
             .version-display,
             .hero-text-box h1 {
-                padding-right: 38px;
+                padding-right: 52px;
             }
 
             .download-iso-btn {
@@ -1919,6 +2108,12 @@
             .feature-card h3 { font-size: 17px; }
 
             .github-btn { padding: 12px 20px; font-size: 14px; }
+
+            .components-box { padding: 18px 16px; }
+            .components-box h3 { font-size: 16px; }
+
+            .boot-time .boot-value { font-size: 20px; }
+            .boot-time .boot-label { font-size: 12px; }
 
             .comment-display { padding: 16px; font-size: 13px; }
 
@@ -1953,7 +2148,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 23</div>
+    <div class="update-counter" data-i18n="update_counter">update 24</div>
     <div class="container nav-bar">
         <div class="logo-area">
             <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
@@ -2166,7 +2361,7 @@
     </div>
 </section>
 
-<!-- 6. 下载与版本 -->
+<!-- 6. 下载与版本（新增组件信息框） -->
 <section class="download-section scroll-target" id="download">
     <div class="container download-grid">
         <div class="version-box reveal">
@@ -2183,6 +2378,65 @@ Azen 5 rc-bs.1H2608</div>
                 ⬇ 前往下载
             </a>
             <p style="margin-top:12px; font-size:13px; color:var(--text-muted);" data-i18n="iso_note">x86_64 · 2026.10.06</p>
+        </div>
+
+        <!-- ===== 新增：系统组件信息框 ===== -->
+        <div class="components-box reveal">
+            <h3>
+                <span class="comp-icon">🧩</span>
+                <span data-i18n="components_title">系统组件</span>
+            </h3>
+            <div class="components-grid">
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">KDE Plasma</span>
+                    <span class="comp-ver">6.4</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">SDDM</span>
+                    <span class="comp-ver">0.21</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">Linux Kernel</span>
+                    <span class="comp-ver">6.18</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">systemd</span>
+                    <span class="comp-ver">258</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">PipeWire</span>
+                    <span class="comp-ver">1.4</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">Wayland</span>
+                    <span class="comp-ver">1.24</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">Mesa</span>
+                    <span class="comp-ver">25.3</span>
+                </div>
+                <div class="component-item">
+                    <span class="comp-dot"></span>
+                    <span class="comp-name">NetworkManager</span>
+                    <span class="comp-ver">1.54</span>
+                </div>
+            </div>
+
+            <!-- 启动耗时 -->
+            <div class="boot-time">
+                <span class="boot-icon">⚡</span>
+                <span class="boot-label" data-i18n="boot_label">实测纯系统启动耗时</span>
+                <span class="boot-value">5.681</span>
+                <span class="boot-unit" data-i18n="boot_unit">秒</span>
+                <span class="boot-note" data-i18n="boot_note">仅供参考，不代表完全真实数据，实际耗时主要取决于用户设备</span>
+            </div>
         </div>
     </div>
 </section>
@@ -2236,11 +2490,11 @@ Azen 5 rc-bs.1H2608</div>
 <script>
     (function() {
         // =====================================================
-        // 1. 多语言资源（更新为 NVazen Arc）
+        // 1. 多语言资源（新增组件与启动耗时文案）
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 23',
+                update_counter: 'update 24',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -2288,6 +2542,10 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO image is now available, hosted on Internet Archive.',
                 iso_btn: 'Download from Internet Archive',
                 iso_note: 'x86_64 · 2026.10.06',
+                components_title: 'System Components',
+                boot_label: 'Measured pure system boot time',
+                boot_unit: 'seconds',
+                boot_note: 'For reference only — not a guarantee. Actual time depends mainly on user hardware.',
                 comments_title: 'User Reviews',
                 requirements_title: 'Hardware Requirements',
                 req_cpu: 'Processor',
@@ -2315,7 +2573,7 @@ Azen 5 rc-bs.1H2608</div>
                 comments: '"Azen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Arc is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
             },
             zh: {
-                update_counter: '第 23 次更新',
+                update_counter: '第 24 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -2363,6 +2621,10 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO 镜像已发布，托管于 Internet Archive。',
                 iso_btn: '前往 Internet Archive 下载',
                 iso_note: 'x86_64 · 2026.10.06',
+                components_title: '系统组件',
+                boot_label: '实测纯系统启动耗时',
+                boot_unit: '秒',
+                boot_note: '仅供参考，不代表完全真实数据，实际耗时主要取决于用户设备',
                 comments_title: '用户评价',
                 requirements_title: '硬件基础要求',
                 req_cpu: '处理器',
@@ -2390,7 +2652,7 @@ Azen 5 rc-bs.1H2608</div>
                 comments: '"Azen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
             },
             ja: {
-                update_counter: '更新 23',
+                update_counter: '更新 24',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -2438,6 +2700,10 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO イメージがリリースされました。Internet Archive でホストされています。',
                 iso_btn: 'Internet Archive へ',
                 iso_note: 'x86_64 · 2026.10.06',
+                components_title: 'システムコンポーネント',
+                boot_label: '実測ピュアシステム起動時間',
+                boot_unit: '秒',
+                boot_note: '参考値です。完全な実データを保証するものではなく、実際の時間は主にユーザーのハードウェアに依存します。',
                 comments_title: 'ユーザーレビュー',
                 requirements_title: 'ハードウェア要件',
                 req_cpu: 'プロセッサ',
@@ -2465,7 +2731,7 @@ Azen 5 rc-bs.1H2608</div>
                 comments: '"Azen はクリーンで純粋な Linux 体験を提供します。NVazen Arc の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
             },
             ko: {
-                update_counter: '업데이트 23',
+                update_counter: '업데이트 24',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -2513,6 +2779,10 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
                 iso_btn: 'Internet Archive로 이동',
                 iso_note: 'x86_64 · 2026.10.06',
+                components_title: '시스템 구성 요소',
+                boot_label: '실측 순수 시스템 부팅 시간',
+                boot_unit: '초',
+                boot_note: '참고용이며 완전한 실제 데이터를 보장하지 않습니다. 실제 시간은 주로 사용자 하드웨어에 따라 달라집니다.',
                 comments_title: '사용자 리뷰',
                 requirements_title: '하드웨어 요구사항',
                 req_cpu: '프로세서',
