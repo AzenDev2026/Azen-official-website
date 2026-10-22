@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ================= SEO 优化 ================= -->
-    <title>Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux</title>
-    <meta name="description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release with ALRM technology (rewritten in C++) for enhanced performance and power efficiency. ISO image now available on Internet Archive.">
-    <meta name="keywords" content="Azen Linux, Azen, NVazen, NVazen Arc, Arch Linux, Rolling Release, LTS, Linux distribution, ALRM, KDE Plasma, SDDM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
+    <title>NVazen™ Linux — Modern Rolling Distribution Based on Arch Linux</title>
+    <meta name="description" content="NVazen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring rolling release with ALRM technology (rewritten in C++) for enhanced performance and power efficiency. ISO image now available on Internet Archive.">
+    <meta name="keywords" content="NVazen Linux, NVazen, Azen, NVazen Arc, Arch Linux, Rolling Release, Linux distribution, ALRM, KDE Plasma, SDDM, laptop optimization, open source, old laptop, lightweight Linux, ISO download">
     <meta name="author" content="Ziting Liang">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
-    <meta property="og:description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release and ALRM technology. ISO image now available.">
+    <meta property="og:title" content="NVazen™ Linux — Modern Rolling Distribution Based on Arch Linux">
+    <meta property="og:description" content="NVazen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring rolling release and ALRM technology. ISO image now available.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://azen.dev">
+    <meta property="og:url" content="https://azenos.netlify.app">
     <meta property="og:image" content="screenshot.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Azen™ Linux — Modern Rolling & LTS Distribution Based on Arch Linux">
-    <meta name="twitter:description" content="Azen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring NVazen Arc rolling release and ALRM technology.">
+    <meta name="twitter:title" content="NVazen™ Linux — Modern Rolling Distribution Based on Arch Linux">
+    <meta name="twitter:description" content="NVazen Linux is a modern Linux distribution based on Arch Linux, optimized for older laptops. Featuring rolling release and ALRM technology.">
 
     <!-- ================= 网站图标 (Favicon) ================= -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -61,12 +61,10 @@
             --menu-border: #30363d;
             --danger: #f85149;
 
-            /* 下载按钮配色 */
             --download-bg: #1f6feb;
             --download-hover: #388bfd;
             --download-glow: rgba(31, 111, 235, 0.4);
 
-            /* 装饰半圆：纯色淡蓝 -> 深蓝渐变 */
             --deco-gradient: linear-gradient(160deg, #a8d0ff 0%, #58a6ff 45%, #1f4d8f 100%);
 
             /* 笔记本默认配色（深色） */
@@ -83,7 +81,6 @@
             --laptop-glow: rgba(88, 166, 255, 0.12);
             --laptop-reflection: rgba(255,255,255,0.08);
 
-            /* ===== 背景显示效果 ===== */
             --bg-overlay: rgba(13, 17, 23, 0.85);
             --bg-blur: 20px;
             --bg-saturate: 120%;
@@ -135,7 +132,6 @@
             --bg-overlay: rgba(246, 248, 250, 0.85);
         }
 
-        /* ===== 背景显示效果模式 ===== */
         [data-bg-effect="acrylic"] {
             --bg-overlay: rgba(13, 17, 23, 0.72);
             --bg-blur: 24px;
@@ -185,7 +181,6 @@
             padding: 0 20px;
         }
 
-        /* ================= 小号商标符号 ================= */
         .tm {
             font-size: 0.55em;
             vertical-align: super;
@@ -288,7 +283,6 @@
             flex-wrap: wrap;
         }
 
-        /* ===== Logo 区域（可点击弹出子页面菜单） ===== */
         .logo-area {
             display: flex;
             align-items: center;
@@ -326,7 +320,6 @@
             transition: color 0.5s ease;
         }
 
-        /* Logo 下拉菜单 */
         .logo-menu {
             position: absolute;
             top: calc(100% + 8px);
@@ -385,12 +378,6 @@
             color: var(--text-muted);
             margin-left: auto;
             font-weight: 400;
-        }
-
-        .logo-menu-divider {
-            height: 1px;
-            background: var(--border-color);
-            margin: 4px 8px;
         }
 
         .update-counter {
@@ -553,7 +540,7 @@
             vertical-align: middle;
         }
 
-        /* ================= 横幅区域（带背景图） ================= */
+        /* ================= 横幅区域 ================= */
         .hero-section {
             min-height: calc(100vh - 70px);
             padding: 60px 0 80px 0;
@@ -755,12 +742,14 @@
             transition: background 0.6s ease;
         }
 
+        /* ===== 屏幕内边框（更窄，图片再缩小） ===== */
         .laptop-screen-bezel {
             width: 100%;
             height: 100%;
             background: #0b0e13;
             border-radius: 8px 8px 2px 2px;
-            padding: 3px 3px 9px 3px;
+            /* 内边距进一步加大：左右与底部更多，让图片内缩 */
+            padding: 4px 6px 12px 6px;
             position: relative;
             overflow: hidden;
             box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.5);
@@ -811,12 +800,15 @@
             overflow: hidden;
         }
 
+        /* 图片适配：使用 contain 并留出内边距，避免贴边 */
         .screen-slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             display: block;
+            padding: 1px;
+            box-sizing: border-box;
         }
 
         .laptop-screen::after {
@@ -835,7 +827,7 @@
 
         .laptop-chin {
             position: absolute;
-            bottom: 1.5px;
+            bottom: 2px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 5px;
@@ -960,7 +952,7 @@
 
         .screen-dot:hover { background: var(--accent-hover); }
 
-        /* ================= 右侧文字（带 Arch 图标） ================= */
+        /* ================= 右侧文字 ================= */
         .hero-text-box {
             flex: 1;
             position: relative;
@@ -1871,16 +1863,10 @@
 
         .scroll-target { scroll-margin-top: 80px; }
 
-        /* ================= 子页面视图切换 ================= */
-        .page-view {
-            display: none;
-        }
+        /* ================= 子页面视图 ================= */
+        .page-view { display: none; }
+        .page-view.active { display: block; }
 
-        .page-view.active {
-            display: block;
-        }
-
-        /* ================= 子页面：下载中心 ================= */
         .subpage-header {
             padding: 60px 0 40px 0;
             background: var(--hero-bg);
@@ -1911,7 +1897,7 @@
             transition: background-color 0.5s ease;
         }
 
-        /* 下载列表（竖向排列） */
+        /* 下载列表 */
         .download-list {
             display: flex;
             flex-direction: column;
@@ -1960,7 +1946,6 @@
             box-shadow: 0 12px 36px rgba(0,0,0,0.35);
         }
 
-        /* 最新版本卡片高亮 */
         .download-card.latest {
             border-color: var(--accent);
             background: linear-gradient(135deg, rgba(88, 166, 255, 0.08), var(--bg-card));
@@ -2069,7 +2054,7 @@
             box-shadow: 0 0 14px rgba(88, 166, 255, 0.4);
         }
 
-        /* ================= 子页面：GitHub 仓库 ================= */
+        /* 仓库列表 */
         .repo-list {
             display: flex;
             flex-direction: column;
@@ -2185,7 +2170,6 @@
             transform: translateX(6px);
         }
 
-        /* GitHub 个人主页按钮 */
         .github-profile-section {
             text-align: center;
             padding: 40px 30px;
@@ -2241,7 +2225,7 @@
 
         .profile-btn:active { transform: translateY(-1px); }
 
-        /* ================= 移动端优化 (≤ 820px) ================= */
+        /* ================= 移动端优化 ================= */
         @media (max-width: 820px) {
             .update-counter {
                 position: static;
@@ -2317,7 +2301,7 @@
 
             .laptop-lid { padding: 4px 4px 6px 4px; border-radius: 10px 10px 2px 2px; }
 
-            .laptop-screen-bezel { padding: 2px 2px 7px 2px; border-radius: 5px 5px 2px 2px; }
+            .laptop-screen-bezel { padding: 3px 5px 10px 5px; border-radius: 5px 5px 2px 2px; }
 
             .laptop-base { height: 80px; }
 
@@ -2471,7 +2455,6 @@
                 max-width: 100%;
             }
 
-            /* 子页面移动端 */
             .subpage-header { padding: 40px 0 30px 0; }
             .subpage-header h1 { font-size: 30px; }
             .subpage-header p { font-size: 15px; }
@@ -2524,7 +2507,6 @@
             }
         }
 
-        /* 超小屏幕 (≤ 480px) */
         @media (max-width: 480px) {
             .container { padding: 0 14px; }
 
@@ -2540,7 +2522,7 @@
             .version-sub { font-size: 12px; }
 
             .laptop-lid { padding: 3px 3px 5px 3px; }
-            .laptop-screen-bezel { padding: 2px 2px 6px 2px; }
+            .laptop-screen-bezel { padding: 2px 4px 8px 4px; }
             .laptop-base { height: 64px; }
 
             .arch-logo {
@@ -2602,7 +2584,6 @@
             .deco-semicircle { width: 160px; height: 160px; top: -40px; right: -40px; }
             .deco-ring { width: 80px; height: 80px; top: 10px; right: 20px; }
 
-            /* 子页面超小屏 */
             .subpage-header h1 { font-size: 24px; }
             .subpage-header p { font-size: 14px; }
 
@@ -2613,7 +2594,6 @@
             .profile-btn { font-size: 14px; padding: 12px 22px; }
         }
 
-        /* 尊重用户的减少动画偏好 */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -2628,13 +2608,12 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 25</div>
+    <div class="update-counter" data-i18n="update_counter">update 26</div>
     <div class="container nav-bar">
         <!-- Logo 区域（可点击弹出子页面菜单） -->
         <div class="logo-area" id="logoArea">
-            <img src="icon.png" alt="Azen Linux" class="logo-icon" id="logoIcon">
-            <span class="logo">Azen<span class="tm">™</span> Linux</span>
-            <!-- 子页面菜单 -->
+            <img src="icon.png" alt="NVazen Linux" class="logo-icon" id="logoIcon">
+            <span class="logo">NVazen<span class="tm">™</span> Linux</span>
             <div class="logo-menu" id="logoMenu">
                 <a href="index.html" class="logo-menu-item" id="menuHome">
                     <span class="mi-icon">🏠</span>
@@ -2806,7 +2785,7 @@
                 <span class="alrm-version-tag">ALRM<span class="tm">™</span> 4 · C++</span>
             </div>
             <div class="alrm-desc reveal" data-i18n="alrm_desc">
-                <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 Azen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。
+                <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 NVazen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。
             </div>
             <div class="alrm-grid">
                 <div class="alrm-card reveal">
@@ -2832,7 +2811,7 @@
     <!-- 4. News 区域 -->
     <section class="news-section scroll-target" id="news">
         <div class="container">
-            <h2 class="reveal" data-i18n="news_title">Azen News</h2>
+            <h2 class="reveal" data-i18n="news_title">NVazen News</h2>
             <div class="news-swap-container reveal" id="newsSwapContainer"></div>
             <div class="news-dots" id="newsDots"></div>
         </div>
@@ -2841,7 +2820,7 @@
     <!-- 5. 核心优势 -->
     <section class="features-section scroll-target" id="features">
         <div class="container">
-            <h2 class="reveal" data-i18n="features_title">为什么选择 Azen</h2>
+            <h2 class="reveal" data-i18n="features_title">为什么选择 NVazen</h2>
             <div class="features-grid">
                 <div class="feature-card reveal">
                     <h3 data-i18n="feature1_title">隐私优先</h3>
@@ -2859,7 +2838,7 @@
         </div>
     </section>
 
-    <!-- 6. 下载与版本（含组件信息框） -->
+    <!-- 6. 下载与版本（组件信息已更新为最新版本） -->
     <section class="download-section scroll-target" id="download">
         <div class="container download-grid">
             <div class="version-box reveal">
@@ -2881,48 +2860,48 @@ Azen 5 rc-bs.1H2608</div>
             <div class="components-box reveal">
                 <h3>
                     <span class="comp-icon">🧩</span>
-                    <span data-i18n="components_title">系统组件</span>
+                    <span data-i18n="components_title">系统组件（最新版本）</span>
                 </h3>
                 <div class="components-grid">
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">KDE Plasma</span>
-                        <span class="comp-ver">6.4</span>
+                        <span class="comp-ver">6.8</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">SDDM</span>
-                        <span class="comp-ver">0.21</span>
+                        <span class="comp-ver">0.22</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">Linux Kernel</span>
-                        <span class="comp-ver">6.18</span>
+                        <span class="comp-ver">6.19</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">systemd</span>
-                        <span class="comp-ver">258</span>
+                        <span class="comp-ver">259</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">PipeWire</span>
-                        <span class="comp-ver">1.4</span>
+                        <span class="comp-ver">1.5</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">Wayland</span>
-                        <span class="comp-ver">1.24</span>
+                        <span class="comp-ver">1.25</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">Mesa</span>
-                        <span class="comp-ver">25.3</span>
+                        <span class="comp-ver">25.4</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">NetworkManager</span>
-                        <span class="comp-ver">1.54</span>
+                        <span class="comp-ver">1.55</span>
                     </div>
                 </div>
 
@@ -2942,7 +2921,7 @@ Azen 5 rc-bs.1H2608</div>
         <div class="container">
             <h2 class="reveal" data-i18n="comments_title">用户评价</h2>
             <div class="comment-display reveal" id="commentDisplay">
-                "Azen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 滚动版搭载的 ALRM 4 更是让人惊喜。"
+                "NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 滚动版搭载的 ALRM 4 更是让人惊喜。"
                 — 来自社区的反馈
 
                 "ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"
@@ -2978,15 +2957,13 @@ Azen 5 rc-bs.1H2608</div>
                 <span>⬇️</span>
                 <span data-i18n="dl_page_title">下载中心</span>
             </h1>
-            <p data-i18n="dl_page_desc">选择适合你的 Azen / NVazen Arc 版本，下载 ISO 镜像并开始体验。</p>
+            <p data-i18n="dl_page_desc">选择适合你的 NVazen Arc 版本，下载 ISO 镜像并开始体验。</p>
         </div>
     </div>
 
     <div class="subpage-content">
         <div class="container">
             <div class="download-list">
-
-                <!-- 最新版本 -->
                 <div class="download-card latest reveal">
                     <div class="dc-icon">🚀</div>
                     <div class="dc-info">
@@ -3008,7 +2985,6 @@ Azen 5 rc-bs.1H2608</div>
                     </div>
                 </div>
 
-                <!-- Azen 11 LTS (已停止支持) -->
                 <div class="download-card reveal">
                     <div class="dc-icon">📦</div>
                     <div class="dc-info">
@@ -3023,7 +2999,6 @@ Azen 5 rc-bs.1H2608</div>
                     </div>
                 </div>
 
-                <!-- Azen 7 -->
                 <div class="download-card reveal">
                     <div class="dc-icon">📦</div>
                     <div class="dc-info">
@@ -3038,7 +3013,6 @@ Azen 5 rc-bs.1H2608</div>
                     </div>
                 </div>
 
-                <!-- Azen 5 -->
                 <div class="download-card reveal">
                     <div class="dc-icon">📦</div>
                     <div class="dc-info">
@@ -3052,7 +3026,6 @@ Azen 5 rc-bs.1H2608</div>
                         <span class="dc-btn disabled" data-i18n="dl_no_iso">没有可用 ISO 镜像</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -3068,15 +3041,13 @@ Azen 5 rc-bs.1H2608</div>
                 <span>🐙</span>
                 <span data-i18n="gh_page_title">GitHub 仓库</span>
             </h1>
-            <p data-i18n="gh_page_desc">浏览 Azen 项目相关的所有 GitHub 仓库，或直接访问开发者主页。</p>
+            <p data-i18n="gh_page_desc">浏览 NVazen 项目相关的所有 GitHub 仓库，或直接访问开发者主页。</p>
         </div>
     </div>
 
     <div class="subpage-content">
         <div class="container">
             <div class="repo-list">
-
-                <!-- 主仓库 -->
                 <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" rel="noopener" class="repo-card reveal">
                     <div class="rc-icon">🏠</div>
                     <div class="rc-info">
@@ -3084,12 +3055,11 @@ Azen 5 rc-bs.1H2608</div>
                             AzenDev
                             <span class="rc-path">AzenDev2026/AzenDev</span>
                         </h3>
-                        <p data-i18n="gh_main_desc">Azen 项目主仓库，包含系统配置、脚本、文档与核心开发内容。</p>
+                        <p data-i18n="gh_main_desc">NVazen 项目主仓库，包含系统配置、脚本、文档与核心开发内容。</p>
                     </div>
                     <div class="rc-arrow">→</div>
                 </a>
 
-                <!-- 资源仓库 -->
                 <a href="https://github.com/AzenDev2026/Azen_sys.resource" target="_blank" rel="noopener" class="repo-card reveal">
                     <div class="rc-icon">📦</div>
                     <div class="rc-info">
@@ -3101,10 +3071,8 @@ Azen 5 rc-bs.1H2608</div>
                     </div>
                     <div class="rc-arrow">→</div>
                 </a>
-
             </div>
 
-            <!-- GitHub 个人主页 -->
             <div class="github-profile-section reveal">
                 <h3 data-i18n="gh_profile_title">开发者 GitHub 主页</h3>
                 <p data-i18n="gh_profile_desc">访问我的个人 GitHub 首页，查看所有仓库与项目动态。</p>
@@ -3122,7 +3090,7 @@ Azen 5 rc-bs.1H2608</div>
     <div class="container footer-content">
         <div class="footer-left">
             <p><strong>© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
-            <p>Azen<span class="tm">™</span> Linux — <span data-i18n="footer_brand">基于 Arch Linux 的定制发行版</span></p>
+            <p>NVazen<span class="tm">™</span> Linux — <span data-i18n="footer_brand">基于 Arch Linux 的定制发行版</span></p>
             <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
         </div>
         <div class="footer-right">
@@ -3136,7 +3104,39 @@ Azen 5 rc-bs.1H2608</div>
 <script>
     (function() {
         // =====================================================
-        // 0. 路由：根据 URL 路径或 hash 显示对应视图
+        // 用户数据存储（通过 localStorage 模拟 JSON 文件）
+        // =====================================================
+        const STORAGE_KEY = 'nvazen_user_prefs';
+        
+        function loadUserPrefs() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    return JSON.parse(saved);
+                }
+            } catch (e) {
+                console.warn('Failed to load user preferences:', e);
+            }
+            return {
+                theme: 'dark',
+                lang: 'en',
+                laptopColor: 'auto',
+                bgEffect: 'full'
+            };
+        }
+        
+        function saveUserPrefs(prefs) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+            } catch (e) {
+                console.warn('Failed to save user preferences:', e);
+            }
+        }
+        
+        let userPrefs = loadUserPrefs();
+
+        // =====================================================
+        // 路由
         // =====================================================
         const viewHome = document.getElementById('view-home');
         const viewDownloads = document.getElementById('view-downloads');
@@ -3145,7 +3145,6 @@ Azen 5 rc-bs.1H2608</div>
         function getRoute() {
             const path = window.location.pathname.toLowerCase();
             const hash = window.location.hash.toLowerCase();
-            // 支持 /downloads.html, /downloads, #downloads 等
             if (path.includes('downloads') || hash === '#downloads') return 'downloads';
             if (path.includes('support') || hash === '#support') return 'support';
             return 'home';
@@ -3162,9 +3161,7 @@ Azen 5 rc-bs.1H2608</div>
             } else {
                 viewHome.classList.add('active');
             }
-            // 重置滚动位置
             window.scrollTo({ top: 0, behavior: 'auto' });
-            // 重新触发 reveal 动画
             setTimeout(initRevealAnimations, 50);
         }
 
@@ -3176,20 +3173,15 @@ Azen 5 rc-bs.1H2608</div>
             setActiveView(route);
         }
 
-        window.addEventListener('popstate', function() {
-            setActiveView(getRoute());
-        });
-
-        window.addEventListener('hashchange', function() {
-            setActiveView(getRoute());
-        });
+        window.addEventListener('popstate', () => setActiveView(getRoute()));
+        window.addEventListener('hashchange', () => setActiveView(getRoute()));
 
         // =====================================================
-        // 1. 多语言资源（含子页面文案）
+        // 多语言资源
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 25',
+                update_counter: 'update 26',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -3218,7 +3210,7 @@ Azen 5 rc-bs.1H2608</div>
                 image_caption1: 'This screenshot shows NVazen Arc Rolling Release in action',
                 alrm_title: 'ALRM Technology',
                 alrm_badge: 'Exclusive',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the Azen team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen Arc Rolling Release is the first to ship with the ALRM 4 engine.',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) is an exclusive technology developed by the NVazen team, designed to optimize performance and power consumption for older laptops. Following the full rewrite from Python to C++ in ALRM 3, ALRM 4 continues to evolve in architecture and security: the config parsing module has been refactored from a class into lighter free functions, the loading logic is more robust, and a three-layer patch-library anti-tamper defense has been introduced to further safeguard system integrity. NVazen Arc Rolling Release is the first to ship with the ALRM 4 engine.',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: 'When an application window is fully covered or idle for a long time, its background activity is automatically suspended, freeing up CPU and memory resources, significantly reducing power consumption.',
                 alrm_card2_title: 'Deep Sleep',
@@ -3227,8 +3219,8 @@ Azen 5 rc-bs.1H2608</div>
                 alrm_card3_desc: 'Dynamically adjusts the priority of background processes, reducing unnecessary resource usage, allowing older laptops to perform at their best. The C++ rewrite brings significant efficiency gains.',
                 alrm_card4_title: 'Patch Library Anti-Tamper',
                 alrm_card4_desc: 'ALRM 4 introduces a three-layer anti-tamper defense for the patch library: the verification layer ensures patches come from trusted sources, the runtime layer blocks illegal injection, and the audit layer keeps a complete change log — protecting system integrity at the source.',
-                news_title: 'Azen News',
-                features_title: 'Why choose Azen',
+                news_title: 'NVazen News',
+                features_title: 'Why choose NVazen',
                 feature1_title: 'Privacy First',
                 feature1_desc: 'Telemetry disabled by default, no data collection. Your computer stays yours.',
                 feature2_title: 'Performance',
@@ -3240,7 +3232,7 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO image is now available, hosted on Internet Archive.',
                 iso_btn: 'Download from Internet Archive',
                 iso_note: 'x86_64 · 2026.10.06',
-                components_title: 'System Components',
+                components_title: 'System Components (Latest)',
                 boot_label: 'Measured pure system boot time',
                 boot_unit: 'seconds',
                 boot_note: 'For reference only — not a guarantee. Actual time depends mainly on user hardware.',
@@ -3268,10 +3260,9 @@ Azen 5 rc-bs.1H2608</div>
                     { tag: 'Rolling', title: 'NVazen Arc becomes Rolling Release', desc: 'NVazen Arc has switched to a rolling release model — you now always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
                     { tag: 'Tech', title: 'ALRM 4 ships with refactored config parsing', desc: 'ALRM 4 refactors the config parsing module from a class into lighter free functions, and introduces a three-layer patch-library anti-tamper defense for stronger system integrity.' }
                 ],
-                comments: '"Azen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Arc is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"',
-                // 子页面
+                comments: '"NVazen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Arc is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"',
                 dl_page_title: 'Download Center',
-                dl_page_desc: 'Choose the Azen / NVazen Arc version that suits you, download the ISO image and start exploring.',
+                dl_page_desc: 'Choose the NVazen Arc version that suits you, download the ISO image and start exploring.',
                 dl_latest_badge: 'Latest',
                 dl_nvazen_desc: 'NVazen Arc rolling release ISO image, hosted on Internet Archive, x86_64 architecture.',
                 dl_download_btn: 'Download ISO',
@@ -3281,15 +3272,15 @@ Azen 5 rc-bs.1H2608</div>
                 dl_azen7_desc: 'Azen 7 is an older version. No ISO image is currently available.',
                 dl_azen5_desc: 'Azen 5 is an early version. No ISO image is currently available.',
                 gh_page_title: 'GitHub Repositories',
-                gh_page_desc: 'Browse all GitHub repositories related to the Azen project, or visit the developer profile directly.',
-                gh_main_desc: 'Main Azen project repository, containing system configuration, scripts, docs and core development.',
+                gh_page_desc: 'Browse all GitHub repositories related to the NVazen project, or visit the developer profile directly.',
+                gh_main_desc: 'NVazen project main repository, containing system configuration, scripts, docs and core development.',
                 gh_resource_desc: 'Stores system resource files such as wallpapers, icons, themes and other static assets.',
                 gh_profile_title: 'Developer GitHub Profile',
                 gh_profile_desc: 'Visit my personal GitHub profile to see all repositories and project activity.',
                 gh_profile_btn: 'Go to GitHub Profile'
             },
             zh: {
-                update_counter: '第 25 次更新',
+                update_counter: '第 26 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -3318,7 +3309,7 @@ Azen 5 rc-bs.1H2608</div>
                 image_caption1: '此照片为 NVazen Arc 滚动版的实机演示',
                 alrm_title: 'ALRM 技术',
                 alrm_badge: '独家',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 Azen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) 是 NVazen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: '当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。',
                 alrm_card2_title: '深度睡眠',
@@ -3327,8 +3318,8 @@ Azen 5 rc-bs.1H2608</div>
                 alrm_card3_desc: '动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。',
                 alrm_card4_title: '补丁库防篡改',
                 alrm_card4_desc: 'ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。',
-                news_title: 'Azen 新闻',
-                features_title: '为什么选择 Azen',
+                news_title: 'NVazen 新闻',
+                features_title: '为什么选择 NVazen',
                 feature1_title: '隐私优先',
                 feature1_desc: '默认禁用遥测，不收集任何用户数据。你的电脑只属于你。',
                 feature2_title: '性能改善',
@@ -3340,7 +3331,7 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO 镜像已发布，托管于 Internet Archive。',
                 iso_btn: '前往 Internet Archive 下载',
                 iso_note: 'x86_64 · 2026.10.06',
-                components_title: '系统组件',
+                components_title: '系统组件（最新版本）',
                 boot_label: '实测纯系统启动耗时',
                 boot_unit: '秒',
                 boot_note: '仅供参考，不代表完全真实数据，实际耗时主要取决于用户设备',
@@ -3368,10 +3359,9 @@ Azen 5 rc-bs.1H2608</div>
                     { tag: '滚动', title: 'NVazen Arc 转为滚动更新', desc: 'NVazen Arc 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
                     { tag: '技术', title: 'ALRM 4 搭载重构后的配置解析', desc: 'ALRM 4 将配置解析模块由类重构为更轻量的自由函数，并引入补丁库防篡改三层防线，系统完整性更强。' }
                 ],
-                comments: '"Azen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"',
-                // 子页面
+                comments: '"NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"',
                 dl_page_title: '下载中心',
-                dl_page_desc: '选择适合你的 Azen / NVazen Arc 版本，下载 ISO 镜像并开始体验。',
+                dl_page_desc: '选择适合你的 NVazen Arc 版本，下载 ISO 镜像并开始体验。',
                 dl_latest_badge: '最新',
                 dl_nvazen_desc: 'NVazen Arc 滚动更新版 ISO 镜像，托管于 Internet Archive，x86_64 架构。',
                 dl_download_btn: '下载 ISO',
@@ -3381,15 +3371,15 @@ Azen 5 rc-bs.1H2608</div>
                 dl_azen7_desc: 'Azen 7 为旧版本，目前没有可用的 ISO 镜像。',
                 dl_azen5_desc: 'Azen 5 为早期版本，目前没有可用的 ISO 镜像。',
                 gh_page_title: 'GitHub 仓库',
-                gh_page_desc: '浏览 Azen 项目相关的所有 GitHub 仓库，或直接访问开发者主页。',
-                gh_main_desc: 'Azen 项目主仓库，包含系统配置、脚本、文档与核心开发内容。',
+                gh_page_desc: '浏览 NVazen 项目相关的所有 GitHub 仓库，或直接访问开发者主页。',
+                gh_main_desc: 'NVazen 项目主仓库，包含系统配置、脚本、文档与核心开发内容。',
                 gh_resource_desc: '存放系统资源文件，如壁纸、图标、主题等静态资源。',
                 gh_profile_title: '开发者 GitHub 主页',
                 gh_profile_desc: '访问我的个人 GitHub 首页，查看所有仓库与项目动态。',
                 gh_profile_btn: '前往 GitHub 主页'
             },
             ja: {
-                update_counter: '更新 25',
+                update_counter: '更新 26',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -3418,7 +3408,7 @@ Azen 5 rc-bs.1H2608</div>
                 image_caption1: 'このスクリーンショットは NVazen Arc ローリングリリースの実機デモです',
                 alrm_title: 'ALRM テクノロジー',
                 alrm_badge: '独占',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は Azen チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen Arc ローリングリリースが最初に ALRM 4 エンジンを搭載しています。',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management) は NVazen チームが開発した独自技術で、旧型ノートPCのパフォーマンスと消費電力の最適化を目的としています。ALRM 3 で Python から C++ に全面書き換えされた後、ALRM 4 はアーキテクチャとセキュリティの面で進化を続けています。設定解析モジュールはクラスからより軽量な自由関数にリファクタされ、読み込みロジックはより堅牢になり、さらに改ざん防止の三段防衛が導入され、システムの完全性をより強固に保護します。NVazen Arc ローリングリリースが最初に ALRM 4 エンジンを搭載しています。',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: 'アプリケーションウィンドウが完全に隠れたり、長時間操作がない場合、バックグラウンドアクティビティを自動的に一時停止し、CPUとメモリリソースを解放して消費電力を大幅に削減します。',
                 alrm_card2_title: 'ディープスリープ',
@@ -3427,8 +3417,8 @@ Azen 5 rc-bs.1H2608</div>
                 alrm_card3_desc: 'バックグラウンドプロセスの優先順位を動的に調整し、不要なリソース使用を削減。旧型ノートPCでも最高のパフォーマンスを発揮できるようにします。C++ 書き換えにより効率が大幅に向上しました。',
                 alrm_card4_title: 'パッチライブラリ改ざん防止',
                 alrm_card4_desc: 'ALRM 4 はパッチライブラリに三段の改ざん防止機構を導入しました。検証層はパッチの出所が信頼できることを保証し、実行層は不正な注入を遮断し、監査層は完全な変更記録を保持します。システムの完全性を根本から守ります。',
-                news_title: 'Azen ニュース',
-                features_title: 'Azen を選ぶ理由',
+                news_title: 'NVazen ニュース',
+                features_title: 'NVazen を選ぶ理由',
                 feature1_title: 'プライバシー優先',
                 feature1_desc: 'テレメトリはデフォルトで無効、データ収集なし。あなたの PC はあなたのものです。',
                 feature2_title: 'パフォーマンス',
@@ -3440,7 +3430,7 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO イメージがリリースされました。Internet Archive でホストされています。',
                 iso_btn: 'Internet Archive へ',
                 iso_note: 'x86_64 · 2026.10.06',
-                components_title: 'システムコンポーネント',
+                components_title: 'システムコンポーネント（最新版）',
                 boot_label: '実測ピュアシステム起動時間',
                 boot_unit: '秒',
                 boot_note: '参考値です。完全な実データを保証するものではなく、実際の時間は主にユーザーのハードウェアに依存します。',
@@ -3468,10 +3458,9 @@ Azen 5 rc-bs.1H2608</div>
                     { tag: 'ローリング', title: 'NVazen Arc がローリングリリースに', desc: 'NVazen Arc はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
                     { tag: '技術', title: 'ALRM 4 が設定解析をリファクタして搭載', desc: 'ALRM 4 は設定解析モジュールをクラスからより軽量な自由関数にリファクタし、パッチライブラリの三段改ざん防止機構を導入しました。' }
                 ],
-                comments: '"Azen はクリーンで純粋な Linux 体験を提供します。NVazen Arc の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"',
-                // サブページ
+                comments: '"NVazen はクリーンで純粋な Linux 体験を提供します。NVazen Arc の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"',
                 dl_page_title: 'ダウンロードセンター',
-                dl_page_desc: 'あなたに合った Azen / NVazen Arc バージョンを選び、ISO イメージをダウンロードして体験を始めましょう。',
+                dl_page_desc: 'あなたに合った NVazen Arc バージョンを選び、ISO イメージをダウンロードして体験を始めましょう。',
                 dl_latest_badge: '最新',
                 dl_nvazen_desc: 'NVazen Arc ローリングリリース ISO イメージ。Internet Archive でホスト、x86_64 アーキテクチャ。',
                 dl_download_btn: 'ISO をダウンロード',
@@ -3481,15 +3470,15 @@ Azen 5 rc-bs.1H2608</div>
                 dl_azen7_desc: 'Azen 7 は旧バージョンです。現在利用可能な ISO イメージはありません。',
                 dl_azen5_desc: 'Azen 5 は初期バージョンです。現在利用可能な ISO イメージはありません。',
                 gh_page_title: 'GitHub リポジトリ',
-                gh_page_desc: 'Azen プロジェクトに関連するすべての GitHub リポジトリを閲覧するか、開発者プロフィールに直接アクセスできます。',
-                gh_main_desc: 'Azen プロジェクトのメインリポジトリ。システム設定、スクリプト、ドキュメント、コア開発を含みます。',
+                gh_page_desc: 'NVazen プロジェクトに関連するすべての GitHub リポジトリを閲覧するか、開発者プロフィールに直接アクセスできます。',
+                gh_main_desc: 'NVazen プロジェクトのメインリポジトリ。システム設定、スクリプト、ドキュメント、コア開発を含みます。',
                 gh_resource_desc: '壁紙、アイコン、テーマなどの静的リソースファイルを保存しています。',
                 gh_profile_title: '開発者 GitHub プロフィール',
                 gh_profile_desc: '私の個人 GitHub プロフィールにアクセスして、すべてのリポジトリとプロジェクトの動向を確認できます。',
                 gh_profile_btn: 'GitHub プロフィールへ'
             },
             ko: {
-                update_counter: '업데이트 25',
+                update_counter: '업데이트 26',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -3518,7 +3507,7 @@ Azen 5 rc-bs.1H2608</div>
                 image_caption1: '이 스크린샷은 NVazen Arc 롤링 릴리스의 실제 데모입니다',
                 alrm_title: 'ALRM 기술',
                 alrm_badge: '독점',
-                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 Azen 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen Arc 롤링 릴리스가 ALRM 4 엔진을 최초로 탑재했습니다.',
+                alrm_desc: 'ALRM 4 (Azen Laptop Resources Management)은 NVazen 팀이 개발한 독점 기술로, 구형 노트북의 성능과 전력 소비 최적화를 위해 설계되었습니다. ALRM 3에서 Python에서 C++로 전면 재작성된 이후, ALRM 4는 아키텍처와 보안 측면에서 계속 진화하고 있습니다. 설정 파싱 모듈은 클래스에서 더 가벼운 자유 함수로 리팩터링되었고, 로딩 로직은 더 견고해졌으며, 3중 변조 방지 방어선이 도입되어 시스템 무결성을 더욱 강화합니다. NVazen Arc 롤링 릴리스가 ALRM 4 엔진을 최초로 탑재했습니다.',
                 alrm_card1_title: 'App Nap',
                 alrm_card1_desc: '애플리케이션 창이 완전히 가려지거나 장시간 작업이 없을 때 백그라운드 활동을 자동으로 일시 중지하여 CPU와 메모리 리소스를 확보하고 전력 소비를 크게 줄입니다.',
                 alrm_card2_title: '딥 슬립',
@@ -3527,8 +3516,8 @@ Azen 5 rc-bs.1H2608</div>
                 alrm_card3_desc: '백그라운드 프로세스의 우선순위를 동적으로 조정하여 불필요한 리소스 사용을 줄이고, 구형 노트북도 최고의 성능을 발휘할 수 있도록 합니다. C++ 재작성으로 효율이 크게 향상되었습니다.',
                 alrm_card4_title: '패치 라이브러리 변조 방지',
                 alrm_card4_desc: 'ALRM 4는 패치 라이브러리에 3중 변조 방지 방어선을 도입했습니다. 검증 계층은 패치 출처의 신뢰성을 보장하고, 실행 계층은 불법 주입을 차단하며, 감사 계층은 완전한 변경 기록을 보존합니다. 시스템 무결성을 근본부터 지킵니다.',
-                news_title: 'Azen 뉴스',
-                features_title: 'Azen을 선택하는 이유',
+                news_title: 'NVazen 뉴스',
+                features_title: 'NVazen을 선택하는 이유',
                 feature1_title: '프라이버시 우선',
                 feature1_desc: '원격 측정 기본 비활성화, 데이터 수집 없음. 당신의 PC는 당신의 것입니다.',
                 feature2_title: '성능',
@@ -3540,7 +3529,7 @@ Azen 5 rc-bs.1H2608</div>
                 iso_desc: 'NVazen Arc ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
                 iso_btn: 'Internet Archive로 이동',
                 iso_note: 'x86_64 · 2026.10.06',
-                components_title: '시스템 구성 요소',
+                components_title: '시스템 구성 요소 (최신)',
                 boot_label: '실측 순수 시스템 부팅 시간',
                 boot_unit: '초',
                 boot_note: '참고용이며 완전한 실제 데이터를 보장하지 않습니다. 실제 시간은 주로 사용자 하드웨어에 따라 달라집니다.',
@@ -3568,10 +3557,9 @@ Azen 5 rc-bs.1H2608</div>
                     { tag: '롤링', title: 'NVazen Arc, 롤링 릴리스로 전환', desc: 'NVazen Arc가 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
                     { tag: '기술', title: 'ALRM 4, 리팩터링된 설정 파싱 탑재', desc: 'ALRM 4는 설정 파싱 모듈을 클래스에서 더 가벼운 자유 함수로 리팩터링하고, 패치 라이브러리 3중 변조 방지 방어선을 도입했습니다.' }
                 ],
-                comments: '"Azen은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen Arc의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."',
-                // 서브 페이지
+                comments: '"NVazen은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen Arc의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."',
                 dl_page_title: '다운로드 센터',
-                dl_page_desc: '당신에게 맞는 Azen / NVazen Arc 버전을 선택하고 ISO 이미지를 다운로드하여 경험해 보세요.',
+                dl_page_desc: '당신에게 맞는 NVazen Arc 버전을 선택하고 ISO 이미지를 다운로드하여 경험해 보세요.',
                 dl_latest_badge: '최신',
                 dl_nvazen_desc: 'NVazen Arc 롤링 릴리스 ISO 이미지. Internet Archive에서 호스팅, x86_64 아키텍처.',
                 dl_download_btn: 'ISO 다운로드',
@@ -3581,8 +3569,8 @@ Azen 5 rc-bs.1H2608</div>
                 dl_azen7_desc: 'Azen 7은 구버전입니다. 현재 사용 가능한 ISO 이미지가 없습니다.',
                 dl_azen5_desc: 'Azen 5는 초기 버전입니다. 현재 사용 가능한 ISO 이미지가 없습니다.',
                 gh_page_title: 'GitHub 저장소',
-                gh_page_desc: 'Azen 프로젝트와 관련된 모든 GitHub 저장소를 둘러보거나 개발자 프로필을 직접 방문하세요.',
-                gh_main_desc: 'Azen 프로젝트 메인 저장소. 시스템 설정, 스크립트, 문서 및 핵심 개발 내용을 포함합니다.',
+                gh_page_desc: 'NVazen 프로젝트와 관련된 모든 GitHub 저장소를 둘러보거나 개발자 프로필을 직접 방문하세요.',
+                gh_main_desc: 'NVazen 프로젝트 메인 저장소. 시스템 설정, 스크립트, 문서 및 핵심 개발 내용을 포함합니다.',
                 gh_resource_desc: '배경화면, 아이콘, 테마 등 정적 리소스 파일을 저장합니다.',
                 gh_profile_title: '개발자 GitHub 프로필',
                 gh_profile_desc: '제 개인 GitHub 프로필을 방문하여 모든 저장소와 프로젝트 활동을 확인하세요.',
@@ -3591,7 +3579,7 @@ Azen 5 rc-bs.1H2608</div>
         };
 
         // =====================================================
-        // 2. 笔记本配色预设
+        // 笔记本配色预设
         // =====================================================
         const laptopPresets = {
             light: {
@@ -3624,14 +3612,14 @@ Azen 5 rc-bs.1H2608</div>
             }
         };
 
-        let currentLaptopSetting = 'auto';
-        let currentBgEffect = 'full';
+        let currentLaptopSetting = userPrefs.laptopColor || 'auto';
+        let currentBgEffect = userPrefs.bgEffect || 'full';
 
         // =====================================================
-        // 3. 状态管理
+        // 状态管理
         // =====================================================
-        let currentLang = 'en';
-        let currentTheme = 'dark';
+        let currentLang = userPrefs.lang || 'en';
+        let currentTheme = userPrefs.theme || 'dark';
         let currentNewsIndex = 0;
         let newsInterval = null;
         const NEWS_DURATION = 6000;
@@ -3640,7 +3628,7 @@ Azen 5 rc-bs.1H2608</div>
         const SCREEN_DURATION = 5000;
 
         // =====================================================
-        // 4. DOM 引用
+        // DOM 引用
         // =====================================================
         const i18nElements = document.querySelectorAll('[data-i18n]');
         const newsSwapContainer = document.getElementById('newsSwapContainer');
@@ -3662,7 +3650,6 @@ Azen 5 rc-bs.1H2608</div>
             '.alrm-section, .news-section, .features-section, .download-section, .comment-section, .requirements-section, footer'
         );
 
-        // Logo 菜单
         const logoArea = document.getElementById('logoArea');
         const logoMenu = document.getElementById('logoMenu');
         const menuHome = document.getElementById('menuHome');
@@ -3670,10 +3657,9 @@ Azen 5 rc-bs.1H2608</div>
         const menuSupport = document.getElementById('menuSupport');
 
         // =====================================================
-        // 5. Logo 子页面菜单
+        // Logo 子页面菜单
         // =====================================================
         logoArea.addEventListener('click', function(e) {
-            // 阻止冒泡，避免点击菜单项时触发外部关闭
             if (e.target.closest('.logo-menu-item')) return;
             e.stopPropagation();
             logoMenu.classList.toggle('open');
@@ -3704,7 +3690,7 @@ Azen 5 rc-bs.1H2608</div>
         });
 
         // =====================================================
-        // 6. 设置菜单
+        // 设置菜单
         // =====================================================
         settingsBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -3717,12 +3703,11 @@ Azen 5 rc-bs.1H2608</div>
         });
 
         // =====================================================
-        // 7. 平滑滚动导航
+        // 平滑滚动导航
         // =====================================================
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                // 如果在子页面，先回首页
                 if (!viewHome.classList.contains('active')) {
                     navigateTo('home');
                     setTimeout(() => {
@@ -3755,7 +3740,7 @@ Azen 5 rc-bs.1H2608</div>
         });
 
         // =====================================================
-        // 8. NVazen Arc 标题字母拆分 + 点击动画
+        // NVazen Arc 标题字母拆分 + 点击动画
         // =====================================================
         function prepareTitleLetters() {
             if (!nvazenTitle) return;
@@ -3787,7 +3772,7 @@ Azen 5 rc-bs.1H2608</div>
         if (nvazenTitle) nvazenTitle.addEventListener('click', playTitleAnimation);
 
         // =====================================================
-        // 9. 笔记本颜色应用
+        // 笔记本颜色应用
         // =====================================================
         function applyLaptopColors(colors) {
             const root = document.documentElement;
@@ -3826,12 +3811,17 @@ Azen 5 rc-bs.1H2608</div>
         laptopOptions.forEach(btn => {
             btn.addEventListener('click', function() {
                 const val = this.dataset.laptop;
-                if (val) { currentLaptopSetting = val; updateLaptopColor(); }
+                if (val) {
+                    currentLaptopSetting = val;
+                    updateLaptopColor();
+                    userPrefs.laptopColor = val;
+                    saveUserPrefs(userPrefs);
+                }
             });
         });
 
         // =====================================================
-        // 10. 背景效果切换
+        // 背景效果切换
         // =====================================================
         function setBgEffect(effect) {
             currentBgEffect = effect;
@@ -3843,12 +3833,16 @@ Azen 5 rc-bs.1H2608</div>
         bgOptions.forEach(btn => {
             btn.addEventListener('click', function() {
                 const val = this.dataset.bg;
-                if (val) setBgEffect(val);
+                if (val) {
+                    setBgEffect(val);
+                    userPrefs.bgEffect = val;
+                    saveUserPrefs(userPrefs);
+                }
             });
         });
 
         // =====================================================
-        // 11. 屏幕图片轮播
+        // 屏幕图片轮播
         // =====================================================
         function goToScreen(index) {
             const slides = screenCarousel.querySelectorAll('.screen-slide');
@@ -3882,7 +3876,7 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 12. 新闻交换
+        // 新闻交换
         // =====================================================
         function buildNewsSwap(lang) {
             const t = translations[lang];
@@ -3941,7 +3935,7 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 13. 滚动 reveal 动画
+        // 滚动 reveal 动画
         // =====================================================
         function initRevealAnimations() {
             const revealEls = document.querySelectorAll('.page-view.active .reveal, .page-view.active.reveal');
@@ -3961,7 +3955,7 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 14. 回到横幅后下滑 -> 轻微自然刷新效果
+        // 回到横幅后下滑 -> 轻微自然刷新效果
         // =====================================================
         let heroInView = true;
         let pendingRefresh = false;
@@ -4014,7 +4008,7 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 15. 更新语言
+        // 更新语言
         // =====================================================
         function updateLanguage(lang) {
             const t = translations[lang];
@@ -4040,7 +4034,7 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 16. 切换主题
+        // 切换主题
         // =====================================================
         function setTheme(theme) {
             if (theme === 'light') {
@@ -4056,34 +4050,44 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         // =====================================================
-        // 17. 初始化
+        // 初始化
         // =====================================================
         function init() {
-            currentTheme = 'dark';
-            document.documentElement.setAttribute('data-theme', 'dark');
-            prepareTitleLetters();
-            updateLanguage('en');
+            // 从用户偏好加载主题
+            if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            themeOptions.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === currentTheme);
+            });
 
-            // 根据 URL 设置初始视图
+            prepareTitleLetters();
+            updateLanguage(currentLang);
             setActiveView(getRoute());
 
             langOptions.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const lang = this.dataset.lang;
-                    if (lang && lang !== currentLang) { updateLanguage(lang); }
+                    if (lang && lang !== currentLang) {
+                        updateLanguage(lang);
+                        userPrefs.lang = lang;
+                        saveUserPrefs(userPrefs);
+                    }
                 });
             });
             themeOptions.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const theme = this.dataset.theme;
                     setTheme(theme);
+                    userPrefs.theme = theme;
+                    saveUserPrefs(userPrefs);
                 });
             });
-            themeOptions.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.theme === 'dark');
-            });
+
             updateLaptopColor();
-            setBgEffect('full');
+            setBgEffect(currentBgEffect);
             goToScreen(0);
             startScreenAutoPlay();
             initRevealAnimations();
@@ -4091,7 +4095,7 @@ Azen 5 rc-bs.1H2608</div>
         }
 
         document.getElementById('logoIcon')?.addEventListener('error', function() {
-            this.alt = 'Azen Linux';
+            this.alt = 'NVazen Linux';
             this.style.display = 'none';
             const parent = this.parentElement;
             const span = document.createElement('span');
@@ -4102,7 +4106,7 @@ Azen 5 rc-bs.1H2608</div>
         });
         document.querySelectorAll('.screen-slide img').forEach(img => {
             img.addEventListener('error', function() {
-                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='600' height='350' fill='%23161b22'/%3E%3Ctext x='300' y='175' font-family='Arial' font-size='24' fill='%2358a6ff' text-anchor='middle' dominant-baseline='middle'%3EAzen Linux%3C/text%3E%3Ctext x='300' y='215' font-family='Arial' font-size='16' fill='%238b949e' text-anchor='middle' dominant-baseline='middle'%3EPreview%3C/text%3E%3C/svg%3E";
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='600' height='350' fill='%23161b22'/%3E%3Ctext x='300' y='175' font-family='Arial' font-size='24' fill='%2358a6ff' text-anchor='middle' dominant-baseline='middle'%3ENVazen Linux%3C/text%3E%3Ctext x='300' y='215' font-family='Arial' font-size='16' fill='%238b949e' text-anchor='middle' dominant-baseline='middle'%3EPreview%3C/text%3E%3C/svg%3E";
             });
         });
         init();
