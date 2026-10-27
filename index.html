@@ -2620,6 +2620,11 @@
                     <span data-i18n="menu_home">首页</span>
                     <span class="mi-sub">Home</span>
                 </a>
+                <a href="search.html" class="logo-menu-item" id="menuSearch">
+                    <span class="mi-icon">🔍</span>
+                    <span data-i18n="menu_search">搜索</span>
+                    <span class="mi-sub">Search</span>
+                </a>
                 <a href="downloads.html" class="logo-menu-item" id="menuDownloads">
                     <span class="mi-icon">⬇️</span>
                     <span data-i18n="menu_downloads">下载中心</span>
@@ -2633,6 +2638,7 @@
             </div>
         </div>
         <nav class="nav-links">
+            <a href="search.html" data-i18n="nav_search" class="nav-link nav-search-link">Search</a>
             <a href="#news" data-i18n="nav_news" class="nav-link">News</a>
             <a href="#features" data-i18n="nav_features" class="nav-link">Features</a>
             <a href="#download" data-i18n="nav_download" class="nav-link">Download</a>
@@ -2838,7 +2844,7 @@
         </div>
     </section>
 
-    <!-- 6. 下载与版本（组件信息已更新为最新版本） -->
+    <!-- 6. 下载与版本 -->
     <section class="download-section scroll-target" id="download">
         <div class="container download-grid">
             <div class="version-box reveal">
@@ -3187,7 +3193,9 @@ Azen 5 rc-bs.1H2608</div>
                 nav_download: 'Download',
                 nav_comments: 'Reviews',
                 nav_requirements: 'Requirements',
+                nav_search: 'Search',
                 menu_home: 'Home',
+                menu_search: 'Search',
                 menu_downloads: 'Downloads',
                 menu_support: 'GitHub Repos',
                 settings_language: 'Language',
@@ -3286,7 +3294,9 @@ Azen 5 rc-bs.1H2608</div>
                 nav_download: '下载',
                 nav_comments: '评价',
                 nav_requirements: '硬件要求',
+                nav_search: '搜索',
                 menu_home: '首页',
+                menu_search: '搜索',
                 menu_downloads: '下载中心',
                 menu_support: 'GitHub 仓库',
                 settings_language: '语言',
@@ -3385,7 +3395,9 @@ Azen 5 rc-bs.1H2608</div>
                 nav_download: 'ダウンロード',
                 nav_comments: 'レビュー',
                 nav_requirements: '要件',
+                nav_search: '検索',
                 menu_home: 'ホーム',
+                menu_search: '検索',
                 menu_downloads: 'ダウンロード',
                 menu_support: 'GitHub リポジトリ',
                 settings_language: '言語',
@@ -3484,7 +3496,9 @@ Azen 5 rc-bs.1H2608</div>
                 nav_download: '다운로드',
                 nav_comments: '리뷰',
                 nav_requirements: '요구사항',
+                nav_search: '검색',
                 menu_home: '홈',
+                menu_search: '검색',
                 menu_downloads: '다운로드',
                 menu_support: 'GitHub 저장소',
                 settings_language: '언어',
@@ -3653,6 +3667,7 @@ Azen 5 rc-bs.1H2608</div>
         const logoArea = document.getElementById('logoArea');
         const logoMenu = document.getElementById('logoMenu');
         const menuHome = document.getElementById('menuHome');
+        const menuSearch = document.getElementById('menuSearch');
         const menuDownloads = document.getElementById('menuDownloads');
         const menuSupport = document.getElementById('menuSupport');
 
@@ -3675,6 +3690,12 @@ Azen 5 rc-bs.1H2608</div>
             e.preventDefault();
             logoMenu.classList.remove('open');
             navigateTo('home');
+        });
+
+        menuSearch.addEventListener('click', function(e) {
+            e.preventDefault();
+            logoMenu.classList.remove('open');
+            window.location.href = 'search.html';
         });
 
         menuDownloads.addEventListener('click', function(e) {
@@ -3706,6 +3727,7 @@ Azen 5 rc-bs.1H2608</div>
         // 平滑滚动导航
         // =====================================================
         navLinks.forEach(link => {
+            if (link.classList.contains('nav-search-link')) return;
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 if (!viewHome.classList.contains('active')) {
@@ -4053,7 +4075,6 @@ Azen 5 rc-bs.1H2608</div>
         // 初始化
         // =====================================================
         function init() {
-            // 从用户偏好加载主题
             if (currentTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'light');
             } else {
