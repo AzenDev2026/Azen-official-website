@@ -742,14 +742,14 @@
             transition: background 0.6s ease;
         }
 
-        /* ===== 屏幕内边框（更窄，图片再缩小） ===== */
+                /* ===== 屏幕内边框（黑边已收窄，图片仍完整适配） ===== */
         .laptop-screen-bezel {
             width: 100%;
             height: 100%;
             background: #0b0e13;
             border-radius: 8px 8px 2px 2px;
-            /* 内边距进一步加大：左右与底部更多，让图片内缩 */
-            padding: 4px 6px 12px 6px;
+            /* 黑边收窄：左右 3px、上 3px、下 6px（原 4px 6px 12px 6px） */
+            padding: 3px 3px 6px 3px;
             position: relative;
             overflow: hidden;
             box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.5);
@@ -2301,7 +2301,7 @@
 
             .laptop-lid { padding: 4px 4px 6px 4px; border-radius: 10px 10px 2px 2px; }
 
-            .laptop-screen-bezel { padding: 3px 5px 10px 5px; border-radius: 5px 5px 2px 2px; }
+            .laptop-screen-bezel { padding: 2px 2px 5px 2px; border-radius: 5px 5px 2px 2px; }
 
             .laptop-base { height: 80px; }
 
@@ -2522,7 +2522,7 @@
             .version-sub { font-size: 12px; }
 
             .laptop-lid { padding: 3px 3px 5px 3px; }
-            .laptop-screen-bezel { padding: 2px 4px 8px 4px; }
+            .laptop-screen-bezel { padding: 2px 2px 4px 2px; }
             .laptop-base { height: 64px; }
 
             .arch-logo {
@@ -2608,7 +2608,7 @@
 
 <!-- 1. 顶部导航横幅 -->
 <header>
-    <div class="update-counter" data-i18n="update_counter">update 26</div>
+    <div class="update-counter" data-i18n="update_counter">update 27</div>
     <div class="container nav-bar">
         <!-- Logo 区域（可点击弹出子页面菜单） -->
         <div class="logo-area" id="logoArea">
@@ -2868,7 +2868,7 @@ Azen 5 rc-bs.1H2608</div>
                     <span class="comp-icon">🧩</span>
                     <span data-i18n="components_title">系统组件（最新版本）</span>
                 </h3>
-                <div class="components-grid">
+                 <div class="components-grid">
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">KDE Plasma</span>
@@ -2877,37 +2877,37 @@ Azen 5 rc-bs.1H2608</div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">SDDM</span>
-                        <span class="comp-ver">0.22</span>
+                        <span class="comp-ver">0.21.0</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">Linux Kernel</span>
-                        <span class="comp-ver">6.19</span>
+                        <span class="comp-ver">7.2.11</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">systemd</span>
-                        <span class="comp-ver">259</span>
+                        <span class="comp-ver">262.1</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">PipeWire</span>
-                        <span class="comp-ver">1.5</span>
+                        <span class="comp-ver">1.6.11</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">Wayland</span>
-                        <span class="comp-ver">1.25</span>
+                        <span class="comp-ver">1.26.0</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">Mesa</span>
-                        <span class="comp-ver">25.4</span>
+                        <span class="comp-ver">26.2.6</span>
                     </div>
                     <div class="component-item">
                         <span class="comp-dot"></span>
                         <span class="comp-name">NetworkManager</span>
-                        <span class="comp-ver">1.55</span>
+                        <span class="comp-ver">1.58.1</span>
                     </div>
                 </div>
 
@@ -2944,8 +2944,8 @@ Azen 5 rc-bs.1H2608</div>
             <h2 class="reveal" data-i18n="requirements_title">硬件基础要求</h2>
             <table class="req-table reveal">
                 <tr><td class="req-label" data-i18n="req_cpu">处理器</td><td data-i18n="req_cpu_desc">Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)</td></tr>
-                <tr><td class="req-label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 2 GB，推荐 4 GB 以上</td></tr>
-                <tr><td class="req-label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">20 GB 可用空间 (虚拟机环境)</td></tr>
+                <tr><td class="req-label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 4 GB，推荐 8 GB 以上</td></tr>
+                <tr><td class="req-label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">40 GB 可用空间 (虚拟机环境)</td></tr>
                 <tr><td class="req-label" data-i18n="req_gpu">显卡</td><td data-i18n="req_gpu_desc">支持 OpenGL 3.0 以上</td></tr>
                 <tr><td class="req-label" data-i18n="req_vm">虚拟化</td><td data-i18n="req_vm_desc">VMware Workstation / Player 或 VirtualBox</td></tr>
             </table>
@@ -3187,7 +3187,7 @@ Azen 5 rc-bs.1H2608</div>
         // =====================================================
         const translations = {
             en: {
-                update_counter: 'update 26',
+                update_counter: 'update 27',
                 nav_news: 'News',
                 nav_features: 'Features',
                 nav_download: 'Download',
@@ -3249,9 +3249,9 @@ Azen 5 rc-bs.1H2608</div>
                 req_cpu: 'Processor',
                 req_cpu_desc: 'Intel Core 2 Duo or AMD equivalent (4 cores recommended)',
                 req_ram: 'Memory',
-                req_ram_desc: 'Minimum 2 GB, 4 GB or more recommended',
+                req_ram_desc: 'Minimum 4 GB,more recommended',
                 req_storage: 'Storage',
-                req_storage_desc: '20 GB available space (for virtual machine)',
+                req_storage_desc: '40 GB available space (for virtual machine)',
                 req_gpu: 'Graphics',
                 req_gpu_desc: 'OpenGL 3.0 or higher',
                 req_vm: 'Virtualization',
@@ -3288,7 +3288,7 @@ Azen 5 rc-bs.1H2608</div>
                 gh_profile_btn: 'Go to GitHub Profile'
             },
             zh: {
-                update_counter: '第 26 次更新',
+                update_counter: '第 27 次更新',
                 nav_news: '新闻',
                 nav_features: '优势',
                 nav_download: '下载',
@@ -3350,9 +3350,9 @@ Azen 5 rc-bs.1H2608</div>
                 req_cpu: '处理器',
                 req_cpu_desc: 'Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)',
                 req_ram: '内存',
-                req_ram_desc: '最低 2 GB，推荐 4 GB 以上',
+                req_ram_desc: ' 最低 4 GB ',
                 req_storage: '存储',
-                req_storage_desc: '20 GB 可用空间 (虚拟机环境)',
+                req_storage_desc: '40 GB 可用空间 (虚拟机环境)',
                 req_gpu: '显卡',
                 req_gpu_desc: '支持 OpenGL 3.0 以上',
                 req_vm: '虚拟化',
@@ -3389,7 +3389,7 @@ Azen 5 rc-bs.1H2608</div>
                 gh_profile_btn: '前往 GitHub 主页'
             },
             ja: {
-                update_counter: '更新 26',
+                update_counter: '更新 27',
                 nav_news: 'ニュース',
                 nav_features: '特徴',
                 nav_download: 'ダウンロード',
@@ -3451,9 +3451,9 @@ Azen 5 rc-bs.1H2608</div>
                 req_cpu: 'プロセッサ',
                 req_cpu_desc: 'Intel Core 2 Duo または AMD 相当 (4 コア推奨)',
                 req_ram: 'メモリ',
-                req_ram_desc: '最小 2 GB、4 GB 以上推奨',
+                req_ram_desc: '最小 4 GB',
                 req_storage: 'ストレージ',
-                req_storage_desc: '20 GB の空き容量 (仮想マシン環境)',
+                req_storage_desc: '40 GB の空き容量 (仮想マシン環境)',
                 req_gpu: 'グラフィックス',
                 req_gpu_desc: 'OpenGL 3.0 以上',
                 req_vm: '仮想化',
@@ -3490,7 +3490,7 @@ Azen 5 rc-bs.1H2608</div>
                 gh_profile_btn: 'GitHub プロフィールへ'
             },
             ko: {
-                update_counter: '업데이트 26',
+                update_counter: '업데이트 27',
                 nav_news: '뉴스',
                 nav_features: '기능',
                 nav_download: '다운로드',
@@ -3552,9 +3552,9 @@ Azen 5 rc-bs.1H2608</div>
                 req_cpu: '프로세서',
                 req_cpu_desc: 'Intel Core 2 Duo 또는 AMD 동급 (4코어 권장)',
                 req_ram: '메모리',
-                req_ram_desc: '최소 2 GB, 4 GB 이상 권장',
+                req_ram_desc: '최소 4 GB',
                 req_storage: '저장공간',
-                req_storage_desc: '20 GB 여유 공간 (가상 머신 환경)',
+                req_storage_desc: '40 GB 여유 공간 (가상 머신 환경)',
                 req_gpu: '그래픽',
                 req_gpu_desc: 'OpenGL 3.0 이상',
                 req_vm: '가상화',
