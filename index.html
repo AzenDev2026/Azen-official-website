@@ -2635,6 +2635,11 @@
                     <span data-i18n="menu_support">GitHub 仓库</span>
                     <span class="mi-sub">Support</span>
                 </a>
+                <a href="distro.html" class="logo-menu-item" id="menuDistro">
+                    <span class="mi-icon">🐧</span>
+                    <span data-i18n="menu_distro">发行版列表</span>
+                    <span class="mi-sub">Distros</span>
+                </a>
             </div>
         </div>
         <nav class="nav-links">
@@ -2644,6 +2649,7 @@
             <a href="#download" data-i18n="nav_download" class="nav-link">Download</a>
             <a href="#comments" data-i18n="nav_comments" class="nav-link">Reviews</a>
             <a href="#requirements" data-i18n="nav_requirements" class="nav-link">Requirements</a>
+            <a href="distro.html" data-i18n="nav_distro" class="nav-link">Distros</a>
 
             <div class="settings-wrapper">
                 <button class="settings-btn" id="settingsBtn" title="Settings">⚙️</button>
@@ -3198,6 +3204,7 @@ Azen 5 rc-bs.1H2608</div>
                 menu_search: 'Search',
                 menu_downloads: 'Downloads',
                 menu_support: 'GitHub Repos',
+                nav_distro: 'Distros',
                 settings_language: 'Language',
                 settings_theme: 'Theme',
                 settings_laptop: 'Laptop Color',
@@ -3299,6 +3306,7 @@ Azen 5 rc-bs.1H2608</div>
                 menu_search: '搜索',
                 menu_downloads: '下载中心',
                 menu_support: 'GitHub 仓库',
+                nav_distro: '查看发行版',
                 settings_language: '语言',
                 settings_theme: '主题',
                 settings_laptop: '笔记本颜色',
@@ -3400,6 +3408,7 @@ Azen 5 rc-bs.1H2608</div>
                 menu_search: '検索',
                 menu_downloads: 'ダウンロード',
                 menu_support: 'GitHub リポジトリ',
+                nav_distro: 'ディストリ',
                 settings_language: '言語',
                 settings_theme: 'テーマ',
                 settings_laptop: 'ノートPCの色',
@@ -3501,6 +3510,7 @@ Azen 5 rc-bs.1H2608</div>
                 menu_search: '검색',
                 menu_downloads: '다운로드',
                 menu_support: 'GitHub 저장소',
+                nav_distro: '배포판',
                 settings_language: '언어',
                 settings_theme: '테마',
                 settings_laptop: '노트북 색상',
@@ -3709,6 +3719,15 @@ Azen 5 rc-bs.1H2608</div>
             logoMenu.classList.remove('open');
             navigateTo('support');
         });
+
+        const menuDistro = document.getElementById('menuDistro');
+        if (menuDistro) {
+            menuDistro.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoMenu.classList.remove('open');
+                window.location.href = 'distro.html';
+            });
+        }
 
         // =====================================================
         // 设置菜单
