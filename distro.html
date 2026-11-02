@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distro List — NVazen</title>
+    <meta name="description" content="A minimal Linux distribution list. Browse distributions and read their introductions.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #202020;
+            --bg-elev: #2a2a2a;
+            --bg-hover: #333333;
+            --border: #3a3a3a;
+            --text: #ececec;
+            --text-muted: #9a9a9a;
+            --accent: #58a6ff;
+            --accent-soft: rgba(88, 166, 255, 0.14);
+            --radius: 12px;
+            --maxw: 860px;
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f5f5;
+            --bg-elev: #ffffff;
+            --bg-hover: #f0f0f0;
+            --border: #e0e0e0;
+            --text: #1a1a1a;
+            --text-muted: #6b6b6b;
+            --accent: #0969da;
+            --accent-soft: rgba(9, 105, 218, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.65;
+            min-height: 100vh;
+            transition: background 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 28px 22px 80px 22px;
+        }
+
+        /* ============ 顶部栏 ============ */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 34px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: 0.3px;
+        }
+
+        .brand img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .brand .tm {
+            font-size: 0.5em;
+            vertical-align: super;
+            opacity: 0.5;
+            margin-left: 1px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-elev);
+            color: var(--text-muted);
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .icon-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            transform: translateY(-1px);
+        }
+
+        /* ============ 页头文字 ============ */
+        .page-head { margin-bottom: 24px; }
+
+        .page-head h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .page-head p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* ============ 卡片列表 ============ */
+        .distro-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .distro-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 18px;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+            text-align: left;
+            width: 100%;
+            color: inherit;
+            font-family: inherit;
+        }
+
+        .distro-card:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .distro-card .d-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .distro-card .d-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 6px;
+        }
+
+        .distro-card .d-info { flex: 1; min-width: 0; }
+
+        .distro-card .d-info h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .distro-card .d-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .distro-card .d-arrow {
+            color: var(--text-muted);
+            font-size: 16px;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .distro-card:hover .d-arrow {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .badge-latest {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #fff;
+            background: var(--accent);
+            padding: 2px 8px;
+            border-radius: 10px;
+            line-height: 1.4;
+        }
+              /* ============ 详情视图 ============ */
+        .detail-view { display: none; }
+        .detail-view.active { display: block; animation: fadeUp 0.35s ease both; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 7px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: inherit;
+            margin-bottom: 20px;
+            transition: all 0.25s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .detail-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-head .d-icon {
+            width: 64px;
+            height: 64px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .detail-head .d-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+
+        .detail-head h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .detail-head .d-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============ Markdown 渲染样式 ============ */
+        .md-body {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--text);
+        }
+
+        .md-body h1, .md-body h2, .md-body h3, .md-body h4 {
+            margin: 26px 0 12px 0;
+            line-height: 1.35;
+            font-weight: 700;
+        }
+        .md-body h1 { font-size: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .md-body h2 { font-size: 19px; }
+        .md-body h3 { font-size: 16px; }
+        .md-body h4 { font-size: 15px; }
+
+        .md-body p { margin: 12px 0; }
+
+        .md-body a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+        }
+        .md-body a:hover { border-bottom-style: solid; }
+
+        .md-body ul, .md-body ol {
+            margin: 12px 0 12px 24px;
+        }
+        .md-body li { margin: 5px 0; }
+
+        .md-body code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.88em;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            padding: 1px 6px;
+            border-radius: 5px;
+        }
+
+        .md-body pre {
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .md-body pre code {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: 13px;
+        }
+
+        .md-body blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 4px 0 4px 16px;
+            margin: 16px 0;
+            color: var(--text-muted);
+            background: var(--accent-soft);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .md-body hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 24px 0;
+        }
+
+        .md-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        .md-body table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .md-body th, .md-body td {
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .md-body th { background: var(--bg-elev); font-weight: 600; }
+
+        /* 加载 / 错误状态 */
+        .state-box {
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: var(--bg-elev);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+        }
+
+        .spinner {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px auto;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ============ 帮助弹窗 ============ */
+        .modal-mask {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+            padding: 20px;
+        }
+        .modal-mask.open { display: flex; animation: fadeUp 0.25s ease both; }
+
+        .modal {
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 82vh;
+            overflow-y: auto;
+            padding: 26px 26px 22px 26px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            position: relative;
+        }
+
+        .modal h2 {
+            font-size: 19px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal h3 {
+            font-size: 15px;
+            margin: 18px 0 8px 0;
+            color: var(--accent);
+        }
+
+        .modal p, .modal li {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .modal ul { margin: 8px 0 8px 22px; }
+
+        .modal code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.88em;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 1px 6px;
+            border-radius: 5px;
+            color: var(--text);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-muted);
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .modal-close:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            margin-left: 0 !important;
+        }
+        .step-list li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 34px;
+            margin: 12px 0 !important;
+        }
+        .step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============ 响应式 ============ */
+        @media (max-width: 600px) {
+            .wrap { padding: 20px 16px 60px 16px; }
+            .page-head h1 { font-size: 22px; }
+            .distro-card { padding: 14px; gap: 12px; }
+            .distro-card .d-icon { width: 44px; height: 44px; }
+            .distro-card .d-info h2 { font-size: 15px; }
+            .distro-card .d-info p { font-size: 12px; }
+            .detail-head h1 { font-size: 20px; }
+            .detail-head .d-icon { width: 52px; height: 52px; }
+            .modal { padding: 22px 18px 18px 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+  <body>
+
+<div class="wrap">
+
+    <!-- 顶部栏 -->
+    <div class="topbar">
+        <a class="brand" href="index.html">
+            <img src="icon.png" alt="NVazen" onerror="this.style.display='none'">
+            <span>NVazen<span class="tm">™</span> Distro List</span>
+        </a>
+        <div class="top-actions">
+            <button class="icon-btn" id="helpBtn" title="Help" aria-label="Help">?</button>
+            <button class="icon-btn" id="themeBtn" title="Theme" aria-label="Toggle theme">◐</button>
+        </div>
+    </div>
+
+    <!-- 列表视图 -->
+    <div id="listView">
+        <div class="page-head">
+            <h1>Linux Distributions</h1>
+            <p>点击卡片查看发行版详细介绍。</p>
+        </div>
+
+        <div class="distro-list" id="distroList">
+            <!-- NVazen 卡片 -->
+            <button class="distro-card" data-distro="nvazen" data-md="nvazen-intro.md" data-name="NVazen Linux" data-sub="基于 Arch Linux 的现代滚动发行版 · 搭载 ALRM 4">
+                <span class="d-icon">
+                    <img src="distro-icons/nvazen.png" alt="NVazen" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%232a2a2a%22/%3E%3Ctext x=%2232%22 y=%2238%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%2358a6ff%22 text-anchor=%22middle%22%3EN%3C/text%3E%3C/svg%3E'">
+                </span>
+                <span class="d-info">
+                    <h2>NVazen Linux <span class="badge-latest">Latest</span></h2>
+                    <p>基于 Arch Linux 的现代滚动发行版 · 搭载 ALRM 4</p>
+                </span>
+                <span class="d-arrow">→</span>
+            </button>
+
+            <!--
+            ============================================================
+            新增发行版卡片时，复制上面这个 <button class="distro-card"> 块，
+            修改 data-md（同目录下的 md 文件名）、data-name、data-sub，
+            并把图标放到 distro-icons/<名字>.png 即可。
+            ============================================================
+            -->
+        </div>
+    </div>
+
+    <!-- 详情视图 -->
+    <div class="detail-view" id="detailView">
+        <button class="back-btn" id="backBtn">← 返回列表</button>
+        <div class="detail-head">
+            <span class="d-icon">
+                <img id="detailIcon" src="" alt="">
+            </span>
+            <div>
+                <h1 id="detailTitle">—</h1>
+                <div class="d-sub" id="detailSub">—</div>
+            </div>
+        </div>
+        <div class="md-body" id="mdBody">
+            <div class="state-box">
+                <div class="spinner"></div>
+                正在加载介绍…
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 帮助弹窗 -->
+<div class="modal-mask" id="helpModal">
+    <div class="modal">
+        <button class="modal-close" id="helpClose" aria-label="Close">✕</button>
+        <h2>❓ 这是什么？</h2>
+        <p>这是一个简约的 Linux 发行版目录页，用于集中展示各个发行版的基本信息与详细介绍。点击任意卡片即可查看该发行版的介绍文档。</p>
+
+        <h3>如何提交你的发行版？</h3>
+        <ol class="step-list">
+            <li>前往 GitHub 仓库 <code>Distro-list</code>（由本站维护者创建）。</li>
+            <li>进入仓库中的 <code>distro</code> 目录。</li>
+            <li>新建一个文件，命名为 <code>about-发行版名字.txt</code> 或 <code>about-发行版名字.md</code>，在里面写你的发行版介绍。</li>
+            <li>提交 Pull Request 或直接提交（取决于仓库权限）。</li>
+        </ol>
+
+        <h3>然后呢？</h3>
+        <p>维护者会在有空时查看你的提交。由于是人工审核，<strong>可能需要等待较长时间</strong>，请耐心等待。通过后你的发行版会出现在本列表中。</p>
+
+        <h3>注意</h3>
+        <ul>
+            <li>请使用清晰的发行版名称，避免重名或误导。</li>
+            <li>介绍内容请保持真实、简洁，不要包含恶意链接。</li>
+            <li>建议同时提供发行版图标（PNG 格式），以便在卡片中展示。</li>
+        </ul>
+    </div>
+</div>
+<script>
+(function () {
+    'use strict';
+
+    // =====================================================
+    // 主题
+    // =====================================================
+    const THEME_KEY = 'nvazen_distro_theme';
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+
+    function applyTheme(t) {
+        if (t === 'light') {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.removeAttribute('data-theme');
+            t = 'dark';
+        }
+        try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
+    }
+
+    let savedTheme = 'dark';
+    try { savedTheme = localStorage.getItem(THEME_KEY) || 'dark'; } catch (e) {}
+    applyTheme(savedTheme);
+
+    themeBtn.addEventListener('click', function () {
+        const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        applyTheme(cur === 'light' ? 'dark' : 'light');
+    });
+
+    // =====================================================
+    // 帮助弹窗
+    // =====================================================
+    const helpBtn = document.getElementById('helpBtn');
+    const helpModal = document.getElementById('helpModal');
+    const helpClose = document.getElementById('helpClose');
+
+    function openHelp() { helpModal.classList.add('open'); }
+    function closeHelp() { helpModal.classList.remove('open'); }
+
+    helpBtn.addEventListener('click', openHelp);
+    helpClose.addEventListener('click', closeHelp);
+    helpModal.addEventListener('click', function (e) {
+        if (e.target === helpModal) closeHelp();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeHelp();
+    });
+
+    // =====================================================
+    // 视图切换
+    // =====================================================
+    const listView = document.getElementById('listView');
+    const detailView = document.getElementById('detailView');
+    const backBtn = document.getElementById('backBtn');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailSub = document.getElementById('detailSub');
+    const detailIcon = document.getElementById('detailIcon');
+    const mdBody = document.getElementById('mdBody');
+
+    function showList() {
+        detailView.classList.remove('active');
+        listView.style.display = '';
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        if (location.hash) {
+            history.replaceState(null, '', location.pathname + location.search);
+        }
+    }
+
+    function showDetail() {
+        listView.style.display = 'none';
+        detailView.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    backBtn.addEventListener('click', showList);
+
+    // =====================================================
+    // Markdown 极简解析（无外部依赖）
+    // =====================================================
+    function escapeHtml(s) {
+        return s
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function renderInline(text) {
+        let t = escapeHtml(text);
+
+        // 行内代码 `code`
+        t = t.replace(/`([^`]+)`/g, function (_, code) {
+            return '<code>' + code + '</code>';
+        });
+
+        // 图片 ![alt](url)
+        t = t.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, function (_, alt, src) {
+            return '<img src="' + src + '" alt="' + alt + '">';
+        });
+
+        // 链接 [text](url)
+        t = t.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, function (_, txt, href) {
+            const safeHref = /^(https?:|mailto:|#|\/|\.)/i.test(href) ? href : '#';
+            return '<a href="' + safeHref + '" target="_blank" rel="noopener">' + txt + '</a>';
+        });
+
+        // 粗体 **text** 或 __text__
+        t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        t = t.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+
+        // 斜体 *text* 或 _text_
+        t = t.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+        t = t.replace(/(^|[^_])_([^_\n]+)_/g, '$1<em>$2</em>');
+
+        // 删除线 ~~text~~
+        t = t.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+
+        return t;
+    }
+      function splitTableRow(line) {
+        let s = line.trim();
+        if (s.startsWith('|')) s = s.slice(1);
+        if (s.endsWith('|')) s = s.slice(0, -1);
+        return s.split('|').map(function (c) { return c.trim(); });
+    }
+
+    function isTableSep(line) {
+        return /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$/.test(line);
+    }
+
+    function parseMarkdown(md) {
+        const lines = md.replace(/\r\n?/g, '\n').split('\n');
+        const out = [];
+        let i = 0;
+
+        while (i < lines.length) {
+            let line = lines[i];
+
+            if (/^\s*$/.test(line)) { i++; continue; }
+
+            // 代码块 ```
+            if (/^\s*```/.test(line)) {
+                const lang = line.replace(/^\s*```/, '').trim();
+                const buf = [];
+                i++;
+                while (i < lines.length && !/^\s*```/.test(lines[i])) {
+                    buf.push(lines[i]);
+                    i++;
+                }
+                i++;
+                out.push(
+                    '<pre><code' + (lang ? ' class="lang-' + escapeHtml(lang) + '"' : '') + '>' +
+                    escapeHtml(buf.join('\n')) +
+                    '</code></pre>'
+                );
+                continue;
+            }
+
+            // 水平线
+            if (/^\s*([-*_])\s*\1\s*\1[\s\1]*$/.test(line)) {
+                out.push('<hr>');
+                i++;
+                continue;
+            }
+
+            // 标题
+            const h = line.match(/^\s*(#{1,6})\s+(.*)$/);
+            if (h) {
+                const level = h[1].length;
+                out.push('<h' + level + '>' + renderInline(h[2].trim()) + '</h' + level + '>');
+                i++;
+                continue;
+            }
+
+            // 引用 >
+            if (/^\s*>/.test(line)) {
+                const buf = [];
+                while (i < lines.length && /^\s*>/.test(lines[i])) {
+                    buf.push(lines[i].replace(/^\s*>\s?/, ''));
+                    i++;
+                }
+                out.push('<blockquote>' + parseMarkdown(buf.join('\n')) + '</blockquote>');
+                continue;
+            }
+
+            // 表格
+            if (line.indexOf('|') !== -1 && i + 1 < lines.length && isTableSep(lines[i + 1])) {
+                const headerCells = splitTableRow(line);
+                const aligns = splitTableRow(lines[i + 1]).map(function (c) {
+                    const l = c.startsWith(':');
+                    const r = c.endsWith(':');
+                    if (l && r) return 'center';
+                    if (r) return 'right';
+                    if (l) return 'left';
+                    return '';
+                });
+                i += 2;
+                const rows = [];
+                while (i < lines.length && lines[i].indexOf('|') !== -1 && !/^\s*$/.test(lines[i])) {
+                    rows.push(splitTableRow(lines[i]));
+                    i++;
+                }
+                let table = '<table><thead><tr>';
+                headerCells.forEach(function (c, idx) {
+                    const a = aligns[idx] ? ' style="text-align:' + aligns[idx] + '"' : '';
+                    table += '<th' + a + '>' + renderInline(c) + '</th>';
+                });
+                table += '</tr></thead><tbody>';
+                rows.forEach(function (r) {
+                    table += '<tr>';
+                    for (let k = 0; k < headerCells.length; k++) {
+                        const a = aligns[k] ? ' style="text-align:' + aligns[k] + '"' : '';
+                        table += '<td' + a + '>' + renderInline(r[k] || '') + '</td>';
+                    }
+                    table += '</tr>';
+                });
+                table += '</tbody></table>';
+                out.push(table);
+                continue;
+            }
+
+            // 无序列表
+            if (/^\s*[-*+]\s+/.test(line)) {
+                const buf = [];
+                while (i < lines.length && /^\s*[-*+]\s+/.test(lines[i])) {
+                    buf.push('<li>' + renderInline(lines[i].replace(/^\s*[-*+]\s+/, '')) + '</li>');
+                    i++;
+                }
+                out.push('<ul>' + buf.join('') + '</ul>');
+                continue;
+            }
+
+            // 有序列表
+            if (/^\s*\d+\.\s+/.test(line)) {
+                const buf = [];
+                while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+                    buf.push('<li>' + renderInline(lines[i].replace(/^\s*\d+\.\s+/, '')) + '</li>');
+                    i++;
+                }
+                out.push('<ol>' + buf.join('') + '</ol>');
+                continue;
+            }
+
+            // 普通段落
+            const para = [];
+            while (
+                i < lines.length &&
+                !/^\s*$/.test(lines[i]) &&
+                !/^\s*(#{1,6})\s+/.test(lines[i]) &&
+                !/^\s*```/.test(lines[i]) &&
+                !/^\s*>/.test(lines[i]) &&
+                !/^\s*[-*+]\s+/.test(lines[i]) &&
+                !/^\s*\d+\.\s+/.test(lines[i]) &&
+                !/^\s*([-*_])\s*\1\s*\1[\s\1]*$/.test(lines[i]) &&
+                !(lines[i].indexOf('|') !== -1 && i + 1 < lines.length && isTableSep(lines[i + 1]))
+            ) {
+                para.push(lines[i]);
+                i++;
+            }
+            if (para.length) {
+                out.push('<p>' + para.map(renderInline).join('<br>') + '</p>');
+            }
+        }
+        return out.join('\n');
+    }
+
+    // =====================================================
+    // 加载 md
+    // =====================================================
+    let mdCache = {};
+
+    async function loadMarkdown(path) {
+        if (mdCache[path]) return mdCache[path];
+        const res = await fetch(path, { cache: 'no-cache' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        mdCache[path] = text;
+        return text;
+    }
+      // =====================================================
+    // 打开详情
+    // =====================================================
+    async function openDetail(card) {
+        const mdPath = card.getAttribute('data-md');
+        const name = card.getAttribute('data-name') || '发行版';
+        const sub = card.getAttribute('data-sub') || '';
+        const img = card.querySelector('.d-icon img');
+
+        detailTitle.textContent = name;
+        detailSub.textContent = sub;
+        if (img) {
+            detailIcon.src = img.src;
+            detailIcon.alt = img.alt || name;
+        }
+
+        showDetail();
+
+        mdBody.innerHTML =
+            '<div class="state-box"><div class="spinner"></div>正在加载介绍…</div>';
+
+        try {
+            history.replaceState(null, '', '#/' + encodeURIComponent(card.getAttribute('data-distro') || ''));
+        } catch (e) {}
+
+        try {
+            const text = await loadMarkdown(mdPath);
+            mdBody.innerHTML = parseMarkdown(text);
+        } catch (err) {
+            mdBody.innerHTML =
+                '<div class="state-box">' +
+                '😕 无法加载介绍文件 <code>' + escapeHtml(mdPath) + '</code><br>' +
+                '请确认该文件与 distro.html 位于同一目录。<br>' +
+                '<span style="font-size:12px;opacity:0.7;">' + escapeHtml(String(err && err.message || err)) + '</span>' +
+                '</div>';
+        }
+    }
+
+    // =====================================================
+    // 绑定卡片点击
+    // =====================================================
+    document.querySelectorAll('.distro-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+            openDetail(card);
+        });
+    });
+
+    // =====================================================
+    // 支持直接通过 URL #/nvazen 打开详情
+    // =====================================================
+    (function initFromHash() {
+        const hash = location.hash.replace(/^#\/?/, '');
+        if (!hash) return;
+        const target = document.querySelector('.distro-card[data-distro="' + hash + '"]');
+        if (target) {
+            // 等 DOM 就绪后打开
+            setTimeout(function () { openDetail(target); }, 0);
+        }
+    })();
+
+})();
+</script>
+
+</body>
+</html>
