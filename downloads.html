@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Center — NVazen™ Linux</title>
+    <meta name="description" content="Download the NVazen Arc ISO image from Internet Archive. NVazen Linux is a modern rolling release distribution based on Arch Linux.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://azen.dev/downloads.html">
+    <meta property="og:title" content="Download Center — NVazen™ Linux">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://azen.dev/downloads.html">
+    <meta property="og:image" content="https://azen.dev/scr1.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+    <link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body data-bg-effect="full">
+
+<header>
+    <div class="container nav-bar">
+        <div style="display:flex;align-items:center;gap:14px;">
+            <a class="brand" href="index.html" aria-label="NVazen Linux home">
+                <img src="icon.png" alt="NVazen Linux">
+                <span>NVazen<span class="tm">™</span> Linux</span>
+            </a>
+            <span class="update-counter" data-i18n="update_counter">update 27</span>
+        </div>
+
+        <nav class="nav-links" aria-label="Primary">
+            <a href="index.html" class="nav-link" data-nav="index.html" data-i18n="nav_news">News</a>
+            <a href="downloads.html" class="nav-link" data-nav="downloads.html" data-i18n="nav_download">Download</a>
+            <a href="distro.html" class="nav-link" data-nav="distro.html" data-i18n="nav_distros">Distros</a>
+            <a href="search.html" class="nav-link" data-nav="search.html" data-i18n="nav_search">Search</a>
+            <a href="support.html" class="nav-link" data-nav="support.html" data-i18n="nav_repos">GitHub</a>
+        </nav>
+
+        <div class="nav-right">
+            <div class="settings-wrapper">
+                <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙️</button>
+                <div class="settings-menu" id="settingsMenu">
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_language">Language</span>
+                        <div class="settings-group-options">
+                            <button class="opt-btn active" data-lang-opt="en">English</button>
+                            <button class="opt-btn" data-lang-opt="zh">简体中文</button>
+                            <button class="opt-btn" data-lang-opt="ja">日本語</button>
+                            <button class="opt-btn" data-lang-opt="ko">한국어</button>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_theme">Theme</span>
+                        <div class="settings-group-options">
+                            <button class="opt-btn active" data-theme-opt="dark">🌙 <span data-i18n="theme_dark">Dark</span></button>
+                            <button class="opt-btn" data-theme-opt="light">☀️ <span data-i18n="theme_light">Light</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="subpage-header">
+    <div class="container">
+        <h1>⬇️ <span data-i18n="dl_page_title">下载中心</span></h1>
+        <p data-i18n="dl_page_desc">选择适合你的 NVazen 版本，下载 ISO 镜像并开始体验。</p>
+    </div>
+</div>
+
+<div class="subpage-content">
+    <div class="container">
+        <div class="card-list">
+            <div class="list-card latest reveal">
+                <div class="lc-icon">🚀</div>
+                <div class="lc-info">
+                    <h3>
+                        NVazen Arc
+                        <span class="badge" data-i18n="dl_latest_badge">Latest</span>
+                    </h3>
+                    <p data-i18n="dl_nvazen_desc">NVazen Arc 滚动更新版 ISO 镜像，托管于 Internet Archive，x86_64 架构。</p>
+                    <p style="margin-top:6px;font-family:Consolas,monospace;font-size:12px;color:var(--text-3);">nvazen-2026.10.06-x86_64 · Rolling Release</p>
+                </div>
+                <div class="lc-action">
+                    <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1"
+                       target="_blank" rel="noopener" class="btn btn-accent" data-i18n="dl_download_btn">
+                        ⬇ <span data-i18n="dl_download_text">下载 ISO</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="list-card reveal">
+                <div class="lc-icon">📦</div>
+                <div class="lc-info">
+                    <h3>
+                        Azen 11 LTS
+                        <span class="lc-version">11-lts.1H2609</span>
+                    </h3>
+                    <p data-i18n="dl_azen11_desc">Azen 11 LTS 已停止支持（EOL），目前没有可用的 ISO 镜像。</p>
+                </div>
+                <div class="lc-action">
+                    <span class="btn disabled" data-i18n="dl_no_iso">没有可用 ISO 镜像</span>
+                </div>
+            </div>
+
+            <div class="list-card reveal">
+                <div class="lc-icon">📦</div>
+                <div class="lc-info">
+                    <h3>
+                        Azen 7
+                        <span class="lc-version">R.1bsH2608</span>
+                    </h3>
+                    <p data-i18n="dl_azen7_desc">Azen 7 为旧版本，目前没有可用的 ISO 镜像。</p>
+                </div>
+                <div class="lc-action">
+                    <span class="btn disabled" data-i18n="dl_no_iso">没有可用 ISO 镜像</span>
+                </div>
+            </div>
+
+            <div class="list-card reveal">
+                <div class="lc-icon">📦</div>
+                <div class="lc-info">
+                    <h3>
+                        Azen 5
+                        <span class="lc-version">rc-bs.1H2608</span>
+                    </h3>
+                    <p data-i18n="dl_azen5_desc">Azen 5 为早期版本，目前没有可用的 ISO 镜像。</p>
+                </div>
+                <div class="lc-action">
+                    <span class="btn disabled" data-i18n="dl_no_iso">没有可用 ISO 镜像</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container footer-grid">
+        <div>
+            <p><strong>© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
+            <p>NVazen<span class="tm">™</span> Linux — <span data-i18n="footer_brand">基于 Arch Linux 的定制发行版</span></p>
+            <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
+        </div>
+        <div class="footer-note">
+            <p data-i18n="footer_note">本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。</p>
+            <p style="margin-top:8px;" data-i18n="footer_repo">GitHub 仓库 · 开源共建</p>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

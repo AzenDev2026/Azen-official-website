@@ -1,5 +1,8 @@
+NVazen Arc
+  |NVazen_Arc_rolling (latest)
+Azen 11
+  |11-lts.1H2609 (EOL)
+Azen 7
+  |R.1bsH2608
 Azen 5
-  |Azen_5rc-bs.1H2608
-Azen 2
-  |Azen_2rls.1H2608
-  |Azen_2rc-bsH2608
+  |rc-bs.1H2608
