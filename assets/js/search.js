@@ -8,7 +8,7 @@
     var I18N = {
         zh: {
             placeholder: '搜索你想找的内容…',
-            searchBtn: '搜索 →',
+            searchBtn: '搜索',
             addQuick: '添加快捷方式',
             quickName: '名称',
             quickUrl: 'URL',
@@ -49,7 +49,7 @@
         },
         en: {
             placeholder: 'Search anything…',
-            searchBtn: 'Search →',
+            searchBtn: 'Search',
             addQuick: 'Add shortcut',
             quickName: 'Name',
             quickUrl: 'URL',
@@ -161,7 +161,7 @@
         var d = t();
         suggestionsBox.innerHTML = d.hotSearches.map(function (item, idx) {
             return '<div class="suggestion-item" data-query="' + item + '">' +
-                '<span>🔍</span><span>' + item + '</span>' +
+                '<span>' + item + '</span>' +
                 (idx < 3 ? '<span class="hot-tag">' + d.hot + '</span>' : '') + '</div>';
         }).join('');
     }

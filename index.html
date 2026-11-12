@@ -35,31 +35,65 @@
 </head>
 <body data-bg-effect="full">
 
-<!-- ================= 顶部导航 ================= -->
-<header>
-    <div class="container nav-bar">
-        <div style="display:flex;align-items:center;gap:14px;">
+<div class="app" id="app">
+
+    <!-- ================= 左侧导航栏 ================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="side-brand">
             <a class="brand" href="index.html" aria-label="NVazen Linux home">
                 <img src="icon.png" alt="NVazen Linux">
-                <span>NVazen<span class="tm">™</span> Linux</span>
+                <span class="brand-text">NVazen<span class="tm">™</span> Linux</span>
             </a>
-            <span class="update-counter" data-i18n="update_counter">update 27</span>
         </div>
+        <div class="side-update" data-i18n="update_counter">update 27</div>
 
-        <nav class="nav-links" aria-label="Primary">
-            <a href="#news" class="nav-link" data-i18n="nav_news">News</a>
-            <a href="#features" class="nav-link" data-i18n="nav_features">Features</a>
-            <a href="#download" class="nav-link" data-i18n="nav_download">Download</a>
-            <a href="#reviews" class="nav-link" data-i18n="nav_reviews">Reviews</a>
-            <a href="#requirements" class="nav-link" data-i18n="nav_requirements">Requirements</a>
-            <a href="distro.html" class="nav-link" data-nav="distro.html" data-i18n="nav_distros">Distros</a>
-            <a href="search.html" class="nav-link" data-nav="search.html" data-i18n="nav_search">Search</a>
-            <a href="support.html" class="nav-link" data-nav="support.html" data-i18n="nav_repos">GitHub</a>
+        <nav class="side-nav" aria-label="Primary">
+            <a class="side-link" href="index.html" data-nav="index.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V20h12V9.5"/></svg>
+                <span class="side-label" data-i18n="nav_home">Home</span>
+            </a>
+            <a class="side-link" href="#news">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
+                <span class="side-label" data-i18n="nav_news">News</span>
+            </a>
+            <a class="side-link" href="#features">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 4 2.4 5 5.6.7-4.1 3.8 1.1 5.5L12 16.6 6.9 19l1.1-5.5L4 9.7l5.6-.7z"/></svg>
+                <span class="side-label" data-i18n="nav_features">Features</span>
+            </a>
+            <a class="side-link" href="#download">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m8 11 4 4 4-4"/><path d="M4 19h16"/></svg>
+                <span class="side-label" data-i18n="nav_download">Download</span>
+            </a>
+            <a class="side-link" href="#reviews">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v11H9l-5 4z"/></svg>
+                <span class="side-label" data-i18n="nav_reviews">Reviews</span>
+            </a>
+            <a class="side-link" href="#requirements">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12"/><path d="M8 12h12"/><path d="M8 18h12"/><path d="M4 6h.01"/><path d="M4 12h.01"/><path d="M4 18h.01"/></svg>
+                <span class="side-label" data-i18n="nav_requirements">Requirements</span>
+            </a>
+            <a class="side-link" href="distro.html" data-nav="distro.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="m7 9 3 3-3 3"/><path d="M13 15h4"/></svg>
+                <span class="side-label" data-i18n="nav_distros">Distros</span>
+            </a>
+            <a class="side-link" href="search.html" data-nav="search.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/></svg>
+                <span class="side-label" data-i18n="nav_search">Search</span>
+            </a>
+            <a class="side-link" href="support.html" data-nav="support.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4"/><path d="m15 8 4 4-4 4"/></svg>
+                <span class="side-label" data-i18n="nav_repos">GitHub</span>
+            </a>
         </nav>
 
-        <div class="nav-right">
+        <div class="side-bottom">
+            <button class="side-toggle" id="sidebarToggle" title="Collapse sidebar" aria-label="Toggle sidebar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/><path d="m20 6-6 6 6 6"/></svg>
+            </button>
             <div class="settings-wrapper">
-                <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙️</button>
+                <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">
+                    <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M18 7h2"/><path d="M4 17h4"/><path d="M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+                </button>
                 <div class="settings-menu" id="settingsMenu">
                     <div class="settings-group">
                         <span class="settings-group-label" data-i18n="settings_language">Language</span>
@@ -73,18 +107,8 @@
                     <div class="settings-group">
                         <span class="settings-group-label" data-i18n="settings_theme">Theme</span>
                         <div class="settings-group-options">
-                            <button class="opt-btn active" data-theme-opt="dark">🌙 <span data-i18n="theme_dark">Dark</span></button>
-                            <button class="opt-btn" data-theme-opt="light">☀️ <span data-i18n="theme_light">Light</span></button>
-                        </div>
-                    </div>
-                    <div class="settings-group">
-                        <span class="settings-group-label" data-i18n="settings_laptop">Laptop color</span>
-                        <div class="settings-group-options">
-                            <button class="opt-btn active" data-laptop-opt="auto" data-i18n="laptop_auto">Auto</button>
-                            <button class="opt-btn" data-laptop-opt="dark"><span class="color-dot" style="background:#2d333b"></span>Dark</button>
-                            <button class="opt-btn" data-laptop-opt="light"><span class="color-dot" style="background:#e8edf2"></span>Light</button>
-                            <button class="opt-btn" data-laptop-opt="silver"><span class="color-dot" style="background:#c0c8d0"></span>Silver</button>
-                            <button class="opt-btn" data-laptop-opt="spacegray"><span class="color-dot" style="background:#4a5158"></span>Gray</button>
+                            <button class="opt-btn active" data-theme-opt="dark"><span data-i18n="theme_dark">Dark</span></button>
+                            <button class="opt-btn" data-theme-opt="light"><span data-i18n="theme_light">Light</span></button>
                         </div>
                     </div>
                     <div class="settings-group">
@@ -95,20 +119,96 @@
                             <button class="opt-btn" data-bg-opt="liquid" data-i18n="bg_liquid">Liquid glass</button>
                         </div>
                     </div>
+                    <!-- Laptop colour group kept in code but hidden while the laptop
+                         mockup is not displayed (see the commented block below). -->
+                    <!--
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_laptop">Laptop color</span>
+                        <div class="settings-group-options">
+                            <button class="opt-btn active" data-laptop-opt="auto" data-i18n="laptop_auto">Auto</button>
+                            <button class="opt-btn" data-laptop-opt="dark"><span class="color-dot" style="background:#2d333b"></span>Dark</button>
+                            <button class="opt-btn" data-laptop-opt="light"><span class="color-dot" style="background:#e8edf2"></span>Light</button>
+                            <button class="opt-btn" data-laptop-opt="silver"><span class="color-dot" style="background:#c0c8d0"></span>Silver</button>
+                            <button class="opt-btn" data-laptop-opt="spacegray"><span class="color-dot" style="background:#4a5158"></span>Gray</button>
+                        </div>
+                    </div>
+                    -->
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </aside>
 
-<!-- ================= 横幅 ================= -->
-<section class="hero-section" id="heroCarousel">
-    <div class="hero-bg-layer"></div>
-    <div class="hero-deco deco-semicircle"></div>
-    <div class="hero-deco deco-ring"></div>
-    <div class="hero-deco deco-dots"></div>
+    <div class="main">
 
-    <div class="container hero-grid">
+    <!-- ================= 横幅 ================= -->
+    <section class="hero-section" id="heroCarousel">
+        <div class="hero-bg-layer"></div>
+        <div class="hero-deco deco-semicircle"></div>
+        <div class="hero-deco deco-ring"></div>
+        <div class="hero-deco deco-dots"></div>
+
+        <div class="container hero-grid">
+            <!-- 介绍框：左侧 -->
+            <div class="hero-text-box">
+                <img src="arclogo.png" alt="Arch Linux" class="arch-logo">
+
+                <div class="version-display">
+                    <span class="version-label" data-i18n="version_label">最新版本</span>
+                    <span class="version-number">NVazen Arc</span>
+                    <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
+                </div>
+                <h1 class="hero-title" id="nvazenTitle" title="Click me">NVazen Arc</h1>
+                <div class="hero-sub" data-i18n="hero_sub">基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术</div>
+                <p class="hero-desc" data-i18n="hero_desc">ISO 镜像已发布！点击下方按钮前往 Internet Archive 下载。</p>
+                <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1"
+                   target="_blank"
+                   rel="noopener"
+                   class="download-iso-btn">
+                    <span data-i18n="download_text">下载 ISO</span>
+                    <span class="size">x86_64</span>
+                </a>
+                <div class="status-alert" data-i18n="hero_alert">NVazen Arc 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
+            </div>
+
+            <!-- 图片展示：右侧（直接展示截图） -->
+            <div class="hero-media">
+                <div class="shot-frame">
+                    <div class="shot-bar">
+                        <span class="shot-dot"></span>
+                        <span class="shot-dot"></span>
+                        <span class="shot-dot"></span>
+                        <span class="shot-title">NVazen Arc</span>
+                    </div>
+                    <div class="shot-view">
+                        <div class="screen-carousel" id="screenCarousel">
+                            <div class="screen-slide"><img src="scr1.png" alt="NVazen Arc screenshot 1"></div>
+                            <div class="screen-slide"><img src="scr2.png" alt="NVazen Arc screenshot 2"></div>
+                            <div class="screen-slide"><img src="scr3.png" alt="NVazen Arc screenshot 3"></div>
+                            <div class="screen-slide"><img src="scr4.png" alt="NVazen Arc screenshot 4"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="screen-dots" id="screenDots">
+                    <button class="screen-dot active" data-screen-index="0" aria-label="Screen 1"></button>
+                    <button class="screen-dot" data-screen-index="1" aria-label="Screen 2"></button>
+                    <button class="screen-dot" data-screen-index="2" aria-label="Screen 3"></button>
+                    <button class="screen-dot" data-screen-index="3" aria-label="Screen 4"></button>
+                </div>
+
+                <div class="image-caption" data-i18n="image_caption">此照片为 NVazen Arc 滚动版的实机演示</div>
+            </div>
+        </div>
+
+        <button class="scroll-hint" id="scrollHint" aria-label="Scroll down" data-i18n="scroll_hint">向下滚动</button>
+    </section>
+
+    <!-- ============================================================
+         笔记本电脑模型（按新版设计已不展示，代码保留未删除。
+         如需恢复：把上面 .hero-media 块换回下面这段即可，样式和
+         配色 JS 仍完整保留在 home.css / site.js 中。）
+    ============================================================
+    <div class="hero-media">
         <div class="laptop-wrapper">
             <div class="laptop">
                 <div class="laptop-lid">
@@ -151,201 +251,160 @@
                 </div>
             </div>
             <div class="laptop-shadow"></div>
-
-            <div class="screen-dots" id="screenDots">
-                <button class="screen-dot active" data-screen-index="0" aria-label="Screen 1"></button>
-                <button class="screen-dot" data-screen-index="1" aria-label="Screen 2"></button>
-                <button class="screen-dot" data-screen-index="2" aria-label="Screen 3"></button>
-                <button class="screen-dot" data-screen-index="3" aria-label="Screen 4"></button>
-            </div>
-
-            <div class="image-caption" data-i18n="image_caption">此照片为 NVazen Arc 滚动版的实机演示</div>
-        </div>
-
-        <div class="hero-text-box">
-            <img src="arclogo.png" alt="Arch Linux" class="arch-logo">
-
-            <div class="version-display">
-                <span class="version-label" data-i18n="version_label">最新版本</span>
-                <span class="version-number">NVazen Arc</span>
-                <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
-            </div>
-            <h1 class="hero-title" id="nvazenTitle" title="Click me">NVazen Arc</h1>
-            <div class="hero-sub" data-i18n="hero_sub">基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术</div>
-            <p class="hero-desc" data-i18n="hero_desc">ISO 镜像已发布！点击下方按钮前往 Internet Archive 下载。</p>
-            <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1"
-               target="_blank"
-               rel="noopener"
-               class="download-iso-btn">
-                <span class="icon">⬇</span>
-                <span data-i18n="download_text">下载 ISO</span>
-                <span class="size">x86_64</span>
-            </a>
-            <div class="status-alert" data-i18n="hero_alert">NVazen Arc 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
         </div>
     </div>
+    ============================================================ -->
 
-    <button class="scroll-hint" id="scrollHint" aria-label="Scroll down">⌄</button>
-</section>
-
-<!-- ================= ALRM 技术 ================= -->
-<section class="page-section alrm-section" id="alrm">
-    <div class="container">
-        <div class="alrm-header reveal">
-            <h2 class="section-title"><span data-i18n="alrm_title">ALRM 技术</span><span class="tm">™</span></h2>
-            <span class="chip chip-accent" data-i18n="alrm_badge">独家</span>
-            <span class="chip">ALRM<span class="tm">™</span> 4 · C++</span>
-        </div>
-        <div class="alrm-desc reveal" data-i18n="alrm_desc">
-            <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 NVazen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。
-        </div>
-        <div class="alrm-grid">
-            <div class="card alrm-card reveal">
-                <div class="card-icon">💤</div>
-                <h3 data-i18n="alrm_card1_title">App Nap</h3>
-                <p data-i18n="alrm_card1_desc">当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。</p>
+    <!-- ================= ALRM 技术 ================= -->
+    <section class="page-section alrm-section" id="alrm">
+        <div class="container">
+            <div class="alrm-header reveal">
+                <h2 class="section-title"><span data-i18n="alrm_title">ALRM 技术</span><span class="tm">™</span></h2>
+                <span class="chip chip-accent" data-i18n="alrm_badge">独家</span>
+                <span class="chip">ALRM<span class="tm">™</span> 4 · C++</span>
             </div>
-            <div class="card alrm-card reveal">
-                <div class="card-icon">🌙</div>
-                <h3 data-i18n="alrm_card2_title">深度睡眠</h3>
-                <p data-i18n="alrm_card2_desc">改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。</p>
+            <div class="alrm-desc reveal" data-i18n="alrm_desc">
+                <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 NVazen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。
             </div>
-            <div class="card alrm-card reveal">
-                <div class="card-icon">⚡</div>
-                <h3 data-i18n="alrm_card3_title">资源优化</h3>
-                <p data-i18n="alrm_card3_desc">动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。</p>
-            </div>
-            <div class="card alrm-card reveal">
-                <div class="card-icon">🛡️</div>
-                <h3 data-i18n="alrm_card4_title">补丁库防篡改</h3>
-                <p data-i18n="alrm_card4_desc">ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。</p>
+            <div class="alrm-grid">
+                <div class="card alrm-card reveal">
+                    <h3 data-i18n="alrm_card1_title">App Nap</h3>
+                    <p data-i18n="alrm_card1_desc">当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。</p>
+                </div>
+                <div class="card alrm-card reveal">
+                    <h3 data-i18n="alrm_card2_title">深度睡眠</h3>
+                    <p data-i18n="alrm_card2_desc">改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。</p>
+                </div>
+                <div class="card alrm-card reveal">
+                    <h3 data-i18n="alrm_card3_title">资源优化</h3>
+                    <p data-i18n="alrm_card3_desc">动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。</p>
+                </div>
+                <div class="card alrm-card reveal">
+                    <h3 data-i18n="alrm_card4_title">补丁库防篡改</h3>
+                    <p data-i18n="alrm_card4_desc">ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ================= News ================= -->
-<section class="page-section news-section" id="news">
-    <div class="container">
-        <h2 class="section-title reveal" data-i18n="news_title">NVazen News</h2>
-        <div class="news-swap-container reveal" id="newsSwapContainer"></div>
-        <div class="news-dots" id="newsDots"></div>
-    </div>
-</section>
+    <!-- ================= News ================= -->
+    <section class="page-section news-section" id="news">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="news_title">NVazen News</h2>
+            <div class="news-swap-container reveal" id="newsSwapContainer"></div>
+            <div class="news-dots" id="newsDots"></div>
+        </div>
+    </section>
 
-<!-- ================= 核心优势 ================= -->
-<section class="page-section features-section" id="features">
-    <div class="container">
-        <h2 class="section-title reveal" style="text-align:center;" data-i18n="features_title">为什么选择 NVazen</h2>
-        <div class="features-grid">
-            <div class="card feature-card reveal">
-                <div class="card-icon">🔒</div>
-                <h3 data-i18n="feature1_title">隐私优先</h3>
-                <p data-i18n="feature1_desc">默认禁用遥测，不收集任何用户数据。你的电脑只属于你。</p>
-            </div>
-            <div class="card feature-card reveal">
-                <div class="card-icon">🚀</div>
-                <h3 data-i18n="feature2_title">性能改善</h3>
-                <p data-i18n="feature2_desc">基于 Arch Linux 精简内核，结合 ALRM 4（C++ 重写），内存占用降低，唤醒速度提升。</p>
-            </div>
-            <div class="card feature-card reveal">
-                <div class="card-icon">🎨</div>
-                <h3 data-i18n="feature3_title">优雅界面</h3>
-                <p data-i18n="feature3_desc">圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。</p>
+    <!-- ================= 核心优势 ================= -->
+    <section class="page-section features-section" id="features">
+        <div class="container">
+            <h2 class="section-title reveal" style="text-align:center;" data-i18n="features_title">为什么选择 NVazen</h2>
+            <div class="features-grid">
+                <div class="card feature-card reveal">
+                    <h3 data-i18n="feature1_title">隐私优先</h3>
+                    <p data-i18n="feature1_desc">默认禁用遥测，不收集任何用户数据。你的电脑只属于你。</p>
+                </div>
+                <div class="card feature-card reveal">
+                    <h3 data-i18n="feature2_title">性能改善</h3>
+                    <p data-i18n="feature2_desc">基于 Arch Linux 精简内核，结合 ALRM 4（C++ 重写），内存占用降低，唤醒速度提升。</p>
+                </div>
+                <div class="card feature-card reveal">
+                    <h3 data-i18n="feature3_title">优雅界面</h3>
+                    <p data-i18n="feature3_desc">圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ================= 下载与版本 ================= -->
-<section class="page-section download-section" id="download">
-    <div class="container download-grid">
-        <div class="card version-box reveal">
-            <h3 data-i18n="version_title">版本列表</h3>
-            <div class="version-list" id="versionList">NVazen Arc  (滚动更新 · Rolling Release)  (Latest)
+    <!-- ================= 下载与版本 ================= -->
+    <section class="page-section download-section" id="download">
+        <div class="container download-grid">
+            <div class="card version-box reveal">
+                <h3 data-i18n="version_title">版本列表</h3>
+                <div class="version-list" id="versionList">NVazen Arc  (滚动更新 · Rolling Release)  (Latest)
 Azen 11 LTS  (11-lts.1H2609)  · 已停止支持 (SS)
 Azen 7 R.1bsH2608
 Azen 5 rc-bs.1H2608</div>
-        </div>
-        <div class="card github-box reveal">
-            <h3 data-i18n="iso_title">ISO 镜像</h3>
-            <p data-i18n="iso_desc">NVazen Arc ISO 镜像已发布，托管于 Internet Archive。</p>
-            <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1" target="_blank" rel="noopener" class="btn btn-accent" data-i18n="iso_btn">⬇ 前往 Internet Archive</a>
-            <p style="margin-top:12px;font-size:13px;color:var(--text-3);" data-i18n="iso_note">x86_64 · 2026.10.06</p>
-        </div>
-
-        <div class="card components-box reveal">
-            <h3>
-                <span class="card-icon">🧩</span>
-                <span data-i18n="components_title">系统组件（最新版本）</span>
-            </h3>
-            <div class="components-grid">
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">KDE Plasma</span><span class="comp-ver">6.8</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">SDDM</span><span class="comp-ver">0.21.0</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">Linux Kernel</span><span class="comp-ver">7.2.11</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">systemd</span><span class="comp-ver">262.1</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">PipeWire</span><span class="comp-ver">1.6.11</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">Wayland</span><span class="comp-ver">1.26.0</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">Mesa</span><span class="comp-ver">26.2.6</span></div>
-                <div class="component-item"><span class="comp-dot"></span><span class="comp-name">NetworkManager</span><span class="comp-ver">1.58.1</span></div>
+            </div>
+            <div class="card github-box reveal">
+                <h3 data-i18n="iso_title">ISO 镜像</h3>
+                <p data-i18n="iso_desc">NVazen Arc ISO 镜像已发布，托管于 Internet Archive。</p>
+                <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1" target="_blank" rel="noopener" class="btn btn-accent" data-i18n="iso_btn">前往 Internet Archive</a>
+                <p style="margin-top:12px;font-size:13px;color:var(--text-3);" data-i18n="iso_note">x86_64 · 2026.10.06</p>
             </div>
 
-            <div class="boot-time">
-                <span class="boot-icon">⚡</span>
-                <span class="boot-label" data-i18n="boot_label">实测纯系统启动耗时</span>
-                <span class="boot-value">5.681</span>
-                <span class="boot-unit" data-i18n="boot_unit">秒</span>
-                <span class="boot-note" data-i18n="boot_note">仅供参考，不代表完全真实数据，实际耗时主要取决于用户设备</span>
+            <div class="card components-box reveal">
+                <h3><span data-i18n="components_title">系统组件（最新版本）</span></h3>
+                <div class="components-grid">
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">KDE Plasma</span><span class="comp-ver">6.8</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">SDDM</span><span class="comp-ver">0.21.0</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">Linux Kernel</span><span class="comp-ver">7.2.11</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">systemd</span><span class="comp-ver">262.1</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">PipeWire</span><span class="comp-ver">1.6.11</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">Wayland</span><span class="comp-ver">1.26.0</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">Mesa</span><span class="comp-ver">26.2.6</span></div>
+                    <div class="component-item"><span class="comp-dot"></span><span class="comp-name">NetworkManager</span><span class="comp-ver">1.58.1</span></div>
+                </div>
+
+                <div class="boot-time">
+                    <span class="boot-label" data-i18n="boot_label">实测纯系统启动耗时</span>
+                    <span class="boot-value">5.681</span>
+                    <span class="boot-unit" data-i18n="boot_unit">秒</span>
+                    <span class="boot-note" data-i18n="boot_note">仅供参考，不代表完全真实数据，实际耗时主要取决于用户设备</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ================= 用户评价 ================= -->
-<section class="page-section comment-section" id="reviews">
-    <div class="container">
-        <h2 class="section-title reveal" style="text-align:center;" data-i18n="reviews_title">用户评价</h2>
-        <div class="comment-display reveal" id="commentDisplay" data-i18n="comments">
-            "NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 滚动版搭载的 ALRM 4 更是让人惊喜。"
-            — 来自社区的反馈
+    <!-- ================= 用户评价 ================= -->
+    <section class="page-section comment-section" id="reviews">
+        <div class="container">
+            <h2 class="section-title reveal" style="text-align:center;" data-i18n="reviews_title">用户评价</h2>
+            <div class="comment-display reveal" id="commentDisplay" data-i18n="comments">
+                "NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 滚动版搭载的 ALRM 4 更是让人惊喜。"
+                — 来自社区的反馈
 
-            "ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"
-            — 测试用户
+                "ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"
+                — 测试用户
 
-            "基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"
+                "基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ================= 硬件要求 ================= -->
-<section class="page-section requirements-section" id="requirements">
-    <div class="container">
-        <h2 class="section-title reveal" style="text-align:center;" data-i18n="requirements_title">硬件基础要求</h2>
-        <table class="fluent-table reveal">
-            <tr><td class="label" data-i18n="req_cpu">处理器</td><td data-i18n="req_cpu_desc">Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)</td></tr>
-            <tr><td class="label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 4 GB，推荐 8 GB 以上</td></tr>
-            <tr><td class="label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">40 GB 可用空间 (虚拟机环境)</td></tr>
-            <tr><td class="label" data-i18n="req_gpu">显卡</td><td data-i18n="req_gpu_desc">支持 OpenGL 3.0 以上</td></tr>
-            <tr><td class="label" data-i18n="req_vm">虚拟化</td><td data-i18n="req_vm_desc">VMware Workstation / Player 或 VirtualBox</td></tr>
-        </table>
-    </div>
-</section>
+    <!-- ================= 硬件要求 ================= -->
+    <section class="page-section requirements-section" id="requirements">
+        <div class="container">
+            <h2 class="section-title reveal" style="text-align:center;" data-i18n="requirements_title">硬件基础要求</h2>
+            <table class="fluent-table reveal">
+                <tr><td class="label" data-i18n="req_cpu">处理器</td><td data-i18n="req_cpu_desc">Intel Core 2 Duo 或 AMD 同级 (推荐 4 核)</td></tr>
+                <tr><td class="label" data-i18n="req_ram">内存</td><td data-i18n="req_ram_desc">最低 4 GB，推荐 8 GB 以上</td></tr>
+                <tr><td class="label" data-i18n="req_storage">存储</td><td data-i18n="req_storage_desc">40 GB 可用空间 (虚拟机环境)</td></tr>
+                <tr><td class="label" data-i18n="req_gpu">显卡</td><td data-i18n="req_gpu_desc">支持 OpenGL 3.0 以上</td></tr>
+                <tr><td class="label" data-i18n="req_vm">虚拟化</td><td data-i18n="req_vm_desc">VMware Workstation / Player 或 VirtualBox</td></tr>
+            </table>
+        </div>
+    </section>
 
-<!-- ================= 页脚 ================= -->
-<footer>
-    <div class="container footer-grid">
-        <div>
-            <p><strong>© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
-            <p>NVazen<span class="tm">™</span> Linux — <span data-i18n="footer_brand">基于 Arch Linux 的定制发行版</span></p>
-            <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
+    <!-- ================= 页脚 ================= -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <p><strong>© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
+                <p>NVazen<span class="tm">™</span> Linux — <span data-i18n="footer_brand">基于 Arch Linux 的定制发行版</span></p>
+                <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
+            </div>
+            <div class="footer-note">
+                <p data-i18n="footer_note">本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。</p>
+                <p style="margin-top:8px;" data-i18n="footer_repo">GitHub 仓库 · 开源共建</p>
+                <p style="margin-top:8px;opacity:0.6;" data-i18n="footer_tagline">探索定制 Linux 的乐趣</p>
+            </div>
         </div>
-        <div class="footer-note">
-            <p data-i18n="footer_note">本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。</p>
-            <p style="margin-top:8px;" data-i18n="footer_repo">GitHub 仓库 · 开源共建</p>
-            <p style="margin-top:8px;opacity:0.6;" data-i18n="footer_tagline">探索定制 Linux 的乐趣</p>
-        </div>
-    </div>
-</footer>
+    </footer>
+
+    </div><!-- /.main -->
+</div><!-- /.app -->
 
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/site.js"></script>

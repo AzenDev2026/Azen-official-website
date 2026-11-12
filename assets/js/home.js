@@ -124,7 +124,7 @@
                 if (!target) return;
                 e.preventDefault();
                 var header = document.querySelector('header');
-                var offset = header ? header.offsetHeight + 16 : 16;
+                var offset = header ? header.offsetHeight + 16 : 24;
                 var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
                 window.scrollTo({ top: top, behavior: 'smooth' });
             });
@@ -172,7 +172,7 @@
         }
         goToScreen(0);
         startScreenAutoPlay();
-        var laptopScreen = document.querySelector('.laptop-screen');
+        var laptopScreen = document.querySelector('.laptop-screen, .shot-view');
         if (laptopScreen) {
             laptopScreen.addEventListener('mouseenter', stopScreenAutoPlay);
             laptopScreen.addEventListener('mouseleave', startScreenAutoPlay);
@@ -192,7 +192,7 @@
                 var target = document.getElementById('alrm');
                 if (target) {
                     var header = document.querySelector('header');
-                    var offset = header ? header.offsetHeight + 16 : 16;
+                    var offset = header ? header.offsetHeight + 16 : 24;
                     window.scrollTo({
                         top: target.getBoundingClientRect().top + window.pageYOffset - offset,
                         behavior: 'smooth'

@@ -161,6 +161,25 @@
         });
     }
 
+    /* ---------- sidebar expand/collapse ---------- */
+    function applySidebar(collapsed) {
+        var app = document.getElementById('app');
+        if (!app) return;
+        app.classList.toggle('side-collapsed', !!collapsed);
+    }
+    function initSidebar() {
+        var app = document.getElementById('app');
+        var toggle = document.getElementById('sidebarToggle');
+        if (!app || !toggle) return;
+        toggle.addEventListener('click', function () {
+            var collapsed = !app.classList.contains('side-collapsed');
+            applySidebar(collapsed);
+            var prefs = window.NV.prefs || loadPrefs();
+            prefs.sidebarCollapsed = collapsed;
+            savePrefs(prefs);
+        });
+    }
+
     /* ---------- expose ---------- */
     window.NV.loadPrefs = loadPrefs;
     window.NV.savePrefs = savePrefs;
@@ -177,7 +196,9 @@
         applyLang(prefs.lang);
         setBgEffect(prefs.bgEffect);
         applyLaptopColor(prefs.laptopColor);
+        applySidebar(prefs.sidebarCollapsed);
         initSettingsMenu();
+        initSidebar();
         initReveal();
         markActiveNav();
         window.NV.prefs = prefs;

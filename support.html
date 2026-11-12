@@ -16,28 +16,65 @@
     <link rel="stylesheet" href="assets/css/base.css">
 </head>
 <body data-bg-effect="full">
+<div class="app" id="app">
 
-<header>
-    <div class="container nav-bar">
-        <div style="display:flex;align-items:center;gap:14px;">
+    <!-- ================= 左侧导航栏 ================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="side-brand">
             <a class="brand" href="index.html" aria-label="NVazen Linux home">
                 <img src="icon.png" alt="NVazen Linux">
-                <span>NVazen<span class="tm">™</span> Linux</span>
+                <span class="brand-text">NVazen<span class="tm">™</span> Linux</span>
             </a>
-            <span class="update-counter" data-i18n="update_counter">update 27</span>
         </div>
+        <div class="side-update" data-i18n="update_counter">update 27</div>
 
-        <nav class="nav-links" aria-label="Primary">
-            <a href="index.html" class="nav-link" data-nav="index.html" data-i18n="nav_news">News</a>
-            <a href="downloads.html" class="nav-link" data-nav="downloads.html" data-i18n="nav_download">Download</a>
-            <a href="distro.html" class="nav-link" data-nav="distro.html" data-i18n="nav_distros">Distros</a>
-            <a href="search.html" class="nav-link" data-nav="search.html" data-i18n="nav_search">Search</a>
-            <a href="support.html" class="nav-link" data-nav="support.html" data-i18n="nav_repos">GitHub</a>
+        <nav class="side-nav" aria-label="Primary">
+            <a class="side-link" href="index.html" data-nav="index.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V20h12V9.5"/></svg>
+                <span class="side-label" data-i18n="nav_home">Home</span>
+            </a>
+            <a class="side-link" href="index.html#news">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
+                <span class="side-label" data-i18n="nav_news">News</span>
+            </a>
+            <a class="side-link" href="index.html#features">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 4 2.4 5 5.6.7-4.1 3.8 1.1 5.5L12 16.6 6.9 19l1.1-5.5L4 9.7l5.6-.7z"/></svg>
+                <span class="side-label" data-i18n="nav_features">Features</span>
+            </a>
+            <a class="side-link" href="index.html#download">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m8 11 4 4 4-4"/><path d="M4 19h16"/></svg>
+                <span class="side-label" data-i18n="nav_download">Download</span>
+            </a>
+            <a class="side-link" href="index.html#reviews">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v11H9l-5 4z"/></svg>
+                <span class="side-label" data-i18n="nav_reviews">Reviews</span>
+            </a>
+            <a class="side-link" href="index.html#requirements">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12"/><path d="M8 12h12"/><path d="M8 18h12"/><path d="M4 6h.01"/><path d="M4 12h.01"/><path d="M4 18h.01"/></svg>
+                <span class="side-label" data-i18n="nav_requirements">Requirements</span>
+            </a>
+            <a class="side-link" href="distro.html" data-nav="distro.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="m7 9 3 3-3 3"/><path d="M13 15h4"/></svg>
+                <span class="side-label" data-i18n="nav_distros">Distros</span>
+            </a>
+            <a class="side-link" href="search.html" data-nav="search.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/></svg>
+                <span class="side-label" data-i18n="nav_search">Search</span>
+            </a>
+            <a class="side-link" href="support.html" data-nav="support.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4"/><path d="m15 8 4 4-4 4"/></svg>
+                <span class="side-label" data-i18n="nav_repos">GitHub</span>
+            </a>
         </nav>
 
-        <div class="nav-right">
+        <div class="side-bottom">
+            <button class="side-toggle" id="sidebarToggle" title="Collapse sidebar" aria-label="Toggle sidebar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/><path d="m20 6-6 6 6 6"/></svg>
+            </button>
             <div class="settings-wrapper">
-                <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙️</button>
+                <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">
+                    <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M18 7h2"/><path d="M4 17h4"/><path d="M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+                </button>
                 <div class="settings-menu" id="settingsMenu">
                     <div class="settings-group">
                         <span class="settings-group-label" data-i18n="settings_language">Language</span>
@@ -51,19 +88,21 @@
                     <div class="settings-group">
                         <span class="settings-group-label" data-i18n="settings_theme">Theme</span>
                         <div class="settings-group-options">
-                            <button class="opt-btn active" data-theme-opt="dark">🌙 <span data-i18n="theme_dark">Dark</span></button>
-                            <button class="opt-btn" data-theme-opt="light">☀️ <span data-i18n="theme_light">Light</span></button>
+                            <button class="opt-btn active" data-theme-opt="dark"><span data-i18n="theme_dark">Dark</span></button>
+                            <button class="opt-btn" data-theme-opt="light"><span data-i18n="theme_light">Light</span></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </aside>
+
+    <div class="main">
+
 
 <div class="subpage-header">
     <div class="container">
-        <h1>🐙 <span data-i18n="gh_page_title">GitHub 仓库</span></h1>
+        <h1><span data-i18n="gh_page_title">GitHub 仓库</span></h1>
         <p data-i18n="gh_page_desc">浏览 NVazen 项目相关的所有 GitHub 仓库，或直接访问开发者主页。</p>
     </div>
 </div>
@@ -72,7 +111,6 @@
     <div class="container">
         <div class="card-list">
             <a href="https://github.com/AzenDev2026/AzenDev" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">🏠</div>
                 <div class="lc-info">
                     <h3>
                         AzenDev
@@ -84,7 +122,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/NAAP" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">💤</div>
                 <div class="lc-info">
                     <h3>
                         NAAP
@@ -96,7 +133,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/DeepTerminal" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">🖥️</div>
                 <div class="lc-info">
                     <h3>
                         DeepTerminal
@@ -108,7 +144,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/NVazenSettings" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">⚙️</div>
                 <div class="lc-info">
                     <h3>
                         NVazenSettings
@@ -120,7 +155,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/sysfetch" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">📊</div>
                 <div class="lc-info">
                     <h3>
                         sysfetch
@@ -132,7 +166,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/azen-notch" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">🏝️</div>
                 <div class="lc-info">
                     <h3>
                         azen-notch
@@ -144,7 +177,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/azen-search" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">🔍</div>
                 <div class="lc-info">
                     <h3>
                         azen-search
@@ -156,7 +188,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/R4NS0M" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">🦠</div>
                 <div class="lc-info">
                     <h3>
                         R4NS0M
@@ -168,7 +199,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/nvazen-wiki" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">📚</div>
                 <div class="lc-info">
                     <h3>
                         nvazen-wiki
@@ -180,7 +210,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/distro-list" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">🐧</div>
                 <div class="lc-info">
                     <h3>
                         distro-list
@@ -192,7 +221,6 @@
             </a>
 
             <a href="https://github.com/AzenDev2026/Azen_sys.resource" target="_blank" rel="noopener" class="list-card reveal">
-                <div class="lc-icon">📦</div>
                 <div class="lc-info">
                     <h3>
                         Azen_sys.resource
@@ -208,7 +236,7 @@
             <h3 data-i18n="gh_profile_title">开发者 GitHub 主页</h3>
             <p data-i18n="gh_profile_desc">访问我的个人 GitHub 首页，查看所有仓库与项目动态。</p>
             <a href="https://github.com/AzenDev2026" target="_blank" rel="noopener" class="btn">
-                🐙 <span data-i18n="gh_profile_btn">前往 GitHub 主页</span>
+                <span data-i18n="gh_profile_btn">前往 GitHub 主页</span>
             </a>
         </div>
     </div>
@@ -230,5 +258,7 @@
 
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/site.js"></script>
+    </div><!-- /.main -->
+</div><!-- /.app -->
 </body>
 </html>

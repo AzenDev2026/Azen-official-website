@@ -1,49 +1,103 @@
-# NVazen 官网（azen.dev）
+# NVazen Official Website (azen.dev)
 
-NVazen™ Linux 的官方网站源码 —— 基于 Windows 11 Fluent 设计语言的静态站点。
+Source code for the official **NVazen™ Linux** website — a static site built with a Windows 11 Fluent design language.
 
-线上地址：**https://azen.dev**
+Live site: **https://azen.dev**
 
-## 页面
+## Pages
 
-| 文件 | 说明 |
+| File | Description |
 |---|---|
-| `index.html` | 主页：NVazen Arc 介绍、ALRM 4 技术、新闻、下载、评价、硬件要求 |
-| `downloads.html` | 下载中心：ISO 版本列表 |
-| `support.html` | GitHub 仓库列表（Azen 生态全部仓库） |
-| `distro.html` | 发行版列表（卡片详情渲染同目录 Markdown） |
-| `search.html` | 搜索门户（搜索引擎、快捷方式、时钟、open-meteo 天气） |
-| `azen/` | **旧版官网归档**（Azen Linux LTS 时期，仅存档） |
+| `index.html` | Home: NVazen Arc introduction, ALRM 4 technology, news, download, reviews, hardware requirements |
+| `downloads.html` | Download center: ISO version list |
+| `support.html` | GitHub repository list (the whole Azen ecosystem) |
+| `distro.html` | Distribution list (cards render same-directory Markdown files as details) |
+| `search.html` | Search portal (search engine, quick links, clock, open-meteo weather) |
+| `azen/` | **Legacy archive** of the Azen Linux LTS era website (kept for history only) |
 
-## 设计系统（assets/）
+## Layout
 
-| 文件 | 说明 |
+Every page uses a **collapsible left sidebar** for navigation. Click the double-chevron button at the bottom of the sidebar to expand / collapse it; the state is remembered in `localStorage`. On narrow screens the sidebar stays in its compact rail form.
+
+## Design system (`assets/`)
+
+| File | Purpose |
 |---|---|
-| `assets/css/base.css` | Win11 设计令牌（深浅主题）、头部、按钮、卡片、页脚等共享组件 |
-| `assets/css/home.css` | 主页专属样式（横幅、笔记本模型、轮播等） |
-| `assets/css/distro.css` | 发行版列表页样式（含 Markdown 渲染样式） |
-| `assets/css/search.css` | 搜索门户样式 |
-| `assets/js/i18n.js` | 四语言字典（en / zh / ja / ko），缺失键自动回退英文 |
-| `assets/js/site.js` | 共享运行时：偏好存储（`nvazen_user_prefs`）、主题、语言、背景效果、笔记本配色、设置菜单、滚动动画 |
-| `assets/js/home.js` | 主页行为：标题动画、截图轮播、新闻轮播、平滑滚动 |
-| `assets/js/distro.js` | 发行版页行为：详情视图、零依赖 Markdown 解析器 |
-| `assets/js/search.js` | 搜索门户行为：引擎、快捷方式、时钟、天气 |
+| `assets/css/base.css` | Win11 design tokens (dark/light themes), sidebar layout, buttons, cards, chips, footer and other shared components |
+| `assets/css/home.css` | Home page styles (hero, screenshot frame, carousel, sections). Note: the CSS for the old laptop mockup is intentionally kept here for future reuse |
+| `assets/css/distro.css` | Distro list page styles (including Markdown rendering styles) |
+| `assets/css/search.css` | Search portal styles |
+| `assets/js/i18n.js` | Four-language dictionaries (en / zh / ja / ko); missing keys fall back to English |
+| `assets/js/site.js` | Shared runtime: preferences (`nvazen_user_prefs`), theme, language, background effects, sidebar toggle, settings menu, scroll reveal |
+| `assets/js/home.js` | Home page behaviour: title animation, screenshot carousel, news carousel, smooth scrolling |
+| `assets/js/distro.js` | Distro page behaviour: detail view, dependency-free Markdown parser |
+| `assets/js/search.js` | Search portal behaviour: engines, quick links, clock, weather |
 
-## 功能
+## Features
 
-- **四语言**：English / 简体中文 / 日本語 / 한국어，⚙ 设置菜单内切换，偏好存 localStorage
-- **深浅主题** + **背景效果**（亚克力 / 完全可见 / 液态玻璃）
-- **笔记本颜色**（4 种配色，CSS 变量驱动）
-- 截图轮播、新闻轮播、字母跳动标题动画、滚动 reveal
-- 搜索页：URL 直达、热门搜索建议、自定义快捷方式、日期格式切换、open-meteo 天气 + 定位/手动城市
+- **Four languages** — English / 简体中文 / 日本語 / 한국어, switchable in the settings menu (sidebar bottom), stored in `localStorage`
+- **Dark / light theme** and **background effects** (Acrylic / Full / Liquid glass) for the hero
+- Screenshot carousel, news carousel, letter-bounce title animation, scroll reveal
+- Search page: URL-direct navigation, hot search suggestions, custom quick links, date format toggle, open-meteo weather with geolocation or manual city entry
 
-## 维护提示
+## How to make common changes
 
-- 全部偏好沿用同一个 `localStorage` 键 `nvazen_user_prefs`，老访客的偏好自动保留
-- 新增发行版：在 `distro.html` 复制 `distro-card` 块，改 `data-md`/`data-name`/`data-sub`，图标放 `distro-icons/`
-- 新增语言：在 `assets/js/i18n.js` 加字典即可，无需改页面
-- 部署：纯静态，任意静态托管（Pages / Netlify / Cloudflare Pages）直接发布仓库根目录
+Most day-to-day edits do **not** require touching CSS or JavaScript. The guides below cover the usual tasks.
+
+### Change the screenshots shown on the home page
+
+1. Replace `scr1.png` … `scr4.png` in the repository root with your new images (keep the same file names and a 16:10-ish aspect ratio).
+2. If you want a different number of slides, open `index.html`, find the `screen-carousel` block and add/remove `<div class="screen-slide"><img src="..."></div>` lines — then update the matching `.screen-dot` buttons just below it.
+
+### Change the hero background image
+
+1. Replace `background.png` in the repository root (any resolution; it is displayed with `background-size: cover`).
+2. The overlay strength for each background effect lives in `assets/css/base.css` under `[data-bg-effect="..."]` (`--hero-overlay`); lower the alpha to show more of the image.
+
+### Change the accent colour / theme colours
+
+Edit the CSS variables at the top of `assets/css/base.css`:
+
+- Dark theme: the `:root, [data-theme="dark"]` block (`--accent: #0078d4`, `--bg-body: #202020`, …)
+- Light theme: the `[data-theme="light"]` block
+
+### Add or edit news entries
+
+Open `assets/js/i18n.js` and edit the `news_items` array inside each language block (`en`, `zh`, `ja`, `ko`). Each item is:
+
+```js
+{ tag: 'Release', title: '...', desc: '...', link: 'https://...' } // link is optional
+```
+
+### Change the version list or system components
+
+Edit the `versionList` block and the `.components-grid` block directly in `index.html`. There is no JavaScript involved.
+
+### Add a distribution to the list page
+
+1. Put the distro icon in `distro-icons/<name>.png`.
+2. In `distro.html`, copy an existing `<button class="distro-card">` block and change its `data-distro`, `data-md` (the Markdown file with the introduction), `data-name` and `data-sub` attributes.
+3. The Markdown file must sit in the repository root next to `distro.html`.
+
+### Add a language
+
+1. Add a new block to `assets/js/i18n.js` (copy an existing one and translate the values).
+2. Add the matching `<button class="opt-btn" data-lang-opt="...">` to the settings menu in the sidebar of each page.
+
+### Add a repository card to the GitHub page
+
+Copy an existing `<a class="list-card">` block in `support.html` and update the link, title, `lc-version` path and description (`data-i18n` key, then add that key to all language blocks in `i18n.js`).
+
+### Restore the laptop mockup (removed from display, code kept)
+
+The laptop markup is preserved as a comment inside `index.html` (search for "笔记本电脑模型"), and its styles are still in `assets/css/home.css` (`.laptop-*` classes) with the colour presets in `assets/js/site.js`. To bring it back, replace the `.hero-media` block with the commented laptop block and re-enable the laptop colour group in the settings menu.
+
+## Maintenance notes
+
+- All preferences share one `localStorage` key: `nvazen_user_prefs`, so returning visitors keep their settings between site versions.
+- The site is fully static; deploy the repository root to any static host (GitHub Pages, Netlify, Cloudflare Pages, …).
+- The search page's weather widget uses the free [open-meteo](https://open-meteo.com/) APIs (no key required).
 
 ## License
 
-GPLv3（沿用 Azen 项目协议）
+GPLv3 (following the Azen project).
