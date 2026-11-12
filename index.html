@@ -174,17 +174,17 @@
             <div class="hero-media">
                 <div class="shot-frame">
                     <div class="shot-bar">
-                        <span class="shot-dot"></span>
-                        <span class="shot-dot"></span>
-                        <span class="shot-dot"></span>
                         <span class="shot-title">NVazen Arc</span>
+                        <div class="shot-caption-btns">
+                            <span class="cap-btn" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 5h8"/></svg></span>
+                            <span class="cap-btn" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="8" height="8"/></svg></span>
+                            <span class="cap-btn close" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 1l8 8M9 1L1 9"/></svg></span>
+                        </div>
                     </div>
                     <div class="shot-view">
                         <div class="screen-carousel" id="screenCarousel">
                             <div class="screen-slide"><img src="scr1.png" alt="NVazen Arc screenshot 1"></div>
                             <div class="screen-slide"><img src="scr2.png" alt="NVazen Arc screenshot 2"></div>
-                            <div class="screen-slide"><img src="scr3.png" alt="NVazen Arc screenshot 3"></div>
-                            <div class="screen-slide"><img src="scr4.png" alt="NVazen Arc screenshot 4"></div>
                         </div>
                     </div>
                 </div>
@@ -192,8 +192,6 @@
                 <div class="screen-dots" id="screenDots">
                     <button class="screen-dot active" data-screen-index="0" aria-label="Screen 1"></button>
                     <button class="screen-dot" data-screen-index="1" aria-label="Screen 2"></button>
-                    <button class="screen-dot" data-screen-index="2" aria-label="Screen 3"></button>
-                    <button class="screen-dot" data-screen-index="3" aria-label="Screen 4"></button>
                 </div>
 
                 <div class="image-caption" data-i18n="image_caption">此照片为 NVazen Arc 滚动版的实机演示</div>
@@ -218,8 +216,6 @@
                             <div class="screen-carousel" id="screenCarousel">
                                 <div class="screen-slide"><img src="scr1.png" alt="NVazen Arc screenshot 1"></div>
                                 <div class="screen-slide"><img src="scr2.png" alt="NVazen Arc screenshot 2"></div>
-                                <div class="screen-slide"><img src="scr3.png" alt="NVazen Arc screenshot 3"></div>
-                                <div class="screen-slide"><img src="scr4.png" alt="NVazen Arc screenshot 4"></div>
                             </div>
                         </div>
                         <div class="laptop-chin">NVazen Arc</div>
@@ -261,27 +257,27 @@
             <div class="alrm-header reveal">
                 <h2 class="section-title"><span data-i18n="alrm_title">ALRM 技术</span><span class="tm">™</span></h2>
                 <span class="chip chip-accent" data-i18n="alrm_badge">独家</span>
-                <span class="chip">ALRM<span class="tm">™</span> 4 · C++</span>
+                <span class="chip">NAAP<span class="tm">™</span> · C++</span>
             </div>
             <div class="alrm-desc reveal" data-i18n="alrm_desc">
-                <strong>ALRM 4 (Azen Laptop Resources Management)</strong> 是 NVazen 团队开发的独家技术，专为优化老款笔记本电脑的性能与功耗而生。继 ALRM 3 从 Python 全面重写为 C++ 之后，ALRM 4 在架构与安全性上继续演进：配置解析模块由类重构为更轻量的自由函数，加载逻辑更健壮；同时引入补丁库防篡改三层防线，进一步保障系统完整性。NVazen Arc 滚动版已率先搭载 ALRM 4 引擎。
+                <strong>NAAP (New Architecture App Nap)</strong> 是 NVazen 团队开发的独家 App Nap 技术：窗口被最小化或完全遮挡时，进程就地冻结（cgroup v2），重新聚焦的瞬间立即解冻——应用原地待命，后台功耗大幅降低。作为 ALRM / ALPRM 技术线的后继，NAAP 采用呼吸式循环（冻结 200 ms + 解冻 50 ms），保证 D-Bus 与 IPC 调用响应不超过约 250 ms；内置崩溃恢复（SIGTERM 解冻 + 启动扫描）与基础设施黑名单，稳定又安全。NVazen Arc 滚动版已搭载 NAAP 引擎。
             </div>
             <div class="alrm-grid">
                 <div class="card alrm-card reveal">
                     <h3 data-i18n="alrm_card1_title">App Nap</h3>
-                    <p data-i18n="alrm_card1_desc">当应用程序窗口被完全遮挡或长时间无操作时，自动暂停其后台活动，释放 CPU 与内存资源，显著降低功耗。</p>
+                    <p data-i18n="alrm_card1_desc">窗口最小化或被完全遮挡时，进程被 cgroup.freeze 就地冻结；重新聚焦瞬间解冻。后台应用停止消耗 CPU，而一切保持原样。</p>
                 </div>
                 <div class="card alrm-card reveal">
-                    <h3 data-i18n="alrm_card2_title">深度睡眠</h3>
-                    <p data-i18n="alrm_card2_desc">改进系统睡眠机制，合盖后进入深度睡眠状态，关闭大部分硬件（CPU、硬盘等）供电，同时支持快速唤醒，续航提升明显。</p>
+                    <h3 data-i18n="alrm_card2_title">快速响应</h3>
+                    <p data-i18n="alrm_card2_desc">呼吸式循环在 200 ms 冻结与 50 ms 解冻之间交替，桌面服务、菜单与 D-Bus 调用始终在约 250 ms 内得到响应——菜单不卡顿、操作无迟滞。</p>
                 </div>
                 <div class="card alrm-card reveal">
-                    <h3 data-i18n="alrm_card3_title">资源优化</h3>
-                    <p data-i18n="alrm_card3_desc">动态调整后台进程优先级，减少不必要的资源占用，让老笔记本电脑也能发挥出最佳性能。C++ 重写后效率提升显著。</p>
+                    <h3 data-i18n="alrm_card3_title">崩溃恢复</h3>
+                    <p data-i18n="alrm_card3_desc">即使桌面意外崩溃，NAAP 也会在 SIGTERM 时解冻全部应用，并在启动时执行恢复扫描，绝不让任何应用被遗留在冻结状态。</p>
                 </div>
                 <div class="card alrm-card reveal">
-                    <h3 data-i18n="alrm_card4_title">补丁库防篡改</h3>
-                    <p data-i18n="alrm_card4_desc">ALRM 4 引入补丁库防篡改三层防线：校验层确保补丁来源可信，运行层拦截非法注入，审计层留存完整变更记录，从源头守护系统完整性。</p>
+                    <h3 data-i18n="alrm_card4_title">安全过滤</h3>
+                    <p data-i18n="alrm_card4_desc">基础设施黑名单保护 KWin、Plasma Shell、D-Bus 与 PipeWire 不被冻结；窗口可见性按 PID 聚合——同一应用的多个窗口全部隐藏时才会冻结。</p>
                 </div>
             </div>
         </div>

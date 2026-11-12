@@ -139,7 +139,6 @@ a:hover { text-decoration: underline; }
     padding: 16px 12px;
     z-index: 90;
     transition: width 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
-    overflow: hidden;
 }
 .app.side-collapsed .sidebar { width: 64px; padding: 16px 10px; }
 

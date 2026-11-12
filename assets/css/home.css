@@ -237,24 +237,30 @@
 .shot-frame .shot-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
+    justify-content: space-between;
+    height: 38px;
+    flex-shrink: 0;
     border-bottom: 1px solid var(--border);
     background: var(--bg-elev2);
     font-size: 12px;
-    color: var(--text-3);
-    flex-shrink: 0;
+    color: var(--text-2);
 }
-.shot-frame .shot-title { margin-left: 4px; font-weight: 500; }
-.shot-frame .shot-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border-strong);
+.shot-frame .shot-title { padding-left: 14px; font-weight: 500; }
+
+/* Windows 11 caption buttons */
+.shot-frame .shot-caption-btns { display: flex; align-self: stretch; }
+.shot-frame .cap-btn {
+    width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-2);
+    cursor: default;
+    transition: background 0.15s ease, color 0.15s ease;
 }
-.shot-frame .shot-dot:nth-child(1) { background: #e55c50; }
-.shot-frame .shot-dot:nth-child(2) { background: #d7a83e; }
-.shot-frame .shot-dot:nth-child(3) { background: #58a84a; }
+.shot-frame .cap-btn svg { width: 10px; height: 10px; }
+.shot-frame .cap-btn:hover { background: var(--bg-hover); color: var(--text); }
+.shot-frame .cap-btn.close:hover { background: #c42b1c; color: #ffffff; }
 
 .shot-frame .shot-view {
     flex: 1;

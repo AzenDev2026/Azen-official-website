@@ -46,8 +46,8 @@ Most day-to-day edits do **not** require touching CSS or JavaScript. The guides 
 
 ### Change the screenshots shown on the home page
 
-1. Replace `scr1.png` … `scr4.png` in the repository root with your new images (keep the same file names and a 16:10-ish aspect ratio).
-2. If you want a different number of slides, open `index.html`, find the `screen-carousel` block and add/remove `<div class="screen-slide"><img src="..."></div>` lines — then update the matching `.screen-dot` buttons just below it.
+1. Replace `scr1.png` or `scr2.png` in the repository root with your new images (keep the same file names and a 16:10-ish aspect ratio). Only the first two screenshots are shown; `scr3.png` and `scr4.png` are older images that are kept in the repository but not displayed.
+2. If you want a different number of slides, open `index.html`, find the `screen-carousel` block and add/remove `<div class="screen-slide"><img src="..."></div>` lines — then update the matching `.screen-dot` buttons just below it. (The commented-out laptop block contains its own copy of the carousel; keep it in sync if you ever restore it.)
 
 ### Change the hero background image
 
