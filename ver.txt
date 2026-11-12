@@ -1,4 +1,4 @@
-NVazen Arc
+NVazen Linux
   |NVazen_Arc_rolling (latest)
 Azen 11
   |11-lts.1H2609 (EOL)

@@ -35,11 +35,11 @@
             hero_desc: 'ISO image is now available! Click the button below to download from Internet Archive.',
             download_btn: 'Download ISO from Internet Archive',
             download_text: 'Download ISO',
-            hero_alert: 'NVazen Arc rolling release always brings you the latest NAAP engine and system improvements',
-            image_caption: 'This screenshot shows NVazen Arc Rolling Release in action',
+            hero_alert: 'NVazen Linux rolling release always brings you the latest NAAP engine and system improvements',
+            image_caption: 'This screenshot shows NVazen Linux Rolling Release in action',
             alrm_title: 'NAAP Technology',
             alrm_badge: 'Exclusive',
-            alrm_desc: 'NAAP (New Architecture App Nap) is an exclusive App Nap technology developed by the NVazen team. When a window is minimized or fully covered, NAAP freezes its process in place (cgroup v2); the moment the window regains focus it is unfrozen immediately — cutting background power use without closing anything. As the successor of the ALRM / ALPRM line, NAAP uses a breathing cycle (200 ms frozen + 50 ms thawed) so D-Bus and IPC calls stay responsive (about 250 ms), with crash recovery (SIGTERM thaw + startup scan) and an infrastructure blocklist for safety. NVazen Arc Rolling Release ships with the NAAP engine.',
+            alrm_desc: 'NAAP (New Architecture App Nap) is an exclusive App Nap technology developed by the NVazen team. When a window is minimized or fully covered, NAAP freezes its process in place (cgroup v2); the moment the window regains focus it is unfrozen immediately — cutting background power use without closing anything. As the successor of the ALRM / ALPRM line, NAAP uses a breathing cycle (200 ms frozen + 50 ms thawed) so D-Bus and IPC calls stay responsive (about 250 ms), with crash recovery (SIGTERM thaw + startup scan) and an infrastructure blocklist for safety. NVazen Linux Rolling Release ships with the NAAP engine.',
             alrm_card1_title: 'App Nap',
             alrm_card1_desc: 'Minimize or fully cover a window and its process is frozen in place with cgroup.freeze; focus it again and it unfreezes instantly. Background apps stop consuming CPU while staying exactly where you left them.',
             alrm_card2_title: 'Fast Response',
@@ -59,7 +59,7 @@
             feature3_desc: 'Rounded corners, soft glows and dynamic themes make every interaction a pleasure.',
             version_title: 'Version List',
             iso_title: 'ISO Image',
-            iso_desc: 'NVazen Arc ISO image is now available, hosted on Internet Archive.',
+            iso_desc: 'NVazen Linux ISO image is now available, hosted on Internet Archive.',
             iso_btn: 'Go to Internet Archive',
             iso_note: 'x86_64 · 2026.10.06',
             components_title: 'System Components (Latest)',
@@ -87,7 +87,7 @@
             dl_page_title: 'Download Center',
             dl_page_desc: 'Choose the NVazen version that suits you, download the ISO image and start exploring.',
             dl_latest_badge: 'Latest',
-            dl_nvazen_desc: 'NVazen Arc rolling release ISO image, hosted on Internet Archive, x86_64 architecture.',
+            dl_nvazen_desc: 'NVazen Linux rolling release ISO image, hosted on Internet Archive, x86_64 architecture.',
             dl_download_btn: 'Download ISO',
             dl_download_text: 'Download ISO',
             dl_no_iso: 'No ISO available',
@@ -111,11 +111,11 @@
             gh_profile_desc: 'Visit my personal GitHub profile to see all repositories and project activity.',
             gh_profile_btn: 'Go to GitHub Profile',
             news_items: [
-                { tag: 'Release', title: 'NVazen Arc ISO Image Released', desc: 'The first NVazen Arc ISO image (nvazen-2026.10.06-x86_64) is now available on Internet Archive. Click here to download and try it out!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                { tag: 'Rolling', title: 'NVazen Arc becomes Rolling Release', desc: 'NVazen Arc has switched to a rolling release model — you always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
+                { tag: 'Release', title: 'NVazen Linux ISO Image Released', desc: 'The first NVazen Linux ISO image (nvazen-2026.10.06-x86_64) is now available on Internet Archive. Click here to download and try it out!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                { tag: 'Rolling', title: 'NVazen Linux becomes Rolling Release', desc: 'NVazen Linux has switched to a rolling release model — you always get the latest ALRM 4 engine and system improvements without waiting for major version jumps.' },
                 { tag: 'Tech', title: 'ALRM 4 ships with refactored config parsing', desc: 'ALRM 4 refactors the config parsing module from a class into lighter free functions, and introduces a three-layer patch-library anti-tamper defense for stronger system integrity.' }
             ],
-            comments: '"NVazen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Arc is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
+            comments: '"NVazen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Linux is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
         },
         zh: {
             update_counter: '第 27 次更新',
@@ -145,11 +145,11 @@
             hero_desc: 'ISO 镜像已发布！点击下方按钮前往 Internet Archive 下载。',
             download_btn: '从 Internet Archive 下载 ISO',
             download_text: '下载 ISO',
-            hero_alert: 'NVazen Arc 滚动更新，始终为你带来最新的 NAAP 引擎与系统改进',
-            image_caption: '此照片为 NVazen Arc 滚动版的实机演示',
+            hero_alert: 'NVazen Linux 滚动更新，始终为你带来最新的 NAAP 引擎与系统改进',
+            image_caption: '此照片为 NVazen Linux 滚动版的实机演示',
             alrm_title: 'NAAP 技术',
             alrm_badge: '独家',
-            alrm_desc: 'NAAP（New Architecture App Nap）是 NVazen 团队开发的独家 App Nap 技术：窗口被最小化或完全遮挡时，进程就地冻结（cgroup v2），重新聚焦的瞬间立即解冻——应用原地待命，后台功耗大幅降低。作为 ALRM / ALPRM 技术线的后继，NAAP 采用呼吸式循环（冻结 200 ms + 解冻 50 ms），保证 D-Bus 与 IPC 调用响应不超过约 250 ms；内置崩溃恢复（SIGTERM 解冻 + 启动扫描）与基础设施黑名单，稳定又安全。NVazen Arc 滚动版已搭载 NAAP 引擎。',
+            alrm_desc: 'NAAP（New Architecture App Nap）是 NVazen 团队开发的独家 App Nap 技术：窗口被最小化或完全遮挡时，进程就地冻结（cgroup v2），重新聚焦的瞬间立即解冻——应用原地待命，后台功耗大幅降低。作为 ALRM / ALPRM 技术线的后继，NAAP 采用呼吸式循环（冻结 200 ms + 解冻 50 ms），保证 D-Bus 与 IPC 调用响应不超过约 250 ms；内置崩溃恢复（SIGTERM 解冻 + 启动扫描）与基础设施黑名单，稳定又安全。NVazen Linux 滚动版已搭载 NAAP 引擎。',
             alrm_card1_title: 'App Nap',
             alrm_card1_desc: '窗口最小化或被完全遮挡时，进程被 cgroup.freeze 就地冻结；重新聚焦瞬间解冻。后台应用停止消耗 CPU，而一切保持原样。',
             alrm_card2_title: '快速响应',
@@ -169,7 +169,7 @@
             feature3_desc: '圆角与柔光阴影，搭配动态主题，让每一次交互都赏心悦目。',
             version_title: '版本列表',
             iso_title: 'ISO 镜像',
-            iso_desc: 'NVazen Arc ISO 镜像已发布，托管于 Internet Archive。',
+            iso_desc: 'NVazen Linux ISO 镜像已发布，托管于 Internet Archive。',
             iso_btn: '前往 Internet Archive',
             iso_note: 'x86_64 · 2026.10.06',
             components_title: '系统组件（最新版本）',
@@ -197,7 +197,7 @@
             dl_page_title: '下载中心',
             dl_page_desc: '选择适合你的 NVazen 版本，下载 ISO 镜像并开始体验。',
             dl_latest_badge: '最新',
-            dl_nvazen_desc: 'NVazen Arc 滚动更新版 ISO 镜像，托管于 Internet Archive，x86_64 架构。',
+            dl_nvazen_desc: 'NVazen Linux 滚动更新版 ISO 镜像，托管于 Internet Archive，x86_64 架构。',
             dl_download_btn: '下载 ISO',
             dl_download_text: '下载 ISO',
             dl_no_iso: '没有可用 ISO 镜像',
@@ -221,11 +221,11 @@
             gh_profile_desc: '访问我的个人 GitHub 首页，查看所有仓库与项目动态。',
             gh_profile_btn: '前往 GitHub 主页',
             news_items: [
-                { tag: '发布', title: 'NVazen Arc ISO 镜像发布', desc: '首个 NVazen Arc ISO 镜像（nvazen-2026.10.06-x86_64）现已上线 Internet Archive。点击下载并体验！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                { tag: '滚动', title: 'NVazen Arc 转为滚动更新', desc: 'NVazen Arc 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
+                { tag: '发布', title: 'NVazen Linux ISO 镜像发布', desc: '首个 NVazen Linux ISO 镜像（nvazen-2026.10.06-x86_64）现已上线 Internet Archive。点击下载并体验！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                { tag: '滚动', title: 'NVazen Linux 转为滚动更新', desc: 'NVazen Linux 已切换为滚动更新模式 — 你无需等待大版本跳跃，即可始终获得最新的 ALRM 4 引擎与系统改进。' },
                 { tag: '技术', title: 'ALRM 4 搭载重构后的配置解析', desc: 'ALRM 4 将配置解析模块由类重构为更轻量的自由函数，并引入补丁库防篡改三层防线，系统完整性更强。' }
             ],
-            comments: '"NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Arc 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
+            comments: '"NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Linux 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
         },
         ja: {
             update_counter: '更新 27',
@@ -255,11 +255,11 @@
             hero_desc: 'ISO イメージがリリースされました！下のボタンから Internet Archive でダウンロードできます。',
             download_btn: 'Internet Archive から ISO をダウンロード',
             download_text: 'ISO をダウンロード',
-            hero_alert: 'NVazen Arc ローリングリリースは常に最新の NAAP エンジンとシステム改善を提供します',
-            image_caption: 'このスクリーンショットは NVazen Arc ローリングリリースの実機デモです',
+            hero_alert: 'NVazen Linux ローリングリリースは常に最新の NAAP エンジンとシステム改善を提供します',
+            image_caption: 'このスクリーンショットは NVazen Linux ローリングリリースの実機デモです',
             alrm_title: 'NAAP テクノロジー',
             alrm_badge: '独占',
-            alrm_desc: 'NAAP（New Architecture App Nap）は NVazen チームが開発した独自の App Nap 技術です。ウィンドウが最小化または完全に隠れると、プロセスはその場で凍結され（cgroup v2）、再びフォーカスされると即座に解凍されます。ALRM / ALPRM 系列の後継として、NAAP は呼吸サイクル（200 ms 凍結 + 50 ms 解凍）により D-Bus や IPC の応答を約 250 ms 以内に保ち、クラッシュ復旧（SIGTERM 解凍 + 起動時スキャン）とインフラのブロックリストを備えています。NVazen Arc ローリングリリースは NAAP エンジンを搭載しています。',
+            alrm_desc: 'NAAP（New Architecture App Nap）は NVazen チームが開発した独自の App Nap 技術です。ウィンドウが最小化または完全に隠れると、プロセスはその場で凍結され（cgroup v2）、再びフォーカスされると即座に解凍されます。ALRM / ALPRM 系列の後継として、NAAP は呼吸サイクル（200 ms 凍結 + 50 ms 解凍）により D-Bus や IPC の応答を約 250 ms 以内に保ち、クラッシュ復旧（SIGTERM 解凍 + 起動時スキャン）とインフラのブロックリストを備えています。NVazen Linux ローリングリリースは NAAP エンジンを搭載しています。',
             alrm_card1_title: 'App Nap',
             alrm_card1_desc: 'ウィンドウを最小化または完全に隠すと、プロセスは cgroup.freeze でその場に凍結。再びフォーカスすると即座に解凍されます。バックグラウンドアプリは CPU を消費せず、すべてそのまま残ります。',
             alrm_card2_title: '高速応答',
@@ -279,7 +279,7 @@
             feature3_desc: 'ソフトなラウンドとダイナミックテーマで、すべてのインタラクションを楽しく。',
             version_title: 'バージョン一覧',
             iso_title: 'ISO イメージ',
-            iso_desc: 'NVazen Arc ISO イメージがリリースされました。Internet Archive でホストされています。',
+            iso_desc: 'NVazen Linux ISO イメージがリリースされました。Internet Archive でホストされています。',
             iso_btn: 'Internet Archive へ',
             iso_note: 'x86_64 · 2026.10.06',
             components_title: 'システムコンポーネント（最新版）',
@@ -307,7 +307,7 @@
             dl_page_title: 'ダウンロードセンター',
             dl_page_desc: 'あなたに合った NVazen バージョンを選び、ISO イメージをダウンロードして体験を始めましょう。',
             dl_latest_badge: '最新',
-            dl_nvazen_desc: 'NVazen Arc ローリングリリース ISO イメージ。Internet Archive でホスト、x86_64 アーキテクチャ。',
+            dl_nvazen_desc: 'NVazen Linux ローリングリリース ISO イメージ。Internet Archive でホスト、x86_64 アーキテクチャ。',
             dl_download_btn: 'ISO をダウンロード',
             dl_download_text: 'ISO をダウンロード',
             dl_no_iso: '利用可能な ISO がありません',
@@ -332,11 +332,11 @@
             gh_profile_desc: '私の個人 GitHub プロフィールにアクセスして、すべてのリポジトリとプロジェクトの動向を確認できます。',
             gh_profile_btn: 'GitHub プロフィールへ',
             news_items: [
-                { tag: 'リリース', title: 'NVazen Arc ISO イメージ公開', desc: '最初の NVazen Arc ISO イメージ (nvazen-2026.10.06-x86_64) が Internet Archive で公開されました。ダウンロードして試してみてください！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                { tag: 'ローリング', title: 'NVazen Arc がローリングリリースに', desc: 'NVazen Arc はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
+                { tag: 'リリース', title: 'NVazen Linux ISO イメージ公開', desc: '最初の NVazen Linux ISO イメージ (nvazen-2026.10.06-x86_64) が Internet Archive で公開されました。ダウンロードして試してみてください！', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                { tag: 'ローリング', title: 'NVazen Linux がローリングリリースに', desc: 'NVazen Linux はローリングリリースモデルに移行しました。大版本のジャンプを待たずに、常に最新の ALRM 4 エンジンとシステム改善を利用できます。' },
                 { tag: '技術', title: 'ALRM 4 が設定解析をリファクタして搭載', desc: 'ALRM 4 は設定解析モジュールをクラスからより軽量な自由関数にリファクタし、パッチライブラリの三段改ざん防止機構を導入しました。' }
             ],
-            comments: '"NVazen はクリーンで純粋な Linux 体験を提供します。NVazen Arc の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
+            comments: '"NVazen はクリーンで純粋な Linux 体験を提供します。NVazen Linux の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
         },
         ko: {
             update_counter: '업데이트 27',
@@ -366,11 +366,11 @@
             hero_desc: 'ISO 이미지가 출시되었습니다! 아래 버튼을 클릭하여 Internet Archive에서 다운로드하세요.',
             download_btn: 'Internet Archive에서 ISO 다운로드',
             download_text: 'ISO 다운로드',
-            hero_alert: 'NVazen Arc 롤링 릴리스는 항상 최신 NAAP 엔진과 시스템 개선을 제공합니다',
-            image_caption: '이 스크린샷은 NVazen Arc 롤링 릴리스의 실제 데모입니다',
+            hero_alert: 'NVazen Linux 롤링 릴리스는 항상 최신 NAAP 엔진과 시스템 개선을 제공합니다',
+            image_caption: '이 스크린샷은 NVazen Linux 롤링 릴리스의 실제 데모입니다',
             alrm_title: 'NAAP 기술',
             alrm_badge: '독점',
-            alrm_desc: 'NAAP(New Architecture App Nap)는 NVazen 팀이 개발한 독점 App Nap 기술입니다. 창을 최소화하거나 완전히 가리면 프로세스가 제자리에서 동결되고(cgroup v2), 다시 포커스되면 즉시 해동됩니다. ALRM/ALPRM 라인의 후속으로, NAAP는 호흡 사이클(200ms 동결 + 50ms 해동)을 통해 D-Bus 및 IPC 응답을 약 250ms 이내로 유지하고, 크래시 복구(SIGTERM 해동 + 시작 시 스캔)와 인프라 블랙리스트를 갖추고 있습니다. NVazen Arc 롤링 릴리스에는 NAAP 엔진이 탑재됩니다.',
+            alrm_desc: 'NAAP(New Architecture App Nap)는 NVazen 팀이 개발한 독점 App Nap 기술입니다. 창을 최소화하거나 완전히 가리면 프로세스가 제자리에서 동결되고(cgroup v2), 다시 포커스되면 즉시 해동됩니다. ALRM/ALPRM 라인의 후속으로, NAAP는 호흡 사이클(200ms 동결 + 50ms 해동)을 통해 D-Bus 및 IPC 응답을 약 250ms 이내로 유지하고, 크래시 복구(SIGTERM 해동 + 시작 시 스캔)와 인프라 블랙리스트를 갖추고 있습니다. NVazen Linux 롤링 릴리스에는 NAAP 엔진이 탑재됩니다.',
             alrm_card1_title: 'App Nap',
             alrm_card1_desc: '창을 최소화하거나 완전히 가리면 프로세스가 cgroup.freeze로 제자리에서 동결됩니다. 다시 포커스하면 즉시 해동되어 백그라운드 앱이 CPU를 소비하지 않으면서도 모든 것이 그대로 유지됩니다.',
             alrm_card2_title: '빠른 응답',
@@ -390,7 +390,7 @@
             feature3_desc: '부드러운 라운드와 다이나믹 테마로 모든 상호작용을 즐겁게.',
             version_title: '버전 목록',
             iso_title: 'ISO 이미지',
-            iso_desc: 'NVazen Arc ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
+            iso_desc: 'NVazen Linux ISO 이미지가 출시되었으며 Internet Archive에서 호스팅됩니다.',
             iso_btn: 'Internet Archive로 이동',
             iso_note: 'x86_64 · 2026.10.06',
             components_title: '시스템 구성 요소 (최신)',
@@ -418,7 +418,7 @@
             dl_page_title: '다운로드 센터',
             dl_page_desc: '당신에게 맞는 NVazen 버전을 선택하고 ISO 이미지를 다운로드하여 경험해 보세요.',
             dl_latest_badge: '최신',
-            dl_nvazen_desc: 'NVazen Arc 롤링 릴리스 ISO 이미지. Internet Archive에서 호스팅, x86_64 아키텍처.',
+            dl_nvazen_desc: 'NVazen Linux 롤링 릴리스 ISO 이미지. Internet Archive에서 호스팅, x86_64 아키텍처.',
             dl_download_btn: 'ISO 다운로드',
             dl_download_text: 'ISO 다운로드',
             dl_no_iso: '사용 가능한 ISO 없음',
@@ -443,11 +443,11 @@
             gh_profile_desc: '제 개인 GitHub 프로필을 방문하여 모든 저장소와 프로젝트 활동을 확인하세요.',
             gh_profile_btn: 'GitHub 프로필로 이동',
             news_items: [
-                { tag: '릴리스', title: 'NVazen Arc ISO 이미지 출시', desc: '첫 번째 NVazen Arc ISO 이미지(nvazen-2026.10.06-x86_64)가 Internet Archive에 공개되었습니다. 다운로드하여 사용해 보세요!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
-                { tag: '롤링', title: 'NVazen Arc, 롤링 릴리스로 전환', desc: 'NVazen Arc가 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
+                { tag: '릴리스', title: 'NVazen Linux ISO 이미지 출시', desc: '첫 번째 NVazen Linux ISO 이미지(nvazen-2026.10.06-x86_64)가 Internet Archive에 공개되었습니다. 다운로드하여 사용해 보세요!', link: 'https://archive.org/download/nvazen-2026.10.06-x-86-64-1' },
+                { tag: '롤링', title: 'NVazen Linux, 롤링 릴리스로 전환', desc: 'NVazen Linux가 롤링 릴리스 모델로 전환했습니다. 이제 대버전 점프를 기다리지 않고 항상 최신 ALRM 4 엔진과 시스템 개선을 받을 수 있습니다.' },
                 { tag: '기술', title: 'ALRM 4, 리팩터링된 설정 파싱 탑재', desc: 'ALRM 4는 설정 파싱 모듈을 클래스에서 더 가벼운 자유 함수로 리팩터링하고, 패치 라이브러리 3중 변조 방지 방어선을 도입했습니다.' }
             ],
-            comments: '"NVazen은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen Arc의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
+            comments: '"NVazen은 깔끔하고 순수한 Linux 경험을 제공합니다. NVazen Linux의 ALRM 4는 놀랍습니다."\n— 커뮤니티 피드백\n\n"ISO가 드디어 나왔습니다 — Internet Archive에서 다운로드하여 성공적으로 설치했습니다!"\n— 테스터\n\n"Arch 기반 커스터마이징이 영리합니다. 오래된 기기에서도 부드럽게 실행됩니다."'
         }
     };
 })();

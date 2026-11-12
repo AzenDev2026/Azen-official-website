@@ -161,6 +161,24 @@
         });
     }
 
+    /* ---------- scroll progress bar ---------- */
+    function initScrollProgress() {
+        if (document.querySelector('.scroll-progress')) return;
+        var bar = document.createElement('div');
+        bar.className = 'scroll-progress';
+        bar.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(bar);
+        function update() {
+            var doc = document.documentElement;
+            var max = doc.scrollHeight - doc.clientHeight;
+            var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+            bar.style.width = pct + '%';
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+    }
+
     /* ---------- sidebar expand/collapse ---------- */
     function applySidebar(collapsed) {
         var app = document.getElementById('app');
@@ -199,6 +217,7 @@
         applySidebar(prefs.sidebarCollapsed);
         initSettingsMenu();
         initSidebar();
+        initScrollProgress();
         initReveal();
         markActiveNav();
         window.NV.prefs = prefs;

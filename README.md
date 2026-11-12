@@ -8,7 +8,7 @@ Live site: **https://azen.dev**
 
 | File | Description |
 |---|---|
-| `index.html` | Home: NVazen Arc introduction, ALRM 4 technology, news, download, reviews, hardware requirements |
+| `index.html` | Home: NVazen Linux introduction, NAAP technology, news, download, reviews, hardware requirements |
 | `downloads.html` | Download center: ISO version list |
 | `support.html` | GitHub repository list (the whole Azen ecosystem) |
 | `distro.html` | Distribution list (cards render same-directory Markdown files as details) |
