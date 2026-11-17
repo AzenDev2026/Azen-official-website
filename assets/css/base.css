@@ -552,6 +552,31 @@ section.page-section { padding: 72px 0; }
     text-transform: uppercase;
 }
 
+.badge-outdated {
+    background: rgba(202, 138, 4, 0.16);
+    color: #d97706;
+    border: 1px solid rgba(217, 119, 6, 0.45);
+}
+[data-theme="dark"] .badge-outdated {
+    background: rgba(245, 158, 11, 0.14);
+    color: #fbbf24;
+}
+
+.dl-warning-note {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #b45309;
+    background: rgba(202, 138, 4, 0.10);
+    border: 1px solid rgba(217, 119, 6, 0.35);
+    border-radius: 8px;
+}
+[data-theme="dark"] .dl-warning-note {
+    color: #fcd34d;
+    background: rgba(245, 158, 11, 0.08);
+}
+
 /* ---------- Tables ---------- */
 .fluent-table {
     width: 100%;
