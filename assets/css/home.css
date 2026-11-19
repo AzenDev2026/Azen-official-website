@@ -238,71 +238,21 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
-.hero-media .shot-frame {
-    transition: box-shadow 0.35s ease, border-color 0.35s ease;
-}
-.hero-media .shot-frame:hover {
-    border-color: var(--border-strong);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-}
-[data-theme="light"] .hero-media .shot-frame:hover {
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-}
-
-.shot-frame {
+/* 原图直出：无窗口外壳，仅圆角 + 轻阴影 */
+.hero-shot {
     width: 100%;
     max-width: 560px;
     aspect-ratio: 16 / 10;
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
     border-radius: 12px;
-    box-shadow: var(--shadow-float);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
     position: relative;
-    display: flex;
-    flex-direction: column;
 }
-
-.shot-frame .shot-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 38px;
-    flex-shrink: 0;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-elev2);
-    font-size: 12px;
-    color: var(--text-2);
-}
-.shot-frame .shot-title { padding-left: 14px; font-weight: 500; }
-
-/* Windows 11 caption buttons */
-.shot-frame .shot-caption-btns { display: flex; align-self: stretch; }
-.shot-frame .cap-btn {
-    width: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-2);
-    cursor: default;
-    transition: background 0.15s ease, color 0.15s ease;
-}
-.shot-frame .cap-btn svg { width: 10px; height: 10px; }
-.shot-frame .cap-btn:hover { background: var(--bg-hover); color: var(--text); }
-.shot-frame .cap-btn.close:hover { background: #c42b1c; color: #ffffff; }
-
-.shot-frame .shot-view {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-    background: var(--bg-body);
-    position: relative;
-}
-.shot-frame .shot-view .screen-carousel { height: 100%; }
-.shot-frame .screen-slide img {
+.hero-shot .screen-carousel { height: 100%; }
+.hero-shot .screen-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     display: block;
 }

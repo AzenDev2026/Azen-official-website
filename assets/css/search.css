@@ -182,10 +182,10 @@
 }
 .add-quick-btn:hover { color: var(--accent-text); border-color: var(--accent); background: var(--bg-hover); }
 
-/* info widget (clock + weather) */
+/* info widget (clock + weather) —— 避开左侧边栏（展开 240px / 折叠 64px） */
 .info-widget {
     position: fixed;
-    left: 20px;
+    left: calc(240px + 20px);
     bottom: 20px;
     background: var(--bg-elev);
     border: 1px solid var(--border);
@@ -197,6 +197,7 @@
     transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 .info-widget.collapsed { width: auto; }
+.app.side-collapsed .info-widget { left: calc(64px + 20px); }
 .info-widget.collapsed .info-datetime,
 .info-widget.collapsed .info-weather,
 .info-widget.collapsed .info-consent,
@@ -364,9 +365,13 @@
 }
 .modal-actions .confirm-btn:hover { background: var(--accent-hover); color: #ffffff; }
 
+@media (max-width: 900px) {
+    .info-widget { left: calc(64px + 12px); }
+}
+
 @media (max-width: 520px) {
     .brand-big img { width: 44px; height: 44px; }
     .brand-big .brand-name { font-size: 24px; }
     .search-btn { padding: 0 16px; }
-    .info-widget { left: 12px; bottom: 12px; width: 220px; }
+    .info-widget { left: calc(64px + 12px); bottom: 12px; width: 220px; }
 }

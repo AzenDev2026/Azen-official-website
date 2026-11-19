@@ -8,7 +8,7 @@
 
     NV.translations = {
         en: {
-            update_counter: 'update 28',
+            update_counter: 'update 29',
             nav_home: 'Home',
             scroll_hint: 'Scroll down',
             nav_news: 'News',
@@ -121,7 +121,7 @@
             comments: '"NVazen gives me a clean, pure Linux experience. The ALRM 4 in NVazen Linux is amazing."\n— Community feedback\n\n"The ISO is finally here — downloaded from Internet Archive and installed successfully!"\n— Tester\n\n"The customization based on Arch is clever. Runs smoothly on my old machine. Looking forward to the ecosystem!"'
         },
         zh: {
-            update_counter: '第 28 次更新',
+            update_counter: '第 29 次更新',
             nav_home: '首页',
             scroll_hint: '向下滚动',
             nav_news: '新闻',
@@ -234,7 +234,7 @@
             comments: '"NVazen 给了我一种干净、纯粹的 Linux 体验。NVazen Linux 搭载的 ALRM 4 更是让人惊喜。"\n— 来自社区的反馈\n\n"ISO 镜像终于来了，已经在 Internet Archive 下载并安装成功！"\n— 测试用户\n\n"基于 Arch 的定制很巧妙，在我的旧电脑上也能流畅运行。期待后续的软件生态完善！"'
         },
         ja: {
-            update_counter: '更新 28',
+            update_counter: '更新 29',
             nav_home: 'ホーム',
             scroll_hint: 'スクロール',
             nav_news: 'ニュース',
@@ -348,7 +348,7 @@
             comments: '"NVazen はクリーンで純粋な Linux 体験を提供します。NVazen Linux の ALRM 4 は素晴らしいです。"\n— コミュニティフィードバック\n\n"ISO がついに登場 — Internet Archive からダウンロードして無事インストールしました！"\n— テスター\n\n"Arch ベースのカスタマイズは巧妙で、古いマシンでもスムーズに動作します。"'
         },
         ko: {
-            update_counter: '업데이트 28',
+            update_counter: '업데이트 29',
             nav_home: '홈',
             scroll_hint: '스크롤',
             nav_news: '뉴스',
