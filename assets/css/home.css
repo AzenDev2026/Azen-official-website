@@ -45,17 +45,55 @@
 }
 .soft-refresh { animation: softRefresh 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
-/* ---------- hero ---------- */
+/* ---------- hero: split banner (transparent top + claim bottom) ---------- */
 .hero-section {
-    min-height: 100vh;
-    padding: 64px 0 88px 0;
     position: relative;
-    overflow: hidden;
+    isolation: isolate;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 0;
+    overflow: hidden;
+    background: var(--bg-body);
 }
 
-.hero-deco { position: absolute; pointer-events: none; z-index: 1; }
+/* upper half — fully transparent so the wallpaper shines through */
+.hero-top {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: clamp(230px, 36vh, 430px);
+    z-index: 2;
+}
+/* clarity gradient: the wallpaper gets clearer towards the top and
+   melts into the solid claim panel at the bottom edge */
+.hero-top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to top,
+        var(--bg-body) 0%,
+        var(--hero-fade-1) 24%,
+        var(--hero-fade-2) 56%,
+        var(--hero-fade-3) 82%,
+        transparent 100%);
+}
+/* soft focus at the seam, perfectly sharp at the top */
+.hero-top::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    backdrop-filter: blur(16px) saturate(115%);
+    -webkit-backdrop-filter: blur(16px) saturate(115%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 40%, transparent 74%);
+    mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 40%, transparent 74%);
+}
+
+.hero-deco { position: absolute; pointer-events: none; z-index: 3; }
 
 .deco-semicircle {
     top: -100px;
@@ -80,14 +118,130 @@
 }
 
 .deco-dots {
-    bottom: 30px;
-    right: 40px;
+    bottom: 26px;
+    right: 44px;
     width: 120px;
     height: 120px;
     background-image: radial-gradient(circle, rgba(0, 120, 212, 0.45) 1.5px, transparent 1.5px);
     background-size: 16px 16px;
-    opacity: 0.45;
+    opacity: 0.4;
     animation: floatSlow 11s ease-in-out infinite reverse;
+}
+
+/* lower half — benefits of NVazen on the solid page colour */
+.hero-bottom {
+    position: relative;
+    z-index: 2;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-start;
+    padding: 38px 0 84px 0;
+    background: var(--bg-body);
+}
+.hero-bottom::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(72% 130% at 6% 0%, rgba(0, 120, 212, 0.20), transparent 66%),
+        radial-gradient(58% 120% at 94% 8%, rgba(76, 194, 255, 0.10), transparent 70%);
+    /* fade the glow in below the seam so the two halves join without a line */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 74%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 74%, transparent 100%);
+}
+[data-theme="light"] .hero-bottom::before {
+    background:
+        radial-gradient(72% 130% at 6% 0%, rgba(0, 120, 212, 0.10), transparent 66%),
+        radial-gradient(58% 120% at 94% 8%, rgba(0, 168, 255, 0.10), transparent 70%);
+}
+.hero-claim-wrap { position: relative; z-index: 1; }
+
+.hero-claim {
+    font-size: clamp(34px, 5vw, 64px);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+}
+.hero-claim .claim-line {
+    display: block;
+    text-wrap: balance;
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+.hero-claim .claim-line:nth-child(1) { animation-delay: 0.12s; }
+.hero-claim .claim-line:nth-child(2) { animation-delay: 0.26s; }
+.hero-claim .claim-accent {
+    background: var(--hero-claim-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding-bottom: 0.06em;
+}
+
+.hero-claim-sub {
+    font-size: clamp(15px, 1.3vw, 17px);
+    color: var(--text-2);
+    max-width: 800px;
+    line-height: 1.75;
+    margin-bottom: 32px;
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) 0.4s both;
+}
+
+.hero-benefits {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+}
+.hero-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 17px;
+    border-radius: 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+        border-color 0.2s ease, background-color 0.3s ease;
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+.hero-benefit:nth-child(1) { animation-delay: 0.52s; }
+.hero-benefit:nth-child(2) { animation-delay: 0.62s; }
+.hero-benefit:nth-child(3) { animation-delay: 0.72s; }
+.hero-benefit:nth-child(4) { animation-delay: 0.82s; }
+.hero-benefit:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+    background: var(--bg-elev2);
+}
+.benefit-icon {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    color: var(--accent-text);
+    background: var(--bg-elev2);
+    border: 1px solid var(--border);
+}
+.benefit-icon svg { width: 19px; height: 19px; }
+.benefit-text strong {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.benefit-text p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-3);
+    margin: 0;
 }
 
 .hero-grid {
@@ -109,15 +263,8 @@
     position: relative;
 }
 
-/* staggered entrance for the intro box contents */
-.hero-text-box > * { animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both; }
-.hero-text-box > *:nth-child(1) { animation-delay: 0.06s; }
-.hero-text-box > *:nth-child(2) { animation-delay: 0.14s; }
-.hero-text-box > *:nth-child(3) { animation-delay: 0.22s; }
-.hero-text-box > *:nth-child(4) { animation-delay: 0.30s; }
-.hero-text-box > *:nth-child(5) { animation-delay: 0.38s; }
-.hero-text-box > *:nth-child(6) { animation-delay: 0.46s; }
-.hero-text-box > *:nth-child(7) { animation-delay: 0.54s; }
+/* staggered entrance for the intro box contents removed — the card now
+   animates in with .reveal when it scrolls into view. */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -172,7 +319,7 @@
     padding-right: 72px;
 }
 .hero-title:hover { text-shadow: 0 0 30px rgba(0, 120, 212, 0.35); }
-.hero-title .letter { display: inline-block; transition: transform 0.3s ease, filter 0.3s ease; }
+.hero-title .letter { display: inline-block; white-space: pre; transition: transform 0.3s ease, filter 0.3s ease; }
 .hero-title.animate .letter { animation: letterBounce 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 .hero-title.animate { animation: titleGlow 2s ease-in-out both; }
 
@@ -219,6 +366,40 @@
     margin-top: 18px;
 }
 
+/* ---------- latest release + screenshot (below the banner) ---------- */
+.latest-section {
+    position: relative;
+    background: var(--bg-body);
+    padding: 78px 0 96px 0;
+}
+.latest-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.latest-kicker {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin-bottom: 10px;
+}
+.latest-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+.latest-title-row .hero-title { margin-bottom: 0; padding-right: 0; }
+.latest-title-row .version-sub.rolling { align-self: center; }
+
 /* ---------- hero media (direct screenshot display) ---------- */
 .hero-media {
     flex: 1;
@@ -227,13 +408,8 @@
     align-items: center;
     width: 100%;
     padding: 10px 0 20px 0;
-    animation: mediaIn 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) both,
-        floatSoft 11s ease-in-out 1.4s infinite;
 }
-@keyframes mediaIn {
-    from { opacity: 0; transform: translateY(22px) scale(0.98); }
-    to { opacity: 1; transform: none; }
-}
+.hero-media .hero-shot { animation: floatSoft 11s ease-in-out infinite; }
 @keyframes floatSoft {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
@@ -685,21 +861,35 @@
 .requirements-section .fluent-table { margin-top: 28px; }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
+    .hero-section { min-height: auto; }
     .hero-grid { flex-direction: column; gap: 36px; }
-    .hero-section { min-height: auto; padding-top: 44px; }
     .hero-text-box { width: 100%; }
+    .hero-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .latest-section { padding: 60px 0 80px 0; }
     .laptop-wrapper { padding: 10px 0 30px 0; }
     .hero-media { padding: 0 0 20px 0; }
 }
 
 @media (max-width: 820px) {
     .hero-title { font-size: 40px; }
+    .hero-top { min-height: 32svh; }
+    .hero-bottom { padding: 30px 0 72px 0; }
+    .hero-claim { font-size: clamp(30px, 8vw, 42px); }
+    .hero-claim-sub { font-size: 15px; margin-bottom: 26px; }
     .deco-semicircle { width: 240px; height: 240px; top: -60px; right: -70px; }
     .deco-ring { width: 110px; height: 110px; top: 20px; right: 30px; }
     .deco-dots { display: none; }
     .laptop-base { height: 84px; }
     .boot-time .boot-note { margin-left: 0; text-align: left; width: 100%; }
+}
+
+@media (max-width: 560px) {
+    .hero-benefits { grid-template-columns: 1fr; }
+    .hero-benefit { padding: 13px 14px; }
+    .hero-benefit:nth-child(n) { animation-delay: 0.3s; }
+    .hero-claim { font-size: clamp(24px, 6.9vw, 32px); }
+    .latest-section { padding: 48px 0 64px 0; }
 }
 
 @media (max-width: 480px) {

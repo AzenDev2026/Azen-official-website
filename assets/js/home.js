@@ -189,7 +189,7 @@
         var scrollHint = document.getElementById('scrollHint');
         if (scrollHint) {
             scrollHint.addEventListener('click', function () {
-                var target = document.getElementById('alrm');
+                var target = document.getElementById('latest');
                 if (target) {
                     var header = document.querySelector('header');
                     var offset = header ? header.offsetHeight + 16 : 24;

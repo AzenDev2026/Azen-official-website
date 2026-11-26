@@ -30,10 +30,25 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
 
+    <script>
+    /* apply the saved theme / language / background effect before the first
+       paint, so the hero banner never flashes the wrong palette while the
+       shared site.js runtime boots up. Defaults mirror loadPrefs() in site.js. */
+    (function () {
+        try {
+            var prefs = JSON.parse(localStorage.getItem('nvazen_user_prefs') || '{}') || {};
+            var root = document.documentElement;
+            root.setAttribute('data-theme', prefs.theme === 'light' ? 'light' : 'dark');
+            root.setAttribute('data-bg-effect', prefs.bgEffect || 'full');
+            if (prefs.lang) root.setAttribute('lang', prefs.lang === 'zh' ? 'zh-CN' : prefs.lang);
+        } catch (e) { /* private mode / disabled storage */ }
+    })();
+    </script>
+
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
-<body data-bg-effect="full">
+<body>
 
 <div class="app" id="app">
 
@@ -140,36 +155,93 @@
 
     <div class="main">
 
-    <!-- ================= 横幅 ================= -->
+    <!-- ================= 横幅（上下分栏） ================= -->
     <section class="hero-section" id="heroCarousel">
-        <div class="hero-bg-layer"></div>
-        <div class="hero-deco deco-semicircle"></div>
-        <div class="hero-deco deco-ring"></div>
-        <div class="hero-deco deco-dots"></div>
+        <!-- 上半部分：透明，直接露出桌面背景；底部向上渐变，越往上越清晰 -->
+        <div class="hero-top" aria-hidden="true">
+            <div class="hero-bg-layer"></div>
+            <div class="hero-deco deco-semicircle"></div>
+            <div class="hero-deco deco-ring"></div>
+            <div class="hero-deco deco-dots"></div>
+        </div>
 
+        <!-- 下半部分：NVazen 的好处 -->
+        <div class="hero-bottom">
+            <div class="container hero-claim-wrap">
+                <h1 class="hero-claim">
+                    <span class="claim-line" data-i18n="hero_claim_1">Looks like Windows 11,</span>
+                    <span class="claim-line claim-accent" data-i18n="hero_claim_2">but better than Windows 11.</span>
+                </h1>
+                <p class="hero-claim-sub" data-i18n="hero_claim_sub">The familiar Windows 11 layout — without the bloat, the telemetry or the forced reboots. Everything you like, nothing you don't, on the hardware Microsoft left behind.</p>
+
+                <ul class="hero-benefits">
+                    <li class="hero-benefit">
+                        <span class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6z"/><path d="m9.2 12.2 2 2 3.6-3.8"/></svg>
+                        </span>
+                        <div class="benefit-text">
+                            <strong data-i18n="hero_benefit1_title">Privacy first</strong>
+                            <p data-i18n="hero_benefit1_desc">Telemetry off by default, no account required, nothing leaves your machine.</p>
+                        </div>
+                    </li>
+                    <li class="hero-benefit">
+                        <span class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.8A7.8 7.8 0 0 1 9.2 4.5a7.8 7.8 0 1 0 10.3 10.3Z"/><path d="M17 4.5h.01"/><path d="M20.5 8h.01"/></svg>
+                        </span>
+                        <div class="benefit-text">
+                            <strong data-i18n="hero_benefit2_title">NAAP App Nap</strong>
+                            <p data-i18n="hero_benefit2_desc">Hidden windows freeze in place — longer battery life and quieter fans.</p>
+                        </div>
+                    </li>
+                    <li class="hero-benefit">
+                        <span class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8.5A8.5 8.5 0 0 0 5.6 6.2L4 8"/><path d="M4 4v4h4"/><path d="M4 15.5a8.5 8.5 0 0 0 14.4 2.3L20 16"/><path d="M20 20v-4h-4"/></svg>
+                        </span>
+                        <div class="benefit-text">
+                            <strong data-i18n="hero_benefit3_title">Rolling release</strong>
+                            <p data-i18n="hero_benefit3_desc">Kernel, Plasma and drivers stay current — no yearly reinstall.</p>
+                        </div>
+                    </li>
+                    <li class="hero-benefit">
+                        <span class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="9.5" rx="1.6"/><path d="M3 18.5h18"/><path d="M9.5 18.5h5"/></svg>
+                        </span>
+                        <div class="benefit-text">
+                            <strong data-i18n="hero_benefit4_title">Old-laptop friendly</strong>
+                            <p data-i18n="hero_benefit4_desc">Boots in about 5.7 s and stays fluid on 4 GB of RAM.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="scroll-hint" id="scrollHint" aria-label="Scroll down" data-i18n="scroll_hint">Scroll down</button>
+    </section>
+
+    <!-- ================= 最新版本 + 截图展示 ================= -->
+    <section class="latest-section" id="latest">
         <div class="container hero-grid">
             <!-- 介绍框：左侧 -->
-            <div class="hero-text-box">
+            <div class="hero-text-box latest-box reveal">
                 <img src="arclogo.png" alt="Arch Linux" class="arch-logo">
 
-                <div class="version-display">
-                    <span class="version-label" data-i18n="version_label">最新版本</span>
-                    <span class="version-number">NVazen Linux</span>
+                <span class="latest-kicker" data-i18n="version_label">最新版本</span>
+                <div class="latest-title-row">
+                    <h2 class="hero-title" id="nvazenTitle" title="Click me">NVazen Linux</h2>
                     <span class="version-sub rolling" data-i18n="version_rolling">滚动更新</span>
                 </div>
-                <h1 class="hero-title" id="nvazenTitle" title="Click me">NVazen Linux</h1>
-                <div class="hero-sub" data-i18n="hero_sub">基于 Arch Linux 的滚动更新系列 · 搭载 ALRM 4 技术</div>
+                <p class="hero-sub" data-i18n="hero_sub">基于 Arch Linux 的滚动更新系列 · 搭载 NAAP 技术</p>
                 <p class="hero-desc" data-i18n="hero_desc">ISO 镜像已发布！点击下方按钮即可直接下载。</p>
                 <a href="https://archive.org/download/nvazen-2026.10.06-x-86-64-1/nvazen-2026.10.06-x86_64%20(1).iso"
                    class="download-iso-btn" download>
                     <span data-i18n="download_text">下载 ISO</span>
                     <span class="size">x86_64</span>
                 </a>
-                <div class="status-alert" data-i18n="hero_alert">NVazen Linux 滚动更新，始终为你带来最新的 ALRM 4 引擎与系统改进</div>
+                <div class="status-alert" data-i18n="hero_alert">NVazen Linux 滚动更新，始终为你带来最新的 NAAP 引擎与系统改进</div>
             </div>
 
             <!-- 图片展示：右侧（直接展示原图，无窗口外壳） -->
-            <div class="hero-media">
+            <div class="hero-media reveal">
                 <div class="hero-shot">
                     <div class="screen-carousel" id="screenCarousel">
                         <div class="screen-slide"><img src="scr1.png" alt="NVazen Linux screenshot 1"></div>
@@ -185,8 +257,6 @@
                 <div class="image-caption" data-i18n="image_caption">此照片为 NVazen Linux 滚动版的实机演示</div>
             </div>
         </div>
-
-        <button class="scroll-hint" id="scrollHint" aria-label="Scroll down" data-i18n="scroll_hint">向下滚动</button>
     </section>
 
     <!-- ============================================================

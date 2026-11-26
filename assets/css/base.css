@@ -30,6 +30,11 @@
     --blur: 24px;
     --saturate: 130%;
     --brightness: 100%;
+    /* hero split banner: fade from the claim panel up into the wallpaper */
+    --hero-fade-1: rgba(32, 32, 32, 0.88);
+    --hero-fade-2: rgba(32, 32, 32, 0.54);
+    --hero-fade-3: rgba(32, 32, 32, 0.18);
+    --hero-claim-grad: linear-gradient(93deg, #d9f3ff 0%, #8ed6ff 32%, #46a7f2 64%, #1f6cbd 100%);
 }
 
 [data-theme="light"] {
@@ -54,6 +59,10 @@
     --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.12);
     --header-bg: rgba(243, 243, 243, 0.78);
     --hero-overlay: rgba(243, 243, 243, 0.55);
+    --hero-fade-1: rgba(243, 243, 243, 0.9);
+    --hero-fade-2: rgba(243, 243, 243, 0.55);
+    --hero-fade-3: rgba(243, 243, 243, 0.18);
+    --hero-claim-grad: linear-gradient(93deg, #00497f 0%, #0a6fb8 38%, #1f8fd6 72%, #3aa8e4 100%);
 }
 
 /* Background effects (Win11 Mica / Acrylic family) */
@@ -704,7 +713,7 @@ button:focus-visible {
     z-index: 0;
     background-image: url('../../background.png');
     background-size: cover;
-    background-position: center;
+    background-position: center 58%;
     background-repeat: no-repeat;
     background-color: var(--bg-body);
 }

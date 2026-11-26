@@ -8,7 +8,7 @@ Live site: **https://azen.dev**
 
 | File | Description |
 |---|---|
-| `index.html` | Home: NVazen Linux introduction, NAAP technology, news, download, reviews, hardware requirements |
+| `index.html` | Home: split hero banner, latest release + screenshots, NAAP technology, news, download, reviews, hardware requirements |
 | `downloads.html` | Download center: ISO version list |
 | `support.html` | GitHub repository list (the whole Azen ecosystem) |
 | `distro.html` | Distribution list (cards render same-directory Markdown files as details) |
@@ -24,7 +24,7 @@ Every page uses a **collapsible left sidebar** for navigation. Click the double-
 | File | Purpose |
 |---|---|
 | `assets/css/base.css` | Win11 design tokens (dark/light themes), sidebar layout, buttons, cards, chips, footer and other shared components |
-| `assets/css/home.css` | Home page styles (hero, screenshot frame, carousel, sections). Note: the CSS for the old laptop mockup is intentionally kept here for future reuse |
+| `assets/css/home.css` | Home page styles (split hero banner, latest-release block, screenshot frame, carousel, sections). Note: the CSS for the old laptop mockup is intentionally kept here for future reuse |
 | `assets/css/distro.css` | Distro list page styles (including Markdown rendering styles) |
 | `assets/css/search.css` | Search portal styles |
 | `assets/js/i18n.js` | Four-language dictionaries (en / zh / ja / ko); missing keys fall back to English |
@@ -36,6 +36,7 @@ Every page uses a **collapsible left sidebar** for navigation. Click the double-
 ## Features
 
 - **Four languages** — English / 简体中文 / 日本語 / 한국어, switchable in the settings menu (sidebar bottom), stored in `localStorage`
+- **Split hero banner** — a fully transparent upper half that lets the desktop wallpaper show through with a clarity gradient towards the top, and a solid lower half for the NVazen claim and its four benefits
 - **Dark / light theme** and **background effects** (Acrylic / Full / Liquid glass) for the hero
 - Screenshot carousel, news carousel, letter-bounce title animation, scroll reveal
 - Search page: URL-direct navigation, hot search suggestions, custom quick links, date format toggle, open-meteo weather with geolocation or manual city entry
@@ -52,7 +53,16 @@ Most day-to-day edits do **not** require touching CSS or JavaScript. The guides 
 ### Change the hero background image
 
 1. Replace `background.png` in the repository root (any resolution; it is displayed with `background-size: cover`).
-2. The overlay strength for each background effect lives in `assets/css/base.css` under `[data-bg-effect="..."]` (`--hero-overlay`); lower the alpha to show more of the image.
+2. The image is only shown in the transparent **upper half** of the banner (`.hero-top .hero-bg-layer`); set `background-position` there if you want a different crop of the artwork.
+3. The overlay strength for each background effect lives in `assets/css/base.css` under `[data-bg-effect="..."]` (`--hero-overlay`); lower the alpha to show more of the image.
+4. The fade from the wallpaper into the claim panel is themed by `--hero-fade-1/2/3` in `assets/css/base.css`; the extra blur at the seam is `.hero-top::before` in `home.css`.
+
+### Change the banner claim and benefit cards
+
+1. The two claim lines and the paragraph under them are the `hero_claim_1`, `hero_claim_2` and `hero_claim_sub` keys in `assets/js/i18n.js` (one copy per language).
+2. The four benefit cards are the `<li class="hero-benefit">` items inside `.hero-benefits` in `index.html`; their text uses the `hero_benefit1_title` … `hero_benefit4_desc` keys. Keep four items for the desktop 4-column grid (it becomes 2 columns below 1100 px and 1 column below 560 px).
+3. The banner height split is `.hero-top { min-height: clamp(230px, 36vh, 430px) }` in `home.css`; the claim panel fills the rest of the first screen.
+4. The latest-version card and screenshot carousel live in the `#latest` section directly below the banner.
 
 ### Change the accent colour / theme colours
 
