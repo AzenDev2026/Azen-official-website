@@ -55,7 +55,7 @@ Most day-to-day edits do **not** require touching CSS or JavaScript. The guides 
 1. Replace `background.png` in the repository root (any resolution; it is displayed with `background-size: cover`).
 2. The image is only shown in the transparent **upper half** of the banner (`.hero-top .hero-bg-layer`); set `background-position` there if you want a different crop of the artwork.
 3. The overlay strength for each background effect lives in `assets/css/base.css` under `[data-bg-effect="..."]` (`--hero-overlay`); lower the alpha to show more of the image.
-5. The `deco-semicircle` / `deco-ring` decorations were removed from the top-right corner; only the subtle `deco-dots` grid remains in the transparent area.
+5. The old circle / ring / dot decorations were removed — the transparent upper half now shows the wallpaper only.
 4. The fade from the wallpaper into the claim panel is themed by `--hero-fade-1/2/3` in `assets/css/base.css`; the extra blur at the seam is `.hero-top::before` in `home.css`.
 
 ### Change the banner brand, claim and benefit cards
