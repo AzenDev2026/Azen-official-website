@@ -55,14 +55,16 @@ Most day-to-day edits do **not** require touching CSS or JavaScript. The guides 
 1. Replace `background.png` in the repository root (any resolution; it is displayed with `background-size: cover`).
 2. The image is only shown in the transparent **upper half** of the banner (`.hero-top .hero-bg-layer`); set `background-position` there if you want a different crop of the artwork.
 3. The overlay strength for each background effect lives in `assets/css/base.css` under `[data-bg-effect="..."]` (`--hero-overlay`); lower the alpha to show more of the image.
+5. The `deco-semicircle` / `deco-ring` decorations were removed from the top-right corner; only the subtle `deco-dots` grid remains in the transparent area.
 4. The fade from the wallpaper into the claim panel is themed by `--hero-fade-1/2/3` in `assets/css/base.css`; the extra blur at the seam is `.hero-top::before` in `home.css`.
 
-### Change the banner claim and benefit cards
+### Change the banner brand, claim and benefit cards
 
-1. The two claim lines and the paragraph under them are the `hero_claim_1`, `hero_claim_2` and `hero_claim_sub` keys in `assets/js/i18n.js` (one copy per language).
-2. The four benefit cards are the `<li class="hero-benefit">` items inside `.hero-benefits` in `index.html`; their text uses the `hero_benefit1_title` … `hero_benefit4_desc` keys. Keep four items for the desktop 4-column grid (it becomes 2 columns below 1100 px and 1 column below 560 px).
-3. The banner height split is `.hero-top { min-height: clamp(230px, 36vh, 430px) }` in `home.css`; the claim panel fills the rest of the first screen.
-4. The latest-version card and screenshot carousel live in the `#latest` section directly below the banner.
+1. The small brand lockup above the claim (icon + `NVazen™ Linux`) is the `.hero-brand` block in `index.html`; it is a proper name, so it is not translated.
+2. The two claim lines and the paragraph under them are the `hero_claim_1`, `hero_claim_2` and `hero_claim_sub` keys in `assets/js/i18n.js` (one copy per language).
+3. The four benefit cards are the `<li class="hero-benefit">` items inside `.hero-benefits` in `index.html`; their text uses the `hero_benefit1_title` … `hero_benefit4_desc` keys. Keep four items for the desktop 4-column grid (it becomes 2 columns below 1100 px and 1 column below 560 px). Note that the NAAP card is titled just `NAAP` — the acronym already expands to "New Architecture App Nap", so do not append "App Nap" again.
+4. The banner height split: `.hero-bottom` is as tall as the claim panel, while `.hero-top` (`flex: 1 1 0%`) fills the rest of the first screen, with a `clamp(210px, 26vh, 420px)` floor. A `max-height: 780px` query compacts the type on short laptop screens so the whole banner still fits one screen.
+5. The latest-version card and screenshot carousel live in the `#latest` section directly below the banner.
 
 ### Change the accent colour / theme colours
 
