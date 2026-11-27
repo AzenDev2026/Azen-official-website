@@ -304,9 +304,6 @@
         window.addEventListener('hashchange', function () {
             if (document.getElementById('newsExplorer')) applyHashArticle();
         });
-        if (typeof window.NV !== 'undefined' && window.NV.onLangChange === undefined) {
-            var orig = window.NV.applyLang;
-        }
         if (window.NV) {
             var prevOnLang = window.NV.onLangChange;
             window.NV.onLangChange = function (lang) {
