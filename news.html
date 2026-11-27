@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azen News — NVazen™ Linux</title>
+    <meta name="description" content="Azen News: dated editions of the NVazen project news, browsable like a file manager and readable like a real newspaper.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://azen.dev/news.html">
+    <meta property="og:title" content="Azen News — NVazen™ Linux">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://azen.dev/news.html">
+    <meta property="og:image" content="https://azen.dev/scr1.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+    <link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body data-bg-effect="full">
+<div class="app" id="app">
+
+    <!-- ================= 左侧导航栏 ================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="side-brand">
+            <a class="brand" href="index.html" aria-label="NVazen Linux home">
+                <img src="icon.png" alt="NVazen Linux">
+                <span class="brand-text">NVazen<span class="tm">™</span> Linux</span>
+            </a>
+        </div>
+        <div class="side-update" data-i18n="update_counter">update 31</div>
+
+        <nav class="side-nav" aria-label="Primary">
+            <a class="side-link" href="index.html" data-nav="index.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V20h12V9.5"/></svg>
+                <span class="side-label" data-i18n="nav_home">Home</span>
+            </a>
+            <a class="side-link" href="news.html" data-nav="news.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M7 3v18"/><path d="M10 8h6"/><path d="M10 12h6"/><path d="M10 16h4"/></svg>
+                <span class="side-label" data-i18n="nav_news">News</span>
+            </a>
+            <a class="side-link" href="index.html#features">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 4 2.4 5 5.6.7-4.1 3.8 1.1 5.5L12 16.6 6.9 19l1.1-5.5L4 9.7l5.6-.7z"/></svg>
+                <span class="side-label" data-i18n="nav_features">Features</span>
+            </a>
+            <a class="side-link" href="index.html#download">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m8 11 4 4 4-4"/><path d="M4 19h16"/></svg>
+                <span class="side-label" data-i18n="nav_download">Download</span>
+            </a>
+            <a class="side-link" href="index.html#reviews">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v11H9l-5 4z"/></svg>
+                <span class="side-label" data-i18n="nav_reviews">Reviews</span>
+            </a>
+            <a class="side-link" href="index.html#requirements">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12"/><path d="M8 12h12"/><path d="M8 18h12"/><path d="M4 6h.01"/><path d="M4 12h.01"/><path d="M4 18h.01"/></svg>
+                <span class="side-label" data-i18n="nav_requirements">Requirements</span>
+            </a>
+            <a class="side-link" href="distro.html" data-nav="distro.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="m7 9 3 3-3 3"/><path d="M13 15h4"/></svg>
+                <span class="side-label" data-i18n="nav_distros">Distros</span>
+            </a>
+            <a class="side-link" href="search.html" data-nav="search.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/></svg>
+                <span class="side-label" data-i18n="nav_search">Search</span>
+            </a>
+            <a class="side-link" href="support.html" data-nav="support.html">
+                <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4"/><path d="m15 8 4 4-4 4"/></svg>
+                <span class="side-label" data-i18n="nav_repos">GitHub</span>
+            </a>
+        </nav>
+
+        <div class="side-bottom">
+            <button class="side-toggle" id="sidebarToggle" title="Collapse sidebar" aria-label="Toggle sidebar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/><path d="m20 6-6 6 6 6"/></svg>
+            </button>
+            <div class="settings-wrapper">
+                <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">
+                    <svg class="side-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M18 7h2"/><path d="M4 17h4"/><path d="M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+                </button>
+                <div class="settings-menu" id="settingsMenu">
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_language">Language</span>
+                        <div class="settings-group-options">
+                            <button class="opt-btn active" data-lang-opt="en">English</button>
+                            <button class="opt-btn" data-lang-opt="zh">简体中文</button>
+                            <button class="opt-btn" data-lang-opt="ja">日本語</button>
+                            <button class="opt-btn" data-lang-opt="ko">한국어</button>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <span class="settings-group-label" data-i18n="settings_theme">Theme</span>
+                        <div class="settings-group-options">
+                            <button class="opt-btn active" data-theme-opt="dark"><span data-i18n="theme_dark">Dark</span></button>
+                            <button class="opt-btn" data-theme-opt="light"><span data-i18n="theme_light">Light</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main">
+
+<div class="subpage-header">
+    <div class="container">
+        <h1><span data-i18n="news_page_title">Azen News</span></h1>
+        <p data-i18n="news_page_desc">Open a dated edition of the Azen News like a real newspaper.</p>
+    </div>
+</div>
+
+<div class="subpage-content">
+    <div class="container">
+        <!-- 文件管理器风格的新闻总览 -->
+        <div class="news-explorer reveal" id="newsExplorer">
+            <div class="ne-titlebar">
+                <span class="ne-dot r"></span><span class="ne-dot y"></span><span class="ne-dot g"></span>
+                <span class="ne-title" data-i18n="news_explorer_title">Azen News — Explorer</span>
+            </div>
+            <div class="ne-toolbar">
+                <span class="ne-navbtn" aria-hidden="true">‹</span>
+                <span class="ne-navbtn" aria-hidden="true">›</span>
+                <span class="ne-addr">
+                    <span class="ne-addr-ico" aria-hidden="true">📰</span>
+                    <span data-i18n="news_addr_all">Azen News &gt; All</span>
+                </span>
+            </div>
+            <div class="ne-body">
+                <div class="ne-side">
+                    <div class="ne-side-item active"><span aria-hidden="true">📁</span><span data-i18n="news_side_all">All News</span></div>
+                    <div class="ne-side-item"><span aria-hidden="true">📂</span><span>2026</span></div>
+                </div>
+                <div class="ne-list">
+                    <div class="ne-list-head">
+                        <span></span>
+                        <span data-i18n="news_col_name">Name</span>
+                        <span data-i18n="news_col_date">Date</span>
+                        <span data-i18n="news_col_type">Type</span>
+                    </div>
+                    <div id="newsFileList"><!-- JS 渲染新闻文件列表 --></div>
+                </div>
+            </div>
+        </div>
+        <p class="news-explorer-hint" data-i18n="news_hint">Click a news file to unfold it like a newspaper.</p>
+    </div>
+</div>
+
+<footer>
+    <div class="container footer-grid">
+        <div>
+            <p><strong>© 2026 梁子珽</strong> <span data-i18n="footer_original">· 原创作品</span></p>
+            <p>NVazen<span class="tm">™</span> Linux — <span data-i18n="footer_brand">基于 Arch Linux 的定制发行版</span></p>
+            <p data-i18n="footer_gpl">遵守 GPLv3 开源协议</p>
+        </div>
+        <div class="footer-note">
+            <p data-i18n="footer_note">本系统基于 Arch Linux，所有修改及衍生代码遵循 GPLv3。</p>
+            <p style="margin-top:8px;" data-i18n="footer_repo">GitHub 仓库 · 开源共建</p>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/news.js"></script>
+    </div><!-- /.main -->
+</div><!-- /.app -->
+</body>
+</html>

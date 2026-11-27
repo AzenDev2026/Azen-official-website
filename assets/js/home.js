@@ -68,8 +68,24 @@
     function buildNews() {
         var lang = window.NV.lang || 'en';
         var dict = (window.NV.translations && window.NV.translations[lang]) || {};
-        var items = dict.news_items ||
-            (window.NV.translations && window.NV.translations.en && window.NV.translations.en.news_items) || [];
+        var items = [];
+        // 优先使用 Azen News 文章库（与 news.html 共用数据源）
+        if (window.NV_NEWS && window.NV_NEWS.order) {
+            window.NV_NEWS.order.forEach(function (date) {
+                var a = window.NV_NEWS.articles[date];
+                if (!a) return;
+                items.push({
+                    id: date,
+                    tag: (a.tag && (a.tag[lang] || a.tag.en)) || '',
+                    title: (a.title && (a.title[lang] || a.title.en)) || '',
+                    desc: (a.summary && (a.summary[lang] || a.summary.en)) || ''
+                });
+            });
+        }
+        if (!items.length) {
+            items = dict.news_items ||
+                (window.NV.translations && window.NV.translations.en && window.NV.translations.en.news_items) || [];
+        }
         var container = document.getElementById('newsSwapContainer');
         var dotsBox = document.getElementById('newsDots');
         if (!container || !dotsBox) return;
@@ -78,11 +94,19 @@
             var desc = item.link
                 ? item.desc + ' <a href="' + item.link + '" target="_blank" rel="noopener">→ ' + window.NV.t(lang, 'download_text') + '</a>'
                 : item.desc;
-            html += '<div class="news-swap-item' + (idx === 0 ? ' active' : '') + '" data-news-index="' + idx + '">' +
+            html += '<div class="news-swap-item' + (idx === 0 ? ' active' : '') + '" data-news-index="' + idx + '" data-news-id="' + (item.id || '') + '">' +
                 '<span class="news-tag">' + (item.tag || window.NV.t(lang, 'news_tag')) + '</span>' +
-                '<h3>' + item.title + '</h3><p>' + desc + '</p></div>';
+                '<h3>' + item.title + '</h3><p>' + desc + '</p>' +
+                '<span class="news-open-hint">' + (window.NV.t(lang, 'news_hint_short') || '📰') + '</span></div>';
         });
         container.innerHTML = html;
+        // 点击新闻 → 跳转到 Azen News 详情页（报纸展开动画）
+        container.querySelectorAll('.news-swap-item').forEach(function (el) {
+            el.addEventListener('click', function () {
+                var id = el.getAttribute('data-news-id');
+                if (id) window.location.href = 'news.html#' + id;
+            });
+        });
         var dotsHtml = '';
         items.forEach(function (_, idx) {
             dotsHtml += '<button class="news-dot' + (idx === 0 ? ' active' : '') + '" data-dot-index="' + idx + '" aria-label="News ' + (idx + 1) + '"></button>';
