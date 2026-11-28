@@ -822,6 +822,13 @@
     color: var(--text-3);
     margin-left: auto;
 }
+.components-note {
+    font-size: 12px;
+    color: var(--text-3);
+    opacity: 0.75;
+    font-style: italic;
+    margin: -10px 0 18px;
+}
 
 .boot-time {
     display: flex;
